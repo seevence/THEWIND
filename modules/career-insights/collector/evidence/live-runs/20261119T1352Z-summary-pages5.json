@@ -1,0 +1,147 @@
+{
+  "contract_version": "0.1",
+  "run": "ingest-career --live --pages 5",
+  "repo_head": "39605d8",
+  "database": "127.0.0.1:15432/aihot (container aihot-db-1, user aihot)",
+  "generated_at": "2026-11-19T13:57:00Z",
+  "before": {
+    "snapshot_file": "20261119T1351Z-before-pages5-snapshot.txt",
+    "detail_file": "20261119T1351Z-before-pages5-detail.txt",
+    "jobs_total": 87,
+    "jobs_by_source": { "baidu-official-careers": 20, "meituan-official-careers": 46, "tencent-official-careers": 21 },
+    "observations_total": 290,
+    "distinct_cst_days": 1,
+    "normalizer_version": { "normalizer/0.2.0": 27, "normalizer/0.3.0": 60 },
+    "student_friendly": { "no": 67, "unknown": 19, "yes": 1 },
+    "role_family": { "unknown": 59, "ai_product_operations": 13, "ai_application_development": 10, "data": 3, "ai_algorithm": 2 },
+    "jobs_missing_daily_obs": 0,
+    "jobs_without_any_obs": 0,
+    "dup_official_url_groups": 0,
+    "dup_job_key_cross_source_groups": 0,
+    "collector_version": { "collector/0.1.0": 87 }
+  },
+  "after": {
+    "snapshot_file": "20261119T1352Z-after-pages5-snapshot.txt",
+    "detail_file": "20261119T1352Z-after-pages5-detail.txt",
+    "jobs_total": 163,
+    "jobs_by_source": { "baidu-official-careers": 50, "meituan-official-careers": 63, "tencent-official-careers": 50 },
+    "observations_total": 380,
+    "distinct_cst_days": 1,
+    "normalizer_version": { "normalizer/0.2.0": 13, "normalizer/0.3.0": 150 },
+    "student_friendly": { "no": 130, "unknown": 28, "yes": 5 },
+    "role_family": { "unknown": 121, "ai_product_operations": 19, "ai_application_development": 14, "data": 7, "ai_algorithm": 2 },
+    "jobs_missing_daily_obs": 0,
+    "jobs_without_any_obs": 0,
+    "dup_official_url_groups": 0,
+    "dup_job_key_cross_source_groups": 0,
+    "collector_version": { "collector/0.1.0": 163 },
+    "observations_per_job_histogram": { "1": 94, "2": 36, "3": 4, "4": 2, "5": 1, "6": 2, "7": 15, "8": 9 }
+  },
+  "delta": {
+    "jobs": 76,
+    "observations": 90,
+    "normalizer_0_2_0": -14,
+    "normalizer_0_3_0": 90,
+    "student_friendly": { "no": 63, "unknown": 9, "yes": 4 },
+    "role_family": { "unknown": 62, "ai_product_operations": 6, "ai_application_development": 4, "data": 4, "ai_algorithm": 0 }
+  },
+  "per_source_run_report": [
+    { "source": "tencent-official-careers", "status": "ok", "collected": 50, "normalized": 50, "rejected": 0, "accepted": 29, "updated": 1, "duplicates": 20 },
+    { "source": "meituan-official-careers", "status": "ok", "collected": 50, "normalized": 50, "rejected": 0, "accepted": 17, "updated": 0, "duplicates": 33 },
+    { "source": "baidu-official-careers", "status": "ok", "collected": 50, "normalized": 50, "rejected": 0, "accepted": 30, "updated": 0, "duplicates": 20 }
+  ],
+  "policy_run_report": [
+    { "source": "state-council-policy", "status": "success", "collected": 3, "accepted": 0, "updated": 0 },
+    { "source": "ndrc-policy", "status": "success", "collected": 3, "accepted": 0, "updated": 0 }
+  ],
+  "normalizer_backfill": {
+    "target": "0.2.0 -> 0",
+    "result": "PARTIAL (13 rows remain normalizer/0.2.0)",
+    "upgraded_on_existing_rows": 14,
+    "upgraded_detail": {
+      "meituan-official-careers": 13,
+      "tencent-official-careers": 1
+    },
+    "note": "14 rows were re-collected as content-identical (counted as duplicates in the run report) but the derived-signature/version check rewrote normalizer_version to 0.3.0; this path returns 'duplicates' rather than 'updated', so updated=0 for meituan does not mean nothing was normalized.",
+    "residual_0_2_0_rows": [
+      { "source_key": "meituan-official-careers", "job_key": "4527890989", "title": "快乐猴-门店拓展运营岗（项目流程运营方向）", "last_seen_at": "2026-11-19T09:43:19.614Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4563930748", "title": "国际化HR系统实施专家", "last_seen_at": "2026-11-19T09:43:19.614Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4709087193", "title": "招商高阶岗", "last_seen_at": "2026-11-19T09:43:19.614Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4740500750", "title": "业务风控策略专家", "last_seen_at": "2026-11-19T09:43:19.614Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4791110825", "title": "小象超市-自有商品品质治理专家", "last_seen_at": "2026-11-19T08:58:03.375Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4791236953", "title": "高级安全运营工程师", "last_seen_at": "2026-11-19T08:16:16.452Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4826532250", "title": "差旅场景组-产品经理", "last_seen_at": "2026-11-19T08:16:16.452Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4862040547", "title": "无人车资深后端研发工程师", "last_seen_at": "2026-11-19T08:27:05.75Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4862144961", "title": "小象超市-南京/合肥供应链品控负责人", "last_seen_at": "2026-11-19T08:58:03.375Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4875184969", "title": "无人车资深后端研发工程师", "last_seen_at": "2026-11-19T08:58:03.375Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4895246532", "title": "到餐-商业分析师（供给策略方向）", "last_seen_at": "2026-11-19T09:43:19.614Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4916888099", "title": "Grocery Supply Operations-Qata", "last_seen_at": "2026-11-19T08:58:03.375Z" },
+      { "source_key": "meituan-official-careers", "job_key": "4930351071", "title": "济南小象超市--生鲜供应链品控", "last_seen_at": "2026-11-19T08:58:03.375Z" }
+    ],
+    "root_cause": "meituan list returns 10 per page; the DB now holds 63 meituan jobs while 5 pages cover only the first 50. This run's first 50 entries contained 17 brand-new jobs, pushing 13 pre-existing jobs below page 5. All 13 residual rows have last_seen_at frozen at their pre-14:00Z values (<= 09:43Z), i.e. they were not collected in this run at all."
+  },
+  "missing_daily_obs": {
+    "before": 0,
+    "after": 0,
+    "note": "The baseline was already 0 before this run (the 13:47-13:48Z run had written a CST-day observation for all 87 jobs), so the 'missing_daily_obs=27' figure in the task brief no longer reproduced at baseline. The 76 newly accepted jobs each received a same-day observation via the accepted path; missing_daily_obs stays 0.",
+    "residual_0_2_0_rows_missing_daily_obs": 0
+  },
+  "student_friendly_changes": {
+    "distribution_before": { "no": 67, "unknown": 19, "yes": 1 },
+    "distribution_after": { "no": 130, "unknown": 28, "yes": 5 },
+    "changed_on_pre_existing_rows": 0,
+    "contributed_by_new_jobs": { "no": 63, "unknown": 9, "yes": 4 }
+  },
+  "role_family_changes": {
+    "distribution_before": { "unknown": 59, "ai_product_operations": 13, "ai_application_development": 10, "data": 3, "ai_algorithm": 2 },
+    "distribution_after": { "unknown": 121, "ai_product_operations": 19, "ai_application_development": 14, "data": 7, "ai_algorithm": 2 },
+    "changed_on_pre_existing_rows": 0,
+    "contributed_by_new_jobs": { "unknown": 62, "ai_product_operations": 6, "ai_application_development": 4, "data": 4 }
+  },
+  "job_growth_attribution": {
+    "total_new_jobs": 76,
+    "by_source": { "baidu-official-careers": 30, "meituan-official-careers": 17, "tencent-official-careers": 29 },
+    "explanation": "All 76 are first-time job_keys found inside the first 5 list pages of the three official sources; they are not duplicates and not caused by re-normalization."
+  },
+  "duplicate_groups": {
+    "official_url": 0,
+    "job_key_cross_source": 0
+  },
+  "integration_check": {
+    "command": "npx tsx scripts/check-career-integration.ts --require-data --base http://localhost:3000",
+    "exit_code": 0,
+    "result": "all checks passed",
+    "checks": ["/api/health", "/career-insights", "/api/site/career-insights/summary", "/api/site/career-insights/jobs", "/api/site/career-insights/jobs/<id>", "/api/site/career-insights/jobs/not-a-uuid"],
+    "output_file": "20261119T1352Z-integration-check.txt"
+  },
+  "runtime_api_observations": {
+    "summary_http_status": 200,
+    "sample_size": 163,
+    "source_count": 3,
+    "company_count": 3,
+    "warnings": [
+      { "code": "unknown_fields", "message": "存在未分类的职位，已单列未分类（unknown）。" },
+      { "code": "unknown_fields", "message": "存在未标记应届友好度的职位，unknown 不表示不友好。" },
+      { "code": "stale_data", "message": "部分职位仍为旧归一化版本，重入库后刷新。" },
+      { "code": "insufficient_data", "message": "政策与职位暂未出现同一主题，不代表无共同方向。" }
+    ],
+    "note": "stale_data still fires because 13 meituan rows remain normalizer/0.2.0 (summary.ts: staleNormalizerCount > 0)."
+  },
+  "deviations": [
+    "Target normalizer/0.2.0 = 0 was NOT met: 13 rows remain (all meituan-official-careers). 14 of the 27 legacy rows were upgraded; the remaining 13 were never fetched because meituan's 63 DB jobs exceed the 5-page window (10/page, 17 new jobs occupied slots in the first 50).",
+    "jobs_missing_daily_obs was already 0 at baseline rather than the 27 stated in the brief; it stayed 0 after the run.",
+    "jobs grew +76 (87 -> 163), far more than the 27-row backfill the brief anticipated, because 5 pages surfaced 76 unseen job_keys across the three sources.",
+    "Updated count (tencent=1, meituan=0, baidu=0) understates normalization work: the 13 meituan and 1 tencent 0.2.0->0.3.0 upgrades took the content-identical 'duplicates' branch, which does rewrite normalizer_version but reports as duplicates.",
+    "stale_data warning is still emitted by the live summary for the 13 residual rows; the integration script does not assert on it, so all six checks pass.",
+    "Code was not modified and nothing was committed or pushed."
+  ],
+  "evidence_files": {
+    "before_snapshot": "20261119T1351Z-before-pages5-snapshot.txt",
+    "before_detail": "20261119T1351Z-before-pages5-detail.txt",
+    "ingest_report": "20261119T1352Z-ingest-pages5.json",
+    "after_snapshot": "20261119T1352Z-after-pages5-snapshot.txt",
+    "after_detail": "20261119T1352Z-after-pages5-detail.txt",
+    "integration_check": "20261119T1352Z-integration-check.txt",
+    "diff_report": "20261119T1352Z-pages5-diff.txt"
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-11-19T08:18:52.518Z",
+  "sources": [
+    {
+      "source_key": "moe-policy",
+      "kind": "policy",
+      "sample_count": 4,
+      "samples": [
+        {
+          "sample_id": "79f90652791e0346",
+          "request_key": "GET https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202610/t20261026_1456016.html",
+          "request_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202610/t20261026_1456016.html",
+          "captured_at": "2026-11-18T05:43:18.258Z",
+          "extraction_ref": "detail-1",
+          "body_file": "moe-policy/samples/detail-1.html",
+          "body_sha256": "79f90652791e0346730194fbcd220850b2456774d66d1c21d4a9a59babf7b65c"
+        },
+        {
+          "sample_id": "831a34730ecd4d1c",
+          "request_key": "GET https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202610/t20261008_1453325.html",
+          "request_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202610/t20261008_1453325.html",
+          "captured_at": "2026-11-18T05:43:19.994Z",
+          "extraction_ref": "detail-2",
+          "body_file": "moe-policy/samples/detail-2.html",
+          "body_sha256": "831a34730ecd4d1c75ee9e442446e8fb5a40f09bfce7769d021a98eb56f374b6"
+        },
+        {
+          "sample_id": "db486595f3b34bc8",
+          "request_key": "GET https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202609/t20260904_1449021.html",
+          "request_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202609/t20260904_1449021.html",
+          "captured_at": "2026-11-18T05:43:21.850Z",
+          "extraction_ref": "detail-3",
+          "body_file": "moe-policy/samples/detail-3.html",
+          "body_sha256": "db486595f3b34bc80849fd595b0af6af53d95316372e1ec5181d3a9792d53967"
+        },
+        {
+          "sample_id": "16c385494e175425",
+          "request_key": "GET https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/",
+          "request_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/",
+          "captured_at": "2026-11-18T05:43:16.445Z",
+          "extraction_ref": "list",
+          "body_file": "moe-policy/samples/list.html",
+          "body_sha256": "16c385494e17542586697fa46a3f0e22a7f582d00b53662a8ac4ea276abb43d9"
+        }
+      ]
+    },
+    {
+      "source_key": "ndrc-policy",
+      "kind": "policy",
+      "sample_count": 4,
+      "samples": [
+        {
+          "sample_id": "453e887f46184649",
+          "request_key": "GET https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261113_1408810.html",
+          "request_url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261113_1408810.html",
+          "captured_at": "2026-11-18T04:51:41.699Z",
+          "extraction_ref": "detail-1",
+          "body_file": "ndrc-policy/samples/detail-1.html",
+          "body_sha256": "453e887f461846492cd60e6accd07b3ad350909bfd054fd3519d5ef483be4f3d"
+        },
+        {
+          "sample_id": "95efabc103269693",
+          "request_key": "GET https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261109_1408709.html",
+          "request_url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261109_1408709.html",
+          "captured_at": "2026-11-18T04:51:43.274Z",
+          "extraction_ref": "detail-2",
+          "body_file": "ndrc-policy/samples/detail-2.html",
+          "body_sha256": "95efabc103269693937a656662a1a229b7f27b2ccaf8e537389263c4dd7dc137"
+        },
+        {
+          "sample_id": "6e53aa244fcf67be",
+          "request_key": "GET https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261103_1408504.html",
+          "request_url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261103_1408504.html",
+          "captured_at": "2026-11-18T04:51:44.893Z",
+          "extraction_ref": "detail-3",
+          "body_file": "ndrc-policy/samples/detail-3.html",
+          "body_sha256": "6e53aa244fcf67be70f7e1803ce476784826b42de7241a64727d264ebed4094a"
+        },
+        {
+          "sample_id": "88670c10c2f85144",
+          "request_key": "GET https://www.ndrc.gov.cn/xxgk/zcfb/tz/",
+          "request_url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/",
+          "captured_at": "2026-11-18T04:51:40.065Z",
+          "extraction_ref": "list",
+          "body_file": "ndrc-policy/samples/list.html",
+          "body_sha256": "88670c10c2f85144a03c4172f18c82ee3b366c11bed127531abc0ec399bf2bf3"
+        }
+      ]
+    },
+    {
+      "source_key": "tencent-official-careers",
+      "kind": "job",
+      "sample_count": 6,
+      "samples": [
+        {
+          "sample_id": "5be09442b4d813d3",
+          "request_key": "GET https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2076912101565317120&language=zh-cn",
+          "request_url": "https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2076912101565317120&language=zh-cn",
+          "captured_at": "2026-11-18T04:40:29.579Z",
+          "extraction_ref": "detail-2076912101565317120",
+          "body_file": "tencent-official-careers/samples/detail-2076912101565317120.json",
+          "body_sha256": "5be09442b4d813d35409380b0b5731247e74fe68555df676658c2037fdc51b7e"
+        },
+        {
+          "sample_id": "924ee2a3d1a96243",
+          "request_key": "GET https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2087735931724546048&language=zh-cn",
+          "request_url": "https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2087735931724546048&language=zh-cn",
+          "captured_at": "2026-11-18T04:40:30.848Z",
+          "extraction_ref": "detail-2087735931724546048",
+          "body_file": "tencent-official-careers/samples/detail-2087735931724546048.json",
+          "body_sha256": "924ee2a3d1a96243e9aef5419ecbf57c04d9131e3a7da219bfc0d641e547cd9a"
+        },
+        {
+          "sample_id": "b70f9a6cac204774",
+          "request_key": "GET https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2095412225996140544&language=zh-cn",
+          "request_url": "https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2095412225996140544&language=zh-cn",
+          "captured_at": "2026-11-18T04:40:26.998Z",
+          "extraction_ref": "detail-2095412225996140544",
+          "body_file": "tencent-official-careers/samples/detail-2095412225996140544.json",
+          "body_sha256": "b70f9a6cac2047743cc2cd7362e979d05d9060352ddba22e504e419e6914c972"
+        },
+        {
+          "sample_id": "24df4fe02df972a7",
+          "request_key": "GET https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2108399574078107648&language=zh-cn",
+          "request_url": "https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2108399574078107648&language=zh-cn",
+          "captured_at": "2026-11-18T04:40:28.311Z",
+          "extraction_ref": "detail-2108399574078107648",
+          "body_file": "tencent-official-careers/samples/detail-2108399574078107648.json",
+          "body_sha256": "24df4fe02df972a7949c29f76dbd4993d856933079d709c5559bc7233844ae44"
+        },
+        {
+          "sample_id": "fe037d3c9cd15de6",
+          "request_key": "GET https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2122870576661053440&language=zh-cn",
+          "request_url": "https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2122870576661053440&language=zh-cn",
+          "captured_at": "2026-11-18T04:40:32.115Z",
+          "extraction_ref": "detail-2122870576661053440",
+          "body_file": "tencent-official-careers/samples/detail-2122870576661053440.json",
+          "body_sha256": "fe037d3c9cd15de6f75971f1787c48d23407c64ab8bc930da02f5f98207c0fe2"
+        },
+        {
+          "sample_id": "b2b5af1aaaa09a27",
+          "request_key": "GET https://careers.tencent.com/tencentcareer/api/post/Query?pageIndex=1&pageSize=10&language=zh-cn&area=cn",
+          "request_url": "https://careers.tencent.com/tencentcareer/api/post/Query?pageIndex=1&pageSize=10&language=zh-cn&area=cn",
+          "captured_at": "2026-11-18T04:40:25.735Z",
+          "extraction_ref": "list",
+          "body_file": "tencent-official-careers/samples/list.json",
+          "body_sha256": "b2b5af1aaaa09a2727d921c1235814457e7806a1f1995fb094d88da03ac6dada"
+        }
+      ]
+    },
+    {
+      "source_key": "meituan-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "481f3cf2b5eebbf3",
+          "request_key": "POST https://zhaopin.meituan.com/api/official/job/getJobList#23a493483be06109",
+          "request_url": "https://zhaopin.meituan.com/api/official/job/getJobList",
+          "captured_at": "2026-11-18T14:34:30.071Z",
+          "extraction_ref": "list-1",
+          "body_file": "meituan-official-careers/samples/list-1.json",
+          "body_sha256": "481f3cf2b5eebbf363359cfa55f332bc10e67a4dd8da46c222d157168b9bb51d"
+        },
+        {
+          "sample_id": "7642fc063654dc29",
+          "request_key": "POST https://zhaopin.meituan.com/api/official/job/getJobList#02f7690414446246",
+          "request_url": "https://zhaopin.meituan.com/api/official/job/getJobList",
+          "captured_at": "2026-11-18T14:34:32.310Z",
+          "extraction_ref": "list-2",
+          "body_file": "meituan-official-careers/samples/list-2.json",
+          "body_sha256": "7642fc063654dc29840acd0ad94fab9a49a044078ab78bcc6d57158ed401f05a"
+        },
+        {
+          "sample_id": "5124d01edd457869",
+          "request_key": "POST https://zhaopin.meituan.com/api/official/job/getJobList#b281577d1109ef05",
+          "request_url": "https://zhaopin.meituan.com/api/official/job/getJobList",
+          "captured_at": "2026-11-18T14:34:34.373Z",
+          "extraction_ref": "list-3",
+          "body_file": "meituan-official-careers/samples/list-3.json",
+          "body_sha256": "5124d01edd45786904d5d61526fde5c4b7e73b5913b80b48e3009ed9f3e258c3"
+        },
+        {
+          "sample_id": "bb0ff36b764b5c3b",
+          "request_key": "POST https://zhaopin.meituan.com/api/official/job/getJobList#8eb1712c484630d5",
+          "request_url": "https://zhaopin.meituan.com/api/official/job/getJobList",
+          "captured_at": "2026-11-18T14:34:35.886Z",
+          "extraction_ref": "list-4",
+          "body_file": "meituan-official-careers/samples/list-4.json",
+          "body_sha256": "bb0ff36b764b5c3b1ef6e96d695459b6faf3c2e3c043f83a6be8e95890876550"
+        },
+        {
+          "sample_id": "4e4d1923366d840e",
+          "request_key": "POST https://zhaopin.meituan.com/api/official/job/getJobList#7b8517df82c22ad7",
+          "request_url": "https://zhaopin.meituan.com/api/official/job/getJobList",
+          "captured_at": "2026-11-18T14:34:38.438Z",
+          "extraction_ref": "list-5",
+          "body_file": "meituan-official-careers/samples/list-5.json",
+          "body_sha256": "4e4d1923366d840e9709deda2c81d6b942d8698c20febeaa4e3ace91ce2c234f"
+        }
+      ]
+    },
+    {
+      "source_key": "baidu-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "eeec0d556849cc6e",
+          "request_key": "POST https://talent.baidu.com/httservice/getPostListNew#72c504cb27b5c9fe",
+          "request_url": "https://talent.baidu.com/httservice/getPostListNew",
+          "captured_at": "2026-11-18T14:36:50.707Z",
+          "extraction_ref": "list-1",
+          "body_file": "baidu-official-careers/samples/list-1.json",
+          "body_sha256": "eeec0d556849cc6e0a6cefc186ad583b2768f3fe329dfe3a356e7a15a4556ecf"
+        },
+        {
+          "sample_id": "861a046ce7a31117",
+          "request_key": "POST https://talent.baidu.com/httservice/getPostListNew#2e380e6960b5d6b7",
+          "request_url": "https://talent.baidu.com/httservice/getPostListNew",
+          "captured_at": "2026-11-18T14:36:52.917Z",
+          "extraction_ref": "list-2",
+          "body_file": "baidu-official-careers/samples/list-2.json",
+          "body_sha256": "861a046ce7a311173370a5a35c8c3e2da80003563572c10358e5a4007fcd0b83"
+        },
+        {
+          "sample_id": "9d90287df740fafc",
+          "request_key": "POST https://talent.baidu.com/httservice/getPostListNew#663d3fddf9c551eb",
+          "request_url": "https://talent.baidu.com/httservice/getPostListNew",
+          "captured_at": "2026-11-18T14:36:55.363Z",
+          "extraction_ref": "list-3",
+          "body_file": "baidu-official-careers/samples/list-3.json",
+          "body_sha256": "9d90287df740fafc1a3e49439c54bd34225a781ada619a2ffb88b05964a67684"
+        },
+        {
+          "sample_id": "cb493c0a4a76d883",
+          "request_key": "POST https://talent.baidu.com/httservice/getPostListNew#3c26b620c03e80b1",
+          "request_url": "https://talent.baidu.com/httservice/getPostListNew",
+          "captured_at": "2026-11-18T14:36:57.009Z",
+          "extraction_ref": "list-4",
+          "body_file": "baidu-official-careers/samples/list-4.json",
+          "body_sha256": "cb493c0a4a76d88346259bf177360a8bd30459ef9346597dc60b865c76236ba5"
+        },
+        {
+          "sample_id": "03b83798f02a2af1",
+          "request_key": "POST https://talent.baidu.com/httservice/getPostListNew#0a362b0070b7466c",
+          "request_url": "https://talent.baidu.com/httservice/getPostListNew",
+          "captured_at": "2026-11-18T14:36:58.696Z",
+          "extraction_ref": "list-5",
+          "body_file": "baidu-official-careers/samples/list-5.json",
+          "body_sha256": "03b83798f02a2af1b8ea3072f154ccf7d8fe728737c8ee788054ef7aaa0ea990"
+        }
+      ]
+    },
+    {
+      "source_key": "state-council-policy",
+      "kind": "policy",
+      "sample_count": 4,
+      "samples": [
+        {
+          "sample_id": "381b00885b6b8de8",
+          "request_key": "GET https://www.gov.cn/zhengce/index.htm",
+          "request_url": "https://www.gov.cn/zhengce/index.htm",
+          "captured_at": "2026-11-19T08:18:41.538Z",
+          "extraction_ref": "list",
+          "body_file": "state-council-policy/samples/list.html",
+          "body_sha256": "381b00885b6b8de8362862a0830be61f5a26054163d4dfb30116efae860d0d47"
+        },
+        {
+          "sample_id": "a7d3f4bac5a0a3e7",
+          "request_key": "GET https://www.gov.cn/zhengce/202611/content_7086080.htm",
+          "request_url": "https://www.gov.cn/zhengce/202611/content_7086080.htm",
+          "captured_at": "2026-11-19T08:18:43.267Z",
+          "extraction_ref": "detail-1",
+          "body_file": "state-council-policy/samples/detail-1.html",
+          "body_sha256": "a7d3f4bac5a0a3e7d25ca145576678990dd6143dd7513b36aa2fdc96b481c047"
+        },
+        {
+          "sample_id": "02cd30c1ddb738e5",
+          "request_key": "GET https://www.gov.cn/zhengce/content/202611/content_7085591.htm",
+          "request_url": "https://www.gov.cn/zhengce/content/202611/content_7085591.htm",
+          "captured_at": "2026-11-19T08:18:45.353Z",
+          "extraction_ref": "detail-2",
+          "body_file": "state-council-policy/samples/detail-2.html",
+          "body_sha256": "02cd30c1ddb738e5b9c1ebbfb42ccda69aefd52d30be854591618cea7d372d40"
+        },
+        {
+          "sample_id": "2945923f7ae5691f",
+          "request_key": "GET https://www.gov.cn/zhengce/202611/content_7085529.htm",
+          "request_url": "https://www.gov.cn/zhengce/202611/content_7085529.htm",
+          "captured_at": "2026-11-19T08:18:47.047Z",
+          "extraction_ref": "detail-3",
+          "body_file": "state-council-policy/samples/detail-3.html",
+          "body_sha256": "2945923f7ae5691fc14cb8e80e6dac7616e10be5b2a49fff654fb73ad2eadd38"
+        }
+      ]
+    }
+  ]
+}

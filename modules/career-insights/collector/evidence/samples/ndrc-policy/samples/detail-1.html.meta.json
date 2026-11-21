@@ -1,0 +1,14 @@
+{
+  "sample_id": "453e887f46184649",
+  "request_key": "GET https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261113_1408810.html",
+  "request_url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261113_1408810.html",
+  "final_url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261113_1408810.html",
+  "http_status": 200,
+  "content_type": "text/html",
+  "body_sha256": "453e887f461846492cd60e6accd07b3ad350909bfd054fd3519d5ef483be4f3d",
+  "captured_at": "2026-11-18T04:51:41.699Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "detail-1",
+  "sanitized": true,
+  "body_file": "detail-1.html"
+}

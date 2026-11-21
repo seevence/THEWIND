@@ -1,0 +1,149 @@
+Pager usage is off.
+== 1. jobs total ==
+ jobs_total 
+------------
+         74
+(1 row)
+
+== 2. jobs by source ==
+        source_key        | jobs |       min_first_seen       |       max_last_seen        |          max_updated          
+--------------------------+------+----------------------------+----------------------------+-------------------------------
+ baidu-official-careers   |   20 | 2026-11-19 08:12:40.123+00 | 2026-11-19 11:35:35.853+00 | 2026-11-19 11:35:35.86061+00
+ meituan-official-careers |   33 | 2026-11-19 08:12:37.085+00 | 2026-11-19 11:35:31.742+00 | 2026-11-19 11:35:31.749081+00
+ tencent-official-careers |   21 | 2026-11-19 08:08:37.234+00 | 2026-11-19 11:35:27.85+00  | 2026-11-19 11:35:27.875857+00
+(3 rows)
+
+== 3. observations total ==
+ observations_total 
+--------------------
+                230
+(1 row)
+
+== 4. observation days (CST) ==
+ distinct_cst_days 
+-------------------
+                 1
+(1 row)
+
+== 5. observations per CST day ==
+  cst_day   | obs | jobs | same 
+------------+-----+------+------
+ 2026-11-19 | 230 |   74 |  230
+(1 row)
+
+== 6. policies ==
+ policies_total 
+----------------
+              6
+(1 row)
+
+ERROR:  column "tier" does not exist
+LINE 1: SELECT tier, count(*) FROM career_policies GROUP BY tier ORD...
+               ^
+== 7. normalizer_version distribution ==
+ normalizer_version | count 
+--------------------+-------
+ normalizer/0.2.0   |    74
+(1 row)
+
+== 8. role_family distribution ==
+        role_family         | count 
+----------------------------+-------
+ unknown                    |    47
+ ai_product_operations      |    13
+ ai_application_development |    10
+ ai_algorithm               |     2
+ data                       |     2
+(5 rows)
+
+== 9. student_friendly distribution ==
+ student_friendly | count 
+------------------+-------
+ no               |    57
+ unknown          |    17
+(2 rows)
+
+== 10. skills non-null distribution ==
+  skills_state   | count 
+-----------------+-------
+ non_empty_array |    55
+ empty_array     |    19
+(2 rows)
+
+== 11. skills length histogram (non-empty) ==
+ n  | count 
+----+-------
+  1 |    16
+  2 |    14
+  3 |     6
+  4 |     2
+  5 |     2
+  6 |     9
+  7 |     3
+  9 |     2
+ 10 |     1
+(9 rows)
+
+== 12. max(last_seen_at) / max(first_seen_at) ==
+       max_last_seen        |       max_first_seen       |         max_updated          
+----------------------------+----------------------------+------------------------------
+ 2026-11-19 11:35:35.853+00 | 2026-11-19 11:35:35.853+00 | 2026-11-19 11:35:35.86061+00
+(1 row)
+
+== 13. duplicate groups: official_url ==
+ dup_official_url 
+------------------
+                0
+(1 row)
+
+== 14. duplicate groups: job_key (cross source) ==
+ dup_job_key 
+-------------
+           0
+(1 row)
+
+== 15. B1 candidates: 一年以上 且 当前非 yes ==
+        source_key        |       job_key       |                  title                   | student_friendly |  experience_raw  
+--------------------------+---------------------+------------------------------------------+------------------+------------------
+ tencent-official-careers | 2049825920281391104 | 王者荣耀IP预研游戏-资深UI动效            | no               | 一年以上工作经验
+ tencent-official-careers | 2056671347148505088 | 微信开放平台-后台开发工程师-运营治理方向 | unknown          | 一年以上工作经验
+(2 rows)
+
+== 16. all 一年以上 rows ==
+        source_key        |       job_key       | student_friendly |  experience_raw  
+--------------------------+---------------------+------------------+------------------
+ tencent-official-careers | 2049825920281391104 | no               | 一年以上工作经验
+ tencent-official-careers | 2056671347148505088 | unknown          | 一年以上工作经验
+(2 rows)
+
+== 17. distinct experience_raw sample ==
+  experience_raw  | count 
+------------------+-------
+                  |    19
+ 3年以上          |    14
+ 5年以上          |     8
+ 三年以上工作经验 |     8
+ 五年以上工作经验 |     5
+ 两年以上工作经验 |     3
+ 八年以上工作经验 |     2
+ 一年以上工作经验 |     2
+ 2年以上          |     2
+ 不限             |     1
+ 8年以上          |     1
+ 2–5 年           |     1
+ 三年以上         |     1
+ 5-8年            |     1
+ 3 年及以上       |     1
+ 10年以上         |     1
+ 1-3年            |     1
+ 3 年以上         |     1
+ 5年以上工作经验  |     1
+ 4年以上          |     1
+(20 rows)
+
+== 18. collector_version distribution ==
+ collector_version | count 
+-------------------+-------
+ collector/0.1.0   |    74
+(1 row)
+

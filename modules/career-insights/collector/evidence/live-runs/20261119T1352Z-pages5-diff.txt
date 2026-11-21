@@ -1,0 +1,34 @@
+# 20261119T1352Z pages=5 重跑 · 逐岗差异（before 20261119T1351Z-detail vs after 20261119T1352Z-detail）
+
+before 87 rows / after 163 rows / added 76 / removed 0
+added by source: {"baidu-official-careers":30,"meituan-official-careers":17,"tencent-official-careers":29}
+
+## normalizer_version 变化（存量行，14 条）
+meituan-official-careers 3517164755 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4360870843 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4616097894 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4701989120 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4720236768 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4748438974 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4885647446 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4893015716 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4930505466 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4933507796 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4939132432 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4940484432 normalizer/0.2.0 -> normalizer/0.3.0
+meituan-official-careers 4940534110 normalizer/0.2.0 -> normalizer/0.3.0
+tencent-official-careers 2122282936190550016 normalizer/0.2.0 -> normalizer/0.3.0
+
+## student_friendly 变化（存量行）
+0 条。
+
+## role_family 变化（存量行）
+0 条。
+
+## 新增 76 条的派生字段分布
+student_friendly: {"no":63,"unknown":9,"yes":4}
+role_family:      {"unknown":62,"ai_application_development":4,"data":4,"ai_product_operations":6}
+normalizer:       {"normalizer/0.3.0":76}
+
+## 残留 normalizer/0.2.0
+13 条，全部为 meituan-official-careers（整表 63 条 > 5 页 × 10 条窗口；本次前 50 条含 17 个新岗，13 个旧岗落到第 6 页之后）。

@@ -1,0 +1,141 @@
+Pager usage is off.
+== 1. jobs total ==
+ jobs_total 
+------------
+        163
+(1 row)
+
+== 2. jobs by source ==
+        source_key        | jobs |       min_first_seen       |       max_last_seen        |          max_updated          
+--------------------------+------+----------------------------+----------------------------+-------------------------------
+ baidu-official-careers   |   50 | 2026-11-19 08:12:40.123+00 | 2026-11-19 13:54:18.316+00 | 2026-11-19 13:54:18.334048+00
+ meituan-official-careers |   63 | 2026-11-19 08:12:37.085+00 | 2026-11-19 13:54:02.6+00   | 2026-11-19 13:54:02.617869+00
+ tencent-official-careers |   50 | 2026-11-19 08:08:37.234+00 | 2026-11-19 13:53:53.338+00 | 2026-11-19 13:53:53.368918+00
+(3 rows)
+
+== 3. observations total ==
+ observations_total 
+--------------------
+                380
+(1 row)
+
+== 4. observation days (CST) ==
+ distinct_cst_days 
+-------------------
+                 1
+(1 row)
+
+== 5. observations per CST day ==
+  cst_day   | obs | jobs | same 
+------------+-----+------+------
+ 2026-11-19 | 380 |  163 |  163
+(1 row)
+
+== 6. normalizer_version distribution (jobs) ==
+ normalizer_version | count 
+--------------------+-------
+ normalizer/0.2.0   |    13
+ normalizer/0.3.0   |   150
+(2 rows)
+
+== 7. role_family distribution (jobs) ==
+        role_family         | count 
+----------------------------+-------
+ unknown                    |   121
+ ai_product_operations      |    19
+ ai_application_development |    14
+ data                       |     7
+ ai_algorithm               |     2
+(5 rows)
+
+== 8. student_friendly distribution (jobs) ==
+ student_friendly | count 
+------------------+-------
+ no               |   130
+ unknown          |    28
+ yes              |     5
+(3 rows)
+
+== 9. collector_version distribution (jobs) ==
+ collector_version | count 
+-------------------+-------
+ collector/0.1.0   |   163
+(1 row)
+
+== 10. jobs missing daily observation (CST today) ==
+ jobs_missing_daily_obs 
+------------------------
+                      0
+(1 row)
+
+== 11. missing daily obs detail ==
+ source_key | job_key | normalizer_version | student_friendly | last_obs 
+------------+---------+--------------------+------------------+----------
+(0 rows)
+
+== 12. duplicate groups: official_url ==
+ dup_official_url 
+------------------
+                0
+(1 row)
+
+== 13. duplicate groups: job_key (cross source) ==
+ dup_job_key 
+-------------
+           0
+(1 row)
+
+== 14. max(last_seen_at) / max(first_seen_at) / max(updated_at) ==
+       max_last_seen        |       max_first_seen       |          max_updated          
+----------------------------+----------------------------+-------------------------------
+ 2026-11-19 13:54:18.316+00 | 2026-11-19 13:54:18.316+00 | 2026-11-19 13:54:18.334048+00
+(1 row)
+
+== 15. jobs with zero observations ==
+ jobs_without_any_obs 
+----------------------
+                    0
+(1 row)
+
+== 16. observations per job (histogram) ==
+ n_obs | jobs 
+-------+------
+     1 |   94
+     2 |   36
+     3 |    4
+     4 |    2
+     5 |    1
+     6 |    2
+     7 |   15
+     8 |    9
+(8 rows)
+
+== 17. student_friendly x source ==
+        source_key        | student_friendly | count 
+--------------------------+------------------+-------
+ baidu-official-careers   | no               |    38
+ baidu-official-careers   | unknown          |    11
+ baidu-official-careers   | yes              |     1
+ meituan-official-careers | no               |    46
+ meituan-official-careers | unknown          |    17
+ tencent-official-careers | no               |    46
+ tencent-official-careers | yes              |     4
+(7 rows)
+
+== 18. role_family x source ==
+        source_key        |        role_family         | count 
+--------------------------+----------------------------+-------
+ baidu-official-careers   | ai_application_development |     4
+ baidu-official-careers   | ai_product_operations      |     5
+ baidu-official-careers   | data                       |     3
+ baidu-official-careers   | unknown                    |    38
+ meituan-official-careers | ai_application_development |     5
+ meituan-official-careers | ai_product_operations      |     9
+ meituan-official-careers | data                       |     4
+ meituan-official-careers | unknown                    |    45
+ tencent-official-careers | ai_algorithm               |     2
+ tencent-official-careers | ai_application_development |     5
+ tencent-official-careers | ai_product_operations      |     5
+ tencent-official-careers | unknown                    |    38
+(12 rows)
+

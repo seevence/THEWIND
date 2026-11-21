@@ -1,0 +1,14 @@
+{
+  "sample_id": "24df4fe02df972a7",
+  "request_key": "GET https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2108399574078107648&language=zh-cn",
+  "request_url": "https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2108399574078107648&language=zh-cn",
+  "final_url": "https://careers.tencent.com/tencentcareer/api/post/ByPostId?postId=2108399574078107648&language=zh-cn",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "24df4fe02df972a7949c29f76dbd4993d856933079d709c5559bc7233844ae44",
+  "captured_at": "2026-11-18T04:40:28.311Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "detail-2108399574078107648",
+  "sanitized": true,
+  "body_file": "detail-2108399574078107648.json"
+}

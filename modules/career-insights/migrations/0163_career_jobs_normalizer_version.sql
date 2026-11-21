@@ -1,0 +1,1 @@
+ALTER TABLE career_jobs ADD COLUMN normalizer_version text NOT NULL DEFAULT 'normalizer/0.1.0';

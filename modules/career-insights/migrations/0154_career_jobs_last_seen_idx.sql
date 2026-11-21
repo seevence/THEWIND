@@ -1,0 +1,1 @@
+CREATE INDEX CONCURRENTLY IF NOT EXISTS career_jobs_last_seen_idx ON career_jobs(last_seen_at DESC);

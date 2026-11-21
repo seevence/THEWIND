@@ -1,0 +1,93 @@
+Pager usage is off.
+== A. stale rows (0.2.0) by source ==
+        source_key        | count |       min_last_seen        |       max_last_seen        
+--------------------------+-------+----------------------------+----------------------------
+ tencent-official-careers |     1 | 2026-11-19 08:16:03.965+00 | 2026-11-19 08:16:03.965+00
+ meituan-official-careers |    26 | 2026-11-19 08:16:16.452+00 | 2026-11-19 11:35:31.742+00
+(2 rows)
+
+== B. stale rows list ==
+        source_key        |       job_key       |                     title                     |        role_family         | student_friendly |        last_seen_at        
+--------------------------+---------------------+-----------------------------------------------+----------------------------+------------------+----------------------------
+ meituan-official-careers | 3517164755          | HRBP （外派中东）                             | unknown                    | unknown          | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4360870843          | AI产品经理                                    | ai_product_operations      | unknown          | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4527890989          | 快乐猴-门店拓展运营岗（项目流程运营方向）     | unknown                    | unknown          | 2026-11-19 09:43:19.614+00
+ meituan-official-careers | 4563930748          | 国际化HR系统实施专家                          | unknown                    | no               | 2026-11-19 09:43:19.614+00
+ meituan-official-careers | 4616097894          | 私域用户运营                                  | unknown                    | no               | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4701989120          | 美团联盟行业运营（到店方向）                  | unknown                    | no               | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4709087193          | 招商高阶岗                                    | unknown                    | no               | 2026-11-19 09:43:19.614+00
+ meituan-official-careers | 4720236768          | 骑行硬件-电气部件测试工程师                   | unknown                    | no               | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4740500750          | 业务风控策略专家                              | unknown                    | no               | 2026-11-19 09:43:19.614+00
+ meituan-official-careers | 4748438974          | 电子器件品类策略采购专家                      | unknown                    | no               | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4791110825          | 小象超市-自有商品品质治理专家                 | unknown                    | no               | 2026-11-19 08:58:03.375+00
+ meituan-official-careers | 4791236953          | 高级安全运营工程师                            | unknown                    | no               | 2026-11-19 08:16:16.452+00
+ meituan-official-careers | 4826532250          | 差旅场景组-产品经理                           | ai_product_operations      | no               | 2026-11-19 08:16:16.452+00
+ meituan-official-careers | 4862040547          | 无人车资深后端研发工程师                      | ai_application_development | no               | 2026-11-19 08:27:05.75+00
+ meituan-official-careers | 4862144961          | 小象超市-南京/合肥供应链品控负责人            | unknown                    | no               | 2026-11-19 08:58:03.375+00
+ meituan-official-careers | 4875184969          | 无人车资深后端研发工程师                      | ai_application_development | no               | 2026-11-19 08:58:03.375+00
+ meituan-official-careers | 4885647446          | 合作商管理专家                                | unknown                    | no               | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4893015716          | 硬件采购岗                                    | unknown                    | no               | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4895246532          | 到餐-商业分析师（供给策略方向）               | data                       | no               | 2026-11-19 09:43:19.614+00
+ meituan-official-careers | 4916888099          | Grocery Supply Operations-Qatar               | unknown                    | unknown          | 2026-11-19 08:58:03.375+00
+ meituan-official-careers | 4930351071          | 济南小象超市--生鲜供应链品控                  | unknown                    | no               | 2026-11-19 08:58:03.375+00
+ meituan-official-careers | 4930505466          | 到餐交履产品经理/高级产品经理（排队快点方向） | ai_product_operations      | no               | 2026-11-19 11:35:30.116+00
+ meituan-official-careers | 4933507796          | 高级前端 / 移动端开发工程师（AI Coding 方向） | ai_application_development | no               | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4939132432          | 大模型运营                                    | unknown                    | unknown          | 2026-11-19 11:35:31.742+00
+ meituan-official-careers | 4940484432          | 闪购-流量策略产品运营                         | ai_product_operations      | no               | 2026-11-19 11:35:30.116+00
+ meituan-official-careers | 4940534110          | 闪购-搜索策略产品经理                         | ai_product_operations      | no               | 2026-11-19 11:35:30.116+00
+ tencent-official-careers | 2122282936190550016 | 腾讯云-云和AI售前架构师（物流方向）-北/上/深  | unknown                    | no               | 2026-11-19 08:16:03.965+00
+(27 rows)
+
+== C. rows created in this run ==
+        source_key        | role_family | student_friendly | skills_n |               title                
+--------------------------+-------------+------------------+----------+------------------------------------
+ meituan-official-careers | data        | no               |        2 | 商业分析师（大模型应用BP）
+ meituan-official-careers | unknown     | unknown          |        1 | 美团骑行-车辆运营主管（襄阳）
+ meituan-official-careers | unknown     | unknown          |        2 | Keeta组织发展OD岗
+ meituan-official-careers | unknown     | no               |        0 | 酒水饮料品类招商全国负责人
+ meituan-official-careers | unknown     | no               |        5 | 大模型客服策略产品
+ meituan-official-careers | unknown     | no               |        1 | 半熟调研发采购
+ meituan-official-careers | unknown     | no               |        2 | 高级策略运营-增长策略方向
+ meituan-official-careers | unknown     | no               |        2 | 高级策略运营专家-增长策略负责人
+ meituan-official-careers | unknown     | no               |        2 | 供给策略专家
+ meituan-official-careers | unknown     | no               |        4 | Logistics Operations Analysis & En
+ meituan-official-careers | unknown     | unknown          |        1 | HRBP-Keeta客服团队
+ meituan-official-careers | unknown     | no               |        5 | 业务分析目标管理专家
+ meituan-official-careers | unknown     | no               |        1 | 服务风险客服主管
+(13 rows)
+
+== D. new rows role_family distribution ==
+ role_family | count 
+-------------+-------
+ unknown     |    12
+ data        |     1
+(2 rows)
+
+== E. observations by normalizer_version ==
+ normalizer_version | obs | jobs 
+--------------------+-----+------
+ normalizer/0.2.0   |  52 |   27
+ normalizer/0.3.0   | 238 |   60
+(2 rows)
+
+== F. observations by CST granularity bucket ==
+ granularity  | obs | jobs 
+--------------+-----+------
+ daily_00:00  |  60 |   60
+ precise_time | 230 |   74
+(2 rows)
+
+== G. daily observations joined to job version ==
+ normalizer_version | daily_obs 
+--------------------+-----------
+ normalizer/0.3.0   |        60
+(1 row)
+
+== H. refreshed (0.3.0) rows changed fields sample ==
+        source_key        | rows 
+--------------------------+------
+ tencent-official-careers |   20
+ baidu-official-careers   |   20
+ meituan-official-careers |    7
+(3 rows)
+

@@ -1,0 +1,21 @@
+CREATE TABLE career_briefs (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  contract_version text NOT NULL DEFAULT '0.1',
+  as_of timestamptz NOT NULL,
+  generated_at timestamptz NOT NULL,
+  sample_size integer NOT NULL,
+  window_days integer NOT NULL,
+  observation_days integer NOT NULL,
+  prompt_version text NOT NULL,
+  confidence text NOT NULL CHECK (confidence IN ('low', 'medium', 'high')),
+  facts jsonb NOT NULL DEFAULT '[]'::jsonb,
+  inferences jsonb NOT NULL DEFAULT '[]'::jsonb,
+  actions jsonb NOT NULL DEFAULT '[]'::jsonb,
+  evidence jsonb NOT NULL DEFAULT '[]'::jsonb,
+  limitations jsonb NOT NULL DEFAULT '[]'::jsonb,
+  receipt_id bigint NULL,
+  model text NULL,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  UNIQUE (as_of, prompt_version)
+);

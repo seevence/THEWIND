@@ -1,0 +1,1 @@
+CREATE INDEX CONCURRENTLY IF NOT EXISTS career_ingest_runs_source_idx ON career_ingest_runs (source_key, fetched_at DESC);

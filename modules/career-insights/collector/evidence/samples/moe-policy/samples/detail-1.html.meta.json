@@ -1,0 +1,14 @@
+{
+  "sample_id": "79f90652791e0346",
+  "request_key": "GET https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202610/t20261026_1456016.html",
+  "request_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202610/t20261026_1456016.html",
+  "final_url": "http://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202610/t20261026_1456016.html",
+  "http_status": 200,
+  "content_type": "text/html",
+  "body_sha256": "79f90652791e0346730194fbcd220850b2456774d66d1c21d4a9a59babf7b65c",
+  "captured_at": "2026-11-18T05:43:18.258Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "detail-1",
+  "sanitized": true,
+  "body_file": "detail-1.html"
+}

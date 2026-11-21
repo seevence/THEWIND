@@ -1,0 +1,47 @@
+命令：MODEL_CALLS_ENABLED=true npx tsx --env-file=../AIHOT/.env scripts/backfill-normalizer-llm.ts --dry-run --limit 20
+
+=== LLM normalizer backfill（dry-run） ===
+目标版本: normalizer/llm-0.2
+数据库:   127.0.0.1:15432/aihot
+候选行: 20
+将调用模型行数: 20
+预计 token 上限: 输入 ≈35964，输出 ≤10240
+  08f4eaa2-ad54-46eb-81a0-7a4a652e9115 | 腾讯云-南区云原生销售-广州/深圳 | role: unknown→unknown | student: no→no | skills: 0→0 | exp: 5-?→5-?
+  0b4ab350-6afa-4797-8cea-edd9b3cb87a3 | AI4S行业销售经理（J106648） | role: unknown→unknown | student: unknown→unknown | skills: 2→2 | exp: null→null
+  02cc51db-c1f5-49ad-af82-e3c410a74e46 | 售后项目经理 | role: unknown→unknown | student: no→no | skills: 1→1 | exp: 5-?→5-?
+  0c8989e1-fb19-489b-815b-ceef353a9234 | 大客户服务经理TAM（网络）（J107518） | role: unknown→unknown | student: no→no | skills: 0→0 | exp: 3-5→3-5
+  0df7ba81-9006-40ee-ace0-0c64885fbf18 | 灰境行者-资深系统策划 | role: unknown→unknown | student: no→no | skills: 0→0 | exp: 5-?→5-?
+  0f5ba57e-5d65-45a0-a1f9-5e212221d77e | Keeta组织发展OD岗 | role: unknown→unknown | student: unknown→unknown | skills: 2→2 | exp: null→null
+  1175cb24-d98c-4779-87e7-ac9973428252 | UE微恐轻动作项目-手游美术项目管理 | role: unknown→unknown | student: no→no | skills: 0→0 | exp: 3-?→3-?
+  16a8e9cb-d603-4c93-a5c6-5ee2f3757dd4 | 大客户服务经理 TAM（J107214） | role: unknown→unknown | student: no→no | skills: 7→7 | exp: 3-?→3-?
+  17983196-86d0-4922-9de9-a4b870ab44db | 《三角洲行动》叙事专家 | role: unknown→unknown | student: no→no | skills: 0→0 | exp: 3-?→3-?
+  1f29d0f7-0ce0-421f-88e8-64b71da55f61 | 硬件采购岗 | role: unknown→unknown | student: no→no | skills: 0→0 | exp: 5-?→5-?
+  215d2aeb-567a-4aca-b0e9-ee0d039b274f | 腾讯云-KA大客户销售经理(物流方向) -北/上/深 | role: unknown→unknown | student: no→no | skills: 0→0 | exp: 3-?→3-?
+  2687822c-a7fe-48af-9587-782c4f0e7817 | 客工部接待经理（J101012） | role: unknown→unknown | student: no→no | skills: 1→1 | exp: 3-?→3-?
+  2d371885-f123-4fa2-bf94-f8811a569c1e | 《王者荣耀世界》资深剧情策划 | role: unknown→unknown | student: no→no | skills: 0→0 | exp: 3-?→3-?
+  303fb169-a86d-4e8c-b9de-8beaa9484d3b | 小象超市-自有商品品质治理专家 | role: unknown→unknown | student: no→no | skills: 0→0 | exp: 5-?→5-?
+  31a00d05-d8b3-4628-81ca-f6db19da9bfe | 外卖柜渠道经理 | role: unknown→unknown | student: unknown→unknown | skills: 1→1 | exp: null→null
+  33806dc7-4b4e-43fe-a3f8-48298fd13f2c | AI产品营销经理（J104122） | role: ai_product_operations→ai_product_operations | student: unknown→unknown | skills: 2→2 | exp: null→null
+  34460745-0659-481f-87b1-7fc668a94a59 | 大客户销售经理（J107127） | role: unknown→unknown | student: unknown→unknown | skills: 0→0 | exp: null→null
+  3915ac8c-45d7-498f-abe4-464e16b23743 | 招商高阶岗 | role: unknown→unknown | student: no→no | skills: 1→1 | exp: 10-?→10-?
+  3c562eb1-44ee-4862-ac2e-a32af88ec8f3 | HRBP-Keeta客服团队 | role: unknown→unknown | student: no→no | skills: 1→1 | exp: 8-?→8-?
+  42570148-ccc5-4c21-8412-935d0b3701e4 | 电子器件品类策略采购专家 | role: unknown→unknown | student: no→no | skills: 1→1 | exp: 5-8→5-8
+
+汇总（dry-run）:
+  候选/调用行: 20，模型调用: 20 次（重试 0 次）
+  拟变更行: 20
+  无变化行:   0
+  失败行:     0（其中 schema 非法 0）
+  规则降级行: 0（aipo→unknown，downgradedByRule）
+  重判撤销行: 0（模型重判 unknown、撤销既有 aipo）
+  usage: prompt_tokens=24007, completion_tokens=683
+  技能词表映射丢弃: 0 个词
+
+未传 --apply，未写库。
+
+逐行核对（依据上述 20 行日志逐条扫描）：
+PASS skills_decreased_rows=0（所有 skills before→after 均相等）
+PASS existing_experience_cleared_to_null_rows=0（5-?、3-5、null 等 after 均未把既有非 null 清成 null）
+PASS known_role_family_reset_to_unknown_rows=0（唯一已知职族 33806dc7 为 aipo→aipo，其余均 unknown→unknown）
+PASS known_student_friendly_reset_to_unknown_rows=0（no→no；unknown→unknown；无 yes/no→unknown）
+PASS downgraded_rows=0，failed=0，schema_rejected=0

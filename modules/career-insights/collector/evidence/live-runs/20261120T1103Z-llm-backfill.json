@@ -1,0 +1,238 @@
+{
+  "run_id": "20261120T1103Z-llm-backfill",
+  "run_at_utc": "2026-11-20T11:03Z",
+  "git_head": "9f01746",
+  "purpose": "LLM 归一化兜底全量回填（方案 B）：对职族/学生友好度 unknown 或 skills 为空的行做增量归一化",
+  "script": "scripts/backfill-normalizer-llm.ts",
+  "database": "127.0.0.1:15432/aihot (docker aihot-db-1)",
+  "model": {
+    "preset": "default",
+    "served_model": "deepseek-flash",
+    "normalizer_version": "normalizer/llm-0.1",
+    "prompt_version": "career-normalize/1",
+    "purpose_key": "career-normalize"
+  },
+  "commands": {
+    "dry_run_2": "MODEL_CALLS_ENABLED=true npx tsx --env-file=../AIHOT/.env scripts/backfill-normalizer-llm.ts --dry-run --limit 2",
+    "dry_run_20": "MODEL_CALLS_ENABLED=true npx tsx --env-file=../AIHOT/.env scripts/backfill-normalizer-llm.ts --dry-run --limit 20",
+    "apply_full": "MODEL_CALLS_ENABLED=true npx tsx --env-file=../AIHOT/.env scripts/backfill-normalizer-llm.ts --apply",
+    "apply_idempotent": "MODEL_CALLS_ENABLED=true npx tsx --env-file=../AIHOT/.env scripts/backfill-normalizer-llm.ts --apply",
+    "integration": "npx tsx scripts/check-career-integration.ts --require-data --base http://localhost:3000"
+  },
+  "baseline": {
+    "captured_before_any_model_call": true,
+    "career_jobs_total": 188,
+    "role_family": {
+      "ai_algorithm": 2,
+      "ai_application_development": 18,
+      "ai_product_operations": 22,
+      "data": 7,
+      "unknown": 139
+    },
+    "student_friendly": {
+      "yes": 6,
+      "no": 154,
+      "unknown": 28
+    },
+    "skills_nonempty": 134,
+    "normalizer_version": {
+      "normalizer/0.3.0": 188
+    },
+    "candidates_matching_script_sql": 157,
+    "observations": {
+      "count": 440,
+      "md5_id_job_observed_hash_collector": "0262355afc4ea485a6b2fb16617676e1"
+    },
+    "jobs_source_fields_md5": {
+      "fields": "id|last_seen_at|content_hash|created_at",
+      "md5": "3b3438633de60a7a548623dc4c47eaeb"
+    }
+  },
+  "dry_run_2_probe": {
+    "candidates": 2,
+    "calls": 2,
+    "retries": 0,
+    "changed": 2,
+    "failed": 0,
+    "usage": { "prompt_tokens": 1934, "completion_tokens": 79 },
+    "note": "链路连通性验证；这 2 行的 receipts 在后续 dry-run 20 与 apply 中被复用，不重复计费"
+  },
+  "dry_run_20": {
+    "candidates": 20,
+    "calls": 20,
+    "retries": 0,
+    "changed": 20,
+    "unchanged": 0,
+    "failed": 0,
+    "schema_rejected": 0,
+    "usage": { "prompt_tokens": 20262, "completion_tokens": 796 },
+    "dropped_skill_terms": 0,
+    "wrote_db": false,
+    "rows": [
+      { "id": "02cc51db-c1f5-49ad-af82-e3c410a74e46", "title": "售后项目经理", "role": "unknown→unknown", "student": "no→no", "skills": "1→1", "exp": "5-?→5-?" },
+      { "id": "04b7ed64-b1ab-4fa9-96e7-1824f86e08cd", "title": "到餐-商业分析师（供给策略方向）", "role": "data→data", "student": "no→no", "skills": "0→1", "exp": "3-?→3-?" },
+      { "id": "014d2041-c2db-4159-bc64-3efc7e9fa703", "title": "拼好饭-区域品牌采购策略", "role": "unknown→ai_product_operations", "student": "no→no", "skills": "2→2", "exp": "3-?→3-?" },
+      { "id": "08f4eaa2-ad54-46eb-81a0-7a4a652e9115", "title": "腾讯云-南区云原生销售-广州/深圳", "role": "unknown→unknown", "student": "no→no", "skills": "0→0", "exp": "5-?→5-?" },
+      { "id": "0b4ab350-6afa-4797-8cea-edd9b3cb87a3", "title": "AI4S行业销售经理（J106648）", "role": "unknown→unknown", "student": "unknown→unknown", "skills": "2→2", "exp": "null→null" },
+      { "id": "0f4569f2-64ea-446d-b4f4-59a90f57700c", "title": "云存储高级研发工程师", "role": "unknown→ai_application_development", "student": "no→no", "skills": "4→4", "exp": "2-?→2-?" },
+      { "id": "0c8989e1-fb19-489b-815b-ceef353a9234", "title": "大客户服务经理TAM（网络）（J107518）", "role": "unknown→unknown", "student": "no→no", "skills": "0→0", "exp": "3-5→3-5" },
+      { "id": "0df7ba81-9006-40ee-ace0-0c64885fbf18", "title": "灰境行者-资深系统策划", "role": "unknown→unknown", "student": "no→no", "skills": "0→0", "exp": "5-?→5-?" },
+      { "id": "0f5ba57e-5d65-45a0-a1f9-5e212221d77e", "title": "Keeta组织发展OD岗", "role": "unknown→unknown", "student": "unknown→unknown", "skills": "2→2", "exp": "null→null" },
+      { "id": "1075bf81-fc19-4cfe-9ac2-fe7b5a3c0e33", "title": "腾讯视频-AI 技术制片人", "role": "unknown→ai_product_operations", "student": "no→no", "skills": "0→2", "exp": "2-?→2-?" },
+      { "id": "1043840d-5d5d-43cc-82ef-036933eec06b", "title": "渠道经理（J107385）", "role": "unknown→ai_product_operations", "student": "no→no", "skills": "3→3", "exp": "3-?→3-?" },
+      { "id": "1175cb24-d98c-4779-87e7-ac9973428252", "title": "UE微恐轻动作项目-手游美术项目管理", "role": "unknown→unknown", "student": "no→no", "skills": "0→0", "exp": "2-?→3-?" },
+      { "id": "11948248-b826-4042-96c6-e949ad6ee7a8", "title": "混元AI Agent Harness Engineer（北京/深圳））", "role": "unknown→ai_application_development", "student": "no→no", "skills": "3→5", "exp": "2-?→2-?" },
+      { "id": "14abff2e-f429-4481-bafe-9e7cc7296356", "title": "Logistics Operations Analysis & Enablement Expert 履约经营分析与赋能专家", "role": "unknown→ai_product_operations", "student": "no→no", "skills": "4→4", "exp": "3-?→3-?" },
+      { "id": "17970a21-4e21-4247-b8b4-a4bb2173716f", "title": "解决方案售前工程师-物理AI数据服务方向（J106810）", "role": "unknown→ai_product_operations", "student": "no→no", "skills": "1→1", "exp": "2-?→2-?" },
+      { "id": "17983196-86d0-4922-9de9-a4b870ab44db", "title": "《三角洲行动》叙事专家", "role": "unknown→unknown", "student": "no→no", "skills": "0→0", "exp": "3-?→3-?" },
+      { "id": "16a8e9cb-d603-4c93-a5c6-5ee2f3757dd4", "title": "大客户服务经理 TAM（J107214）", "role": "unknown→unknown", "student": "no→no", "skills": "7→7", "exp": "3-?→3-?" },
+      { "id": "1a9e7a3e-9bec-4447-9cea-be2ed8994120", "title": "J3-UE5微恐射击-资深内容生态运营", "role": "unknown→ai_product_operations", "student": "no→no", "skills": "0→2", "exp": "5-?→5-?" },
+      { "id": "1f29d0f7-0ce0-421f-88e8-64b71da55f61", "title": "硬件采购岗", "role": "unknown→unknown", "student": "no→no", "skills": "0→0", "exp": "5-?→5-?" },
+      { "id": "20056e0a-c0f7-4fd8-871b-2e66ab335a5c", "title": "《火影忍者》手游- 营销推广", "role": "unknown→ai_product_operations", "student": "no→no", "skills": "2→2", "exp": "2-?→5-?" }
+    ],
+    "merge_semantics_check": {
+      "skills_decreased_rows": 0,
+      "existing_experience_cleared_to_null_rows": 0,
+      "known_role_family_reset_to_unknown_rows": 0,
+      "known_student_friendly_reset_to_unknown_rows": 0,
+      "verdict": "PASS"
+    }
+  },
+  "apply_full": {
+    "candidates": 157,
+    "calls": 158,
+    "retries": 1,
+    "updated_rows": 157,
+    "unchanged": 0,
+    "failed": 0,
+    "schema_rejected": 0,
+    "usage": { "prompt_tokens": 160462, "completion_tokens": 6404 },
+    "usage_missing_calls": 1,
+    "dropped_skill_terms": 0,
+    "change_breakdown": {
+      "rows": 157,
+      "role_family_changed": 71,
+      "role_family_known_to_unknown": 0,
+      "student_friendly_changed": 10,
+      "student_friendly_yes_to_no": 3,
+      "student_friendly_known_to_unknown": 0,
+      "skills_increased": 20,
+      "skills_decreased": 0,
+      "experience_changed": 15,
+      "experience_to_null": 0,
+      "experience_min_raised": 8,
+      "experience_min_lowered": 3,
+      "experience_unchanged": 142
+    },
+    "row_level_guard_scan": {
+      "skills_decreased_rows": 0,
+      "existing_experience_cleared_to_null_rows": 0,
+      "known_role_family_reset_to_unknown_rows": 0,
+      "known_student_friendly_reset_to_unknown_rows": 0,
+      "verdict": "PASS"
+    },
+    "student_yes_to_no_rows": [
+      { "id": "cc9f9be6-f186-4367-a6d2-eea75999aaf4", "title": "内容风控与数据标注专员（J101010）" },
+      { "id": "d02da412-a93a-4e1b-ba2f-71fb4b46b7b9", "title": "微信小程序-大模型评测工程师-智能体方向" },
+      { "id": "f4ac0c88-c220-4fd6-b1c8-f207878e63f9", "title": "微信公众号-客户端开发工程师" }
+    ],
+    "note": "student_friendly 的 yes→no 是脚本既有合并语义（仅保护 unknown 不回退，不保护 yes/no 方向的重新判定），非本次偏离，已如实计入 student_changed=10"
+  },
+  "after_snapshot": {
+    "career_jobs_total": 188,
+    "role_family": {
+      "ai_algorithm": 7,
+      "ai_application_development": 33,
+      "ai_product_operations": 70,
+      "data": 10,
+      "unknown": 68
+    },
+    "student_friendly": {
+      "yes": 5,
+      "no": 162,
+      "unknown": 21
+    },
+    "skills_nonempty": 143,
+    "normalizer_version": {
+      "normalizer/0.3.0": 31,
+      "normalizer/llm-0.1": 157
+    },
+    "candidates_matching_script_sql": 0,
+    "observations": {
+      "count": 440,
+      "md5_id_job_observed_hash_collector": "0262355afc4ea485a6b2fb16617676e1"
+    },
+    "jobs_source_fields_md5": {
+      "fields": "id|last_seen_at|content_hash|created_at",
+      "md5": "3b3438633de60a7a548623dc4c47eaeb"
+    },
+    "observations_max_observed_at": "2026-11-19T16:00:00Z",
+    "updated_at_max": "2026-11-20T11:01:32Z",
+    "jobs_updated_today": 166
+  },
+  "unpolluted_evidence": {
+    "career_job_observations": "count 440 与 md5 前后同值 0262355afc4ea485a6b2fb16617676e1（未新增/改写观测行）",
+    "source_side_job_fields": "id|last_seen_at|content_hash|created_at 聚合 md5 前后同值 3b3438633de60a7a548623dc4c47eaeb（来源侧时间戳与内容哈希未被回填触碰）",
+    "raw_payload": "脚本不写 raw_payload（UPDATE 列白名单：role_family/student_friendly/skills/experience_min_years/experience_max_years/normalizer_version/updated_at）",
+    "observations_untouched": "max(observed_at)=2026-11-19T16:00:00Z，未被本次运行刷新"
+  },
+  "idempotency": {
+    "second_apply_candidates": 0,
+    "second_apply_calls": 0,
+    "second_apply_updated": 0,
+    "second_apply_usage": { "prompt_tokens": 0, "completion_tokens": 0 },
+    "exit_code": 0,
+    "verdict": "PASS（0 变更、0 调用、0 计费）"
+  },
+  "cost": {
+    "receipts_purpose_career_normalize": 156,
+    "receipts_status": { "received": 156 },
+    "receipt_attempts": 157,
+    "receipts_usage_sum": { "prompt_tokens": 159317, "completion_tokens": 6354 },
+    "script_log_usage_sum_apply": { "prompt_tokens": 160462, "completion_tokens": 6404 },
+    "usage_missing_calls": 1,
+    "billed_calls_estimate": 157,
+    "free_reused_receipts": 1,
+    "cost_column": "receipts.cost 为 NULL（未配置单价，无金额口径，仅 token 口径）",
+    "explain_unique_receipts": "157 候选行仅 156 个 receipt：80607adb 与 16a8e9cb 标题/raw_text 完全相同（raw_text md5 80adbbb3e79c9aa707b501d4075e9c27），逻辑 key 相同而复用同一 receipt，该行未重复计费",
+    "dry_run_not_rebilled": "dry-run 20 行的 receipts 在 apply 时按 logical key 复用（prompt 版本、模型、输入一致），未二次计费"
+  },
+  "integration_check": {
+    "command_has_require_data": true,
+    "checks_passed": 6,
+    "checks_total": 6,
+    "results": [
+      "✓ /api/health",
+      "✓ /career-insights",
+      "✓ /api/site/career-insights/summary",
+      "✓ /api/site/career-insights/jobs",
+      "✓ /api/site/career-insights/jobs/16a8e9cb-d603-4c93-a5c6-5ee2f3757dd4",
+      "✓ /api/site/career-insights/jobs/not-a-uuid"
+    ],
+    "verdict": "all checks passed"
+  },
+  "summary_api_metrics": {
+    "endpoint": "/api/site/career-insights/summary",
+    "contract_version": "0.1",
+    "data_origin": "live",
+    "sample_size": 188,
+    "job_family_share": {
+      "ai_algorithm": { "count": 7, "ratio": 0.03723404255319149 },
+      "ai_application_development": { "count": 33, "ratio": 0.17553191489361702 },
+      "data": { "count": 10, "ratio": 0.05319148936170213 },
+      "ai_product_operations": { "count": 70, "ratio": 0.3723404255319149 },
+      "unknown": { "count": 68, "ratio": 0.3617021276595745 }
+    },
+    "unknown_role_ratio_before": 0.7393617021276596,
+    "unknown_role_ratio_after": 0.3617021276595745,
+    "note": "当前 summary 响应没有 unknown_count / unknown_ratio 字段（metrics 仅含 job_family_share、skill_demand_share、student_friendly_share、observed_new_jobs、policy_job_shared_themes）；unknown 占比按 role_family=unknown 的行数/sample_size 口径由 SQL 复算，前值 139/188=0.7394，后值 68/188=0.3617"
+  },
+  "deviations": [
+    "候选行实测 157，与任务给出的 138 不一致（按脚本 SQL normalizer_version IS DISTINCT FROM 'normalizer/llm-0.1' AND (role_family='unknown' OR student_friendly='unknown' OR skills 空) 实测 157；区别可能是此前统计口径/时点不同）。已按实测 157 全量回填，无遗漏。",
+    "student_friendly 出现 3 行 yes→no（脚本语义允许，仅保护 unknown 方向回退），导致 yes 6→5；同时 unknown→已知 7 行，no 154→162。",
+    "8 行 experience_min_years 被模型提高、3 行被降低（模型仅在给出非 null 时覆盖既有年限，属脚本既定语义；无 null 清空）。",
+    "接口 summary 无 unknown_count/unknown_ratio 字段，已改用 SQL 口径记录前后 unknown 占比。",
+    "receipts.cost 为 NULL，无单价配置，只能给 token 口径成本。"
+  ],
+  "verdict": "PASS：157 行全量回填成功，0 失败，skills 无减少、既有年限无清空、已分类枚举无回退 unknown；observations 与来源侧字段哈希不变；二次 apply 幂等（0 变更 0 调用）；接口 6/6 通过"
+}

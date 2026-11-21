@@ -1,0 +1,1 @@
+CREATE INDEX CONCURRENTLY IF NOT EXISTS career_job_observations_job_idx ON career_job_observations(job_id, observed_at DESC);

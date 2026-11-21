@@ -1,0 +1,1 @@
+ALTER TABLE career_jobs ADD COLUMN data_origin text NOT NULL DEFAULT 'live';

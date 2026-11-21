@@ -1,0 +1,14 @@
+{
+  "sample_id": "cb493c0a4a76d883",
+  "request_key": "POST https://talent.baidu.com/httservice/getPostListNew#3c26b620c03e80b1",
+  "request_url": "https://talent.baidu.com/httservice/getPostListNew",
+  "final_url": "https://talent.baidu.com/httservice/getPostListNew",
+  "http_status": 200,
+  "content_type": "application/json",
+  "body_sha256": "cb493c0a4a76d88346259bf177360a8bd30459ef9346597dc60b865c76236ba5",
+  "captured_at": "2026-11-18T14:36:57.009Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list-4",
+  "sanitized": true,
+  "body_file": "list-4.json"
+}

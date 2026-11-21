@@ -1,0 +1,14 @@
+{
+  "sample_id": "7642fc063654dc29",
+  "request_key": "POST https://zhaopin.meituan.com/api/official/job/getJobList#02f7690414446246",
+  "request_url": "https://zhaopin.meituan.com/api/official/job/getJobList",
+  "final_url": "https://zhaopin.meituan.com/api/official/job/getJobList",
+  "http_status": 200,
+  "content_type": "application/json",
+  "body_sha256": "7642fc063654dc29840acd0ad94fab9a49a044078ab78bcc6d57158ed401f05a",
+  "captured_at": "2026-11-18T14:34:32.310Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list-2",
+  "sanitized": true,
+  "body_file": "list-2.json"
+}

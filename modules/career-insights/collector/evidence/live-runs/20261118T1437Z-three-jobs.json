@@ -1,0 +1,233 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-18T14:37:38.860Z",
+  "finished_at": "2026-11-18T14:37:58.671Z",
+  "network_calls_note": "仅公开页面；同域间隔 >=1s；未绕登录/验证码/403",
+  "records": [
+    {
+      "phase": "jobs",
+      "source_key": "tencent-official-careers",
+      "entry_url": "https://careers.tencent.com/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 10,
+      "elapsed_ms": 16186,
+      "first_item": "《三角洲行动》3D动作设计师-演绎方向",
+      "items": [
+        {
+          "source_job_id": "2095412225996140544",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2095412225996140544",
+          "title": "《三角洲行动》3D动作设计师-演绎方向",
+          "raw_text_sha256": "a58cb5896b0c71e22813c5b26802d5005d1608ed897ea6ec1a049dbf6766f675"
+        },
+        {
+          "source_job_id": "2108399574078107648",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2108399574078107648",
+          "title": "ima copilot-后台开发工程师",
+          "raw_text_sha256": "5e009ef75b2aa78c26c13be43324e1245bc7af730f94141555eb02d77d66a999"
+        },
+        {
+          "source_job_id": "2076912101565317120",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2076912101565317120",
+          "title": "K6合作部-游戏运营-社区及用户运营",
+          "raw_text_sha256": "1e429749310a651fcb0574f3740d98471c97b6af73da8a72662173ddb3d75644"
+        },
+        {
+          "source_job_id": "2087735931724546048",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2087735931724546048",
+          "title": "WorkBuddy-桌面端技术专家-Electron（深圳/北京/上海）",
+          "raw_text_sha256": "4e128eaf4d81d98ff61b0e8122a47236395406db03ff4848888fa4e901c66539"
+        },
+        {
+          "source_job_id": "2122870576661053440",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2122870576661053440",
+          "title": "《异人之下》游戏系统策划",
+          "raw_text_sha256": "4f63ece5e074567bec407a53ca60d59119c5c940e1fb27e98181a97112d6141a"
+        },
+        {
+          "source_job_id": "2122870617685536768",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2122870617685536768",
+          "title": "《异人之下》游戏数值策划",
+          "raw_text_sha256": "4f69ca1274e49624672c55100703973931382d8292d3f9eec470787d29d7bd31"
+        },
+        {
+          "source_job_id": "2104449874564132864",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2104449874564132864",
+          "title": "在研小游戏-玩法策划",
+          "raw_text_sha256": "479257d135874c8900fba8fb7bf164ac0120d26b45b7a7b7fae28a35d77867fa"
+        },
+        {
+          "source_job_id": "2112735058304614400",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2112735058304614400",
+          "title": "ima-高级产品经理（基础框架）",
+          "raw_text_sha256": "9f01982d970024efa11051786a076260ed94589eb2c6207f8f9fad9eb3c9891c"
+        },
+        {
+          "source_job_id": "2078468629443293184",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2078468629443293184",
+          "title": "芯片设计工程师",
+          "raw_text_sha256": "c16a6ec660701c9198bbfc20ed994df547e0fffd16fcea3cf7180236852c72ae"
+        },
+        {
+          "source_job_id": "2109846092265996288",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2109846092265996288",
+          "title": "WorkBuddy-全栈开发工程师-工程质量",
+          "raw_text_sha256": "eb5df2d1faff955bff33dc25bb490b631dac2f153390317d83da1c503c3df4f0"
+        }
+      ]
+    },
+    {
+      "phase": "jobs",
+      "source_key": "meituan-official-careers",
+      "entry_url": "https://zhaopin.meituan.com/web/position",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 10,
+      "elapsed_ms": 1743,
+      "first_item": "AI全栈工程师",
+      "items": [
+        {
+          "source_job_id": "4697320043",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4697320043",
+          "title": "AI全栈工程师",
+          "raw_text_sha256": "7752377c832d34631b86f2823236b9676612aba160b880bf4c3c7c1b5e09b3d9"
+        },
+        {
+          "source_job_id": "4697280304",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4697280304",
+          "title": "AI后端开发工程师",
+          "raw_text_sha256": "df36fd9816b2e61bfa01b198ee5d6085eec73be63147c6be375f39cc3ca7bd8c"
+        },
+        {
+          "source_job_id": "4694982338",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4694982338",
+          "title": "智能商业分析师（BA/DS）",
+          "raw_text_sha256": "5fbab35e8d10572fa424df2c993a92fbae64803d2808e1f2204dc44c4ff3a5e3"
+        },
+        {
+          "source_job_id": "4697309845",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4697309845",
+          "title": "AI产品经理岗",
+          "raw_text_sha256": "518130c7447c6109b4798dea76bc6e4709bc7d7d632442f0118a9db97b2e9923"
+        },
+        {
+          "source_job_id": "4697324893",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4697324893",
+          "title": "AI产品运营岗",
+          "raw_text_sha256": "40cec7b5e4276a20c18c333ef4478acec52518ba48788aa4b6841113362af4f9"
+        },
+        {
+          "source_job_id": "4837177505",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4837177505",
+          "title": "小象超市-配送城市运营（华西大区）",
+          "raw_text_sha256": "1e4273b0dc8da0425baf696b0704827117007ff65252c8ff9a4f8591a38cc2ac"
+        },
+        {
+          "source_job_id": "4531216268",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4531216268",
+          "title": "Strategic Account Manager 大客户经理",
+          "raw_text_sha256": "afec895e3ed71b517554f5bd1b2b536bda8cc72f1c7b2422c4c14252fd54d90c"
+        },
+        {
+          "source_job_id": "4451174575",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4451174575",
+          "title": "HRBP（外派巴西）",
+          "raw_text_sha256": "dcf0d979d7a4065565d642aaa250cf3cef98877368d13452877a24774e357c7d"
+        },
+        {
+          "source_job_id": "3958847494",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=3958847494",
+          "title": "AI组织转型专家",
+          "raw_text_sha256": "dfdb4249ba06aba6c4926ad7fd67d48197bd604acce1700808ef503e2ff350cd"
+        },
+        {
+          "source_job_id": "4937479656",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4937479656",
+          "title": "干调PB采购专家",
+          "raw_text_sha256": "c4b4b9b372ab01926da5c9ee1dd92072e46d4720119c4ee3767d68e34ea22de2"
+        }
+      ]
+    },
+    {
+      "phase": "jobs",
+      "source_key": "baidu-official-careers",
+      "entry_url": "https://talent.baidu.com/jobs/social-list",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 10,
+      "elapsed_ms": 1882,
+      "first_item": "海外服务顾问（J107080）",
+      "items": [
+        {
+          "source_job_id": "2f3eed75-ace7-49d0-95de-efa352bc40c8",
+          "official_url": "https://talent.baidu.com/jobs/detail/2f3eed75-ace7-49d0-95de-efa352bc40c8",
+          "title": "海外服务顾问（J107080）",
+          "raw_text_sha256": "a31d7cc02d6330add7b7e7a518afb578c678823a42c93503b0f810246f78a901"
+        },
+        {
+          "source_job_id": "a7e9c593-6575-4f80-bf79-a81ae10bf504",
+          "official_url": "https://talent.baidu.com/jobs/detail/a7e9c593-6575-4f80-bf79-a81ae10bf504",
+          "title": "山东售前解决方案架构师（J104129）",
+          "raw_text_sha256": "1f7442dcafb9d950f23f4b7dab7e4704857d024aea8efeb9665a6b27ae576d3d"
+        },
+        {
+          "source_job_id": "ca96c9c5-b629-4b78-a129-7a7fae722d5b",
+          "official_url": "https://talent.baidu.com/jobs/detail/ca96c9c5-b629-4b78-a129-7a7fae722d5b",
+          "title": "内容风控与数据标注专员（J101010）",
+          "raw_text_sha256": "f0c4949e7f7ed761f0b3ad10089add1c5ff63c976e9f32c9fa1102d684f18342"
+        },
+        {
+          "source_job_id": "bd1798c0-40d5-499b-b872-ced5613f24c9",
+          "official_url": "https://talent.baidu.com/jobs/detail/bd1798c0-40d5-499b-b872-ced5613f24c9",
+          "title": "重庆企业销售经理（J104237）",
+          "raw_text_sha256": "2e3625baddc5e404c47e52946b7b68b827eb5edc4ed6cd0a0fb992d59e1fd0d5"
+        },
+        {
+          "source_job_id": "b2af75f8-963a-4fd6-bc6b-24ecc22e3547",
+          "official_url": "https://talent.baidu.com/jobs/detail/b2af75f8-963a-4fd6-bc6b-24ecc22e3547",
+          "title": "云南售前架构师（J104878）",
+          "raw_text_sha256": "a2381dd333ae55cace7416e5b54af4ab26b0b9c4e9658fb723bbe0d652b3948f"
+        },
+        {
+          "source_job_id": "31683bc3-9f48-44d1-82cb-2e3807ba8cb5",
+          "official_url": "https://talent.baidu.com/jobs/detail/31683bc3-9f48-44d1-82cb-2e3807ba8cb5",
+          "title": "陕宁政企销售经理（J100875）",
+          "raw_text_sha256": "84e8fdb0cfa1aca98e9cfc4e1ea9318fcef49f3bdcf224ff88d51a8362df89a1"
+        },
+        {
+          "source_job_id": "b1a41945-fe18-4d58-b5ca-10055c3f6634",
+          "official_url": "https://talent.baidu.com/jobs/detail/b1a41945-fe18-4d58-b5ca-10055c3f6634",
+          "title": "产品经理-模型标注平台（J103509）",
+          "raw_text_sha256": "edd47d2e003d5c5990ac5afc53d0b25d6f1500bd87cd942f0430780495f74aa7"
+        },
+        {
+          "source_job_id": "c19c1527-4b25-4e54-b8ec-a8f753863d06",
+          "official_url": "https://talent.baidu.com/jobs/detail/c19c1527-4b25-4e54-b8ec-a8f753863d06",
+          "title": "解决方案架构师(智慧矿山)（J77196）",
+          "raw_text_sha256": "c762d82a9c7f32cb7d2965a9b6dee0ddfe10f0df3f21c892027cabc1ea7a2884"
+        },
+        {
+          "source_job_id": "27f6383b-7d0e-4cfa-a1ff-2e56b77b7b6e",
+          "official_url": "https://talent.baidu.com/jobs/detail/27f6383b-7d0e-4cfa-a1ff-2e56b77b7b6e",
+          "title": "客服（J93013）",
+          "raw_text_sha256": "84e95983a6cd3d7b0f09594d4124d952993bb85ce8695606f041e9e0ca81501b"
+        },
+        {
+          "source_job_id": "e0795cc0-e242-4f09-9145-488173e8f21b",
+          "official_url": "https://talent.baidu.com/jobs/detail/e0795cc0-e242-4f09-9145-488173e8f21b",
+          "title": "质检（J93011）",
+          "raw_text_sha256": "80ee8459582d785aedfdd33f88174efb97fce6d4fcd014f1c5fad12625b1b59f"
+        }
+      ]
+    }
+  ]
+}

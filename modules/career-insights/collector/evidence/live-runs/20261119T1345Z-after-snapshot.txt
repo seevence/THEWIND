@@ -1,0 +1,266 @@
+Pager usage is off.
+== 1. jobs total ==
+ jobs_total 
+------------
+         87
+(1 row)
+
+== 2. jobs by source ==
+        source_key        | jobs |       max_first_seen       |       max_last_seen        |          max_updated          
+--------------------------+------+----------------------------+----------------------------+-------------------------------
+ baidu-official-careers   |   20 | 2026-11-19 11:35:35.853+00 | 2026-11-19 13:48:05.044+00 | 2026-11-19 13:48:05.05264+00
+ meituan-official-careers |   46 | 2026-11-19 13:47:56.614+00 | 2026-11-19 13:47:56.614+00 | 2026-11-19 13:47:56.62771+00
+ tencent-official-careers |   21 | 2026-11-19 11:35:27.85+00  | 2026-11-19 13:47:52.674+00 | 2026-11-19 13:47:52.712389+00
+(3 rows)
+
+== 3. observations total ==
+ observations_total 
+--------------------
+                290
+(1 row)
+
+== 4. observation days (CST) ==
+ distinct_cst_days 
+-------------------
+                 1
+(1 row)
+
+== 5. observations per CST day ==
+  cst_day   | obs | jobs 
+------------+-----+------
+ 2026-11-19 | 290 |   87
+(1 row)
+
+== 6. policies ==
+ policies_total 
+----------------
+              6
+(1 row)
+
+     source_tier     | count 
+---------------------+-------
+ government_official |     6
+(1 row)
+
+== 7. normalizer_version distribution ==
+ normalizer_version | count 
+--------------------+-------
+ normalizer/0.2.0   |    27
+ normalizer/0.3.0   |    60
+(2 rows)
+
+== 8. role_family distribution ==
+        role_family         | count 
+----------------------------+-------
+ unknown                    |    59
+ ai_product_operations      |    13
+ ai_application_development |    10
+ data                       |     3
+ ai_algorithm               |     2
+(5 rows)
+
+== 9. student_friendly distribution ==
+ student_friendly | count 
+------------------+-------
+ no               |    67
+ unknown          |    19
+ yes              |     1
+(3 rows)
+
+== 10. skills non-null distribution ==
+  skills_state   | count 
+-----------------+-------
+ non_empty_array |    67
+ empty_array     |    20
+(2 rows)
+
+== 11. skills length histogram (non-empty) ==
+ n  | count 
+----+-------
+  1 |    20
+  2 |    19
+  3 |     6
+  4 |     3
+  5 |     4
+  6 |     9
+  7 |     3
+  9 |     2
+ 10 |     1
+(9 rows)
+
+== 12. max(last_seen_at) / max(first_seen_at) / max(updated_at) ==
+       max_last_seen        |       max_first_seen       |         max_updated          
+----------------------------+----------------------------+------------------------------
+ 2026-11-19 13:48:05.044+00 | 2026-11-19 13:47:56.614+00 | 2026-11-19 13:48:05.05264+00
+(1 row)
+
+== 13. rows touched since baseline (updated_at > 2026-11-19 11:35:35.86061+00) ==
+ jobs_updated_since_baseline 
+-----------------------------
+                          60
+(1 row)
+
+== 14. duplicate groups: official_url ==
+ dup_official_url 
+------------------
+                0
+(1 row)
+
+== 15. duplicate groups: job_key (cross source) ==
+ dup_job_key 
+-------------
+           0
+(1 row)
+
+== 16. student_friendly = yes rows ==
+        source_key        |       job_key       |                  title                   | student_friendly |  experience_raw  
+--------------------------+---------------------+------------------------------------------+------------------+------------------
+ tencent-official-careers | 2056671347148505088 | 微信开放平台-后台开发工程师-运营治理方向 | yes              | 一年以上工作经验
+(1 row)
+
+== 17. all 一年以上 rows (after) ==
+        source_key        |       job_key       | student_friendly |  experience_raw  
+--------------------------+---------------------+------------------+------------------
+ tencent-official-careers | 2049825920281391104 | no               | 一年以上工作经验
+ tencent-official-careers | 2056671347148505088 | yes              | 一年以上工作经验
+(2 rows)
+
+== 18. observation granularity: CST time-of-day histogram ==
+ cst_time | count 
+----------+-------
+ 00:00:00 |    60
+ 16:12:37 |    10
+ 16:12:40 |    10
+ 16:14:37 |    10
+ 16:14:39 |    10
+ 16:16:16 |    10
+ 16:16:19 |    10
+ 16:27:05 |    10
+ 16:27:08 |    10
+ 16:33:15 |    10
+ 16:33:19 |    10
+ 16:58:03 |    10
+ 16:58:07 |    10
+ 19:35:31 |    10
+ 19:35:35 |     9
+ 17:43:19 |     5
+ 19:35:30 |     5
+ 16:08:37 |     1
+ 16:08:39 |     1
+ 16:08:40 |     1
+ 16:08:42 |     1
+ 16:08:44 |     1
+ 16:08:45 |     1
+ 16:08:47 |     1
+ 16:08:48 |     1
+ 16:08:50 |     1
+ 16:08:51 |     1
+ 16:12:22 |     1
+ 16:12:23 |     1
+ 16:12:25 |     1
+ 16:12:26 |     1
+ 16:12:27 |     1
+ 16:12:29 |     1
+ 16:12:30 |     1
+ 16:12:31 |     1
+ 16:12:33 |     1
+ 16:12:34 |     1
+ 16:14:24 |     1
+ 16:14:25 |     1
+ 16:14:26 |     1
+ 16:14:27 |     1
+ 16:14:29 |     1
+ 16:14:30 |     1
+ 16:14:32 |     1
+ 16:14:33 |     1
+ 16:14:34 |     1
+ 16:14:35 |     1
+ 16:15:57 |     1
+ 16:15:58 |     1
+ 16:15:59 |     1
+ 16:16:01 |     1
+ 16:16:02 |     1
+ 16:16:03 |     1
+ 16:16:05 |     1
+ 16:16:06 |     1
+ 16:16:08 |     1
+ 16:16:10 |     1
+ 16:26:50 |     1
+ 16:26:52 |     1
+ 16:26:53 |     1
+ 16:26:55 |     1
+ 16:26:56 |     1
+ 16:26:57 |     1
+ 16:26:59 |     1
+ 16:27:00 |     1
+ 16:27:01 |     1
+ 16:27:03 |     1
+ 16:32:56 |     1
+ 16:32:57 |     1
+ 16:32:58 |     1
+ 16:33:01 |     1
+ 16:33:05 |     1
+ 16:33:06 |     1
+ 16:33:08 |     1
+ 16:33:10 |     1
+ 16:33:11 |     1
+ 16:33:13 |     1
+ 16:57:39 |     1
+ 16:57:41 |     1
+ 16:57:42 |     1
+ 16:57:45 |     1
+ 16:57:46 |     1
+ 16:57:48 |     1
+ 16:57:50 |     1
+ 16:57:54 |     1
+ 16:57:55 |     1
+ 16:57:56 |     1
+ 17:43:21 |     1
+ 19:35:12 |     1
+ 19:35:13 |     1
+ 19:35:15 |     1
+ 19:35:17 |     1
+ 19:35:18 |     1
+ 19:35:21 |     1
+ 19:35:22 |     1
+ 19:35:23 |     1
+ 19:35:26 |     1
+ 19:35:27 |     1
+(98 rows)
+
+== 19. observations created in this run (created_at > baseline) ==
+ new_observations 
+------------------
+               60
+(1 row)
+
+== 20. new observations: distinct observed_at (CST) values ==
+   cst_observed_at   | count 
+---------------------+-------
+ 2026-11-19 00:00:00 |    60
+(1 row)
+
+== 21. jobs without a daily-granularity observation ==
+ jobs_missing_daily_obs 
+------------------------
+                     27
+(1 row)
+
+== 22. per-job observation count distribution ==
+ obs_count | jobs 
+-----------+------
+         1 |   31
+         2 |   23
+         3 |    4
+         4 |    3
+         6 |    2
+         7 |   15
+         8 |    9
+(7 rows)
+
+== 23. collector_version distribution ==
+ collector_version | count 
+-------------------+-------
+ collector/0.1.0   |    87
+(1 row)
+

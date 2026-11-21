@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-18T14:35:52.950Z",
+  "finished_at": "2026-11-18T14:36:14.713Z",
+  "network_calls_note": "仅公开页面；同域间隔 >=1s；未绕登录/验证码/403",
+  "records": [
+    {
+      "phase": "jobs",
+      "source_key": "tencent-official-careers",
+      "entry_url": "https://careers.tencent.com/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 10,
+      "elapsed_ms": 19904,
+      "first_item": "《三角洲行动》3D动作设计师-演绎方向",
+      "items": [
+        {
+          "source_job_id": "2095412225996140544",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2095412225996140544",
+          "title": "《三角洲行动》3D动作设计师-演绎方向",
+          "raw_text_sha256": "a58cb5896b0c71e22813c5b26802d5005d1608ed897ea6ec1a049dbf6766f675"
+        },
+        {
+          "source_job_id": "2108399574078107648",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2108399574078107648",
+          "title": "ima copilot-后台开发工程师",
+          "raw_text_sha256": "5e009ef75b2aa78c26c13be43324e1245bc7af730f94141555eb02d77d66a999"
+        },
+        {
+          "source_job_id": "2076912101565317120",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2076912101565317120",
+          "title": "K6合作部-游戏运营-社区及用户运营",
+          "raw_text_sha256": "1e429749310a651fcb0574f3740d98471c97b6af73da8a72662173ddb3d75644"
+        },
+        {
+          "source_job_id": "2087735931724546048",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2087735931724546048",
+          "title": "WorkBuddy-桌面端技术专家-Electron（深圳/北京/上海）",
+          "raw_text_sha256": "4e128eaf4d81d98ff61b0e8122a47236395406db03ff4848888fa4e901c66539"
+        },
+        {
+          "source_job_id": "2122870576661053440",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2122870576661053440",
+          "title": "《异人之下》游戏系统策划",
+          "raw_text_sha256": "4f63ece5e074567bec407a53ca60d59119c5c940e1fb27e98181a97112d6141a"
+        },
+        {
+          "source_job_id": "2122870617685536768",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2122870617685536768",
+          "title": "《异人之下》游戏数值策划",
+          "raw_text_sha256": "4f69ca1274e49624672c55100703973931382d8292d3f9eec470787d29d7bd31"
+        },
+        {
+          "source_job_id": "2104449874564132864",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2104449874564132864",
+          "title": "在研小游戏-玩法策划",
+          "raw_text_sha256": "479257d135874c8900fba8fb7bf164ac0120d26b45b7a7b7fae28a35d77867fa"
+        },
+        {
+          "source_job_id": "2112735058304614400",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2112735058304614400",
+          "title": "ima-高级产品经理（基础框架）",
+          "raw_text_sha256": "9f01982d970024efa11051786a076260ed94589eb2c6207f8f9fad9eb3c9891c"
+        },
+        {
+          "source_job_id": "2078468629443293184",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2078468629443293184",
+          "title": "芯片设计工程师",
+          "raw_text_sha256": "c16a6ec660701c9198bbfc20ed994df547e0fffd16fcea3cf7180236852c72ae"
+        },
+        {
+          "source_job_id": "2109846092265996288",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2109846092265996288",
+          "title": "WorkBuddy-全栈开发工程师-工程质量",
+          "raw_text_sha256": "eb5df2d1faff955bff33dc25bb490b631dac2f153390317d83da1c503c3df4f0"
+        }
+      ]
+    },
+    {
+      "phase": "jobs",
+      "source_key": "meituan-official-careers",
+      "entry_url": "https://zhaopin.meituan.com/web/position",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 10,
+      "elapsed_ms": 1856,
+      "first_item": "AI全栈工程师",
+      "items": [
+        {
+          "source_job_id": "4697320043",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4697320043",
+          "title": "AI全栈工程师",
+          "raw_text_sha256": "7752377c832d34631b86f2823236b9676612aba160b880bf4c3c7c1b5e09b3d9"
+        },
+        {
+          "source_job_id": "4697280304",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4697280304",
+          "title": "AI后端开发工程师",
+          "raw_text_sha256": "df36fd9816b2e61bfa01b198ee5d6085eec73be63147c6be375f39cc3ca7bd8c"
+        },
+        {
+          "source_job_id": "4694982338",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4694982338",
+          "title": "智能商业分析师（BA/DS）",
+          "raw_text_sha256": "5fbab35e8d10572fa424df2c993a92fbae64803d2808e1f2204dc44c4ff3a5e3"
+        },
+        {
+          "source_job_id": "4697309845",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4697309845",
+          "title": "AI产品经理岗",
+          "raw_text_sha256": "518130c7447c6109b4798dea76bc6e4709bc7d7d632442f0118a9db97b2e9923"
+        },
+        {
+          "source_job_id": "4697324893",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4697324893",
+          "title": "AI产品运营岗",
+          "raw_text_sha256": "40cec7b5e4276a20c18c333ef4478acec52518ba48788aa4b6841113362af4f9"
+        },
+        {
+          "source_job_id": "4837177505",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4837177505",
+          "title": "小象超市-配送城市运营（华西大区）",
+          "raw_text_sha256": "1e4273b0dc8da0425baf696b0704827117007ff65252c8ff9a4f8591a38cc2ac"
+        },
+        {
+          "source_job_id": "4531216268",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4531216268",
+          "title": "Strategic Account Manager 大客户经理",
+          "raw_text_sha256": "afec895e3ed71b517554f5bd1b2b536bda8cc72f1c7b2422c4c14252fd54d90c"
+        },
+        {
+          "source_job_id": "4451174575",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4451174575",
+          "title": "HRBP（外派巴西）",
+          "raw_text_sha256": "dcf0d979d7a4065565d642aaa250cf3cef98877368d13452877a24774e357c7d"
+        },
+        {
+          "source_job_id": "3958847494",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=3958847494",
+          "title": "AI组织转型专家",
+          "raw_text_sha256": "dfdb4249ba06aba6c4926ad7fd67d48197bd604acce1700808ef503e2ff350cd"
+        },
+        {
+          "source_job_id": "4937479656",
+          "official_url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4937479656",
+          "title": "干调PB采购专家",
+          "raw_text_sha256": "c4b4b9b372ab01926da5c9ee1dd92072e46d4720119c4ee3767d68e34ea22de2"
+        }
+      ]
+    }
+  ]
+}

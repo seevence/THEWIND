@@ -1,0 +1,9 @@
+npm warn exec The following package was not found and will be installed: tsx@4.23.15
+✓ /api/health
+✓ /career-insights
+✓ /api/site/career-insights/summary
+✓ /api/site/career-insights/jobs
+✓ /api/site/career-insights/jobs/116e10ab-32ee-4785-a114-063064266b63
+✓ /api/site/career-insights/jobs/not-a-uuid
+
+all checks passed

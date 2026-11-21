@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "kind": "career-ingest",
+  "started_at": "2026-11-19T08:57:35.792Z",
+  "finished_at": "2026-11-19T08:58:35.364Z",
+  "data_origin": "live",
+  "jobs": [
+    {
+      "source": "tencent-official-careers",
+      "phase": "jobs",
+      "status": "ok",
+      "run_id": "8d481202-5440-4c82-90ad-ea837472f7e9",
+      "collected": 10,
+      "normalized": 10,
+      "rejected": 0,
+      "accepted": 0,
+      "updated": 9,
+      "duplicates": 1,
+      "elapsed_ms": 21191
+    },
+    {
+      "source": "meituan-official-careers",
+      "phase": "jobs",
+      "status": "ok",
+      "run_id": "1ac43a1b-3a33-4b03-b495-96864ab01410",
+      "collected": 10,
+      "normalized": 10,
+      "rejected": 0,
+      "accepted": 0,
+      "updated": 0,
+      "duplicates": 10,
+      "elapsed_ms": 6428
+    },
+    {
+      "source": "baidu-official-careers",
+      "phase": "jobs",
+      "status": "ok",
+      "run_id": "1bc86c87-5420-4376-9c22-764493f32517",
+      "collected": 10,
+      "normalized": 10,
+      "rejected": 0,
+      "accepted": 0,
+      "updated": 0,
+      "duplicates": 10,
+      "elapsed_ms": 3776
+    }
+  ],
+  "policies": [
+    {
+      "source": "state-council-policy",
+      "phase": "policies",
+      "status": "success",
+      "collected": 3,
+      "accepted": 0,
+      "updated": 0,
+      "duplicates": 3,
+      "rejected": 0,
+      "elapsed_ms": 29
+    },
+    {
+      "source": "ndrc-policy",
+      "phase": "policies",
+      "status": "success",
+      "collected": 3,
+      "accepted": 0,
+      "updated": 0,
+      "duplicates": 3,
+      "rejected": 0,
+      "elapsed_ms": 9
+    }
+  ],
+  "counts": {
+    "jobs": 34,
+    "observations": 190,
+    "policies": 6,
+    "runs": 28
+  }
+}

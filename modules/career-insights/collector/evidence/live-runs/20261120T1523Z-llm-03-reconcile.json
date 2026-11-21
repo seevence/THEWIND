@@ -1,0 +1,133 @@
+{
+  "run_id": "20261120T1523Z-llm-03-reconcile",
+  "run_at_utc": "2026-11-20T15:37:17.759Z",
+  "git_head_before": "15cecc6e8708969beccf482917fc9b07d6da3505",
+  "purpose": "对 T-B（llm-0.2→llm-0.3 全量回填）做运行后对账，并记录 T-D（aipo 正文豁免收紧）的规则变更与定向纠偏证据",
+  "before_snapshot": "20261120T1513Z-llm-02-backfill-before.json",
+  "before_dry_run_log": "20261120T1513Z-llm-02-backfill-dry-run-20.log",
+  "apply_130_rows": {
+    "note": "T-B 执行：同一命令行在共享 worktree 被 T-D 推进版本后，目标版本由 llm-0.2 变为 llm-0.3、候选由 80 变 130",
+    "target_version": "normalizer/llm-0.3",
+    "rows": 130,
+    "updated": 130,
+    "failed": 0,
+    "downgraded_by_rule": 5,
+    "usage": {
+      "prompt_tokens": 154166,
+      "completion_tokens": 4794
+    }
+  },
+  "distribution": {
+    "normalizer_version_before": {
+      "normalizer/0.3.0": 23,
+      "normalizer/llm-0.1": 111,
+      "normalizer/llm-0.2": 54
+    },
+    "normalizer_version_after": {
+      "normalizer/0.3.0": 23,
+      "normalizer/llm-0.1": 31,
+      "normalizer/llm-0.2": 2,
+      "normalizer/llm-0.3": 132
+    },
+    "role_family_before": {
+      "ai_algorithm": 7,
+      "ai_application_development": 33,
+      "ai_product_operations": 20,
+      "data": 10,
+      "unknown": 118
+    },
+    "role_family_after": {
+      "ai_algorithm": 7,
+      "ai_application_development": 33,
+      "ai_product_operations": 17,
+      "data": 10,
+      "unknown": 121
+    },
+    "student_friendly_after": {
+      "no": 163,
+      "unknown": 21,
+      "yes": 4
+    },
+    "jobs_total": 188
+  },
+  "untouched_fields_proof": {
+    "method": "md5(string_agg(row, E'\\n' order by id))，与 before 快照同一口径",
+    "observations": {
+      "count": 440,
+      "digest": "0262355afc4ea485a6b2fb16617676e1",
+      "before_digest": "0262355afc4ea485a6b2fb16617676e1",
+      "unchanged": true,
+      "max_observed_at": "2026-11-19T16:00:00.000Z"
+    },
+    "jobs_source_fields": {
+      "fields": "id|last_seen_at|content_hash",
+      "digest": "8cb769515c287dc99aea9c634d847e4a",
+      "before_digest": "8cb769515c287dc99aea9c634d847e4a",
+      "unchanged": true
+    }
+  },
+  "idempotency": {
+    "default_dry_run_after_apply": {
+      "candidates": 0,
+      "model_calls": 0,
+      "changed": 0
+    },
+    "conclusion": "二次默认回填 0 候选、0 模型调用，不会重复付费"
+  },
+  "rule_change": {
+    "version_kept": "normalizer/llm-0.3",
+    "version_bump_skipped_reason": "收紧只影响「标题非 AI 主体且正文仅在任职要求行提及 AI」的行；全库此类仅 3 行（B端产品经理 / 伙伴FDE / 金融解决方案架构师），已逐行复核。bump 版本会让 132 行变 stale 并触发全库重新调用，收益不成比例。",
+    "ai_subject_phrases": "移除宽泛的 ai产品 / ai应用；新增 ai产品经理、ai产品运营、ai产品开发、ai产品功能、ai应用开发、智能体搭建、agent搭建 等具体主体短语",
+    "responsibility_scope": "AI 主体短语只在职责行匹配；任职要求/资格行（优先/具备/熟悉/掌握/了解/能够/任职/要求/资格/学历/经验/加分）不作为豁免证据",
+    "new_cli": "--force-ids id1,id2：按 id 定向修复并跳过「已是当前版本就不写」的护栏（一次性纠偏）"
+  },
+  "targeted_repair": {
+    "id": "365f9ba0-514d-45c9-b3d1-43d8fcdbb9c9",
+    "title": "金融解决方案架构师（J107444）",
+    "before": {
+      "role_family": "ai_product_operations",
+      "normalizer_version": "normalizer/llm-0.3"
+    },
+    "after": {
+      "role_family": "unknown",
+      "normalizer_version": "normalizer/llm-0.3"
+    },
+    "downgraded_by_rule": true,
+    "matched_domain_term": "架构师",
+    "usage": {
+      "prompt_tokens": 1805,
+      "completion_tokens": 58
+    }
+  },
+  "exemption_regression_checks": [
+    {
+      "id": "a909889e-f429-43b4-ad27-de8a928137f4",
+      "title": "B端产品经理",
+      "expected": "ai_product_operations",
+      "observed": "ai_product_operations",
+      "evidence": "职责行含「核心AI产品功能」"
+    },
+    {
+      "id": "7dec1e39-4bd0-4545-9a09-4672d2a3b39c",
+      "title": "伙伴FDE培训设计与教研专家（J107259）",
+      "expected": "ai_product_operations",
+      "observed": "ai_product_operations",
+      "evidence": "职责行含「Agent搭建」；正文 AI 短语在任职要求行，按新规则不计入"
+    },
+    {
+      "id": "a1f03c68-f271-482c-8734-c3cf91d382db",
+      "title": "AI产品运营岗",
+      "expected": "ai_product_operations",
+      "observed": "ai_product_operations",
+      "evidence": "标题命中 AI 主体词"
+    }
+  ],
+  "verification": {
+    "standalone_backfill_test": "22/22 pass",
+    "tsc_modules": "exit 0",
+    "model_usage_total_this_run": {
+      "prompt_tokens": 4358,
+      "completion_tokens": 153
+    }
+  }
+}

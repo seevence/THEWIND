@@ -1,0 +1,1 @@
+CREATE INDEX CONCURRENTLY IF NOT EXISTS career_policies_published_idx ON career_policies (published_at DESC NULLS LAST);

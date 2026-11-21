@@ -1,0 +1,14 @@
+{
+  "sample_id": "88670c10c2f85144",
+  "request_key": "GET https://www.ndrc.gov.cn/xxgk/zcfb/tz/",
+  "request_url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/",
+  "final_url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/",
+  "http_status": 200,
+  "content_type": "text/html",
+  "body_sha256": "88670c10c2f85144a03c4172f18c82ee3b366c11bed127531abc0ec399bf2bf3",
+  "captured_at": "2026-11-18T04:51:40.065Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list",
+  "sanitized": true,
+  "body_file": "list.html"
+}

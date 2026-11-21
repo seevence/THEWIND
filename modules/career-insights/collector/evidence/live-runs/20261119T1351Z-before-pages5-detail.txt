@@ -1,0 +1,87 @@
+baidu-official-careers|0a125468-5662-4ea2-bcfd-4a4193bbdb89|unknown|ai_application_development|normalizer/0.3.0|collector/0.1.0|全栈开发工程师（J107271）
+baidu-official-careers|2cf4685b-de3a-44bd-a62d-d01749919e3b|no|unknown|normalizer/0.3.0|collector/0.1.0|客工部接待经理（J101012）
+baidu-official-careers|2f3eed75-ace7-49d0-95de-efa352bc40c8|unknown|unknown|normalizer/0.3.0|collector/0.1.0|海外服务顾问（J107080）
+baidu-official-careers|31c2b2c0-5198-4a05-acb9-461d01e7c8df|no|ai_application_development|normalizer/0.3.0|collector/0.1.0|Java后端高级工程师（J80990）
+baidu-official-careers|36db4f18-faed-4dc5-b57f-3cbb6254fcf8|no|unknown|normalizer/0.3.0|collector/0.1.0|渠道经理（J107385）
+baidu-official-careers|3f576516-4ed3-44c5-82f2-6c86ba195ce7|unknown|unknown|normalizer/0.3.0|collector/0.1.0|大客户销售经理（J107127）
+baidu-official-careers|59814615-f2c7-41fc-826a-3dfa5f59a782|no|unknown|normalizer/0.3.0|collector/0.1.0|伙伴FDE培训设计与教研专家（J107259）
+baidu-official-careers|68519555-3608-48a3-b9fa-1ad79a5cda8a|unknown|ai_product_operations|normalizer/0.3.0|collector/0.1.0|社区产品经理（J107248）
+baidu-official-careers|75a66775-748e-4db0-8279-59c9f40bae31|no|unknown|normalizer/0.3.0|collector/0.1.0|大模型即云计算大客户销售-华南游戏方向（J107254）
+baidu-official-careers|7c9257ad-355e-4b10-8e5d-9512023fff47|no|unknown|normalizer/0.3.0|collector/0.1.0|混合云智算解决方案架构师（J106598）
+baidu-official-careers|7d8ebd32-d6f3-4c52-9049-73d2d242237c|no|unknown|normalizer/0.3.0|collector/0.1.0|AI 产品专家（Agent 知识引擎方向）（J107146）
+baidu-official-careers|85acf5a5-e4f0-4146-ae1f-199d2c0e27e6|no|unknown|normalizer/0.3.0|collector/0.1.0|汽车云解决方案架构师（J106854）
+baidu-official-careers|910b0638-2f54-4f05-bce2-90819cb77c21|no|unknown|normalizer/0.3.0|collector/0.1.0|SRE运维开发工程师（J73254）
+baidu-official-careers|915aa9f3-51d6-4c24-bed9-b7fa9b829b5e|no|unknown|normalizer/0.3.0|collector/0.1.0|订阅制销售经理BJ1113（J107342）
+baidu-official-careers|a7e9c593-6575-4f80-bf79-a81ae10bf504|no|unknown|normalizer/0.3.0|collector/0.1.0|山东售前解决方案架构师（J104129）
+baidu-official-careers|abc249f8-4920-4082-a6ee-06fd07fa7981|no|unknown|normalizer/0.3.0|collector/0.1.0|大客户服务经理 TAM（J107214）
+baidu-official-careers|ae4fe860-b1ee-42bf-8c13-5fac729cb23c|no|unknown|normalizer/0.3.0|collector/0.1.0|大客户服务经理 TAM（J107214）
+baidu-official-careers|d021eee4-dd52-4323-bf07-d238ba1f31eb|no|unknown|normalizer/0.3.0|collector/0.1.0|大客户技术支持-大模型方向（J107350）
+baidu-official-careers|d9a60bea-fa0a-47f7-81a9-51b8af101513|no|ai_product_operations|normalizer/0.3.0|collector/0.1.0|产品营销专家（J104088）
+baidu-official-careers|dd58c0d0-a8e0-4224-83cf-ac8f6d982906|unknown|ai_product_operations|normalizer/0.3.0|collector/0.1.0|AI产品营销经理（J104122）
+meituan-official-careers|3117121731|unknown|unknown|normalizer/0.3.0|collector/0.1.0|Keeta组织发展OD岗
+meituan-official-careers|3517164755|unknown|unknown|normalizer/0.2.0|collector/0.1.0|HRBP （外派中东）
+meituan-official-careers|3976346781|no|unknown|normalizer/0.3.0|collector/0.1.0|服务风险客服主管
+meituan-official-careers|4024641632|unknown|unknown|normalizer/0.3.0|collector/0.1.0|美团骑行-车辆运营主管（襄阳）
+meituan-official-careers|4267516677|no|unknown|normalizer/0.3.0|collector/0.1.0|业务分析目标管理专家
+meituan-official-careers|4360870843|unknown|ai_product_operations|normalizer/0.2.0|collector/0.1.0|AI产品经理
+meituan-official-careers|4527890989|unknown|unknown|normalizer/0.2.0|collector/0.1.0|快乐猴-门店拓展运营岗（项目流程运营方向）
+meituan-official-careers|4563930748|no|unknown|normalizer/0.2.0|collector/0.1.0|国际化HR系统实施专家
+meituan-official-careers|4616097894|no|unknown|normalizer/0.2.0|collector/0.1.0|私域用户运营
+meituan-official-careers|4689283374|unknown|unknown|normalizer/0.3.0|collector/0.1.0|HRBP-Keeta客服团队
+meituan-official-careers|4694982338|unknown|data|normalizer/0.3.0|collector/0.1.0|智能商业分析师（BA/DS）
+meituan-official-careers|4697280304|unknown|ai_application_development|normalizer/0.3.0|collector/0.1.0|AI后端开发工程师
+meituan-official-careers|4697309845|unknown|ai_product_operations|normalizer/0.3.0|collector/0.1.0|AI产品经理岗
+meituan-official-careers|4697320043|unknown|ai_application_development|normalizer/0.3.0|collector/0.1.0|AI全栈工程师
+meituan-official-careers|4697324893|unknown|ai_product_operations|normalizer/0.3.0|collector/0.1.0|AI产品运营岗
+meituan-official-careers|4701989120|no|unknown|normalizer/0.2.0|collector/0.1.0|美团联盟行业运营（到店方向）
+meituan-official-careers|4709087193|no|unknown|normalizer/0.2.0|collector/0.1.0|招商高阶岗
+meituan-official-careers|4720236768|no|unknown|normalizer/0.2.0|collector/0.1.0|骑行硬件-电气部件测试工程师
+meituan-official-careers|4740500750|no|unknown|normalizer/0.2.0|collector/0.1.0|业务风控策略专家
+meituan-official-careers|4748438974|no|unknown|normalizer/0.2.0|collector/0.1.0|电子器件品类策略采购专家
+meituan-official-careers|4751700815|no|unknown|normalizer/0.3.0|collector/0.1.0|Logistics Operations Analysis & Enablement Expert 履约经营分析与赋能专家
+meituan-official-careers|4778925460|no|unknown|normalizer/0.3.0|collector/0.1.0|供给策略专家
+meituan-official-careers|4791110825|no|unknown|normalizer/0.2.0|collector/0.1.0|小象超市-自有商品品质治理专家
+meituan-official-careers|4791236953|no|unknown|normalizer/0.2.0|collector/0.1.0|高级安全运营工程师
+meituan-official-careers|4798490565|no|unknown|normalizer/0.3.0|collector/0.1.0|高级策略运营专家-增长策略负责人
+meituan-official-careers|4798502446|no|unknown|normalizer/0.3.0|collector/0.1.0|高级策略运营-增长策略方向
+meituan-official-careers|4826532250|no|ai_product_operations|normalizer/0.2.0|collector/0.1.0|差旅场景组-产品经理
+meituan-official-careers|4844317584|no|unknown|normalizer/0.3.0|collector/0.1.0|半熟调研发采购
+meituan-official-careers|4862040547|no|ai_application_development|normalizer/0.2.0|collector/0.1.0|无人车资深后端研发工程师
+meituan-official-careers|4862144961|no|unknown|normalizer/0.2.0|collector/0.1.0|小象超市-南京/合肥供应链品控负责人
+meituan-official-careers|4874945021|no|unknown|normalizer/0.3.0|collector/0.1.0|大模型客服策略产品
+meituan-official-careers|4875184969|no|ai_application_development|normalizer/0.2.0|collector/0.1.0|无人车资深后端研发工程师
+meituan-official-careers|4885647446|no|unknown|normalizer/0.2.0|collector/0.1.0|合作商管理专家
+meituan-official-careers|4893015716|no|unknown|normalizer/0.2.0|collector/0.1.0|硬件采购岗
+meituan-official-careers|4895246532|no|data|normalizer/0.2.0|collector/0.1.0|到餐-商业分析师（供给策略方向）
+meituan-official-careers|4916888099|unknown|unknown|normalizer/0.2.0|collector/0.1.0|Grocery Supply Operations-Qatar
+meituan-official-careers|4922905855|no|unknown|normalizer/0.3.0|collector/0.1.0|酒水饮料品类招商全国负责人
+meituan-official-careers|4930351071|no|unknown|normalizer/0.2.0|collector/0.1.0|济南小象超市--生鲜供应链品控
+meituan-official-careers|4930505466|no|ai_product_operations|normalizer/0.2.0|collector/0.1.0|到餐交履产品经理/高级产品经理（排队快点方向）
+meituan-official-careers|4933507796|no|ai_application_development|normalizer/0.2.0|collector/0.1.0|高级前端 / 移动端开发工程师（AI Coding 方向）
+meituan-official-careers|4937066729|no|data|normalizer/0.3.0|collector/0.1.0|商业分析师（大模型应用BP）
+meituan-official-careers|4938022216|no|unknown|normalizer/0.3.0|collector/0.1.0|HRSSC智能运营优化专家
+meituan-official-careers|4939132432|unknown|unknown|normalizer/0.2.0|collector/0.1.0|大模型运营
+meituan-official-careers|4939794194|unknown|unknown|normalizer/0.3.0|collector/0.1.0|风险客诉二线迟滞（石家庄））
+meituan-official-careers|4940484432|no|ai_product_operations|normalizer/0.2.0|collector/0.1.0|闪购-流量策略产品运营
+meituan-official-careers|4940534110|no|ai_product_operations|normalizer/0.2.0|collector/0.1.0|闪购-搜索策略产品经理
+tencent-official-careers|1963884175547322368|no|unknown|normalizer/0.3.0|collector/0.1.0|腾讯云-南区云原生销售-广州/深圳
+tencent-official-careers|2021521585860673536|no|ai_algorithm|normalizer/0.3.0|collector/0.1.0|微信-WeLM -多模态大模型算法专家（深圳，上海）
+tencent-official-careers|2038879291764277248|no|ai_product_operations|normalizer/0.3.0|collector/0.1.0|微信小店-产品策划-b 端产品方向
+tencent-official-careers|2046923451989651456|no|ai_algorithm|normalizer/0.3.0|collector/0.1.0|混元大语言模型后训练算法工程师-Memory方向（北京/深圳/上海）
+tencent-official-careers|2049825920281391104|no|unknown|normalizer/0.3.0|collector/0.1.0|王者荣耀IP预研游戏-资深UI动效
+tencent-official-careers|2056671347148505088|yes|ai_application_development|normalizer/0.3.0|collector/0.1.0|微信开放平台-后台开发工程师-运营治理方向
+tencent-official-careers|2057421659916382208|no|unknown|normalizer/0.3.0|collector/0.1.0|腾讯投资-Fund Investment Associate / Associate Director
+tencent-official-careers|2077641738788454400|no|unknown|normalizer/0.3.0|collector/0.1.0|WorkBuddy-生态合作运营(北上深)
+tencent-official-careers|2077641750666719232|no|unknown|normalizer/0.3.0|collector/0.1.0|WorkBuddy-开放生态高级开发工程师
+tencent-official-careers|2079134859128909824|no|unknown|normalizer/0.3.0|collector/0.1.0|通讯-商务拓展专家-运营商方向
+tencent-official-careers|2079574255586160640|no|unknown|normalizer/0.3.0|collector/0.1.0|腾讯游戏高级品牌经理
+tencent-official-careers|2088458663969865728|no|ai_application_development|normalizer/0.3.0|collector/0.1.0|UE5自研IP跨平台射击游戏-服务器开发工程师-UE5 DS Gameplay
+tencent-official-careers|2090609370772713472|no|unknown|normalizer/0.3.0|collector/0.1.0|UE微恐轻动作项目-手游美术项目管理
+tencent-official-careers|2090623498723700736|no|unknown|normalizer/0.3.0|collector/0.1.0|数据中心暖通产品研发工程师
+tencent-official-careers|2098253188510695424|no|ai_application_development|normalizer/0.3.0|collector/0.1.0|WorkBuddy-移动端高级开发工程师-深圳/北京
+tencent-official-careers|2098429831783034880|no|unknown|normalizer/0.3.0|collector/0.1.0|企业微信-产业互联网营销-内容营销
+tencent-official-careers|2108747240976859136|no|ai_product_operations|normalizer/0.3.0|collector/0.1.0|腾讯云-AI产品经营分析(上海/深圳)
+tencent-official-careers|2116060410854682624|no|unknown|normalizer/0.3.0|collector/0.1.0|腾讯金融科技-资产策略运营经理
+tencent-official-careers|2120729161172692992|no|ai_product_operations|normalizer/0.3.0|collector/0.1.0|微信小店-产品运营-家装建材/家具/厨具方向
+tencent-official-careers|2122282935016144896|no|unknown|normalizer/0.3.0|collector/0.1.0|腾讯云-KA大客户销售经理(物流方向) -北/上/深
+tencent-official-careers|2122282936190550016|no|unknown|normalizer/0.2.0|collector/0.1.0|腾讯云-云和AI售前架构师（物流方向）-北/上/深

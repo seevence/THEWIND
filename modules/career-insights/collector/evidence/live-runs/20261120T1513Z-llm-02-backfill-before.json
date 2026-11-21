@@ -1,0 +1,59 @@
+{
+  "captured_at": "2026-11-20T15:13:55.399Z",
+  "phase": "before_any_model_call",
+  "git_head": "15cecc6e8708969beccf482917fc9b07d6da3505",
+  "database": "127.0.0.1:15432/aihot",
+  "model": "deepseek-flash",
+  "target_version": "normalizer/llm-0.2",
+  "prompt_version": "career-normalize/2",
+  "totals": {
+    "career_jobs_total": 188,
+    "skills_nonempty": 143
+  },
+  "role_family": {
+    "ai_algorithm": 7,
+    "ai_application_development": 33,
+    "ai_product_operations": 20,
+    "data": 10,
+    "unknown": 118
+  },
+  "student_friendly": {
+    "no": 163,
+    "unknown": 21,
+    "yes": 4
+  },
+  "normalizer_version": {
+    "normalizer/0.3.0": { "count": 23, "default_candidates": 0 },
+    "normalizer/llm-0.1": { "count": 111, "default_candidates": 80 },
+    "normalizer/llm-0.2": { "count": 54, "default_candidates": 50 }
+  },
+  "llm_0_1_role_family": {
+    "ai_algorithm": 5,
+    "ai_application_development": 19,
+    "ai_product_operations": 14,
+    "data": 5,
+    "unknown": 68
+  },
+  "default_candidate_count": 80,
+  "default_candidate_sql_scope": "normalizer_version IS DISTINCT FROM normalizer/llm-0.2 AND (role_family=unknown OR student_friendly=unknown OR skills empty)",
+  "scope_gap": "31 行 llm-0.1 因 role_family/student_friendly 已知且 skills 非空，不被脚本默认候选 SQL 选中",
+  "observations": {
+    "count": 440,
+    "fields": "id|job_id|observed_at|content_hash|collector_version",
+    "digest": "0262355afc4ea485a6b2fb16617676e1",
+    "max_observed_at": "2026-11-19T16:00:00.000Z"
+  },
+  "jobs_source_fields": {
+    "fields": "id|last_seen_at|content_hash",
+    "digest": "8cb769515c287dc99aea9c634d847e4a"
+  },
+  "receipts_career_normalize": {
+    "receipts": 289,
+    "attempts": 290,
+    "prompt_tokens": 317754,
+    "completion_tokens": 11303,
+    "usage_missing": 0,
+    "cost_nonnull": 0,
+    "models": { "deepseek-flash": { "received": 289, "attempts": 290 } }
+  }
+}

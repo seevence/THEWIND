@@ -1,0 +1,21 @@
+CREATE TABLE career_policies (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  policy_item_id text NOT NULL,
+  source_key text NOT NULL,
+  source_tier text NOT NULL CHECK (source_tier IN ('government_official', 'official_media', 'other_public')),
+  title text NOT NULL,
+  issuer text NOT NULL,
+  published_at date NULL,
+  official_url text NOT NULL,
+  theme_ids jsonb NOT NULL DEFAULT '[]'::jsonb,
+  evidence_excerpt text NOT NULL,
+  content_hash text NOT NULL,
+  collector_version text NOT NULL,
+  data_origin text NOT NULL CHECK (data_origin IN ('live', 'verified_import', 'synthetic_fixture')),
+  fetched_at timestamptz NOT NULL,
+  first_seen_at timestamptz NOT NULL,
+  last_seen_at timestamptz NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  UNIQUE (source_key, policy_item_id)
+);

@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-19T08:18:47.048Z",
+  "finished_at": "2026-11-19T08:18:52.518Z",
+  "network_calls_note": "仅公开政策页面；同域间隔 >=1s；未绕登录/验证码/403",
+  "records": [
+    {
+      "phase": "policies",
+      "source_key": "state-council-policy",
+      "entry_url": "https://www.gov.cn/zhengce/index.htm",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 3,
+      "elapsed_ms": 5470,
+      "first_item": "中共中央印发《中国共产党地方委员会工作条例》",
+      "items": [
+        {
+          "policy_item_id": "content_7086080",
+          "official_url": "https://www.gov.cn/zhengce/202611/content_7086080.htm",
+          "title": "中共中央印发《中国共产党地方委员会工作条例》",
+          "published_at": "2026-11-15"
+        },
+        {
+          "policy_item_id": "content_7085591",
+          "official_url": "https://www.gov.cn/zhengce/content/202611/content_7085591.htm",
+          "title": "中医药传统知识保护条例",
+          "published_at": "2026-11-09"
+        },
+        {
+          "policy_item_id": "content_7085529",
+          "official_url": "https://www.gov.cn/zhengce/202611/content_7085529.htm",
+          "title": "中共中央发出通知 部署党的二十一大代表选举工作",
+          "published_at": "2026-11-07"
+        }
+      ]
+    }
+  ]
+}

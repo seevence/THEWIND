@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-18T13:55:24.533Z",
+  "finished_at": "2026-11-18T13:55:39.860Z",
+  "network_calls_note": "仅公开页面；同域间隔 >=1s；未绕登录/验证码/403",
+  "records": [
+    {
+      "phase": "jobs",
+      "source_key": "tencent-official-careers",
+      "entry_url": "https://careers.tencent.com/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 10,
+      "elapsed_ms": 15326,
+      "first_item": "《三角洲行动》3D动作设计师-演绎方向",
+      "items": [
+        {
+          "source_job_id": "2095412225996140544",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2095412225996140544",
+          "title": "《三角洲行动》3D动作设计师-演绎方向",
+          "raw_text_sha256": "a58cb5896b0c71e22813c5b26802d5005d1608ed897ea6ec1a049dbf6766f675"
+        },
+        {
+          "source_job_id": "2108399574078107648",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2108399574078107648",
+          "title": "ima copilot-后台开发工程师",
+          "raw_text_sha256": "5e009ef75b2aa78c26c13be43324e1245bc7af730f94141555eb02d77d66a999"
+        },
+        {
+          "source_job_id": "2076912101565317120",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2076912101565317120",
+          "title": "K6合作部-游戏运营-社区及用户运营",
+          "raw_text_sha256": "1e429749310a651fcb0574f3740d98471c97b6af73da8a72662173ddb3d75644"
+        },
+        {
+          "source_job_id": "2087735931724546048",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2087735931724546048",
+          "title": "WorkBuddy-桌面端技术专家-Electron（深圳/北京/上海）",
+          "raw_text_sha256": "4e128eaf4d81d98ff61b0e8122a47236395406db03ff4848888fa4e901c66539"
+        },
+        {
+          "source_job_id": "2122870576661053440",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2122870576661053440",
+          "title": "《异人之下》游戏系统策划",
+          "raw_text_sha256": "4f63ece5e074567bec407a53ca60d59119c5c940e1fb27e98181a97112d6141a"
+        },
+        {
+          "source_job_id": "2122870617685536768",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2122870617685536768",
+          "title": "《异人之下》游戏数值策划",
+          "raw_text_sha256": "4f69ca1274e49624672c55100703973931382d8292d3f9eec470787d29d7bd31"
+        },
+        {
+          "source_job_id": "2104449874564132864",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2104449874564132864",
+          "title": "在研小游戏-玩法策划",
+          "raw_text_sha256": "479257d135874c8900fba8fb7bf164ac0120d26b45b7a7b7fae28a35d77867fa"
+        },
+        {
+          "source_job_id": "2112735058304614400",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2112735058304614400",
+          "title": "ima-高级产品经理（基础框架）",
+          "raw_text_sha256": "9f01982d970024efa11051786a076260ed94589eb2c6207f8f9fad9eb3c9891c"
+        },
+        {
+          "source_job_id": "2078468629443293184",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2078468629443293184",
+          "title": "芯片设计工程师",
+          "raw_text_sha256": "c16a6ec660701c9198bbfc20ed994df547e0fffd16fcea3cf7180236852c72ae"
+        },
+        {
+          "source_job_id": "2109846092265996288",
+          "official_url": "http://careers.tencent.com/jobdesc.html?postId=2109846092265996288",
+          "title": "WorkBuddy-全栈开发工程师-工程质量",
+          "raw_text_sha256": "eb5df2d1faff955bff33dc25bb490b631dac2f153390317d83da1c503c3df4f0"
+        }
+      ]
+    }
+  ]
+}

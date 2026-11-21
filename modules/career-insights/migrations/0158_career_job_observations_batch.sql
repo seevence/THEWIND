@@ -1,0 +1,1 @@
+ALTER TABLE career_job_observations ADD COLUMN batch_id uuid;

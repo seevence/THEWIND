@@ -1,0 +1,14 @@
+{
+  "sample_id": "a7d3f4bac5a0a3e7",
+  "request_key": "GET https://www.gov.cn/zhengce/202611/content_7086080.htm",
+  "request_url": "https://www.gov.cn/zhengce/202611/content_7086080.htm",
+  "final_url": "https://www.gov.cn/zhengce/202611/content_7086080.htm",
+  "http_status": 200,
+  "content_type": "text/html",
+  "body_sha256": "a7d3f4bac5a0a3e7d25ca145576678990dd6143dd7513b36aa2fdc96b481c047",
+  "captured_at": "2026-11-19T08:18:43.267Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "detail-1",
+  "sanitized": true,
+  "body_file": "detail-1.html"
+}

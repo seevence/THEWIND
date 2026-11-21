@@ -1,0 +1,1 @@
+CREATE INDEX CONCURRENTLY IF NOT EXISTS career_policies_theme_idx ON career_policies USING gin (theme_ids);
