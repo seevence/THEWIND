@@ -68,6 +68,8 @@ docker compose up -d --build  # 打开 http://localhost:3000
 
 `--profile https` 可启用 Caddy 自动 HTTPS（设置 `SITE_DOMAIN`、`SITE_URL`）。
 
+首次部署会自动执行数据库迁移与 seed；采集与就业日报每天默认 06:10（北京时间）运行。
+
 ## 数据来源与口径
 
 - 岗位：腾讯 / 美团 / 百度官方招聘页（公开页面，附官方原文链接）；
