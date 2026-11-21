@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-21T11:41:29.141Z",
+  "finished_at": "2026-11-21T11:41:29.371Z",
+  "network_calls_note": "仅公开 JSON 接口；单源单页 1 次 POST；未绕登录/验证码/403；同域人工探测间隔 >=1s",
+  "records": [
+    {
+      "phase": "jobs",
+      "source_key": "netease-official-careers",
+      "entry_url": "https://hr.163.com/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 10,
+      "valid": 10,
+      "invalid": 0,
+      "elapsed_ms": 229,
+      "first_item": "高级/资深技术美术（无限大）",
+      "items": [
+        {
+          "source_job_id": "15318",
+          "official_url": "https://hr.163.com/job-detail.html?id=15318&lang=zh",
+          "title": "高级/资深技术美术（无限大）",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "5f4815479997d055b2c20c58bcf6769630bdc3eabf6c85d3964fbd4d154396ed"
+        },
+        {
+          "source_job_id": "15464",
+          "official_url": "https://hr.163.com/job-detail.html?id=15464&lang=zh",
+          "title": "游戏技术美术工程师（无限大）",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "0135be60c82fa5c40e771c91055a1df64add9f32116feee4e2e72e5724821aa0"
+        },
+        {
+          "source_job_id": "22834",
+          "official_url": "https://hr.163.com/job-detail.html?id=22834&lang=zh",
+          "title": "技术美术专家",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "2b064693cbd8ee2709c523dcaec9c88b4890e17acdf98e7bc3681ea30183fd9f"
+        },
+        {
+          "source_job_id": "23198",
+          "official_url": "https://hr.163.com/job-detail.html?id=23198&lang=zh",
+          "title": "资深/专家引擎开发工程师（在研新项目）",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "39060b3345bd63d711a6ed11f021efa6dc967b7e4b7b3c103a4b370a34467dcb"
+        },
+        {
+          "source_job_id": "46314",
+          "official_url": "https://hr.163.com/job-detail.html?id=46314&lang=zh",
+          "title": "高级/资深技术美术工程师-渲染向",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "cd1162cbe885888dffb01bd67f9175a574f0a251f52fb0e7363461d2bfe181e1"
+        },
+        {
+          "source_job_id": "51691",
+          "official_url": "https://hr.163.com/job-detail.html?id=51691&lang=zh",
+          "title": "资深/专家技术动画",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "97190bcf86fffbd084491082a72c78b5499190bdc7297328a7bcccd5d29c5208"
+        },
+        {
+          "source_job_id": "53229",
+          "official_url": "https://hr.163.com/job-detail.html?id=53229&lang=zh",
+          "title": "游戏引擎开发工程师-性能优化（无限大）",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "6622e3d8e901a11aa645f9fc53f1ecfe0ef4ee2601a729802dd50dc81e4f83b1"
+        },
+        {
+          "source_job_id": "67419",
+          "official_url": "https://hr.163.com/job-detail.html?id=67419&lang=zh",
+          "title": "国内发行主营销",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "1be61500d7c7947eaa3cd710ab814d60009ac1f659be8bbb66819cc5504e3def"
+        },
+        {
+          "source_job_id": "68866",
+          "official_url": "https://hr.163.com/job-detail.html?id=68866&lang=zh",
+          "title": "游戏营销-传播方向（魔兽世界）",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "767afc4484e2f56af0e0222ca1a281eaae081b1d4c0c098fb405a7682fff776f"
+        },
+        {
+          "source_job_id": "76595",
+          "official_url": "https://hr.163.com/job-detail.html?id=76595&lang=zh",
+          "title": "高级/资深工具开发",
+          "published_at": "2026-11-20T16:01:13.000Z",
+          "company_name": "网易",
+          "raw_text_sha256": "66f030ba45cba138cf0541a59eb364e156b9aca81adbcc5bd388e7e90c705db0"
+        }
+      ]
+    }
+  ]
+}

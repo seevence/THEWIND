@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-21T12:02:32.131Z",
+  "finished_at": "2026-11-21T12:02:44.162Z",
+  "network_calls_note": "仅公开政策列表与详情页面；同域请求间隔 >=1s；未使用 Cookie/Token、未逆向签名、未绕验证码/403；每源最多 3 页、每批最多 10 条。",
+  "transport": "HttpTransport",
+  "entry_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/",
+  "source_key": "changsha-rsj-policy",
+  "network_calls": 4,
+  "limitations": [
+    "https://rsj.changsha.gov.cn 443 端口返回 openresty 502（首页/栏目页/详情页均如此）",
+    "站点 <meta name=\"SiteDomain\"> 登记为 http://rsj.changsha.gov.cn，入口使用站点自身 http 地址；未放宽 fetch 的降级门禁",
+    "总通知公告等栏目内 csrc.changsha.gov.cn 的 hash 路由 SPA 公示链接无法静态解析，适配器跳过且不伪造"
+  ],
+  "records": [
+    {
+      "phase": "policies",
+      "source_key": "changsha-rsj-policy",
+      "entry_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 3,
+      "elapsed_ms": 4145,
+      "first_item": "2026年度市级创业孵化基地及扶持奖补名单公示",
+      "items": [
+        {
+          "policy_item_id": "t20261116_12617930",
+          "title": "2026年度市级创业孵化基地及扶持奖补名单公示",
+          "issuer": "长沙市人力资源和社会保障局",
+          "published_at": "2026-11-16",
+          "official_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/202611/t20261116_12617930.html",
+          "source_tier": "government_official",
+          "theme_ids": [],
+          "evidence_excerpt": "根据《长沙市市级创业孵化基地扶持奖补办法》(长人社发〔2023〕33号)、《关于开展2026年度市级创业孵化基地复评和申报工作的通知》等文件精神,经单位自主申报、区县(市)审核推荐、第三方实地勘察、专家评审等程序,拟将长沙软件园创业孵化基地等100家单位纳入2026年度市级创业孵化基地名单(见附件1),拟将湖南湘江新区大学生创新创业园等2家单位按A类优秀40万元、雁巢科技型企业孵化器等38家单位按"
+        },
+        {
+          "policy_item_id": "t20261106_12610919",
+          "title": "关于对长沙市就业见习单位认定与 续签情况的公示",
+          "issuer": "长沙市人力资源和社会保障局",
+          "published_at": "2026-11-06",
+          "official_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/202611/t20261106_12610919.html",
+          "source_tier": "government_official",
+          "theme_ids": [
+            "employment_promotion"
+          ],
+          "evidence_excerpt": "根据长沙市人力资源和社会保障局等十部门联合印发的《关于进一步推进实施就业见习岗位募集计划的通知》（长人社规〔2024〕4号）精神，我中心对近期提出申请和到期的单位开展了评估踏勘和综合考核，现将就业见习单位认定与续签情况公示如下：一、拟新认定单位（8家）1.湖南师范大学2.湖南农业大学3.长沙市中医康复医院4.湖南人才就业社保信息报社有限责任公司5.湖南长城海盾光纤科技有限公司6.湖南奥创普科技有限"
+        },
+        {
+          "policy_item_id": "t20261106_12610859",
+          "title": "关于长沙市市本级2026年第二批次 小微企业招用离校2年内未就业高校毕业生 社会保险补贴情况的公示",
+          "issuer": "长沙市人力资源和社会保障局",
+          "published_at": "2026-11-06",
+          "official_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/202611/t20261106_12610859.html",
+          "source_tier": "government_official",
+          "theme_ids": [
+            "employment_promotion"
+          ],
+          "evidence_excerpt": "根据《关于印发〈湖南省就业补助资金管理办法〉的通知》（湘财社〔2024〕33号）文件规定，现将长沙市市本级2026年第二批次小微企业招用离校2年内未就业高校毕业生社会保险补贴情况予以公示，公示时间为2026年11月6日至2026年11月12日。公示期间，有关单位、个人及社会各界对所公示的申报补贴人员有异议，请以书面或电话方式向我中心反映。以单位名义反映情况的，应加盖单位公章；以个人名义反映情况的，"
+        }
+      ]
+    }
+  ]
+}

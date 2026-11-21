@@ -1,0 +1,14 @@
+{
+  "sample_id": "1188305e9545078b",
+  "request_key": "GET https://chinajob.mohrss.gov.cn/zcfg/zxzc/zy/",
+  "request_url": "https://chinajob.mohrss.gov.cn/zcfg/zxzc/zy/",
+  "final_url": "https://chinajob.mohrss.gov.cn/zcfg/zxzc/zy/",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "body_sha256": "1188305e9545078b53e411fbdb56f3f3d5a483af6b553751dd0e9b058a57ac5f",
+  "captured_at": "2026-11-21T11:37:51.842Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list",
+  "sanitized": true,
+  "body_file": "list.html"
+}

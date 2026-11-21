@@ -1,0 +1,14 @@
+{
+  "sample_id": "5b4fef95e6525d5c",
+  "request_key": "GET https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202609/t20260930_1183184.html",
+  "request_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202609/t20260930_1183184.html",
+  "final_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202609/t20260930_1183184.html",
+  "http_status": 200,
+  "content_type": "text/html",
+  "body_sha256": "5b4fef95e6525d5c9689729200fdfbc3ddfd206050bb5545f6bb3c114aaf4467",
+  "captured_at": "2026-11-21T12:02:49.460Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "detail-3",
+  "sanitized": true,
+  "body_file": "hunan-jyt-policy/samples/detail-3.html"
+}

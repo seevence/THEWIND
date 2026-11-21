@@ -5,6 +5,8 @@ export interface BlockProbeInput {
   readonly requestUrl: string;
   readonly finalUrl: string;
   readonly bodyText: string;
+  /** 响应 Content-Type：JSON 接口的正文里可能出现「安全验证」等业务词，不能当验证码页面。 */
+  readonly contentType?: string | null;
   readonly sourceKey: string;
 }
 
@@ -37,6 +39,14 @@ function redirectedToDifferentPath(input: BlockProbeInput): boolean {
   }
 }
 
+function stripHtmlToText(html: string): string {
+  return html
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(/<[^>]*>/g, " ");
+}
+
 export function detectBlock(input: BlockProbeInput): AccessBlockedError | null {
   if (input.status === 401) {
     return new AccessBlockedError("unauthorized", "HTTP 401 需要登录凭据", input.sourceKey);
@@ -48,8 +58,13 @@ export function detectBlock(input: BlockProbeInput): AccessBlockedError | null {
     return new AccessBlockedError("rate_limited", "HTTP 429 触发限频", input.sourceKey);
   }
 
-  const lowerBody = input.bodyText.toLowerCase();
-  if (CAPTCHA_MARKERS.some((marker) => lowerBody.includes(marker.toLowerCase()))) {
+  // 只对网页正文做验证码/付费墙文案扫描：JSON API 的业务字段里可能出现「安全验证」「登录」等词。
+  const bodyTextIsWebPage = input.contentType === undefined || input.contentType === null || !/json/i.test(input.contentType);
+  // 只扫网页的可见文本：脚本/样式里的「验证码」生成器、input 的 placeholder（如中国建筑登录框）
+  // 都不代表页面被拦截；真正的验证码页会把提示放在可见文本里。
+  const markerText = bodyTextIsWebPage ? stripHtmlToText(input.bodyText) : input.bodyText;
+  const lowerBody = markerText.toLowerCase();
+  if (bodyTextIsWebPage && CAPTCHA_MARKERS.some((marker) => lowerBody.includes(marker.toLowerCase()))) {
     return new AccessBlockedError("captcha", "出现验证码或人机验证", input.sourceKey);
   }
 
@@ -58,7 +73,7 @@ export function detectBlock(input: BlockProbeInput): AccessBlockedError | null {
     return new AccessBlockedError("login_required", "被重定向到登录入口", input.sourceKey);
   }
 
-  if (PAYWALL_MARKERS.some((marker) => lowerBody.includes(marker.toLowerCase()))) {
+  if (bodyTextIsWebPage && PAYWALL_MARKERS.some((marker) => lowerBody.includes(marker.toLowerCase()))) {
     return new AccessBlockedError("paywall", "出现付费墙", input.sourceKey);
   }
 

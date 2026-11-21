@@ -1,0 +1,502 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-21T12:06:47.087Z",
+  "finished_at": "2026-11-21T12:07:01.309Z",
+  "network_calls_note": "仅公开静态 HTML：1 次栏目页 + 5 次详情页（列表按发布日期取最新 5 条）；同域请求间隔 >= 1.2s；未使用 Cookie/Token/签名，未绕验证码。采集验证使用薄传输层（直接公开 fetch），原因是共享 fetch/block-detector 对本站脚本内验证码生成器误判为 captcha，见 probe_notes。",
+  "samples": [
+    {
+      "url": "https://www.cscec.com/rlzy_new/rczp/",
+      "name": "list",
+      "status": 200,
+      "bytes": 87685,
+      "capturedAt": "2026-11-21T12:06:47.391Z",
+      "sampleId": "7dfc746acf43fe4a"
+    },
+    {
+      "url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202611/3966090.html",
+      "name": "detail-3966090",
+      "status": 200,
+      "bytes": 81854,
+      "capturedAt": "2026-11-21T12:06:48.908Z",
+      "sampleId": "5d80b89b4a4905e9"
+    },
+    {
+      "url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+      "name": "detail-3959432",
+      "status": 200,
+      "bytes": 83618,
+      "capturedAt": "2026-11-21T12:06:50.315Z",
+      "sampleId": "e97111c70e72d4fb"
+    },
+    {
+      "url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202608/3957584.html",
+      "name": "detail-3957584",
+      "status": 200,
+      "bytes": 81215,
+      "capturedAt": "2026-11-21T12:06:51.710Z",
+      "sampleId": "70187ac8103b8eeb"
+    },
+    {
+      "url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202608/3956711.html",
+      "name": "detail-3956711",
+      "status": 200,
+      "bytes": 81164,
+      "capturedAt": "2026-11-21T12:06:53.119Z",
+      "sampleId": "6b25e6704e3e19bd"
+    },
+    {
+      "url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202606/3949661.html",
+      "name": "detail-3949661",
+      "status": 200,
+      "bytes": 83400,
+      "capturedAt": "2026-11-21T12:06:54.439Z",
+      "sampleId": "a45d0a0b944e778d"
+    }
+  ],
+  "probe_notes": [
+    {
+      "candidate": "zhaopin.sgcc.com.cn（国家电网）",
+      "result": "blocked",
+      "detail": "GET https://zhaopin.sgcc.com.cn/ 返回 HTTP 412 + 瑞数 $_ts JS 挑战，强反爬；按纪律记 access_blocked，不绕过。"
+    },
+    {
+      "candidate": "job.10086.cn（中国移动）",
+      "result": "blocked",
+      "detail": "站点静态外壳 200，但列表/详情统一走 /job-app/*.do，请求头需 getDigest(timestamp, secret) 生成的 digest；不逆向签名，记 access_blocked。"
+    },
+    {
+      "candidate": "zhaopin.cnpc.com.cn（中国石油）",
+      "result": "blocked",
+      "detail": "GET https://zhaopin.cnpc.com.cn/ 返回 HTTP 412 + 瑞数 JS 挑战；不绕过。"
+    },
+    {
+      "candidate": "job.chinatelecom.com.cn（中国电信）",
+      "result": "blocked",
+      "detail": "北森 wt 门户；公开 GET getNavMenu/basicConfig 可读，但职位列表 POST /wt/mode400/position/list 返回「抱歉！您没有权限操作！」（WAF 需会话），不逆向。"
+    },
+    {
+      "candidate": "job.sinopec.com（中国石化）",
+      "result": "partial",
+      "detail": "Vue SPA，职位接口 /api/sz/socialJobInfo/*、/api/upgrade/homepage/selectPositionList 需未公开业务参数，探测返回 E000001；成本高于收益，本轮不做。"
+    },
+    {
+      "candidate": "hr.cscec.com / recruit.cscec.com（中国建筑 HCM Cloud）",
+      "result": "blocked",
+      "detail": "HCM Cloud 前端；匿名 /api/auth/get_auth 可读，但职位列表走内部通用模型 API（hcm.model.list + ReleaseJobMgr/portal_social），匿名 POST 返回 errcode 17003；不继续逆向。改用 www.cscec.com 社会招聘静态公告（本适配器）。"
+    },
+    {
+      "candidate": "www.crec.cn（中国中铁）",
+      "result": "rejected",
+      "detail": "人才招聘栏目静态 HTML 可读，但公告正文普遍含联系人邮箱/手机号（15/15 份命中 PII），按 evidence/sanitizer 规则不能保存样本、raw_text 也会被 validate 拒收；不做脱敏改写，改用中国建筑。"
+    },
+    {
+      "candidate": "shared fetch/block-detector（需共享层修复）",
+      "result": "false_positive",
+      "detail": "CSCEC 列表页与全部详情页的公共模板在 <script> 内嵌一个前端「登录验证码」生成器（createCode()/验证码的长度），HttpTransport 的 detectBlock 对整页正文扫描 CAPTCHA_MARKERS 会误判为 access_blocked(captcha)。建议共享层对 content-type 非 JSON 的 HTML 先剔除 script/style 再扫标记；未改共享文件。"
+    }
+  ],
+  "records": [
+    {
+      "phase": "jobs",
+      "source_key": "cscec-official-careers",
+      "entry_url": "https://www.cscec.com/rlzy_new/rczp/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 34,
+      "valid": 34,
+      "invalid": 0,
+      "elapsed_ms": 5659,
+      "list_items": 71,
+      "detail_pages": 5,
+      "first_item": "安全生产监督管理岗",
+      "items": [
+        {
+          "source_job_id": "3966090:1",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202611/3966090.html",
+          "title": "安全生产监督管理岗",
+          "published_at": "2026-11-04T00:00:00.000Z",
+          "company_name": "中国建筑股份有限公司",
+          "locations": [],
+          "raw_text_sha256": "7f068b2cf4acde958234f4d03e4677ff6d36b4a3946b59fc5c3459bab91533a6"
+        },
+        {
+          "source_job_id": "3966090:2",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202611/3966090.html",
+          "title": "履约管理岗",
+          "published_at": "2026-11-04T00:00:00.000Z",
+          "company_name": "中国建筑股份有限公司",
+          "locations": [],
+          "raw_text_sha256": "7f068b2cf4acde958234f4d03e4677ff6d36b4a3946b59fc5c3459bab91533a6"
+        },
+        {
+          "source_job_id": "3966090:3",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202611/3966090.html",
+          "title": "行政办公岗",
+          "published_at": "2026-11-04T00:00:00.000Z",
+          "company_name": "中国建筑股份有限公司",
+          "locations": [],
+          "raw_text_sha256": "7f068b2cf4acde958234f4d03e4677ff6d36b4a3946b59fc5c3459bab91533a6"
+        },
+        {
+          "source_job_id": "3959432:1",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "财务管理岗",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:2",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "法务管理岗",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:3",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "政策研究岗",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:4",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "行政专员岗",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:5",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "投资管理岗",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:6",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "合同结算审计专员",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:7",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "采购工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:8",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "机电施工经理",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:9",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "机电技术经理",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:10",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "项目经理",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:11",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "现场工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:12",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "计划工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:13",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "技术工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:14",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "安全工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:15",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "商务管理岗-成本管理",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:16",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "商务管理岗-合约管理",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:17",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "物资工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:18",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "机械设备工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:19",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "机电工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋",
+            "科威特"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:20",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "商务管理岗-成本控制",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:21",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "商务管理岗-合约管理",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:22",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "采购管理岗-分包采购",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:23",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "采购管理岗-物资采购",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:24",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "深基坑支护设计工程师（岩土及地下工程）",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:25",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "计划工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:26",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "顶管工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:27",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "现场工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:28",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "安全工程师",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3959432:29",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "title": "技术工程师-路桥",
+          "published_at": "2026-09-14T00:00:00.000Z",
+          "company_name": "中建中东有限责任公司",
+          "locations": [
+            "阿联酋"
+          ],
+          "raw_text_sha256": "17df8292a33508c9c00ad47454e4ff47ec8eda80e862f8ab087c9e1897aae0a0"
+        },
+        {
+          "source_job_id": "3957584:1",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202608/3957584.html",
+          "title": "外事管理岗",
+          "published_at": "2026-08-31T00:00:00.000Z",
+          "company_name": "中国建筑股份有限公司",
+          "locations": [],
+          "raw_text_sha256": "14a365c5c88648661d5d08a52f6b25f6ae65858169bd92af405038e62828fba1"
+        },
+        {
+          "source_job_id": "3956711:1",
+          "official_url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202608/3956711.html",
+          "title": "信息化新技术创新研究与应用岗",
+          "published_at": "2026-08-24T00:00:00.000Z",
+          "company_name": "中国建筑股份有限公司",
+          "locations": [],
+          "raw_text_sha256": "79f9cb357de75eda36d808556e9b4481b6b4b6df734a62c76f2cc69bdc38c4c3"
+        }
+      ]
+    }
+  ]
+}

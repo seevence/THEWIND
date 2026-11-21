@@ -1,0 +1,14 @@
+{
+  "sample_id": "e97111c70e72d4fb",
+  "request_key": "GET https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+  "request_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+  "final_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+  "http_status": 200,
+  "content_type": "text/html",
+  "body_sha256": "e97111c70e72d4fbb36e54abfeac597c597a943b57c69a75cf2d72eed2601e27",
+  "captured_at": "2026-11-21T12:06:50.315Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "detail-3959432",
+  "sanitized": true,
+  "body_file": "cscec-official-careers/samples/detail-3959432.html"
+}

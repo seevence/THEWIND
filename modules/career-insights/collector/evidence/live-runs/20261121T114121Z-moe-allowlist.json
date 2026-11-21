@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-21T11:41:18.325Z",
+  "finished_at": "2026-11-21T11:41:21.953Z",
+  "network_calls_note": "教育部公告公示页仅公开 GET；同域间隔 >=1s；未绕登录/验证码/403",
+  "transport": "HttpTransport（HTTPS→HTTP 同 host 同 path 降级经极窄 allowlist 放行）",
+  "entry_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/",
+  "source_key": "moe-policy",
+  "network_calls": 4,
+  "records": [
+    {
+      "phase": "policies",
+      "source_key": "moe-policy",
+      "entry_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 3,
+      "elapsed_ms": 3627,
+      "first_item": "关于2025年中小学实验教学能力展示活动现场展示案例名单的公告",
+      "items": [
+        {
+          "policy_item_id": "t20261026_1456016",
+          "title": "关于2025年中小学实验教学能力展示活动现场展示案例名单的公告",
+          "issuer": "教育部",
+          "published_at": "2026-10-26",
+          "official_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202610/t20261026_1456016.html",
+          "source_tier": "government_official",
+          "theme_ids": [],
+          "evidence_excerpt": "根据《关于举办2025年中小学实验教学能力展示活动的通知》（教基司函〔2025〕29号）要求，在各省级教育行政部门推荐的基础上，经专家复核、集中公示等环节，确定了319个现场展示案例名单（见附件），现予以公告。 附件：2025年中小学实验教学能力展示活动现场展示案例名单 教育部基础教育司 2026年10月26日"
+        },
+        {
+          "policy_item_id": "t20261008_1453325",
+          "title": "学位授予单位（不含军队单位）自主设置二级学科和交叉学科名单",
+          "issuer": "教育部",
+          "published_at": "2026-10-09",
+          "official_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202610/t20261008_1453325.html",
+          "source_tier": "government_official",
+          "theme_ids": [],
+          "evidence_excerpt": "根据工作安排，现将截至2026年6月30日完成备案的学位授予单位自设二级学科和交叉学科名单公布如下。 附件：1.学位授予单位（不含军队单位）自主设置二级学科名单（截至2026年6月30日） 2.学位授予单位（不含军队单位）自主设置交叉学科名单（截至2026年6月30日）"
+        },
+        {
+          "policy_item_id": "t20260904_1449021",
+          "title": "2026年“讲述我的育人故事”全国展示活动入围教师名单",
+          "issuer": "教育部",
+          "published_at": "2026-09-04",
+          "official_url": "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/202609/t20260904_1449021.html",
+          "source_tier": "government_official",
+          "theme_ids": [],
+          "evidence_excerpt": "为大力弘扬教育家精神，多维度、多视角展现新时代教师风采，2026年教育部采取“省级展示、片区展示、全国展播”的方式，自下而上广泛开展“讲述我的育人故事”展示活动。全国六大片区（包括港澳地区）共产生73名入围教师，其中34人参加中央广播电视总台《讲述我的育人故事—2026年教师节特别节目》。现将相关名单（按照省份排序）公布如下。 序号 姓名 省份 工作单位 1 陈志杰 北京市 北京工业大学 2 孙"
+        }
+      ]
+    }
+  ]
+}

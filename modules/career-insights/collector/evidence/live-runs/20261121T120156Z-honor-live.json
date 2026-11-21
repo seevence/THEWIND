@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-21T12:01:42.806Z",
+  "finished_at": "2026-11-21T12:01:56.435Z",
+  "network_calls_note": "仅公开 POST JSON 接口；1 页列表（12 条）+ 12 条详情，同域间隔 1s；未绕登录/验证码/403/签名",
+  "records": [
+    {
+      "phase": "jobs",
+      "source_key": "honor-official-careers",
+      "entry_url": "https://career.honor.com/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 12,
+      "valid": 12,
+      "invalid": 0,
+      "elapsed_ms": 13629,
+      "pages": 1,
+      "first_item": "省零售部部长（中国区）",
+      "items": [
+        {
+          "source_job_id": "66599aae1eb8051cd2168236",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=66599aae1eb8051cd2168236",
+          "title": "省零售部部长（中国区）",
+          "published_at": "2024-05-31T09:38:54.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "e67588e73103af4728063eca3a72d93fda9fb6887c46e7fa4a343dfa685d8937"
+        },
+        {
+          "source_job_id": "66a216721eb8050c72d13edd",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=66a216721eb8050c72d13edd",
+          "title": "省体验店部部长（中国区）",
+          "published_at": "2024-07-25T09:10:06.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "645b5149ef3ebdf9466cc4c0eb5ac9b3e457f59118df0c8e08777703445723cf"
+        },
+        {
+          "source_job_id": "6a389065e49e0e559f924c92",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=6a389065e49e0e559f924c92",
+          "title": "采购技术质量认证工程师（结构件）",
+          "published_at": "2026-06-22T01:31:17.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "085824aaafd48e95e0c8e52b3d3ca5be2bbebbf4b527c88834fa5eabe7dcebdc"
+        },
+        {
+          "source_job_id": "6a277dbb3d5b657f38be2756",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=6a277dbb3d5b657f38be2756",
+          "title": "端侧AI架构师",
+          "published_at": "2026-06-09T03:46:48.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "00cb6ee2da407479d651faa42966998b2d5941957763d2ab0ec2d1e16413feda"
+        },
+        {
+          "source_job_id": "6a01a6aae791100f0afbfc63",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=6a01a6aae791100f0afbfc63",
+          "title": "影像ISP算法专家",
+          "published_at": "2026-05-11T09:51:38.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "b0bfe512df8243623410ffb7df45e987b33c6664e6e0611c4bacfcb839691abd"
+        },
+        {
+          "source_job_id": "69782ff92ceb467a555f1b4e",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=69782ff92ceb467a555f1b4e",
+          "title": "AI语音交互生成式模型算法专家",
+          "published_at": "2026-01-27T03:24:41.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "50f21d44e063756f2bc7d1d5e3d2c23905f0902128818c8f3dbc0fbf05e1005c"
+        },
+        {
+          "source_job_id": "69782ff991532c730e31f219",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=69782ff991532c730e31f219",
+          "title": "音频算法工程师",
+          "published_at": "2026-01-27T03:24:41.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "dfd013c96d68616f51d01c4ab0efb0025f397e3de749ec79567a8d9f77da37dd"
+        },
+        {
+          "source_job_id": "684159add9c14f2a7dbf9695",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=684159add9c14f2a7dbf9695",
+          "title": "显示图像视频算法专家",
+          "published_at": "2025-12-18T09:52:36.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "3c9b9928516d5a78df718018d04c1cca97abe2ed0f64f47d40ac9ccbfd1c7695"
+        },
+        {
+          "source_job_id": "690b189dba375d797cf3fcac",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=690b189dba375d797cf3fcac",
+          "title": "整合营销经理",
+          "published_at": "2025-11-05T09:27:57.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "437fe09d4e09a08164afa85a26a6d5cd699db0ccc4f2623a0e5935497eca1551"
+        },
+        {
+          "source_job_id": "68ad73deb8fdf84cde549a0b",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=68ad73deb8fdf84cde549a0b",
+          "title": "客户交付解决方案经理",
+          "published_at": "2025-08-26T08:44:14.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "c8ce51d03adff61e11ae4e431ea3c01f36b8fab8adc32a1d402f8243fbecb72d"
+        },
+        {
+          "source_job_id": "67af02b81c240e7028d2d0ff",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=67af02b81c240e7028d2d0ff",
+          "title": "采购技术质量认证工程师（摄像头）",
+          "published_at": "2025-08-08T03:29:26.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "a472dd9be111cfbd860eae9d92e80eeeb67293ceedcd27525f4195287e63c510"
+        },
+        {
+          "source_job_id": "689301596c88b20bfe19b813",
+          "official_url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=689301596c88b20bfe19b813",
+          "title": "影像UX用户研究",
+          "published_at": "2025-08-06T07:16:39.000Z",
+          "company_name": "荣耀",
+          "raw_text_sha256": "79b2a6fdb059310726a072af49750afa38a9eb88131ce5124b711b284c808328"
+        }
+      ]
+    }
+  ]
+}

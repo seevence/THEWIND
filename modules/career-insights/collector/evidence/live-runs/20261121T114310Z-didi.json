@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-21T11:43:08.834Z",
+  "finished_at": "2026-11-21T11:43:10.230Z",
+  "network_calls_note": "仅公开 JSON 接口；2 页 GET（同域间隔 1s）；未绕登录/验证码/403；人工探测间隔 >=1s",
+  "records": [
+    {
+      "phase": "jobs",
+      "source_key": "didi-official-careers",
+      "entry_url": "https://talent.didiglobal.com/social/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 20,
+      "valid": 20,
+      "invalid": 0,
+      "elapsed_ms": 1396,
+      "pages": 2,
+      "first_item": "安全专家",
+      "items": [
+        {
+          "source_job_id": "63724",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=63724",
+          "title": "安全专家",
+          "published_at": "2026-11-09T02:35:35.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "851579b8a1e46bda860352451d5df250cfd2034427099010d110ffa119812676"
+        },
+        {
+          "source_job_id": "66326",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66326",
+          "title": "安全运营专家-数据分析",
+          "published_at": "2026-09-11T08:55:09.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "cf7d7aa2005b7481c122319c5b226723b083ac14c105a2f91470d67e8a3bcaf3"
+        },
+        {
+          "source_job_id": "66741",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66741",
+          "title": "安全尽职尽责顾问",
+          "published_at": "2026-10-12T01:55:56.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "000b4965bb199918c40792706c2286834cb86bb7bde4316a68c6fccea91e43fc"
+        },
+        {
+          "source_job_id": "66832",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66832",
+          "title": "安全专家",
+          "published_at": "2026-10-19T01:39:13.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "c23a960518a2ada18bbb2857d43d13b02cf4f1d36d709c44a025e9a39adffbd1"
+        },
+        {
+          "source_job_id": "67312",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=67312",
+          "title": "人伤核损专家",
+          "published_at": "2026-11-11T12:24:13.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "5335a7389669d87cc2afe024ca11557063d908dd876fd4ab8bba9c9a107eb590"
+        },
+        {
+          "source_job_id": "66757",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66757",
+          "title": "Fintech巴西支付技术领域专家/资深研发工程师",
+          "published_at": "2026-11-20T11:30:43.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "a915d07335d275ef195ee1a20d7448cb0c4d84226b1797cd1215fb0aacea241c"
+        },
+        {
+          "source_job_id": "63709",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=63709",
+          "title": "定量用户体验研究员 - 支持国际化业务",
+          "published_at": "2026-10-29T08:14:02.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "7bdf2958e129c4468ff039e553390a7cac35b537448d7bd5eec42bf1b9ba7f09"
+        },
+        {
+          "source_job_id": "66735",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66735",
+          "title": "AI设计工程师",
+          "published_at": "2026-11-11T13:16:32.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "af5ce02b6bcc37f20dcc8af1392547b94bc7e8880b2795de12eb9ae5173c308f"
+        },
+        {
+          "source_job_id": "66041",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66041",
+          "title": "拉新运营",
+          "published_at": "2026-11-20T09:53:35.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "93d1e48f324eb95023b34b2ea36f7da53b51217275cdcb7fe0ec0db3889b03f6"
+        },
+        {
+          "source_job_id": "66481",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66481",
+          "title": "运力运营产品专家- SSL",
+          "published_at": "2026-11-20T09:53:17.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "626294b16010fc9dab169134f4ca086105b890a31944ffbf29055ffa9794a04e"
+        },
+        {
+          "source_job_id": "66036",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66036",
+          "title": "产品与用户运营",
+          "published_at": "2026-11-20T09:53:02.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "27da0af03f098385da863c5f6559b805d4e4954874be444c5a9349624a4369a8"
+        },
+        {
+          "source_job_id": "64307",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=64307",
+          "title": "资深体验设计师——国际化金融业务方向",
+          "published_at": "2026-11-03T02:47:34.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "7d9cbad9ff4f54f1df1272e2d2a0159519a323700fe9e29a03c2fc34c57ed28d"
+        },
+        {
+          "source_job_id": "64742",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=64742",
+          "title": "商业分析专家-两轮车",
+          "published_at": "2026-10-13T03:44:29.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "62eddb9bf33354906eec2870c06ba9e609da8029e7192c7989facaac876c23fa"
+        },
+        {
+          "source_job_id": "65796",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=65796",
+          "title": "G端运营专家-天津",
+          "published_at": "2026-10-12T03:02:57.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "af540ab172c26d9f0292f01b5ba2a03d3eb9527cb188f11ba02dc68a01a8d4ed"
+        },
+        {
+          "source_job_id": "66394",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66394",
+          "title": "G端运营专家-新疆",
+          "published_at": "2026-09-22T03:07:31.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "513138a929c68f127703a440fe01296b91236be25c71bcb471d85327d56a6c65"
+        },
+        {
+          "source_job_id": "66550",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66550",
+          "title": "商务合作经理-辽宁",
+          "published_at": "2026-09-21T08:14:03.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "c2a25d6c0307fe7437b0df6fc8883673098668fd5ecfb8c73f5898fae7fd7f84"
+        },
+        {
+          "source_job_id": "66620",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=66620",
+          "title": "维修管理专家",
+          "published_at": "2026-10-30T02:47:23.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "dd79dfb144896265096f9f095be394db9cf9156d72960e13f5ecdbfbb750083d"
+        },
+        {
+          "source_job_id": "67364",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=67364",
+          "title": "saas产品运营专家",
+          "published_at": "2026-11-12T05:33:14.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "204e11c73baa226755831d4ab94a032fa29975ad1ef70bb73ed9e22a4673e7a8"
+        },
+        {
+          "source_job_id": "67250",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=67250",
+          "title": "城市经理-山西",
+          "published_at": "2026-11-17T08:12:22.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "edbfb7a857992f43f80f8a4d7a4d6835b22087879f02a7d90b2169b5aae39d72"
+        },
+        {
+          "source_job_id": "67541",
+          "official_url": "https://talent.didiglobal.com/social/jobDetail?jdId=67541",
+          "title": "高级研发工程师-业务研发",
+          "published_at": "2026-11-20T08:56:33.000Z",
+          "company_name": "滴滴",
+          "raw_text_sha256": "acadeb9f15c645121c4d092d42516ae028a397c3985c5a34d5bc58ae0f572993"
+        }
+      ]
+    }
+  ]
+}

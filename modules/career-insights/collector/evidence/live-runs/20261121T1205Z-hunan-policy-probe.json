@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "probed_at": "2026-11-21T12:02:32.000Z",
+  "purpose": "源 A（湖南/长沙本地政策）候选站点探测：端点可解析性、页面形态、访问限制与 evidence 样本可行性",
+  "network_calls_note": "仅公开首页/栏目页/详情页匿名 GET；同域间隔 >=1.5s（探测阶段）；未使用 Cookie/Token、未逆向签名、未绕验证码/403；https 502 后改用站点自身登记的 http 地址，不放宽 fetch 降级门禁。",
+  "candidates": [
+    {
+      "candidate": "湖南省人力资源和社会保障厅（rst.hunan.gov.cn）",
+      "entry_url": "https://rst.hunan.gov.cn/rst/xxgk/tzgg/index.html",
+      "http_status": 200,
+      "content_type": "text/html",
+      "page_shape": "TRS 静态 HTML；列表 .xxgkzd-box .box > ul > li（标题链接 + span 日期），分页 index_N.html；详情 h1.articletitle、.pinfo「机关 发布时间：YYYY-MM-DD HH:MM」、.articleCont 正文；meta ArticleTitle/PubDate 可用。",
+      "sample_feasibility": "否决：全站页面（列表与详情）页脚均带站点统一总机「联系电话：0731-84900000」，命中 evidence/sanitizer 的 CONTACT 规则，整页真实样本会被 sanitizeSample 拒收，按纪律记录并换备选。",
+      "decision": "本批不接；如后续接受「正文区域 PII 口径」或为政府站点总机加白名单，可再评估。省级就业政策相关性强（通知公告含大学生创业孵化基地、职业技能等级认定、创业担保贷款、工伤预防等）。"
+    },
+    {
+      "candidate": "长沙市人力资源和社会保障局（rsj.changsha.gov.cn）",
+      "entry_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/",
+      "http_status": 200,
+      "content_type": "text/html",
+      "https_probe": "https://rsj.changsha.gov.cn/ 及 https://rsj.changsha.gov.cn/zwgk/ 均持续返回 openresty 502（556B）；站点 <meta name=\"SiteDomain\" content=\"http://rsj.changsha.gov.cn\"> 登记为 http，http 首页 200。",
+      "page_shape": "TRS 静态 HTML；劳动就业子栏目列表 .right_list > ul > li（span 日期 + 标题链接），第 N 页 index_{N-1}.html（kkpager 0 基）；详情 h1.article-title、#ly 来源、.pages_zz 发布时间、.pages_content 正文。",
+      "sample_feasibility": "可行：列表与所选 3 份详情整页通过 sanitizeSample；列表前 3 条详情页含公示联系电话，按 PII 规则不作为样本，回放测试按请求顺序使用同源无 PII 详情样本。",
+      "decision": "采用为 changsha-rsj-policy（5 份真实样本；http 明文风险已在来源定义 notes 记录）。总通知公告/人事人才等栏目内 csrc.changsha.gov.cn 的 hash 路由 SPA 公示链接跳过。"
+    },
+    {
+      "candidate": "湖南省教育厅（jyt.hunan.gov.cn）",
+      "entry_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/index.html",
+      "http_status": 200,
+      "content_type": "text/html",
+      "robots": "https://jyt.hunan.gov.cn/robots.txt 返回站点 404 页面（无 robots 规则）",
+      "page_shape": "TRS 静态 HTML；列表 ul.list_gkzd_content > li（标题链接 + span 日期），第 N 页 index_N.html；详情 .main_content h2、.sp_time 来源与发布时间、.main_con_zw（#j-show-body）正文。",
+      "sample_feasibility": "可行：列表与所选 3 份详情整页通过 sanitizeSample；列表前 3 条公示详情含联系电话/邮箱，按 PII 规则不作为样本，回放测试按请求顺序使用同源无 PII 详情样本。",
+      "decision": "采用为 hunan-jyt-policy（5 份真实样本；HTTPS 直连 200，无 Cookie/Token/签名/验证码）。"
+    }
+  ],
+  "outcomes": {
+    "adopted_sources": [
+      "changsha-rsj-policy",
+      "hunan-jyt-policy"
+    ],
+    "rejected_candidates": [
+      "rst.hunan.gov.cn（整页样本命中 evidence PII 规则，换备选）"
+    ],
+    "access_limitations": [
+      "rsj.changsha.gov.cn https 443 持续 502，只能用站点自身公开的 http 地址",
+      "csrc.changsha.gov.cn 人才/补贴公示为 hash 路由 SPA，无法静态解析（跳过）",
+      "www.mohrss.gov.cn EdgeOne 挑战为上一批次已知限制（本批次未重复探测）"
+    ]
+  }
+}

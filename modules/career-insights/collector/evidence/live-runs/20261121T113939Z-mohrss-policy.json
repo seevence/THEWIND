@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-21T11:39:35.892Z",
+  "finished_at": "2026-11-21T11:39:39.830Z",
+  "network_calls_note": "仅公开政策列表与详情页面；同域间隔 >=1s；未绕登录/验证码/403/签名",
+  "transport": "HttpTransport",
+  "entry_url": "https://chinajob.mohrss.gov.cn/zcfg/zxzc/zy/",
+  "source_key": "mohrss-policy",
+  "network_calls": 4,
+  "records": [
+    {
+      "phase": "policies",
+      "source_key": "mohrss-policy",
+      "entry_url": "https://chinajob.mohrss.gov.cn/zcfg/zxzc/zy/",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 3,
+      "elapsed_ms": 3937,
+      "first_item": "人力资源社会保障部 国家发展改革委 农业农村部关于建立常态化防止返贫致贫就业帮扶机制促进乡村全面振兴的指导意见",
+      "items": [
+        {
+          "policy_item_id": "631990",
+          "title": "人力资源社会保障部 国家发展改革委 农业农村部关于建立常态化防止返贫致贫就业帮扶机制促进乡村全面振兴的指导意见",
+          "issuer": "人力资源社会保障部 国家发展改革委 农业农村部",
+          "published_at": "2026-11-06",
+          "official_url": "https://chinajob.mohrss.gov.cn/c/2026-11-06/631990.shtml",
+          "source_tier": "government_official",
+          "theme_ids": [
+            "talent_development",
+            "employment_promotion"
+          ],
+          "evidence_excerpt": "人社部发〔2026〕17号各省、自治区、直辖市及新疆生产建设兵团人力资源社会保障厅（局）、发展改革委、农业农村（农牧）厅（局、委）：为贯彻党中央、国务院关于统筹建立常态化防止返贫致贫机制促进乡村全面振兴的决策部署，做好巩固拓展脱贫攻坚成果同乡村振兴有效衔接过渡期后就业帮扶工作，现提出如下意见。一、 总体要求。坚持以习近平新时代中国特色社会主义思想为指导，深入贯彻党的二十大和二十届历次全会精神，全面"
+        },
+        {
+          "policy_item_id": "631989",
+          "title": "人力资源社会保障部 国家发展改革委 农业农村部关于统筹城乡就业政策体系的意见",
+          "issuer": "人力资源社会保障部 国家发展改革委 农业农村部",
+          "published_at": "2026-11-06",
+          "official_url": "https://chinajob.mohrss.gov.cn/c/2026-11-06/631989.shtml",
+          "source_tier": "government_official",
+          "theme_ids": [
+            "talent_development",
+            "employment_promotion"
+          ],
+          "evidence_excerpt": "各省、自治区、直辖市及新疆生产建设兵团人力资源社会保障厅（局）、发展改革委、农业农村（农牧）厅（局、委）：为进一步统筹城乡就业政策体系，加快形成双向流动、互融互通的统筹城乡就业格局，促进城乡劳动者高质量充分就业，现提出如下意见。一、 总体要求坚持以习近平新时代中国特色社会主义思想为指导，深入贯彻党的二十大和二十届历次全会精神，坚持以人民为中心的发展思想，统筹新型城镇化和乡村全面振兴，坚持市场主导、"
+        },
+        {
+          "policy_item_id": "631988",
+          "title": "人力资源社会保障部办公厅 中央社会工作部办公厅 关于加强社区工作者、村干部失业保险管理服务的通知",
+          "issuer": "人力资源社会保障部办公厅 中央社会工作部办公厅",
+          "published_at": "2026-11-06",
+          "official_url": "https://chinajob.mohrss.gov.cn/c/2026-11-06/631988.shtml",
+          "source_tier": "government_official",
+          "theme_ids": [
+            "employment_promotion"
+          ],
+          "evidence_excerpt": "（人社厅发〔2026〕17号）各省、自治区、直辖市及新疆生产建设兵团人力资源社会保障厅（局）、党委社会工作部：为进一步加强社区工作者、村干部失业保险管理服务，现就有关事项通知如下：一、 积极推进参保。各地要依据社会保险法、《失业保险条例》和《中共中央办公厅 国务院办公厅关于加强社区工作者队伍建设的意见》相关规定，做好社区工作者的参保缴费工作。二、 规范待遇享受。失业人员在担任社区工作者、村干部期间"
+        }
+      ]
+    }
+  ]
+}

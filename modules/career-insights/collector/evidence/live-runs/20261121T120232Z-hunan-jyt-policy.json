@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-21T12:02:32.131Z",
+  "finished_at": "2026-11-21T12:02:53.942Z",
+  "network_calls_note": "仅公开政策列表与详情页面；同域请求间隔 >=1s；未使用 Cookie/Token、未逆向签名、未绕验证码/403；每源最多 3 页、每批最多 10 条。",
+  "transport": "HttpTransport",
+  "entry_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/index.html",
+  "source_key": "hunan-jyt-policy",
+  "network_calls": 4,
+  "limitations": [
+    "HTTPS 直连 200，无 Cookie/Token/签名/验证码",
+    "robots.txt 返回站点 404 页面（无 robots 规则）"
+  ],
+  "records": [
+    {
+      "phase": "policies",
+      "source_key": "hunan-jyt-policy",
+      "entry_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/index.html",
+      "status": "success",
+      "failure_type": null,
+      "failure_stage": null,
+      "original_error_name": null,
+      "original_error_message": null,
+      "collected": 3,
+      "elapsed_ms": 3266,
+      "first_item": "关于湖南省新时代职业学校名师（名匠）、 名校长和名班主任培养计划 拟入围人员的公示",
+      "items": [
+        {
+          "policy_item_id": "t20261120_1184219",
+          "title": "关于湖南省新时代职业学校名师（名匠）、 名校长和名班主任培养计划 拟入围人员的公示",
+          "issuer": "湖南省教育厅",
+          "published_at": "2026-11-20",
+          "official_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202611/t20261120_1184219.html",
+          "source_tier": "government_official",
+          "theme_ids": [],
+          "evidence_excerpt": "根据省教育厅《关于实施湖南省新时代职业学校名师（名匠）、名校长和名班主任培养计划的通知》精神，经组织专家评审，确定培养对象拟入围人员名单，现予以公示（见附件）。公示期为5个工作日，自2026年11月20日起至11月27日止。 公示期间，如有异议，请与省教育厅教师处联系。以单位名义反映必须加盖本单位印章。以个人名义反映必须署真实姓名和联系电话。我处不受理匿名和假冒信息（电话、姓名等）举报。所举报的问"
+        },
+        {
+          "policy_item_id": "t20261119_1184185",
+          "title": "关于湖南省全国学校美育名师工作室拟推荐名单的公示",
+          "issuer": "湖南省教育厅",
+          "published_at": "2026-11-19",
+          "official_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202611/t20261119_1184185.html",
+          "source_tier": "government_official",
+          "theme_ids": [],
+          "evidence_excerpt": "根据《教育部办公厅关于开展全国学校美育名师工作室建设的通知》（教体艺厅函〔2026〕40号）要求，经市州教育局和高等学校申报、省教育厅组织专家评审，拟推荐6个名师工作室参评全国学校美育名师工作室，现将拟推荐名单（见附件）予以公示，公示期为2026年11月19日至11月25日。 公示期间如有异议，请提交书面异议材料（包括必要的证明材料）。单位提出的异议材料须加盖本单位公章，并注明联系人姓名、通讯地址"
+        },
+        {
+          "policy_item_id": "t20261113_1184063",
+          "title": "2026年湖南省基础教育创新案例入选名单公示",
+          "issuer": "湖南省教育厅",
+          "published_at": "2026-11-13",
+          "official_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202611/t20261113_1184063.html",
+          "source_tier": "government_official",
+          "theme_ids": [
+            "artificial_intelligence",
+            "ai_innovation"
+          ],
+          "evidence_excerpt": "2026年湖南省基础教育创新案例入选名单公示 根据《关于开展2026年湖南省基础教育创新案例征集工作的通知》要求,经单位申报、市县推荐、专家推选,拟确定198个案例为2026年湖南省基础教育创新案例。现将入选案例名单(见附件)予以公示,公示期为5个工作日,时间为2026年11月13日至11月19日。 公示期间如有异议,请提交书面异议材料(包括必要的证明材料)。单位提出的异议材料须加盖本单位公章,并"
+        }
+      ]
+    }
+  ]
+}

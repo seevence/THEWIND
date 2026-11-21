@@ -1,0 +1,14 @@
+{
+  "sample_id": "7dfc746acf43fe4a",
+  "request_key": "GET https://www.cscec.com/rlzy_new/rczp/",
+  "request_url": "https://www.cscec.com/rlzy_new/rczp/",
+  "final_url": "https://www.cscec.com/rlzy_new/rczp/",
+  "http_status": 200,
+  "content_type": "text/html",
+  "body_sha256": "7dfc746acf43fe4ac5d6c10d841b313ef1c25e18e60e8d82fb719eff911ca500",
+  "captured_at": "2026-11-21T12:06:47.391Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list",
+  "sanitized": true,
+  "body_file": "cscec-official-careers/samples/list.html"
+}

@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "kind": "direct-probe",
+  "source_key": "honor-official-careers",
+  "started_at": "2026-11-21T11:59:56.400Z",
+  "finished_at": "2026-11-21T12:00:01.000Z",
+  "endpoint": "https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a",
+  "detail_endpoint": "https://career.honor.com/wecruit/positionInfo/listPositionDetail/SU5ff669649b0d78e6f4296c9a",
+  "request_shape": {
+    "method": "POST",
+    "content_type": "application/x-www-form-urlencoded",
+    "headers_note": "只带 accept / content-type / origin / referer；无 Cookie、无 Token、无签名",
+    "list_body": "isFrompb=true&recruitType=2&pageSize=12&currentPage=1..3",
+    "detail_body": "postId=<postId>"
+  },
+  "network_calls_note": "仅公开表单 POST 接口；同域请求间隔 >=1.2s；列表 3 页 + 详情 2 条；未使用 Cookie/登录态/签名逆向；未触发验证码/403/405/429",
+  "pages": [
+    {
+      "page": 1,
+      "captured_at": "2026-11-21T11:59:56.400Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 8865,
+      "parsed_items": 12,
+      "total_page": 33,
+      "total_positions": 386,
+      "personal_data_hit": false,
+      "sample_id": "2ccc528c38e84f7e",
+      "body_file": "honor-official-careers/samples/list-1.json"
+    },
+    {
+      "page": 2,
+      "captured_at": "2026-11-21T11:59:57.750Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 8666,
+      "parsed_items": 12,
+      "total_page": 33,
+      "total_positions": 386,
+      "personal_data_hit": false,
+      "sample_id": "daa28d93d81839aa",
+      "body_file": "honor-official-careers/samples/list-2.json"
+    },
+    {
+      "page": 3,
+      "captured_at": "2026-11-21T11:59:59.251Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 8886,
+      "parsed_items": 12,
+      "total_page": 33,
+      "total_positions": 386,
+      "personal_data_hit": false,
+      "sample_id": "280c841fe053ccff",
+      "body_file": "honor-official-careers/samples/list-3.json"
+    }
+  ],
+  "details": [
+    {
+      "post_id": "66599aae1eb8051cd2168236",
+      "captured_at": "2026-11-21T12:00:00.576Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 2450,
+      "post_name": "省零售部部长（中国区）",
+      "work_content_chars": 170,
+      "service_condition_chars": 140,
+      "personal_data_hit": false,
+      "sample_id": "595b60f2ab94e324",
+      "body_file": "honor-official-careers/samples/detail-66599aae1eb8051cd2168236.json"
+    },
+    {
+      "post_id": "6a389065e49e0e559f924c92",
+      "captured_at": "2026-11-21T12:00:01.911Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 3232,
+      "post_name": "采购技术质量认证工程师（结构件）",
+      "work_content_chars": 253,
+      "service_condition_chars": 251,
+      "personal_data_hit": false,
+      "sample_id": "eeaf2012a3d36a13",
+      "body_file": "honor-official-careers/samples/detail-6a389065e49e0e559f924c92.json"
+    }
+  ],
+  "observed_fields_list": [
+    "postId",
+    "postName",
+    "workPlaceStr",
+    "educationStr",
+    "publishDate",
+    "postTypeName",
+    "company",
+    "workTypeStr",
+    "externalKey",
+    "workYears"
+  ],
+  "observed_fields_detail": [
+    "postId",
+    "postName",
+    "workContent",
+    "serviceCondition",
+    "education",
+    "workPlaceStr",
+    "publishDate",
+    "company",
+    "orgName",
+    "workTypeStr",
+    "externalPostId"
+  ],
+  "official_page_checks": [
+    {
+      "kind": "detail_page",
+      "url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/posDetail.html?postId=66599aae1eb8051cd2168236",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 3922,
+      "note": "SPA 壳页面，前端按 postId 调详情接口；作为 official_url",
+      "sample_saved": false,
+      "reason": "SPA 壳不含职位正文，不作为证据样本；正文以详情 JSON 样本为准"
+    },
+    {
+      "kind": "list_page",
+      "url": "https://career.honor.com/SU5ff669649b0d78e6f4296c9a/pb/social.html",
+      "http_status": 200,
+      "content_type": "text/html",
+      "bytes": 3912,
+      "note": "社招列表页入口",
+      "sample_saved": false,
+      "reason": "SPA 壳，同上"
+    }
+  ],
+  "total_positions_reported": 386,
+  "total_page_reported": 33,
+  "pagination_note": "站内分页存在排序抖动：抓取过程中 totalPage 曾在 33/39 间变化，置顶（top=1）职位会跨页重复；本轮 3 页 36 条 postId 去重后无重复，适配器仍按 postId 去重。",
+  "findings": [
+    "列表接口匿名可用，列表含标题/地点/学历/发布时间，但不含职责与要求，必须逐条取详情。",
+    "详情接口匿名可用（postId 表单参数），返回 workContent/serviceCondition 等 47+ 字段。",
+    "publishDate 不带时区，按站点北京时间（+08:00）读成 UTC ISO。",
+    "官方招聘入口 career.honor.com 由北森社招（hotjob.cn）托管；站点 ID SU5ff669649b0d78e6f4296c9a 取自公开页面路径。",
+    "详情页 /SU5ff.../pb/posDetail.html?postId=<id> 实测 200，可作为 official_url。"
+  ]
+}

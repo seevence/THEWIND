@@ -1,0 +1,14 @@
+{
+  "sample_id": "1746aefad2960fe6",
+  "request_key": "POST https://hr.163.com/api/hr163/position/queryPage#b5220f04ad7f74c4",
+  "request_url": "https://hr.163.com/api/hr163/position/queryPage",
+  "final_url": "https://hr.163.com/api/hr163/position/queryPage",
+  "http_status": 200,
+  "content_type": "application/json;charset=UTF-8",
+  "body_sha256": "1746aefad2960fe676822d150bc3b54eb913436c67b50d77c6d6f84bf5c79f55",
+  "captured_at": "2026-11-21T11:39:54.357Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list-3",
+  "sanitized": true,
+  "body_file": "netease-official-careers/samples/list-3.json"
+}

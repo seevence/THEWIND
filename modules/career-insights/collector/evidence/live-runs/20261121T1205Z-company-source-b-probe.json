@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "kind": "direct-probe",
+  "source_key": "company-careers-candidates",
+  "probed_at": "2026-11-21T11:45:00.000Z",
+  "network_calls_note": "仅匿名 GET/POST 公开页面与候选接口；同 host 间隔 >=1.2s；未使用 Cookie/登录态/代理/UA 轮换/验证码识别/签名逆向/接口爆破",
+  "adopted": [
+    {
+      "company": "荣耀",
+      "source_key": "honor-official-careers",
+      "result": "已接入",
+      "entry_url": "https://career.honor.com/",
+      "platform": "北森社招 hotjob.cn（页面公开调用同源表单 POST JSON）",
+      "evidence": "evidence/live-runs/20261121T1201Z-honor-direct-probe.json；3 列表 + 2 详情真实样本；适配器 13 用例通过"
+    }
+  ],
+  "rejected": [
+    {
+      "company": "大疆",
+      "entry_url": "https://we.dji.com/",
+      "observed": [
+        "https://we.dji.com/ 200，302 到 https://careers.dji.com/zh-CN/（Next.js，68KB，__NEXT_DATA__ 仅导航配置）",
+        "招聘入口跳转 https://apply.careers.dji.com/social-recruitment/dji/170070（Moka 托管），实测 302 自跳转死循环（/social-recruitment/dji/170070 ↔ /social-recruitment/dji/170070/），响应 Set-Cookie moka-apply/connect.sid",
+        "https://app.mokahr.com/social-recruitment/dji/170070 同样 302 自跳转死循环"
+      ],
+      "failure_stage": "access",
+      "limitation_type": "session_cookie_required",
+      "decision": "未接入。Moka 站点为会话 cookie 驱动的跳转，按纪律不加 cookie、不逆向，记录后换备选。"
+    },
+    {
+      "company": "蔚来",
+      "entry_url": "https://nio.jobs.feishu.cn/",
+      "observed": [
+        "jobs.nio.com / nio.jobs DNS 无法解析（本机）",
+        "https://nio.jobs.feishu.cn/ 200，178833 字节，飞书招聘 SPA",
+        "前端 bundle 明示列表/详情接口 /api/v1/search/job/posts、/api/v1/job/posts/<id> 由 sign({body,url}) 生成 _signature 后请求；无签名 POST 实测 405"
+      ],
+      "failure_stage": "access",
+      "limitation_type": "signature_required",
+      "decision": "未接入。列表接口要求前端签名，按纪律不逆向签名，停用。"
+    },
+    {
+      "company": "理想",
+      "entry_url": "https://jobs.lixiang.com/",
+      "observed": [
+        "jobs.lixiang.com DNS 无法解析（本机）",
+        "lixiang.jobs.feishu.cn 404",
+        "lixiang.hotjob.cn DNS 无法解析（本机）"
+      ],
+      "failure_stage": "fetch",
+      "limitation_type": "dns_unresolved",
+      "decision": "未找到可访问的官方招聘入口，停用。"
+    },
+    {
+      "company": "小鹏",
+      "entry_url": "https://jobs.xpeng.com/",
+      "observed": [
+        "jobs.xpeng.com DNS 无法解析（本机）",
+        "xpeng.jobs.feishu.cn 404；https://xiaopeng.jobs.feishu.cn/ 200，198035 字节，飞书招聘 SPA",
+        "同蔚来：列表/详情接口由前端 _signature 签名"
+      ],
+      "failure_stage": "access",
+      "limitation_type": "signature_required",
+      "decision": "未接入，原因同蔚来。"
+    },
+    {
+      "company": "科大讯飞",
+      "entry_url": "https://iflytek.zhiye.com/",
+      "observed": [
+        "careers.iflytek.com / campus.iflytek.com 解析到北森新版门户",
+        "https://iflytek.zhiye.com/ 与 /social/jobs 均 200，35913 字节，返回同一份 SPA 壳（BSGlobal 配置，页面内容由 JS 渲染）",
+        "HTML 未暴露职位数据、JS bundle 未在静态资源中发现公开职位列表接口；未做运行时抓包与打包产物逆向"
+      ],
+      "failure_stage": "parse",
+      "limitation_type": "spa_no_public_json",
+      "decision": "未接入。SPA 壳无服务端职位数据，公开 JSON 接口未定位，记录后停用。"
+    },
+    {
+      "company": "海康威视",
+      "entry_url": "https://www.hikvision.com/cn/careers/",
+      "observed": [
+        "hr.hikvision.com DNS 无法解析（本机）",
+        "https://hikvision.zhiye.com/ 404",
+        "https://www.hikvision.com/cn/careers/ 403（WAF 页面，6688 字节）"
+      ],
+      "failure_stage": "access",
+      "limitation_type": "forbidden",
+      "decision": "未接入，HTTP 403 按 access_blocked 记录，不绕过。"
+    },
+    {
+      "company": "携程",
+      "entry_url": "https://careers.trip.com/",
+      "observed": [
+        "jobs.ctrip.com / jobs.trip.com DNS 无法解析（本机）",
+        "https://careers.trip.com/ 200，289489 字节；招聘入口为 https://app.mokahr.com/campus-recruitment/trip/117988 与 app.mokahr.com/social-recruitment/trip/...",
+        "Moka 站点实测 302 自跳转死循环（同大疆），响应带 moka-apply/connect.sid 会话 cookie"
+      ],
+      "failure_stage": "access",
+      "limitation_type": "session_cookie_required",
+      "decision": "未接入，原因同大疆。"
+    },
+    {
+      "company": "拼多多",
+      "entry_url": "https://careers.pddglobalhr.com/",
+      "observed": [
+        "https://careers.pddglobalhr.com/ 200，Next.js 校园招聘页（17612 字节），__NEXT_DATA__ 的 sdkConfig 含 BE_API_PREFIX="" 与 SECRET_SERVICE_URL="api/recruit/sys/secret/set"",
+        "https://careers.pddglobalhr.com/grad 403，application/json（36 字节）"
+      ],
+      "failure_stage": "access",
+      "limitation_type": "forbidden",
+      "decision": "未接入。接口前置会话密钥交换且页面 403，按纪律不逆向，停用。"
+    }
+  ],
+  "notes": [
+    "DNS 无法解析只代表本机网络环境当时的结果，不代表站点下线；已如实记录。",
+    "所有候选人选都只做公开页面 GET 与少数公开 POST 探测，单个 host 请求数 <= 4。",
+    "荣耀为唯一通过全部纪律约束的候选：匿名表单 POST、无 Cookie/Token/签名、无 403/405/429/验证码。"
+  ]
+}

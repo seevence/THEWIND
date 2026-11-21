@@ -1,0 +1,14 @@
+{
+  "sample_id": "4a099fb10d40ad5d",
+  "request_key": "GET https://talent.didiglobal.com/recruit-portal-service/api/job/front/list?page=2&size=10",
+  "request_url": "https://talent.didiglobal.com/recruit-portal-service/api/job/front/list?page=2&size=10",
+  "final_url": "https://talent.didiglobal.com/recruit-portal-service/api/job/front/list?page=2&size=10",
+  "http_status": 200,
+  "content_type": "application/json;charset=UTF-8",
+  "body_sha256": "4a099fb10d40ad5dddc9122be0c8f972e03e87f475cb579a1cd83f9992e29e19",
+  "captured_at": "2026-11-21T11:42:26.520Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list-2",
+  "sanitized": true,
+  "body_file": "didi-official-careers/samples/list-2.json"
+}

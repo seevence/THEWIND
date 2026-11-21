@@ -1,0 +1,14 @@
+{
+  "sample_id": "f748ba0b06dbc381",
+  "request_key": "GET http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/202610/t20261029_12602918.html",
+  "request_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/202610/t20261029_12602918.html",
+  "final_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/202610/t20261029_12602918.html",
+  "http_status": 200,
+  "content_type": "text/html",
+  "body_sha256": "f748ba0b06dbc381236bf18942b62da640c3e739942585aadc7de8692c0d9970",
+  "captured_at": "2026-11-21T12:02:35.565Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "detail-1",
+  "sanitized": true,
+  "body_file": "changsha-rsj-policy/samples/detail-1.html"
+}

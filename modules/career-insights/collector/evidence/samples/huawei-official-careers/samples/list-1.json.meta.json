@@ -1,0 +1,14 @@
+{
+  "sample_id": "ceeb07d528cbeb1d",
+  "request_key": "POST https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886#a427cbfba8d77b0c",
+  "request_url": "https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886",
+  "final_url": "https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886",
+  "http_status": 200,
+  "content_type": "application/json;charset=UTF-8",
+  "body_sha256": "ceeb07d528cbeb1d62f176d7b8028a9e094409cf842b96efe1480d66b86d3a51",
+  "captured_at": "2026-11-21T11:38:13.235Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list-1",
+  "sanitized": true,
+  "body_file": "list-1.json"
+}

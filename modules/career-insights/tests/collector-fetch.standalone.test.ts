@@ -202,6 +202,53 @@ test("六类访问限制全部识别，正常页面不误判", () => {
     "paywall",
   );
   assert.equal(detectBlock({ ...base, status: 200 }), null);
+  // JSON API 的业务正文里出现「安全验证」不是验证码页面（华为招聘安全类岗位曾误判）。
+  assert.equal(
+    detectBlock({ ...base, status: 200, contentType: "application/json;charset=UTF-8", bodyText: JSON.stringify({ body: "负责产品安全验证与漏洞修复" }) }),
+    null,
+    "JSON 正文不按验证码文案误判",
+  );
+  assert.equal(
+    detectBlock({ ...base, status: 200, contentType: "application/json", bodyText: '{"captcha":true}' }),
+    null,
+    "JSON 接口的验证码标记由状态码/重定向判断，不做正文扫描",
+  );
+  assert.equal(
+    detectBlock({ ...base, status: 200, contentType: "text/html; charset=utf-8", bodyText: "请输入验证码" })?.limitationType,
+    "captcha",
+    "HTML 页面仍按验证码文案识别",
+  );
+  // 页面内嵌的验证码生成器脚本不算拦截页（中国建筑官网模板的误判场景）。
+  assert.equal(
+    detectBlock({
+      ...base,
+      status: 200,
+      contentType: "text/html; charset=utf-8",
+      bodyText: '<html><body><h1>招聘公告</h1><script>function createCode(){/* 验证码的长度 */ var n=4;}</script></body></html>',
+    }),
+    null,
+    "script 内的验证码生成器不误判",
+  );
+  assert.equal(
+    detectBlock({
+      ...base,
+      status: 200,
+      contentType: "text/html; charset=utf-8",
+      bodyText: '<html><body><p>领取验证码</p><script>var x=1;</script></body></html>',
+    })?.limitationType,
+    "captcha",
+    "可见正文里的验证码仍然识别",
+  );
+  assert.equal(
+    detectBlock({
+      ...base,
+      status: 200,
+      contentType: "text/html; charset=utf-8",
+      bodyText: '<html><body><input type="text" value="请输入验证码" onfocus="if(value==\'请输入验证码\'){value=\'\';}"><h1>招聘公告</h1></body></html>',
+    }),
+    null,
+    "input 属性里的验证码占位符不误判",
+  );
 });
 
 test("单调时钟回拨视为配置错误", () => {

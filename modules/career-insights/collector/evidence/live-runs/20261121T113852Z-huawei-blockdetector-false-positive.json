@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-11-21T11:38:51.574Z",
+  "page_limit": 3,
+  "finished_at": "2026-11-21T11:38:52.135Z",
+  "network_calls_note": "仅公开页面；同域间隔 >=1s；未绕登录/验证码/403",
+  "records": [
+    {
+      "phase": "jobs",
+      "source_key": "huawei-official-careers",
+      "entry_url": "https://career.huawei.com/cn/social-recruitment-job-list",
+      "status": "failed",
+      "failure_type": "access_blocked",
+      "failure_stage": "access",
+      "original_error_name": "AccessBlockedError",
+      "original_error_message": "出现验证码或人机验证",
+      "collected": 0,
+      "elapsed_ms": 560,
+      "first_item": null,
+      "items": []
+    }
+  ]
+}

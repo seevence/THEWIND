@@ -1,0 +1,14 @@
+{
+  "sample_id": "2ccc528c38e84f7e",
+  "request_key": "POST https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a#904bcd12c4075e31",
+  "request_url": "https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a",
+  "final_url": "https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a",
+  "http_status": 200,
+  "content_type": "application/json;charset=UTF-8",
+  "body_sha256": "2ccc528c38e84f7eab1e3d7ede16b9d76c15a81607a9942c609661a446f7ddf8",
+  "captured_at": "2026-11-21T11:59:56.400Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list-1",
+  "sanitized": true,
+  "body_file": "honor-official-careers/samples/list-1.json"
+}

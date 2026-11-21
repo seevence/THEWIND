@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-11-19T08:18:52.518Z",
+  "generated_at": "2026-11-21T12:09:28.848Z",
   "sources": [
     {
       "source_key": "moe-policy",
@@ -293,6 +293,431 @@
           "extraction_ref": "detail-3",
           "body_file": "state-council-policy/samples/detail-3.html",
           "body_sha256": "2945923f7ae5691fc14cb8e80e6dac7616e10be5b2a49fff654fb73ad2eadd38"
+        }
+      ]
+    },
+    {
+      "source_key": "huawei-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "ceeb07d528cbeb1d",
+          "request_key": "POST https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886#a427cbfba8d77b0c",
+          "request_url": "https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886",
+          "captured_at": "2026-11-21T11:38:13.235Z",
+          "extraction_ref": "list-1",
+          "body_file": "huawei-official-careers/samples/list-1.json",
+          "body_sha256": "ceeb07d528cbeb1d62f176d7b8028a9e094409cf842b96efe1480d66b86d3a51"
+        },
+        {
+          "sample_id": "354d0f13fcc13e25",
+          "request_key": "POST https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886#8a2fc9f4fbb10f43",
+          "request_url": "https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886",
+          "captured_at": "2026-11-21T11:38:14.814Z",
+          "extraction_ref": "list-2",
+          "body_file": "huawei-official-careers/samples/list-2.json",
+          "body_sha256": "354d0f13fcc13e253dfdc848ae997a5c41e7dae3af0c1bad53725433ea333e1b"
+        },
+        {
+          "sample_id": "d83b376eac0b0582",
+          "request_key": "POST https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886#6f8a2f513330901c",
+          "request_url": "https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886",
+          "captured_at": "2026-11-21T11:38:16.406Z",
+          "extraction_ref": "list-3",
+          "body_file": "huawei-official-careers/samples/list-3.json",
+          "body_sha256": "d83b376eac0b0582c654e665f5d104899d1693cc84db83a1241dad8a021e852b"
+        },
+        {
+          "sample_id": "0002d6abe655bc5b",
+          "request_key": "POST https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886#652396ec664395c0",
+          "request_url": "https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886",
+          "captured_at": "2026-11-21T11:41:04.299Z",
+          "extraction_ref": "list-4",
+          "body_file": "huawei-official-careers/samples/list-4.json",
+          "body_sha256": "0002d6abe655bc5b81787005135510c9c8117323116566256fd86ae72201ca48"
+        },
+        {
+          "sample_id": "deb7726091c2bbe3",
+          "request_key": "POST https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886#d8d505749fceb5bc",
+          "request_url": "https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886",
+          "captured_at": "2026-11-21T11:41:05.891Z",
+          "extraction_ref": "list-5",
+          "body_file": "huawei-official-careers/samples/list-5.json",
+          "body_sha256": "deb7726091c2bbe3ae507446912a3751663416d058075916477c2ddc1fc50345"
+        }
+      ]
+    },
+    {
+      "source_key": "mohrss-policy",
+      "kind": "policy",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "c15395a34baa2973",
+          "request_key": "GET https://chinajob.mohrss.gov.cn/c/2026-11-06/631990.shtml",
+          "request_url": "https://chinajob.mohrss.gov.cn/c/2026-11-06/631990.shtml",
+          "captured_at": "2026-11-21T11:37:53.147Z",
+          "extraction_ref": "detail-1",
+          "body_file": "mohrss-policy/samples/detail-1.html",
+          "body_sha256": "c15395a34baa2973960a0712bd9e31c0aec0d1bb91a2f5a2ca19359f1884e1f5"
+        },
+        {
+          "sample_id": "7daad83f2c97ddb9",
+          "request_key": "GET https://chinajob.mohrss.gov.cn/c/2026-11-06/631989.shtml",
+          "request_url": "https://chinajob.mohrss.gov.cn/c/2026-11-06/631989.shtml",
+          "captured_at": "2026-11-21T11:37:54.477Z",
+          "extraction_ref": "detail-2",
+          "body_file": "mohrss-policy/samples/detail-2.html",
+          "body_sha256": "7daad83f2c97ddb9540b98bcc9f1916a070ec123fcbab0ba64765121f857c5b3"
+        },
+        {
+          "sample_id": "b7626ca4b8a2d21b",
+          "request_key": "GET https://chinajob.mohrss.gov.cn/c/2026-11-06/631988.shtml",
+          "request_url": "https://chinajob.mohrss.gov.cn/c/2026-11-06/631988.shtml",
+          "captured_at": "2026-11-21T11:37:55.758Z",
+          "extraction_ref": "detail-3",
+          "body_file": "mohrss-policy/samples/detail-3.html",
+          "body_sha256": "b7626ca4b8a2d21b468080f70336aea54da42d3418e30e5f17479da933dd934f"
+        },
+        {
+          "sample_id": "fe6aa340bb34b3e1",
+          "request_key": "GET https://chinajob.mohrss.gov.cn/c/2026-11-06/631987.shtml",
+          "request_url": "https://chinajob.mohrss.gov.cn/c/2026-11-06/631987.shtml",
+          "captured_at": "2026-11-21T11:37:57.055Z",
+          "extraction_ref": "detail-4",
+          "body_file": "mohrss-policy/samples/detail-4.html",
+          "body_sha256": "fe6aa340bb34b3e1408e029d08a6bbbda7e577cf2c558b89d34f8b1cbac07767"
+        },
+        {
+          "sample_id": "1188305e9545078b",
+          "request_key": "GET https://chinajob.mohrss.gov.cn/zcfg/zxzc/zy/",
+          "request_url": "https://chinajob.mohrss.gov.cn/zcfg/zxzc/zy/",
+          "captured_at": "2026-11-21T11:37:51.842Z",
+          "extraction_ref": "list",
+          "body_file": "mohrss-policy/samples/list.html",
+          "body_sha256": "1188305e9545078b53e411fbdb56f3f3d5a483af6b553751dd0e9b058a57ac5f"
+        }
+      ]
+    },
+    {
+      "source_key": "netease-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "0d7e892308fdd643",
+          "request_key": "GET https://hr.163.com/api/hr163/position/query?id=15318",
+          "request_url": "https://hr.163.com/api/hr163/position/query?id=15318",
+          "captured_at": "2026-11-21T11:39:55.718Z",
+          "extraction_ref": "detail-15318",
+          "body_file": "netease-official-careers/samples/detail-15318.json",
+          "body_sha256": "0d7e892308fdd643328cf37206c02fc59ae139425e7d928920d6079f9532a804"
+        },
+        {
+          "sample_id": "def0230d91688c26",
+          "request_key": "GET https://hr.163.com/api/hr163/position/query?id=15464",
+          "request_url": "https://hr.163.com/api/hr163/position/query?id=15464",
+          "captured_at": "2026-11-21T11:39:57.080Z",
+          "extraction_ref": "detail-15464",
+          "body_file": "netease-official-careers/samples/detail-15464.json",
+          "body_sha256": "def0230d91688c2623199f575b937f2cfef04092a8c646be3eb59a1941d42d6a"
+        },
+        {
+          "sample_id": "447690fa320a0464",
+          "request_key": "POST https://hr.163.com/api/hr163/position/queryPage#2b50b56f46c12388",
+          "request_url": "https://hr.163.com/api/hr163/position/queryPage",
+          "captured_at": "2026-11-21T11:39:51.619Z",
+          "extraction_ref": "list-1",
+          "body_file": "netease-official-careers/samples/list-1.json",
+          "body_sha256": "447690fa320a04641c30acb755fcfe9b98d6ab39401ec8acfda943def68afb08"
+        },
+        {
+          "sample_id": "b5f45af1be0fae28",
+          "request_key": "POST https://hr.163.com/api/hr163/position/queryPage#fb5479276ae8664e",
+          "request_url": "https://hr.163.com/api/hr163/position/queryPage",
+          "captured_at": "2026-11-21T11:39:52.993Z",
+          "extraction_ref": "list-2",
+          "body_file": "netease-official-careers/samples/list-2.json",
+          "body_sha256": "b5f45af1be0fae2847200195baa7698aaaa1d89910195f5f842e673a604d1342"
+        },
+        {
+          "sample_id": "1746aefad2960fe6",
+          "request_key": "POST https://hr.163.com/api/hr163/position/queryPage#b5220f04ad7f74c4",
+          "request_url": "https://hr.163.com/api/hr163/position/queryPage",
+          "captured_at": "2026-11-21T11:39:54.357Z",
+          "extraction_ref": "list-3",
+          "body_file": "netease-official-careers/samples/list-3.json",
+          "body_sha256": "1746aefad2960fe676822d150bc3b54eb913436c67b50d77c6d6f84bf5c79f55"
+        }
+      ]
+    },
+    {
+      "source_key": "didi-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "9962091fb15fd87b",
+          "request_key": "GET https://talent.didiglobal.com/recruit-portal-service/api/job/front/view/63724",
+          "request_url": "https://talent.didiglobal.com/recruit-portal-service/api/job/front/view/63724",
+          "captured_at": "2026-11-21T11:42:29.256Z",
+          "extraction_ref": "detail-63724",
+          "body_file": "didi-official-careers/samples/detail-63724.json",
+          "body_sha256": "9962091fb15fd87bb005c6fe96811df0a7937e6618dff72c138cfb3691949523"
+        },
+        {
+          "sample_id": "3c2cef74a99bdaeb",
+          "request_key": "GET https://talent.didiglobal.com/recruit-portal-service/api/job/front/view/66326",
+          "request_url": "https://talent.didiglobal.com/recruit-portal-service/api/job/front/view/66326",
+          "captured_at": "2026-11-21T11:42:30.627Z",
+          "extraction_ref": "detail-66326",
+          "body_file": "didi-official-careers/samples/detail-66326.json",
+          "body_sha256": "3c2cef74a99bdaebbd4820f9c4fd6d6f70302e063d818dfe89f2cc76e0d6a0a5"
+        },
+        {
+          "sample_id": "ef02324a06eb51fc",
+          "request_key": "GET https://talent.didiglobal.com/recruit-portal-service/api/job/front/list?page=1&size=10",
+          "request_url": "https://talent.didiglobal.com/recruit-portal-service/api/job/front/list?page=1&size=10",
+          "captured_at": "2026-11-21T11:42:25.130Z",
+          "extraction_ref": "list-1",
+          "body_file": "didi-official-careers/samples/list-1.json",
+          "body_sha256": "ef02324a06eb51fc72b71d7d7889704aced0183ea6d82936477e5ba8962c9a15"
+        },
+        {
+          "sample_id": "4a099fb10d40ad5d",
+          "request_key": "GET https://talent.didiglobal.com/recruit-portal-service/api/job/front/list?page=2&size=10",
+          "request_url": "https://talent.didiglobal.com/recruit-portal-service/api/job/front/list?page=2&size=10",
+          "captured_at": "2026-11-21T11:42:26.520Z",
+          "extraction_ref": "list-2",
+          "body_file": "didi-official-careers/samples/list-2.json",
+          "body_sha256": "4a099fb10d40ad5dddc9122be0c8f972e03e87f475cb579a1cd83f9992e29e19"
+        },
+        {
+          "sample_id": "ea92ab0caf97dac3",
+          "request_key": "GET https://talent.didiglobal.com/recruit-portal-service/api/job/front/list?page=3&size=10",
+          "request_url": "https://talent.didiglobal.com/recruit-portal-service/api/job/front/list?page=3&size=10",
+          "captured_at": "2026-11-21T11:42:27.887Z",
+          "extraction_ref": "list-3",
+          "body_file": "didi-official-careers/samples/list-3.json",
+          "body_sha256": "ea92ab0caf97dac3185eb2910519dc83507b29534328be254fa8c59f2f03ba51"
+        }
+      ]
+    },
+    {
+      "source_key": "honor-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "595b60f2ab94e324",
+          "request_key": "POST https://career.honor.com/wecruit/positionInfo/listPositionDetail/SU5ff669649b0d78e6f4296c9a#a82c9baa33ffccbe",
+          "request_url": "https://career.honor.com/wecruit/positionInfo/listPositionDetail/SU5ff669649b0d78e6f4296c9a",
+          "captured_at": "2026-11-21T12:00:00.576Z",
+          "extraction_ref": "detail-66599aae1eb8051cd2168236",
+          "body_file": "honor-official-careers/samples/detail-66599aae1eb8051cd2168236.json",
+          "body_sha256": "595b60f2ab94e3241ae8749a63d252d4625cf0d570cbe4f884ad1c20c3074e05"
+        },
+        {
+          "sample_id": "eeaf2012a3d36a13",
+          "request_key": "POST https://career.honor.com/wecruit/positionInfo/listPositionDetail/SU5ff669649b0d78e6f4296c9a#740adcea49355f6a",
+          "request_url": "https://career.honor.com/wecruit/positionInfo/listPositionDetail/SU5ff669649b0d78e6f4296c9a",
+          "captured_at": "2026-11-21T12:00:01.911Z",
+          "extraction_ref": "detail-6a389065e49e0e559f924c92",
+          "body_file": "honor-official-careers/samples/detail-6a389065e49e0e559f924c92.json",
+          "body_sha256": "eeaf2012a3d36a1346400a9db6372545c493255c56c93e1ac6e7e977d10f3683"
+        },
+        {
+          "sample_id": "2ccc528c38e84f7e",
+          "request_key": "POST https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a#904bcd12c4075e31",
+          "request_url": "https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a",
+          "captured_at": "2026-11-21T11:59:56.400Z",
+          "extraction_ref": "list-1",
+          "body_file": "honor-official-careers/samples/list-1.json",
+          "body_sha256": "2ccc528c38e84f7eab1e3d7ede16b9d76c15a81607a9942c609661a446f7ddf8"
+        },
+        {
+          "sample_id": "daa28d93d81839aa",
+          "request_key": "POST https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a#b5d8a11d82048092",
+          "request_url": "https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a",
+          "captured_at": "2026-11-21T11:59:57.750Z",
+          "extraction_ref": "list-2",
+          "body_file": "honor-official-careers/samples/list-2.json",
+          "body_sha256": "daa28d93d81839aa1d4448a2c5347ff87ddf00977d4b837be659a28a1babe89b"
+        },
+        {
+          "sample_id": "280c841fe053ccff",
+          "request_key": "POST https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a#3c5ae800a049d2c2",
+          "request_url": "https://career.honor.com/wecruit/positionInfo/listPosition/SU5ff669649b0d78e6f4296c9a",
+          "captured_at": "2026-11-21T11:59:59.251Z",
+          "extraction_ref": "list-3",
+          "body_file": "honor-official-careers/samples/list-3.json",
+          "body_sha256": "280c841fe053ccfffb586660b67c7d2012f5b8de10cc57b2c39d293720f0ddad"
+        }
+      ]
+    },
+    {
+      "source_key": "changsha-rsj-policy",
+      "kind": "policy",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "f748ba0b06dbc381",
+          "request_key": "GET http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/202610/t20261029_12602918.html",
+          "request_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/202610/t20261029_12602918.html",
+          "captured_at": "2026-11-21T12:02:35.565Z",
+          "extraction_ref": "detail-1",
+          "body_file": "changsha-rsj-policy/samples/detail-1.html",
+          "body_sha256": "f748ba0b06dbc381236bf18942b62da640c3e739942585aadc7de8692c0d9970"
+        },
+        {
+          "sample_id": "54be19ae433bba9b",
+          "request_key": "GET http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/202609/t20260923_12574845.html",
+          "request_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/202609/t20260923_12574845.html",
+          "captured_at": "2026-11-21T12:02:37.161Z",
+          "extraction_ref": "detail-2",
+          "body_file": "changsha-rsj-policy/samples/detail-2.html",
+          "body_sha256": "54be19ae433bba9b86aa9463c084b328088d2ce300a88213d947651c2c72fa8b"
+        },
+        {
+          "sample_id": "b328e2ae5b39658b",
+          "request_key": "GET http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/202609/t20260918_12571183.html",
+          "request_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/202609/t20260918_12571183.html",
+          "captured_at": "2026-11-21T12:02:38.803Z",
+          "extraction_ref": "detail-3",
+          "body_file": "changsha-rsj-policy/samples/detail-3.html",
+          "body_sha256": "b328e2ae5b39658b060a3a0f5a2cf7171566f29449f83876382db54ac643dcd4"
+        },
+        {
+          "sample_id": "40eba91fc3d2ad46",
+          "request_key": "GET http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/index_1.html",
+          "request_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/index_1.html",
+          "captured_at": "2026-11-21T12:02:33.898Z",
+          "extraction_ref": "list-2",
+          "body_file": "changsha-rsj-policy/samples/list-2.html",
+          "body_sha256": "40eba91fc3d2ad46a1772bc7b022fb011b29c160af4f1ff730fcb4e38c3b715d"
+        },
+        {
+          "sample_id": "3036f1783424a234",
+          "request_key": "GET http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/",
+          "request_url": "http://rsj.changsha.gov.cn/zxzx_0/tzgg_131288/ldjy_131291/",
+          "captured_at": "2026-11-21T12:02:32.248Z",
+          "extraction_ref": "list",
+          "body_file": "changsha-rsj-policy/samples/list.html",
+          "body_sha256": "3036f1783424a2347e1789b437bf70e976bca78d575198f01f75962371a9b95f"
+        }
+      ]
+    },
+    {
+      "source_key": "hunan-jyt-policy",
+      "kind": "policy",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "ae5b73575c7ed6fd",
+          "request_key": "GET https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202610/t20261029_1183844.html",
+          "request_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202610/t20261029_1183844.html",
+          "captured_at": "2026-11-21T12:02:46.910Z",
+          "extraction_ref": "detail-1",
+          "body_file": "hunan-jyt-policy/samples/detail-1.html",
+          "body_sha256": "ae5b73575c7ed6fd9af4fef917b6aa00653f7a4a002379953384cad228468ecd"
+        },
+        {
+          "sample_id": "7d8251e6a7ef8016",
+          "request_key": "GET https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202610/t20261013_1183304.html",
+          "request_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202610/t20261013_1183304.html",
+          "captured_at": "2026-11-21T12:02:48.205Z",
+          "extraction_ref": "detail-2",
+          "body_file": "hunan-jyt-policy/samples/detail-2.html",
+          "body_sha256": "7d8251e6a7ef8016fcb25683509afd91a0f6b8c9fa7156ee877e15738372d972"
+        },
+        {
+          "sample_id": "5b4fef95e6525d5c",
+          "request_key": "GET https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202609/t20260930_1183184.html",
+          "request_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/202609/t20260930_1183184.html",
+          "captured_at": "2026-11-21T12:02:49.460Z",
+          "extraction_ref": "detail-3",
+          "body_file": "hunan-jyt-policy/samples/detail-3.html",
+          "body_sha256": "5b4fef95e6525d5c9689729200fdfbc3ddfd206050bb5545f6bb3c114aaf4467"
+        },
+        {
+          "sample_id": "4d6f6ac16a9f9a4b",
+          "request_key": "GET https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/index_2.html",
+          "request_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/index_2.html",
+          "captured_at": "2026-11-21T12:02:45.561Z",
+          "extraction_ref": "list-2",
+          "body_file": "hunan-jyt-policy/samples/list-2.html",
+          "body_sha256": "4d6f6ac16a9f9a4b9f5f6092263520ef1182ea4ddffddbea87b7effde02f8bc6"
+        },
+        {
+          "sample_id": "b6418e03d7db4687",
+          "request_key": "GET https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/index.html",
+          "request_url": "https://jyt.hunan.gov.cn/jyt/sjyt/xxgk/tzgg/index.html",
+          "captured_at": "2026-11-21T12:02:44.302Z",
+          "extraction_ref": "list",
+          "body_file": "hunan-jyt-policy/samples/list.html",
+          "body_sha256": "b6418e03d7db4687b34bd116641bb3eec93b54be91c1ad1dc04a94172b7f6c3b"
+        }
+      ]
+    },
+    {
+      "source_key": "cscec-official-careers",
+      "kind": "job",
+      "sample_count": 6,
+      "samples": [
+        {
+          "sample_id": "a45d0a0b944e778d",
+          "request_key": "GET https://www.cscec.com/rlzy_new/rczp/ssqyzp/202606/3949661.html",
+          "request_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202606/3949661.html",
+          "captured_at": "2026-11-21T12:06:54.439Z",
+          "extraction_ref": "detail-3949661",
+          "body_file": "cscec-official-careers/samples/detail-3949661.html",
+          "body_sha256": "a45d0a0b944e778d4657a17a1cc51ebe19e6f2824ee7ff702792e62a87f39478"
+        },
+        {
+          "sample_id": "6b25e6704e3e19bd",
+          "request_key": "GET https://www.cscec.com/rlzy_new/rczp/jtzbzp/202608/3956711.html",
+          "request_url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202608/3956711.html",
+          "captured_at": "2026-11-21T12:06:53.119Z",
+          "extraction_ref": "detail-3956711",
+          "body_file": "cscec-official-careers/samples/detail-3956711.html",
+          "body_sha256": "6b25e6704e3e19bddee354a5a0d3255c56d0b1b54aa9007e65477544d1a51452"
+        },
+        {
+          "sample_id": "70187ac8103b8eeb",
+          "request_key": "GET https://www.cscec.com/rlzy_new/rczp/jtzbzp/202608/3957584.html",
+          "request_url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202608/3957584.html",
+          "captured_at": "2026-11-21T12:06:51.710Z",
+          "extraction_ref": "detail-3957584",
+          "body_file": "cscec-official-careers/samples/detail-3957584.html",
+          "body_sha256": "70187ac8103b8eebdbd8dadb0c7511c6c30e959c4a873b81d9833ed9f6df42c2"
+        },
+        {
+          "sample_id": "e97111c70e72d4fb",
+          "request_key": "GET https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "request_url": "https://www.cscec.com/rlzy_new/rczp/ssqyzp/202609/3959432.html",
+          "captured_at": "2026-11-21T12:06:50.315Z",
+          "extraction_ref": "detail-3959432",
+          "body_file": "cscec-official-careers/samples/detail-3959432.html",
+          "body_sha256": "e97111c70e72d4fbb36e54abfeac597c597a943b57c69a75cf2d72eed2601e27"
+        },
+        {
+          "sample_id": "5d80b89b4a4905e9",
+          "request_key": "GET https://www.cscec.com/rlzy_new/rczp/jtzbzp/202611/3966090.html",
+          "request_url": "https://www.cscec.com/rlzy_new/rczp/jtzbzp/202611/3966090.html",
+          "captured_at": "2026-11-21T12:06:48.908Z",
+          "extraction_ref": "detail-3966090",
+          "body_file": "cscec-official-careers/samples/detail-3966090.html",
+          "body_sha256": "5d80b89b4a4905e9096a2866b5488346e45951fc209b0cd3ce7c49f55399badd"
+        },
+        {
+          "sample_id": "7dfc746acf43fe4a",
+          "request_key": "GET https://www.cscec.com/rlzy_new/rczp/",
+          "request_url": "https://www.cscec.com/rlzy_new/rczp/",
+          "captured_at": "2026-11-21T12:06:47.391Z",
+          "extraction_ref": "list",
+          "body_file": "cscec-official-careers/samples/list.html",
+          "body_sha256": "7dfc746acf43fe4ac5d6c10d841b313ef1c25e18e60e8d82fb719eff911ca500"
         }
       ]
     }

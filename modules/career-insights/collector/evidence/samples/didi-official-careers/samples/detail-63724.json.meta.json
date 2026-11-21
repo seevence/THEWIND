@@ -1,0 +1,14 @@
+{
+  "sample_id": "9962091fb15fd87b",
+  "request_key": "GET https://talent.didiglobal.com/recruit-portal-service/api/job/front/view/63724",
+  "request_url": "https://talent.didiglobal.com/recruit-portal-service/api/job/front/view/63724",
+  "final_url": "https://talent.didiglobal.com/recruit-portal-service/api/job/front/view/63724",
+  "http_status": 200,
+  "content_type": "application/json;charset=UTF-8",
+  "body_sha256": "9962091fb15fd87bb005c6fe96811df0a7937e6618dff72c138cfb3691949523",
+  "captured_at": "2026-11-21T11:42:29.256Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "detail-63724",
+  "sanitized": true,
+  "body_file": "didi-official-careers/samples/detail-63724.json"
+}

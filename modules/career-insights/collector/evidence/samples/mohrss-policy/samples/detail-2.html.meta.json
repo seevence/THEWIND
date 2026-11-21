@@ -1,0 +1,14 @@
+{
+  "sample_id": "7daad83f2c97ddb9",
+  "request_key": "GET https://chinajob.mohrss.gov.cn/c/2026-11-06/631989.shtml",
+  "request_url": "https://chinajob.mohrss.gov.cn/c/2026-11-06/631989.shtml",
+  "final_url": "https://chinajob.mohrss.gov.cn/c/2026-11-06/631989.shtml",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "body_sha256": "7daad83f2c97ddb9540b98bcc9f1916a070ec123fcbab0ba64765121f857c5b3",
+  "captured_at": "2026-11-21T11:37:54.477Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "detail-2",
+  "sanitized": true,
+  "body_file": "detail-2.html"
+}

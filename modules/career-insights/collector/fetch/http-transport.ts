@@ -46,10 +46,44 @@ function assertSupportedScheme(url: string, sourceKey: string, label: string): s
   return protocol;
 }
 
+/**
+ * 极窄的 HTTPS→HTTP 降级豁免：教育部（www.moe.gov.cn）只提供 http 正文，
+ * 公告公示栏目的列表与详情在 https 上 302 到同 host、同 path 的 http 地址。
+ * 只有「同 host + 同 path + 同 query，且落点在该栏目的 http 地址」才放行；
+ * 其余任何降级仍按 transport_security 拒绝。明文内容存在被篡改风险，
+ * 仅用于公开政策原文，来源定义里必须写明该限制。
+ */
+const HTTP_DOWNGRADE_ALLOWLIST: readonly { readonly hostname: string; readonly pathPrefix: string }[] = [
+  { hostname: "www.moe.gov.cn", pathPrefix: "/jyb_xxgk/s5743/s5744/" },
+];
+
+function isAllowedHttpDowngrade(fromUrl: string, toUrl: string): boolean {
+  let from: URL;
+  let to: URL;
+  try {
+    from = new URL(fromUrl);
+    to = new URL(toUrl);
+  } catch {
+    return false;
+  }
+  if (from.protocol !== "https:" || to.protocol !== "http:") {
+    return false;
+  }
+  if (from.hostname !== to.hostname || from.port !== to.port) {
+    return false;
+  }
+  if (from.pathname !== to.pathname || from.search !== to.search) {
+    return false;
+  }
+  return HTTP_DOWNGRADE_ALLOWLIST.some(
+    (rule) => rule.hostname === to.hostname && to.pathname.startsWith(rule.pathPrefix),
+  );
+}
+
 function assertNoSchemeDowngrade(fromUrl: string, toUrl: string, sourceKey: string): void {
   const from = assertSupportedScheme(fromUrl, sourceKey, "当前请求");
   const to = assertSupportedScheme(toUrl, sourceKey, "重定向目标");
-  if (from === "https:" && to === "http:") {
+  if (from === "https:" && to === "http:" && !isAllowedHttpDowngrade(fromUrl, toUrl)) {
     throw new SchemeDowngradeError(
       `HTTPS 请求被重定向降级到 HTTP：${fromUrl} → ${toUrl}`,
       sourceKey,
@@ -139,6 +173,7 @@ export class HttpTransport implements FetchTransport {
         requestUrl: request.url,
         finalUrl,
         bodyText: decodeBody(body, contentType, headers),
+        contentType,
         sourceKey: request.sourceKey,
       });
       if (blocked !== null) {

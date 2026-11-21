@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "kind": "direct-probe",
+  "source_key": "huawei-official-careers",
+  "started_at": "2026-11-21T11:38:11.161Z",
+  "finished_at": "2026-11-21T11:41:05.891Z",
+  "endpoint": "https://apigw-dgg-b0.huawei.com/api/apig/channelhw/recruitmentPosition/pub/getJobPage?X-HW-ID=app_000000035886",
+  "request_shape": {
+    "method": "POST",
+    "body": {
+      "curPage": "1..5",
+      "pageSize": 20,
+      "jobType": "SR"
+    },
+    "app_id_source": "华为招聘前台 common.min.js 公开配置"
+  },
+  "network_calls_note": "仅公开接口；同 host 请求间隔 >=1.3s；两次采样分别 3 页/2 页（每次 <=3 页）；未使用 Cookie/登录态/签名逆向；未绕验证码",
+  "pages": [
+    {
+      "page": 1,
+      "captured_at": "2026-11-21T11:38:13.235Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 57191,
+      "elapsed_ms": 472,
+      "parsed_items": 20,
+      "invalid_items": 0,
+      "personal_data_hit": false,
+      "block_marker_hits": [
+        "安全验证"
+      ],
+      "sample_id": "ceeb07d528cbeb1d",
+      "body_file": "huawei-official-careers/samples/list-1.json"
+    },
+    {
+      "page": 2,
+      "captured_at": "2026-11-21T11:38:14.814Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 55821,
+      "elapsed_ms": 266,
+      "parsed_items": 20,
+      "invalid_items": 0,
+      "personal_data_hit": false,
+      "block_marker_hits": [],
+      "sample_id": "354d0f13fcc13e25",
+      "body_file": "huawei-official-careers/samples/list-2.json"
+    },
+    {
+      "page": 3,
+      "captured_at": "2026-11-21T11:38:16.406Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 56950,
+      "elapsed_ms": 286,
+      "parsed_items": 20,
+      "invalid_items": 0,
+      "personal_data_hit": false,
+      "block_marker_hits": [
+        "安全验证"
+      ],
+      "sample_id": "d83b376eac0b0582",
+      "body_file": "huawei-official-careers/samples/list-3.json"
+    },
+    {
+      "page": 4,
+      "captured_at": "2026-11-21T11:41:04.299Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 64183,
+      "elapsed_ms": 545,
+      "parsed_items": 20,
+      "invalid_items": 0,
+      "personal_data_hit": false,
+      "block_marker_hits": [],
+      "sample_id": "0002d6abe655bc5b",
+      "body_file": "huawei-official-careers/samples/list-4.json"
+    },
+    {
+      "page": 5,
+      "captured_at": "2026-11-21T11:41:05.891Z",
+      "http_status": 200,
+      "content_type": "application/json;charset=UTF-8",
+      "bytes": 70757,
+      "elapsed_ms": 288,
+      "parsed_items": 20,
+      "invalid_items": 0,
+      "personal_data_hit": false,
+      "block_marker_hits": [],
+      "sample_id": "deb7726091c2bbe3",
+      "body_file": "huawei-official-careers/samples/list-5.json"
+    }
+  ],
+  "total_items": 100,
+  "total_rows_reported": 603,
+  "observed_fields": [
+    "jobId",
+    "advertisementId",
+    "jobName",
+    "workPlace",
+    "jobFamilyName",
+    "jobClass",
+    "workYear",
+    "degree",
+    "lastUpdateDate",
+    "mainBusiness",
+    "jobRequire",
+    "deptName"
+  ],
+  "detail_page_checks": [
+    {
+      "advertisement_id": 36952,
+      "url": "https://career.huawei.com/cn/job-details?advertisementId=36952",
+      "http_status": 200,
+      "page_title": "职位详情",
+      "sample_saved": false,
+      "reason": "详情页含页脚联系信息，按 evidence/sanitizer 规则不入库"
+    },
+    {
+      "advertisement_id": 46518,
+      "url": "https://career.huawei.com/cn/job-details?advertisementId=46518",
+      "http_status": 200,
+      "page_title": "职位详情",
+      "sample_saved": false,
+      "reason": "同上"
+    }
+  ],
+  "findings": [
+    "jobType=SR 社招 totalRows=603；不带 jobType 时 totalRows=712（含校招 109）。",
+    "校招 jobType=CR 的 mainBusiness/jobRequire 仅 14 字占位，正文需另行取详情，本次不纳入。",
+    "5 页共 100 条全部通过 validateRawCollectedJob，无个人联系方式；列表正文含安全类岗位“安全验证”原文。",
+    "详情页 /cn/job-details?advertisementId=<id> 实测 200，可作为 official_url；详情页为展示型页面。"
+  ],
+  "runner_path_note": "同一适配器经 HttpTransport 运行时在首请求 560ms 被共享 fetch/block-detector 以 limitation_type=captcha 拒绝（正文“安全验证”命中 CAPTCHA 标记），见 live-runs/20261121T113852Z-huawei-blockdetector-false-positive.json；端点、请求头、解析与映射本身均正常。"
+}
