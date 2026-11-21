@@ -1209,6 +1209,7 @@ f3af1e7a-fbb9-4f0f-ad72-96b2086fb903	631989	mohrss-policy	government_official	äº
 -- Name: career_job_observations_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
+CREATE SEQUENCE IF NOT EXISTS public.career_job_observations_id_seq1;
 SELECT pg_catalog.setval('public.career_job_observations_id_seq1', 1062, true);
 
 
