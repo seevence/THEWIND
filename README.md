@@ -64,7 +64,12 @@ flowchart LR
 ```bash
 cp .env.example .env          # 填 DATABASE_URL / LLM_* / ADMIN_PASSWORD / SESSION_SECRET 等
 docker compose up -d --build  # 打开 http://localhost:3000
+
+# 可选：导入 2026-11-21 演示数据快照（369 岗位 / 10 政策 / 已生成的研判与日报评论）
+docker compose exec -T db psql -U aihot -d aihot < database/demo/demo-data.sql
 ```
+
+> **无需 API Key 即可浏览完整页面**：演示数据里已包含岗位、政策与 AI 研判/日报评论的预生成缓存，页面只读缓存；只有重新采集或重新生成 AI 内容时才需要在 `.env` 配置 `LLM_*`。
 
 `--profile https` 可启用 Caddy 自动 HTTPS（设置 `SITE_DOMAIN`、`SITE_URL`）。
 
