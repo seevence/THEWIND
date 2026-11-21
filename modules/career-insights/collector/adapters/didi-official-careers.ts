@@ -1,3 +1,4 @@
+import { beijingAt } from "@aihot/contracts/time";
 import type { RawCollectedJobV1 } from "../../contracts/index.ts";
 import type {
   CareerCollectOptions,
@@ -112,9 +113,11 @@ function buildIso(
     return null;
   }
   const pad = (value: string) => value.padStart(2, "0");
-  const date = new Date(
-    `${year}-${pad(month)}-${pad(day)}T${pad(hour)}:${pad(minute)}:${pad(second)}+08:00`,
+  const base = beijingAt(
+    `${year}-${pad(month)}-${pad(day)}`,
+    `${pad(hour)}:${pad(minute)}`,
   );
+  const date = new Date(base.getTime() + Number(pad(second)) * 1000);
   return Number.isNaN(date.getTime()) ? null : date.toISOString();
 }
 

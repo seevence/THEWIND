@@ -1,3 +1,4 @@
+import { beijingAt } from "@aihot/contracts/time";
 import type { RawCollectedJobV1 } from "../../contracts/index.ts";
 import type {
   CareerCollectOptions,
@@ -115,9 +116,11 @@ export function parseHonorPublishedAt(raw: string | null): string | null {
   const hour = (match[4] ?? "0").padStart(2, "0");
   const minute = (match[5] ?? "0").padStart(2, "0");
   const second = (match[6] ?? "0").padStart(2, "0");
-  const date = new Date(
-    `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}T${hour}:${minute}:${second}+08:00`,
+  const base = beijingAt(
+    `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`,
+    `${hour}:${minute}`,
   );
+  const date = new Date(base.getTime() + Number(second) * 1000);
   return Number.isNaN(date.getTime()) ? null : date.toISOString();
 }
 
