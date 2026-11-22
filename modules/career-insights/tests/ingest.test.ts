@@ -8,15 +8,18 @@ import { closeDb, sql } from "@aihot/backend/db";
 import type { CareerObservationBatchV1, NormalizedJobV1 } from "../contracts/index.ts";
 import { InvalidParameterError } from "../backend/errors.ts";
 import { ingestBatch } from "../backend/ingest.ts";
+import { CAREER_SOURCE_DEFINITIONS } from "../collector/sources.ts";
 
 const digest = (seed: string) => createHash("sha256").update(seed).digest("hex");
 const at = (value: Date | string) => new Date(value).toISOString();
+// 入库入口只接受已启用的注册来源；测试批次必须用一个真实登记的 job 源。
+const TEST_SOURCE_KEY = "iflytek-official-careers";
 
 function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
   return {
     schema_version: "1.0",
     normalizer_version: "normalizer/0.2.0",
-    source_key: "career-test",
+    source_key: TEST_SOURCE_KEY,
     job_key: "job-1",
     company_name: "测试科技有限公司",
     title: "AI 应用开发工程师",
@@ -43,7 +46,7 @@ function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
 }
 
 function batchOf(jobs: NormalizedJobV1[], fetchedAt = "2026-01-01T00:00:00.000Z"): CareerObservationBatchV1 {
-  return { schema_version: "1.0", source_key: "career-test", fetched_at: fetchedAt, collector_version: "test-collector-1", jobs };
+  return { schema_version: "1.0", source_key: TEST_SOURCE_KEY, fetched_at: fetchedAt, collector_version: "test-collector-1", jobs };
 }
 
 async function count(table: "career_jobs" | "career_job_observations"): Promise<number> {
@@ -69,7 +72,7 @@ async function storedJob(jobKey = "job-1") {
     SELECT title, content_hash, normalizer_version, role_family, student_friendly,
            experience_min_years, experience_raw, skills, first_seen_at, last_seen_at
     FROM career_jobs
-    WHERE source_key = 'career-test' AND job_key = ${jobKey}`;
+    WHERE source_key = ${TEST_SOURCE_KEY} AND job_key = ${jobKey}`;
   return row!;
 }
 
@@ -171,6 +174,68 @@ test("a batch over one hundred jobs is refused before anything is written", asyn
   assert.equal(await count("career_jobs"), 0);
   assert.equal(await count("career_job_observations"), 0);
 });
+
+test("a batch from an unregistered source_key is refused before anything is written", async () => {
+  const unregistered = { ...batchOf([job()]), source_key: "career-test" };
+
+  await assert.rejects(
+    () => ingestBatch(sql, unregistered),
+    (error: unknown) => {
+      assert.ok(error instanceof InvalidParameterError);
+      assert.equal(error.code, "invalid_parameter");
+      assert.equal(error.message, "Unknown or disabled source: career-test");
+      assert.deepEqual(error.details, { parameter: "source_key" });
+      return true;
+    },
+  );
+  assert.equal(await count("career_jobs"), 0);
+  assert.equal(await count("career_job_observations"), 0);
+});
+
+test("a batch from a disabled registered source is refused before anything is written", async () => {
+  const disabled = CAREER_SOURCE_DEFINITIONS.find(
+    (source) => source.kind === "company_careers" && !source.enabled,
+  );
+  assert.ok(disabled !== undefined, "the registry must keep at least one disabled source for this guard");
+  const batch = { ...batchOf([job()]), source_key: disabled.source_key };
+
+  await assert.rejects(
+    () => ingestBatch(sql, batch),
+    (error: unknown) => {
+      assert.ok(error instanceof InvalidParameterError);
+      assert.equal(error.code, "invalid_parameter");
+      assert.equal(error.message, `Unknown or disabled source: ${disabled.source_key}`);
+      assert.deepEqual(error.details, { parameter: "source_key" });
+      return true;
+    },
+  );
+  assert.equal(await count("career_jobs"), 0);
+  assert.equal(await count("career_job_observations"), 0);
+});
+
+test("a job whose own source_key is unregistered or differs from the batch is rejected while the rest is written", async () => {
+  const result = await ingestBatch(
+    sql,
+    batchOf([
+      job({ job_key: "ok-1" }),
+      job({ job_key: "alien-1", source_key: "career-test" }),
+      job({ job_key: "other-1", source_key: "dahua-official-careers" }),
+    ]),
+  );
+
+  assert.deepEqual(result.errors.map((error) => error.index), [1, 2], "errors are listed by ascending index");
+  assert.ok(result.errors.every((error) => error.code === "validation_failed"));
+  assert.match(result.errors[0]!.message, /source_key.*career-test/);
+  assert.match(result.errors[1]!.message, /does not match the batch source/);
+  assert.equal(result.rejected, 2);
+  assert.equal(result.accepted, 1);
+  assert.equal(await count("career_jobs"), 1);
+  assert.equal(await count("career_job_observations"), 1);
+
+  const storedKeys = await sql<{ source_key: string }[]>`SELECT DISTINCT source_key FROM career_jobs`;
+  assert.deepEqual(storedKeys.map((row) => row.source_key), [TEST_SOURCE_KEY], "an unregistered job source never reaches the table");
+});
+
 test("a newer normalizer version refreshes derived fields and keeps one observation per day", async () => {
   await ingestBatch(
     sql,

@@ -15,7 +15,7 @@ function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
   return {
     schema_version: "1.0",
     normalizer_version: NORMALIZER_VERSION,
-    source_key: "career-test",
+    source_key: "iflytek-official-careers",
     job_key: "job-1",
     company_name: "甲科技有限公司",
     title: "机器学习工程师",
@@ -81,7 +81,7 @@ test("a verified import row downgrades summary and list but keeps each detail ro
   await seed(
     [
       job({
-        source_key: "career-import",
+        source_key: "iflytek-official-careers",
         job_key: "job-2",
         company_name: "乙科技有限公司",
         content_hash: "b".repeat(64),
@@ -108,7 +108,7 @@ test("the jobs list origin follows the filtered result set, not the whole table"
   await seed(
     [
       job({
-        source_key: "career-import",
+        source_key: "iflytek-official-careers",
         job_key: "job-2",
         company_name: "乙科技有限公司",
         content_hash: "b".repeat(64),

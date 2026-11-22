@@ -3,7 +3,7 @@
 // Fastify routes for parameter bounds and cache semantics.
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
-import { after, beforeEach, test } from "node:test";
+import { after, before, beforeEach, test } from "node:test";
 import Fastify from "fastify";
 import { closeDb, sql } from "@aihot/backend/db";
 import type { NormalizedJobV1, SummaryResponseV1 } from "../contracts/index.ts";
@@ -21,6 +21,11 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const repository = new SqlCareerRepository(sql);
 const digest = (seed: string) => createHash("sha256").update(seed).digest("hex");
 const nowIso = () => new Date().toISOString();
+// 入库入口只接受已启用的注册来源；seed 也必须走真实登记的 job 源。
+const TEST_SOURCE_KEY = "iflytek-official-careers";
+const TEST_SOURCE = CAREER_SOURCE_DEFINITIONS.find(
+  (source) => source.source_key === TEST_SOURCE_KEY && source.enabled && source.kind === "company_careers",
+)!;
 
 function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
   const skills = overrides.skills ?? ["python"];
@@ -28,7 +33,7 @@ function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
   return {
     schema_version: "1.0",
     normalizer_version: NORMALIZER_VERSION,
-    source_key: "career-test",
+    source_key: TEST_SOURCE_KEY,
     job_key: jobKey,
     company_name: "测试科技有限公司",
     title: "AI 应用开发工程师",
@@ -55,14 +60,39 @@ function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
 }
 
 async function seed(...jobs: NormalizedJobV1[]): Promise<void> {
-  await ingestBatch(sql, {
-    schema_version: "1.0",
-    source_key: "career-test",
-    fetched_at: jobs[0]!.fetched_at,
-    collector_version: "test-collector-1",
-    jobs,
-  });
+  // 逐条来源闭合：job 自带 source_key 必须与批次一致，所以按来源拆批次写入。
+  const bySource = new Map<string, NormalizedJobV1[]>();
+  for (const entry of jobs) {
+    const group = bySource.get(entry.source_key) ?? [];
+    group.push(entry);
+    bySource.set(entry.source_key, group);
+  }
+  for (const [sourceKey, group] of bySource) {
+    await ingestBatch(sql, {
+      schema_version: "1.0",
+      source_key: sourceKey,
+      fetched_at: group[0]!.fetched_at,
+      collector_version: "test-collector-1",
+      jobs: group,
+    });
+  }
 }
+
+// 入口已禁止未登记/停用来源写入；需要这类「历史遗留」行时先按注册来源入库，再改行模拟读路径降级。
+async function rekeyJob(jobKey: string, sourceKey: string): Promise<void> {
+  await sql`UPDATE career_jobs SET source_key = ${sourceKey} WHERE job_key = ${jobKey}`;
+}
+
+// 软守护：只在「运行时库里已有采集数据」时才有意义。CI 每次新建库，beforeEach 还会 TRUNCATE，
+// 空库时快照恒为 []；此时用例显式 skip（报告中可见），而不是静默通过。
+// 导入入口的硬守护在 ingest.test.ts：未登记或停用的 source_key 整批拒绝。
+let collectedSourceKeys: string[] = [];
+
+before(async () => {
+  const rows = await sql<{ source_key: string }[]>`
+    SELECT DISTINCT source_key FROM career_jobs WHERE source_key IS NOT NULL ORDER BY source_key`;
+  collectedSourceKeys = rows.map((row) => row.source_key);
+});
 
 beforeEach(async () => {
   await sql`TRUNCATE career_job_observations, career_jobs, career_policies, career_ingest_runs RESTART IDENTITY`;
@@ -70,6 +100,52 @@ beforeEach(async () => {
 
 after(async () => {
   await closeDb();
+});
+
+test("every source_key already collected into career_jobs is registered (soft guard: skipped on an empty database)", (t) => {
+  if (collectedSourceKeys.length === 0) {
+    t.skip("soft guard: no collected rows in this database");
+    return;
+  }
+  const registered = new Set(CAREER_SOURCE_DEFINITIONS.map((source) => source.source_key));
+  assert.deepEqual(
+    collectedSourceKeys.filter((key) => !registered.has(key)),
+    [],
+    "collection writes a source_key that CAREER_SOURCE_DEFINITIONS does not know: register it so the hot board can link it",
+  );
+});
+
+test("every hot entry links to its representative source's registered careers page", async () => {
+  const careers = CAREER_SOURCE_DEFINITIONS.filter((source) => source.kind === "company_careers");
+  // MAX_HOT_LIMIT is 50; one source per company keeps the representative source unambiguous.
+  const enabledSample = careers.filter((source) => source.enabled).slice(0, 40);
+  const disabled = careers.find((source) => !source.enabled);
+  const unregisteredKey = "hot-links-unregistered-careers";
+  assert.ok(enabledSample.length > 0);
+  assert.ok(disabled !== undefined);
+
+  await seed(
+    ...enabledSample.map((source) =>
+      job({
+        job_key: `${source.source_key}-1`,
+        source_key: source.source_key,
+        company_name: `公司-${source.source_key}`,
+      }),
+    ),
+    job({ job_key: "disabled-1", company_name: "公司-停用来源" }),
+    job({ job_key: "unregistered-1", company_name: "公司-未登记来源" }),
+  );
+  await rekeyJob("disabled-1", disabled.source_key);
+  await rekeyJob("unregistered-1", unregisteredKey);
+
+  const hot = await loadCareerHot(sql, { limit: 50, window_days: 30 });
+  assert.equal(hot.entries.length, enabledSample.length + 2);
+  const careerUrl = new Map(hot.entries.map((entry) => [entry.company, entry.career_url] as const));
+  for (const source of enabledSample) {
+    assert.equal(careerUrl.get(`公司-${source.source_key}`), source.entry_url, source.source_key);
+  }
+  assert.equal(careerUrl.get("公司-停用来源"), null, "disabled sources have no link");
+  assert.equal(careerUrl.get("公司-未登记来源"), null, "unregistered sources have no link");
 });
 
 test("the hot board aggregates by company inside the observation window and drops unknown families", async () => {
@@ -103,7 +179,7 @@ test("the hot board aggregates by company inside the observation window and drop
   ], "top 3 by count, ties by role_family ASC");
   assert.deepEqual(hot.entries[1], {
     company: "百度",
-    career_url: null,
+    career_url: TEST_SOURCE.entry_url,
     job_count: 2,
     latest_published_at: "2026-11-19T00:00:00.000Z",
     role_families: [{ role_family: "ai_product_operations", count: 1 }],
@@ -121,14 +197,20 @@ test("the hot board links a company to its most frequent source's official caree
     (source) => source.kind === "company_careers" && !source.enabled,
   );
   assert.ok(zhiye !== undefined && disabled !== undefined);
+  const other = CAREER_SOURCE_DEFINITIONS.find(
+    (source) => source.enabled && source.kind === "company_careers" && source.source_key !== zhiye.source_key,
+  );
+  assert.ok(other !== undefined);
 
   await seed(
     job({ job_key: "zhiye-1", source_key: zhiye.source_key, company_name: "科大讯飞" }),
     job({ job_key: "zhiye-2", source_key: zhiye.source_key, company_name: "科大讯飞" }),
-    job({ job_key: "zhiye-3", source_key: "career-test", company_name: "科大讯飞" }),
-    job({ job_key: "unknown-1", source_key: "career-test", company_name: "未登记来源公司" }),
-    job({ job_key: "disabled-1", source_key: disabled.source_key, company_name: "停用来源公司" }),
+    job({ job_key: "zhiye-3", source_key: other.source_key, company_name: "科大讯飞" }),
+    job({ job_key: "unknown-1", company_name: "未登记来源公司" }),
+    job({ job_key: "disabled-1", company_name: "停用来源公司" }),
   );
+  await rekeyJob("unknown-1", "career-test");
+  await rekeyJob("disabled-1", disabled.source_key);
 
   const hot = await loadCareerHot(sql, { limit: 10, window_days: 30 });
   const careerUrl = (company: string) =>

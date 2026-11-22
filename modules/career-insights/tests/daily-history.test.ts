@@ -29,7 +29,7 @@ function job(jobKey: string, overrides: Partial<NormalizedJobV1> = {}): Normaliz
   return {
     schema_version: "1.0",
     normalizer_version: NORMALIZER_VERSION,
-    source_key: "career-daily-history-test",
+    source_key: "tencent-official-careers",
     job_key: jobKey,
     company_name: "测试科技有限公司",
     title: "算法工程师",
@@ -61,7 +61,7 @@ const DAY_TWO_JOBS = [...DAY_ONE_JOBS, job("h4"), job("h5")];
 async function seedJobs(fetchedAt: string, jobs: NormalizedJobV1[]): Promise<void> {
   await ingestBatch(sql, {
     schema_version: "1.0",
-    source_key: "career-daily-history-test",
+    source_key: "tencent-official-careers",
     fetched_at: fetchedAt,
     collector_version: "test-collector-1",
     jobs: jobs.map((entry) => ({ ...entry, fetched_at: fetchedAt })),

@@ -9,6 +9,7 @@ import type {
   NormalizedJobV1,
   StudentFriendly,
 } from "../contracts/index.ts";
+import { CAREER_SOURCE_DEFINITIONS } from "../collector/sources.ts";
 import { sourceContentEquals, type ContentHashInputV1 } from "../data/dedupe.ts";
 import { validateNormalizedJobV1, type ValidationIssueV1 } from "../data/validate.ts";
 import { InvalidParameterError } from "./errors.ts";
@@ -250,11 +251,38 @@ export async function ingestBatch(
     throw new InvalidParameterError(`A batch may contain at most ${MAX_BATCH_SIZE} jobs.`, { parameter: "jobs" });
   }
 
+  // 榜单链接由 source_key 映射注册表：未登记或停用的来源一旦入库，企业上榜就没有官网入口，
+  // 来源统计也会失真。整批拒绝，且发生在任何写入之前。
+  const sourceKey = batch.source_key;
+  const registered = CAREER_SOURCE_DEFINITIONS.some(
+    (source) => source.source_key === sourceKey && source.enabled,
+  );
+  if (!registered) {
+    throw new InvalidParameterError(`Unknown or disabled source: ${sourceKey}`, { parameter: "source_key" });
+  }
+
   const valid: NormalizedJobV1[] = [];
   const errors: IngestResultV1["errors"] = [];
   let rejected = 0;
 
   batch.jobs.forEach((candidate, index) => {
+    // 逐条闭合：job 自带的 source_key 也必须已登记、启用，且与批次来源一致，否则整条不计入。
+    const jobSourceKey = typeof candidate.source_key === "string" ? candidate.source_key : undefined;
+    if (jobSourceKey !== undefined) {
+      const jobSourceEnabled = CAREER_SOURCE_DEFINITIONS.some(
+        (source) => source.source_key === jobSourceKey && source.enabled,
+      );
+      const sourceIssue = !jobSourceEnabled
+        ? `source_key: Unknown or disabled source: ${jobSourceKey}`
+        : jobSourceKey !== sourceKey
+          ? `source_key: job source ${jobSourceKey} does not match the batch source ${sourceKey}`
+          : null;
+      if (sourceIssue !== null) {
+        rejected += 1;
+        errors.push({ index, code: "validation_failed", message: sourceIssue });
+        return;
+      }
+    }
     const result = validateNormalizedJobV1(candidate);
     if (result.ok) {
       valid.push(result.value);

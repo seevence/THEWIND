@@ -135,6 +135,12 @@ export interface JobDetailResponseV1 {
 
 export interface CareerObservationBatchV1 {
   schema_version: "1.0";
+  /**
+   * 必须为已启用的注册来源（CAREER_SOURCE_DEFINITIONS 中 kind 为 job 类别的条目）；
+   * 未登记或停用的来源整批拒绝，返回 invalid_parameter（details.parameter = "source_key"）。
+   * 逐条闭合：每个 job 自带的 source_key（若存在）也必须已登记、启用且与本字段一致，否则该条
+   * 计入 rejected 并记 validation_failed，不写库。
+   */
   source_key: string;
   fetched_at: string;
   collector_version: string;

@@ -23,7 +23,7 @@ function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
   return {
     schema_version: "1.0",
     normalizer_version: NORMALIZER_VERSION,
-    source_key: "career-test",
+    source_key: "iflytek-official-careers",
     job_key: "job-1",
     company_name: "测试科技有限公司",
     title: "AI 应用开发工程师",
@@ -50,13 +50,22 @@ function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
 }
 
 async function seed(...jobs: NormalizedJobV1[]): Promise<void> {
-  await ingestBatch(sql, {
-    schema_version: "1.0",
-    source_key: "career-test",
-    fetched_at: jobs[0]!.fetched_at,
-    collector_version: "test-collector-1",
-    jobs,
-  });
+  // 逐条来源闭合：job 自带 source_key 必须与批次一致，所以按来源拆批次写入。
+  const bySource = new Map<string, NormalizedJobV1[]>();
+  for (const entry of jobs) {
+    const group = bySource.get(entry.source_key) ?? [];
+    group.push(entry);
+    bySource.set(entry.source_key, group);
+  }
+  for (const [sourceKey, group] of bySource) {
+    await ingestBatch(sql, {
+      schema_version: "1.0",
+      source_key: sourceKey,
+      fetched_at: group[0]!.fetched_at,
+      collector_version: "test-collector-1",
+      jobs: group,
+    });
+  }
 }
 
 const metric = (summary: SummaryResponseV1, id: MetricResultV1["metric_id"]) => summary.metrics.find((entry) => entry.metric_id === id)!;
@@ -176,7 +185,7 @@ test("summary counts the ingested jobs and reports the role family, skill and st
     }),
     job({
       job_key: "job-3",
-      source_key: "career-test-2",
+      source_key: "dahua-official-careers",
       company_name: "乙公司",
       title: "AI 产品实习生",
       role_family: "unknown",
@@ -391,7 +400,7 @@ test("jobDetail returns the current state with its recent observations and hides
   assert.equal(current.id, id);
   assert.equal(typeof current.id, "string");
   assert.equal(current.job_key, "job-1");
-  assert.equal(current.source_key, "career-test");
+  assert.equal(current.source_key, "iflytek-official-careers");
   assert.equal(current.title, "AI 应用开发高级工程师");
   assert.equal(current.company_name, "测试科技有限公司");
   assert.equal(current.role_family, "ai_application_development");

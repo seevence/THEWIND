@@ -23,7 +23,7 @@ function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
   return {
     schema_version: "1.0",
     normalizer_version: NORMALIZER_VERSION,
-    source_key: "career-signals-test",
+    source_key: "baidu-official-careers",
     job_key: jobKey,
     company_name: "测试科技有限公司",
     title: "算法工程师",
@@ -52,7 +52,7 @@ function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
 async function seed(...jobs: NormalizedJobV1[]): Promise<void> {
   await ingestBatch(sql, {
     schema_version: "1.0",
-    source_key: "career-signals-test",
+    source_key: "baidu-official-careers",
     fetched_at: jobs[0]!.fetched_at,
     collector_version: "test-collector-1",
     jobs,

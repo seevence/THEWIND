@@ -57,7 +57,7 @@ function job(fetchedAt: string): NormalizedJobV1 {
   return {
     schema_version: "1.0",
     normalizer_version: NORMALIZER_VERSION,
-    source_key: "career-brief-test",
+    source_key: "iflytek-official-careers",
     job_key: "brief-job-1",
     company_name: "测试科技有限公司",
     title: "算法工程师",
@@ -88,7 +88,7 @@ function job(fetchedAt: string): NormalizedJobV1 {
 async function seedDay(fetchedAt: string): Promise<void> {
   await ingestBatch(sql, {
     schema_version: "1.0",
-    source_key: "career-brief-test",
+    source_key: "iflytek-official-careers",
     fetched_at: fetchedAt,
     collector_version: "test-collector-1",
     jobs: [job(fetchedAt)],
