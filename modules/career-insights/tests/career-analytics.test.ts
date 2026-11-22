@@ -13,6 +13,7 @@ import { ingestBatch } from "../backend/ingest.ts";
 import { writePolicyBatch } from "../backend/policy-repository.ts";
 import { finishRun } from "../backend/run-repository.ts";
 import { SqlCareerRepository } from "../backend/sql-repository.ts";
+import { CAREER_SOURCE_DEFINITIONS } from "../collector/sources.ts";
 import { NORMALIZER_VERSION } from "../data/normalize.ts";
 
 const EPOCH = "1970-01-01T00:00:00.000Z";
@@ -102,6 +103,7 @@ test("the hot board aggregates by company inside the observation window and drop
   ], "top 3 by count, ties by role_family ASC");
   assert.deepEqual(hot.entries[1], {
     company: "百度",
+    career_url: null,
     job_count: 2,
     latest_published_at: "2026-11-19T00:00:00.000Z",
     role_families: [{ role_family: "ai_product_operations", count: 1 }],
@@ -109,6 +111,49 @@ test("the hot board aggregates by company inside the observation window and drop
   assert.deepEqual(hot.entries[2]!.role_families, [], "unknown is not a role family");
   assert.equal(hot.entries.some((entry) => entry.company === "旧公司"), false, "observations outside the window are excluded");
   assert.notEqual(hot.as_of, EPOCH);
+});
+
+test("the hot board links a company to its most frequent source's official careers page", async () => {
+  const zhiye = CAREER_SOURCE_DEFINITIONS.find(
+    (source) => source.kind === "company_careers" && source.enabled && source.entry_url.includes(".zhiye.com"),
+  );
+  const disabled = CAREER_SOURCE_DEFINITIONS.find(
+    (source) => source.kind === "company_careers" && !source.enabled,
+  );
+  assert.ok(zhiye !== undefined && disabled !== undefined);
+
+  await seed(
+    job({ job_key: "zhiye-1", source_key: zhiye.source_key, company_name: "科大讯飞" }),
+    job({ job_key: "zhiye-2", source_key: zhiye.source_key, company_name: "科大讯飞" }),
+    job({ job_key: "zhiye-3", source_key: "career-test", company_name: "科大讯飞" }),
+    job({ job_key: "unknown-1", source_key: "career-test", company_name: "未登记来源公司" }),
+    job({ job_key: "disabled-1", source_key: disabled.source_key, company_name: "停用来源公司" }),
+  );
+
+  const hot = await loadCareerHot(sql, { limit: 10, window_days: 30 });
+  const careerUrl = (company: string) =>
+    hot.entries.find((entry) => entry.company === company)?.career_url;
+
+  assert.equal(careerUrl("科大讯飞"), zhiye.entry_url, "the majority source decides the link");
+  assert.equal(careerUrl("未登记来源公司"), null, "sources missing from the registry have no link");
+  assert.equal(careerUrl("停用来源公司"), null, "disabled sources have no link");
+});
+
+test("the hot board breaks an even source split by the smallest source_key", async () => {
+  const zhiyeSources = CAREER_SOURCE_DEFINITIONS.filter(
+    (source) => source.kind === "company_careers" && source.enabled && source.entry_url.includes(".zhiye.com"),
+  );
+  assert.ok(zhiyeSources.length >= 2);
+  const [first, second] = zhiyeSources;
+  const smallest = first!.source_key < second!.source_key ? first! : second!;
+
+  await seed(
+    job({ job_key: "tie-1", source_key: first!.source_key, company_name: "同数来源公司" }),
+    job({ job_key: "tie-2", source_key: second!.source_key, company_name: "同数来源公司" }),
+  );
+
+  const hot = await loadCareerHot(sql, { limit: 10, window_days: 30 });
+  assert.equal(hot.entries[0]!.career_url, smallest.entry_url);
 });
 
 test("the hot board respects the limit and answers an empty table with an empty list", async () => {

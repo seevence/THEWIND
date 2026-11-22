@@ -8,6 +8,7 @@ import type {
   CareerHotRoleFamilyCountV1,
 } from "../contracts/insights.ts";
 import type { RoleFamily } from "../contracts/job.ts";
+import { CAREER_SOURCE_DEFINITIONS } from "../collector/sources.ts";
 import { InvalidParameterError } from "./errors.ts";
 import { careerPolicyRelevanceSql } from "./policy-relevance.ts";
 import { resolveDataOrigin } from "./provenance.ts";
@@ -27,6 +28,7 @@ export interface HotCompanyOptions {
 
 interface HotCompanyRow {
   company: string;
+  representative_source_key: string | null;
   job_count: number;
   latest_published_at: string | null;
 }
@@ -78,6 +80,15 @@ function publishedAtOrNull(value: string | null): string | null {
   return value === null || value === "" ? null : value;
 }
 
+/** 外链只取代表来源注册表里的 entry_url：政策来源、停用来源与未登记来源都不产出链接。 */
+function careerUrlForSourceKey(sourceKey: string | null): string | null {
+  const definition =
+    sourceKey === null ? undefined : CAREER_SOURCE_DEFINITIONS.find((source) => source.source_key === sourceKey);
+  return definition !== undefined && definition.kind === "company_careers" && definition.enabled
+    ? definition.entry_url
+    : null;
+}
+
 function runStatus(row: DailyRunRow): CareerDailySourceV1["status"] {
   if (row.any_failed) return "failed";
   if (row.any_partial) return "partial";
@@ -112,6 +123,7 @@ export async function loadCareerHot(db: Db, options: HotCompanyOptions): Promise
   const [companies, families, totals] = await Promise.all([
     db<HotCompanyRow[]>`
       SELECT company_name AS company,
+             mode() WITHIN GROUP (ORDER BY source_key) AS representative_source_key,
              COUNT(*)::int AS job_count,
              MAX(published_at) AS latest_published_at
       FROM career_jobs job
@@ -148,6 +160,7 @@ export async function loadCareerHot(db: Db, options: HotCompanyOptions): Promise
 
   const entries: CareerHotEntryV1[] = companies.map((row) => ({
     company: row.company,
+    career_url: careerUrlForSourceKey(row.representative_source_key),
     job_count: row.job_count,
     latest_published_at: publishedAtOrNull(row.latest_published_at),
     role_families: roleFamilies.get(row.company) ?? [],

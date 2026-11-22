@@ -3,6 +3,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as cheerio from "cheerio";
+import { CAREER_SOURCE_DEFINITIONS } from "../../../modules/career-insights/collector/sources.ts";
 import { fakeApi, startWebServer } from "./web-server.ts";
 
 async function page(path: string, route: (url: URL) => unknown = () => undefined): Promise<{ status: number; $: cheerio.CheerioAPI; html: string }> {
@@ -40,7 +41,7 @@ test("the hot page opens its list and the home page links to it", async () => {
     data_origin: "live",
     as_of: at,
     window_days: 30,
-    entries: [{ company: "固定企业", job_count: 12, latest_published_at: at, role_families: [] }],
+    entries: [{ company: "固定企业", career_url: null, job_count: 12, latest_published_at: at, role_families: [] }],
   };
   const hot = await page("/hot", (url) => (url.pathname === "/api/site/career-insights/hot" ? response : undefined));
   assert.equal(hot.status, 200);
@@ -48,4 +49,47 @@ test("the hot page opens its list and the home page links to it", async () => {
   assert.equal(hot.$("[data-hot-entry]").length, 1);
   const home = await page("/");
   assert.ok(home.html.includes('href="/hot"'), "the home page links to /hot");
+});
+
+test("a company with a career url becomes an external link and the others stay plain text", async () => {
+  const at = "2026-10-04T08:00:00.000Z";
+  const entryUrls = new Set(CAREER_SOURCE_DEFINITIONS.map((source) => source.entry_url));
+  const response = {
+    contract_version: "0.1",
+    data_origin: "live",
+    as_of: at,
+    window_days: 30,
+    entries: [
+      { company: "链接企业", career_url: "https://careers.tencent.com/", job_count: 9, latest_published_at: at, role_families: [] },
+      { company: "纯文本企业", career_url: null, job_count: 4, latest_published_at: at, role_families: [] },
+      // 运行时的旧版本 API 没有该字段，按无链接处理，而不是渲染出 href=undefined 的假链接。
+      { company: "旧契约企业", job_count: 2, latest_published_at: at, role_families: [] },
+    ],
+  };
+  const hot = await page("/hot", (url) => (url.pathname === "/api/site/career-insights/hot" ? response : undefined));
+  assert.equal(hot.status, 200);
+
+  const rows = hot.$("[data-hot-entry]");
+  assert.equal(rows.length, 3);
+
+  const linked = rows.eq(0).find('a[data-hot-company]');
+  assert.equal(linked.length, 1, "the company with a career url is a link");
+  assert.equal(linked.text(), "链接企业");
+  assert.ok(entryUrls.has(linked.attr("href") ?? ""), "the link points at a registered official careers page");
+  assert.equal(linked.attr("target"), "_blank");
+  const rel = (linked.attr("rel") ?? "").split(/\s+/);
+  assert.ok(rel.includes("noopener"), "the link carries rel=noopener");
+  assert.ok(rel.includes("noreferrer"), "the link carries rel=noreferrer");
+
+  const plain = rows.eq(1).find("[data-hot-company]");
+  assert.equal(plain.length, 1, "the company without a career url keeps its company marker");
+  assert.equal(plain.text(), "纯文本企业");
+  assert.equal(plain.get(0)?.tagName, "span", "it stays plain text");
+  assert.equal(rows.eq(1).find("a").length, 0, "no link is rendered for it");
+
+  const missing = rows.eq(2).find("[data-hot-company]");
+  assert.equal(missing.length, 1, "a missing career_url keeps the company marker");
+  assert.equal(missing.text(), "旧契约企业");
+  assert.equal(missing.get(0)?.tagName, "span", "a missing career_url stays plain text");
+  assert.equal(rows.eq(2).find("a").length, 0, "no fake link is rendered for it");
 });

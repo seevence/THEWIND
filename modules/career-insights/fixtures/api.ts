@@ -283,6 +283,7 @@ export const FIXTURE_HOT_V1: CareerHotResponseV1 = {
   entries: [
     {
       company: "虚构样例科技有限公司",
+      career_url: null,
       job_count: 12,
       latest_published_at: "2026-01-01T09:00:00.000Z",
       role_families: [
@@ -294,6 +295,7 @@ export const FIXTURE_HOT_V1: CareerHotResponseV1 = {
     },
     {
       company: "虚构智能制造有限公司",
+      career_url: null,
       job_count: 3,
       latest_published_at: null,
       role_families: [{ role_family: "data", count: 2 }],

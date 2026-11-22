@@ -60,7 +60,7 @@ const api = fakeApi((url) => {
   if (path === "/api/site/career-insights/hot") {
     return {
       contract_version: "0.1", data_origin: "synthetic_fixture", as_of: at, window_days: 30,
-      entries: [{ company: "固定企业", job_count: 12, latest_published_at: at, role_families: [] }],
+      entries: [{ company: "固定企业", career_url: null, job_count: 12, latest_published_at: at, role_families: [] }],
     };
   }
   if (path === "/api/site/career-insights/summary") return careerSummary;

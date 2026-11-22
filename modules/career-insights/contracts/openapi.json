@@ -1339,6 +1339,7 @@
         "type": "object",
         "required": [
           "company",
+          "career_url",
           "job_count",
           "latest_published_at",
           "role_families"
@@ -1346,6 +1347,12 @@
         "properties": {
           "company": {
             "type": "string"
+          },
+          "career_url": {
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "job_count": {
             "type": "integer",

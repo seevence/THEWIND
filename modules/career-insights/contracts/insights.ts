@@ -7,6 +7,8 @@ export interface CareerHotRoleFamilyCountV1 {
 
 export interface CareerHotEntryV1 {
   company: string;
+  /** 代表来源（`source_key` 众数）在注册表里的官方招聘页；无定义/停用/非 company_careers 时为 null。 */
+  career_url: string | null;
   job_count: number;
   latest_published_at: string | null;
   role_families: CareerHotRoleFamilyCountV1[];

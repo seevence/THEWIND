@@ -22,6 +22,26 @@ function FamilyChips({ entry }: { entry: CareerHotEntryV1 }): ReactElement | nul
   );
 }
 
+const COMPANY_CLASS = "text-[15px] font-semibold text-ink break-words";
+
+function CompanyName({ entry }: { entry: CareerHotEntryV1 }): ReactElement {
+  // 旧版本 API 的条目没有 career_url（运行时为 undefined），此时按无链接处理。
+  if (!entry.career_url) {
+    return h("span", { "data-hot-company": entry.company, className: COMPANY_CLASS }, entry.company);
+  }
+  return h(
+    "a",
+    {
+      "data-hot-company": entry.company,
+      href: entry.career_url,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: `${COMPANY_CLASS} hover:underline`,
+    },
+    entry.company,
+  );
+}
+
 function HotRow({ entry, rank }: { entry: CareerHotEntryV1; rank: number }): ReactElement {
   return h(
     "li",
@@ -33,7 +53,7 @@ function HotRow({ entry, rank }: { entry: CareerHotEntryV1; rank: number }): Rea
       h(
         "div",
         { className: "flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1" },
-        h("span", { "data-hot-company": entry.company, className: "text-[15px] font-semibold text-ink break-words" }, entry.company),
+        h(CompanyName, { entry }),
         h(
           "span",
           { className: "text-[13px] text-ink-3 whitespace-nowrap" },
