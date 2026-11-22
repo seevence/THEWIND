@@ -15,9 +15,11 @@ import {
   zhiyeSiteUrl,
 } from "../collector/adapters/zhiye-official-careers.ts";
 import {
+  AccessBlockedError,
   ConfigError,
   EmptyResultError,
   ParseFailedError,
+  RequestTimeoutError,
   SchemaChangedError,
 } from "../collector/fetch/errors.ts";
 import type {
@@ -748,6 +750,81 @@ test("zhiye pageLimit 上限为 3", async () => {
   const jobs = await adapter.collect();
   assert.equal(transport.requests.length, 3);
   assert.equal(jobs.length, 3);
+});
+
+test("zhiye 分页不生效源（invt）忽略更大 pageLimit，只请求首屏一次", async () => {
+  const transport = createTransport((request) => {
+    const body = JSON.parse(request.body ?? "{}") as Record<string, number>;
+    return listBody([{ ...JOB_FULL, JobAdId: 3000 + body["PageIndex"] }]);
+  });
+  const adapter = createZhiyeOfficialCareersAdapter(transport, {
+    tenant: "invt",
+    sourceKey: "invt-official-careers",
+    companyName: "英威腾",
+    pageLimit: 3,
+    sleep: async () => {},
+  });
+  const jobs = await adapter.collect(undefined, { pageLimit: 3 });
+  assert.equal(transport.requests.length, 1);
+  const pageIndex = (JSON.parse(transport.requests[0]?.body ?? "{}") as Record<string, number>)["PageIndex"];
+  assert.equal(pageIndex, 0);
+  assert.deepEqual(jobs.map((job) => job.source_job_id), ["3000"]);
+});
+
+test("zhiye HTTP 429/403 归为 access_blocked，5xx 归为瞬态 timeout，200+Code!=200 仍是 schema_changed", async () => {
+  const createStatusTransport = (status: number, bodyText: string): FetchTransport => ({
+    async fetchPage(request): Promise<TransportResponse> {
+      return {
+        status,
+        requestUrl: request.url,
+        finalUrl: request.url,
+        contentType: "application/json;charset=UTF-8",
+        headers: { "content-type": "application/json;charset=UTF-8" },
+        body: Buffer.from(bodyText, "utf8"),
+        fetchedAt: "2026-11-22T00:00:00.000Z",
+      };
+    },
+  });
+
+  const rateLimited = createZhiyeOfficialCareersAdapter(createStatusTransport(429, "{}"), ADAPTER_OPTIONS);
+  await assert.rejects(
+    () => rateLimited.collect(),
+    (error: unknown) =>
+      error instanceof AccessBlockedError &&
+      error.failureType === "access_blocked" &&
+      error.limitationType === "rate_limit" &&
+      error.sourceKey === SOURCE,
+  );
+
+  const forbidden = createZhiyeOfficialCareersAdapter(createStatusTransport(403, "{}"), ADAPTER_OPTIONS);
+  await assert.rejects(
+    () => forbidden.collect(),
+    (error: unknown) =>
+      error instanceof AccessBlockedError &&
+      error.failureType === "access_blocked" &&
+      error.limitationType === "forbidden",
+  );
+
+  const serverError = createZhiyeOfficialCareersAdapter(createStatusTransport(503, "{}"), ADAPTER_OPTIONS);
+  await assert.rejects(
+    () => serverError.collect(),
+    (error: unknown) =>
+      error instanceof RequestTimeoutError &&
+      error.failureType === "timeout" &&
+      error.sourceKey === SOURCE,
+  );
+
+  const businessError = createZhiyeOfficialCareersAdapter(
+    createStatusTransport(200, listBody([], 500)),
+    ADAPTER_OPTIONS,
+  );
+  await assert.rejects(
+    () => businessError.collect(),
+    (error: unknown) =>
+      error instanceof SchemaChangedError &&
+      error.failureType === "schema_changed" &&
+      error.sourceKey === SOURCE,
+  );
 });
 
 test("zhiye 透传 AbortSignal 给传输层", async () => {

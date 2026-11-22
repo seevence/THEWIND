@@ -89,6 +89,66 @@ test("毫秒时间戳、机构总机与 ICP 备案号保持原文并记为误报
   assert.deepEqual(sanitized.headers, { accept: "application/json" });
 });
 
+test("UUID 中的 11 位数字段不打码，非 UUID 语境的 11 位手机号仍打码", () => {
+  const raw = JSON.stringify({
+    Data: [
+      { Id: "a2fc6e75-2426-4799-b9c9-13708838236c", JobAdId: 430044777 },
+      { Id: "2cee0338-a5cf-486f-87d6-b18129472457", JobAdId: 270636135 },
+    ],
+  });
+
+  const result = redactPersonalData(raw);
+  assert.deepEqual(result.counts, { email: 0, phone: 0, contact: 0 });
+  assert.equal(result.text, raw);
+  assert.ok(result.text.includes("a2fc6e75-2426-4799-b9c9-13708838236c"));
+  assert.ok(result.text.includes("2cee0338-a5cf-486f-87d6-b18129472457"));
+
+  const real = '{"Contact":"联系电话：13708838236"}';
+  const redacted = redactPersonalData(real);
+  assert.deepEqual(redacted.counts, { email: 0, phone: 1, contact: 1 });
+  assert.ok(redacted.text.includes(REDACTED_CONTACT));
+  assert.doesNotMatch(redacted.text, /13708838236/);
+
+  // 非联系人段语境下的 11 位手机号同样必须打码为占位符。
+  const bare = redactPersonalData('{"Phone":"13708838236"}');
+  assert.equal(bare.text, `{"Phone":"${REDACTED_PHONE}"}`);
+});
+
+test("含邮箱/手机号的真实段落仍打码，UUID 字段保真且 JSON 可解析", () => {
+  const raw = JSON.stringify({
+    Code: 200,
+    Count: 2,
+    Data: [
+      {
+        Id: "a2fc6e75-2426-4799-b9c9-13708838236c",
+        JobAdId: 1,
+        Duty: "简历投递：hr@example.com 或致电13800138000",
+        Require: "本科",
+      },
+      {
+        Id: "b1cb402f-98aa-4a24-bf03-37054e4d8b41",
+        JobAdId: 2,
+        Duty: "负责测试",
+        Require: "熟悉 Java",
+      },
+    ],
+  });
+
+  const result = redactPersonalData(raw);
+  assert.deepEqual(result.counts, { email: 1, phone: 1, contact: 1 });
+
+  const parsed = JSON.parse(result.text) as {
+    Data: { Id: string; JobAdId: number; Duty: string; Require: string }[];
+  };
+  assert.equal(parsed.Data.length, 2);
+  assert.equal(parsed.Data[0].Id, "a2fc6e75-2426-4799-b9c9-13708838236c");
+  assert.equal(parsed.Data[1].Id, "b1cb402f-98aa-4a24-bf03-37054e4d8b41");
+  assert.equal(parsed.Data[0].Duty, REDACTED_CONTACT);
+  assert.equal(parsed.Data[1].Duty, "负责测试");
+  assert.doesNotMatch(result.text, /@/);
+  assert.doesNotMatch(result.text, /13800138000/);
+});
+
 test("HTML 样本打码后标签仍闭合", () => {
   const raw =
     '<div><p>联系电话：<a href="mailto:hr@example.com">邮件</a></p><p>联系人：13800138000</p></div>';

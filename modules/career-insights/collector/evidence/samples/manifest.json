@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-11-22T03:58:59.460Z",
+  "generated_at": "2026-11-22T04:44:50.690Z",
   "sources": [
     {
       "source_key": "moe-policy",
@@ -2688,7 +2688,7 @@
           "sample_id": "7fe588b76b7470c7",
           "request_key": "POST https://edan.zhiye.com/api/Jobad/GetJobAdPageList#a410e33463645b58",
           "request_url": "https://edan.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:18:40.087Z",
+          "captured_at": "2026-11-22T04:44:37.904Z",
           "extraction_ref": "list-1",
           "body_file": "edan-official-careers/samples/list-1.json",
           "body_sha256": "7fe588b76b7470c79d50cc8c0af9ff97babefa578cbb679ad407b51ea0487d12"
@@ -2697,7 +2697,7 @@
           "sample_id": "d36eca599570b019",
           "request_key": "POST https://edan.zhiye.com/api/Jobad/GetJobAdPageList#83b5c79698ed7f09",
           "request_url": "https://edan.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:18:41.238Z",
+          "captured_at": "2026-11-22T04:44:39.134Z",
           "extraction_ref": "list-2",
           "body_file": "edan-official-careers/samples/list-2.json",
           "body_sha256": "d36eca599570b019e10c017b325621801ffab56859f6bf8f3ea933b8c1fb9fe7"
@@ -2706,25 +2706,25 @@
           "sample_id": "c03b31c9ad5ac57f",
           "request_key": "POST https://edan.zhiye.com/api/Jobad/GetJobAdPageList#a71d91b7237d48c6",
           "request_url": "https://edan.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:18:42.392Z",
+          "captured_at": "2026-11-22T04:44:40.271Z",
           "extraction_ref": "list-3",
           "body_file": "edan-official-careers/samples/list-3.json",
           "body_sha256": "c03b31c9ad5ac57f4a6702086c9dfdf88bd8b0db495743bdca950134d52a8f5a"
         },
         {
-          "sample_id": "6d737f760140049d",
+          "sample_id": "5263e166005559a5",
           "request_key": "POST https://edan.zhiye.com/api/Jobad/GetJobAdPageList#8d26adfeefef8ee5",
           "request_url": "https://edan.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:18:43.593Z",
+          "captured_at": "2026-11-22T04:44:41.454Z",
           "extraction_ref": "list-4",
           "body_file": "edan-official-careers/samples/list-4.json",
-          "body_sha256": "6d737f760140049df16c36f63af443f55f45394f986def03cfccea94da02cde6"
+          "body_sha256": "5263e166005559a581ca4192812081e50dc6c8ab2b3216e341fdd3132cc82de4"
         },
         {
           "sample_id": "4340482199998b7d",
           "request_key": "POST https://edan.zhiye.com/api/Jobad/GetJobAdPageList#12909e1c78ebf994",
           "request_url": "https://edan.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:18:44.920Z",
+          "captured_at": "2026-11-22T04:44:42.625Z",
           "extraction_ref": "list-5",
           "body_file": "edan-official-careers/samples/list-5.json",
           "body_sha256": "4340482199998b7dd9c57f547b3b9430da5c5c9133a29be08fba773c6ded48de"
@@ -3465,19 +3465,19 @@
       "sample_count": 5,
       "samples": [
         {
-          "sample_id": "a4c13765e7b82dd1",
+          "sample_id": "82ddb6876f156f50",
           "request_key": "POST https://beisen.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
           "request_url": "https://beisen.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:40:42.601Z",
+          "captured_at": "2026-11-22T04:44:45.711Z",
           "extraction_ref": "list-1",
           "body_file": "beisen-official-careers/samples/list-1.json",
-          "body_sha256": "a4c13765e7b82dd1bea556ede8f512f5f882c81558afe3b1697350b55999dfa5"
+          "body_sha256": "82ddb6876f156f5043ccfa682e623c299ace59cc86ace752fd7a7c619010a421"
         },
         {
           "sample_id": "4f79a43351dc86a9",
           "request_key": "POST https://beisen.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
           "request_url": "https://beisen.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:40:43.857Z",
+          "captured_at": "2026-11-22T04:44:46.841Z",
           "extraction_ref": "list-2",
           "body_file": "beisen-official-careers/samples/list-2.json",
           "body_sha256": "4f79a43351dc86a933e06556ebee8545b6b91680490883d16b55fc3f6f17ca8b"
@@ -3486,7 +3486,7 @@
           "sample_id": "2507d6c88f28df0d",
           "request_key": "POST https://beisen.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
           "request_url": "https://beisen.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:40:45.151Z",
+          "captured_at": "2026-11-22T04:44:48.051Z",
           "extraction_ref": "list-3",
           "body_file": "beisen-official-careers/samples/list-3.json",
           "body_sha256": "2507d6c88f28df0d4d7a24d6d6be0fa33097ba1428aef6cc075403bbd4db269e"
@@ -3495,7 +3495,7 @@
           "sample_id": "41d01bcc6d23de20",
           "request_key": "POST https://beisen.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
           "request_url": "https://beisen.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:40:46.445Z",
+          "captured_at": "2026-11-22T04:44:49.500Z",
           "extraction_ref": "list-4",
           "body_file": "beisen-official-careers/samples/list-4.json",
           "body_sha256": "41d01bcc6d23de208967f87c1d02f9b495cc200fda307365ff8fefbd013f0f4c"
@@ -3504,7 +3504,7 @@
           "sample_id": "0000394a98920993",
           "request_key": "POST https://beisen.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
           "request_url": "https://beisen.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T03:40:47.736Z",
+          "captured_at": "2026-11-22T04:44:50.687Z",
           "extraction_ref": "list-5",
           "body_file": "beisen-official-careers/samples/list-5.json",
           "body_sha256": "0000394a989209931af545f65d7df0a21d74ec2b37e2e659380bfb6c5486866d"

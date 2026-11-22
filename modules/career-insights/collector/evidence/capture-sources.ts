@@ -23,7 +23,7 @@ import { createPageRequest } from "../fetch/transport.ts";
 import type { FetchTransport, PageMethod } from "../fetch/transport.ts";
 import { buildSampleManifest } from "./manifest.ts";
 import type { ManifestSampleRef, ManifestSource, SampleManifest } from "./manifest.ts";
-import { SampleStore, createSample } from "./sample-store.ts";
+import { SampleStore, createSample, sha256Hex } from "./sample-store.ts";
 import type { SampleMeta } from "./sample-store.ts";
 import { sanitizeSample } from "./sanitizer.ts";
 
@@ -123,12 +123,14 @@ function assertRedactionKeepsJsonIntact(bodyFile: string, original: string, reda
   }
 }
 
+/** 同源内按正文 sha256 去重（重复请求只落 1 份），`seen` 由各源采集器持有。 */
 async function capture(
   store: SampleStore,
   transport: FetchTransport,
   input: CaptureInput,
   log: CaptureLog,
-): Promise<CaptureResult> {
+  seen: Map<string, string>,
+): Promise<CaptureResult | null> {
   const request = createPageRequest({
     url: input.url,
     method: input.method,
@@ -148,6 +150,14 @@ async function capture(
     log.warnings.push(`${input.bodyFile}: sanitized=false（${sanitize.sanitize_note}）`);
   }
   const sanitizedBody = Buffer.from(sanitize.bodyText, "utf8");
+  const bodySha = sha256Hex(sanitizedBody);
+  const duplicateOf = seen.get(bodySha);
+  if (duplicateOf !== undefined) {
+    // 重复正文（典型为稀疏源尾部的同一份空页）只保留首次落盘的一份，不伪造差异化样本。
+    log.warnings.push(`${input.bodyFile}: 与 ${duplicateOf} 正文相同（sha256 重复），已跳过落盘`);
+    return null;
+  }
+  seen.set(bodySha, input.bodyFile);
 
   const sample = createSample({
     request_key: computeRequestKey(input.url, input.method, input.body),
@@ -172,8 +182,9 @@ function messageOf(error: unknown): string {
 }
 
 /**
- * 官方 Count 不足 PageSize×5 时，尾部页会返回同一份空 `Data` 响应，使多份样本的
- * sample_id（body 哈希）撞车。按 Count 收缩页大小，保证 5 页都落在真实数据上。
+ * 每源份数 = min(5, Count+1)：官方 Count 不足 PageSize×5 时尾部页仍是同一份空 `Data`。
+ * 按 Count 收缩页大小只能减少空页（Count≥5 时才能让 5 页都落在真实数据上），
+ * Count<5 时仍有空页且空页正文彼此相同，由 `capture` 按 body sha256 去重，只保留一份。
  */
 function planZhiyePageSize(count: number | null): number {
   if (count === null || count <= 0) {
@@ -216,6 +227,7 @@ async function captureZhiyeSource(
 ): Promise<ManifestSource | null> {
   const url = `${zhiyeSiteUrl(spec.tenant)}${ZHIYE_LIST_PATH}`;
   const samples: ManifestSampleRef[] = [];
+  const seenBodies = new Map<string, string>();
   let plannedPageSize = ZHIYE_PAGE_SIZE;
   if (spec.paginationUnsupported !== true) {
     await sleep(REQUEST_INTERVAL_MS);
@@ -239,8 +251,10 @@ async function captureZhiyeSource(
         extractionRef: `list-${pageIndex + 1}`,
         bodyFile: `${spec.sourceKey}/samples/list-${pageIndex + 1}.json`,
         collectorVersion: ZHIYE_COLLECTOR_VERSION,
-      }, log);
-      samples.push(result.ref);
+      }, log, seenBodies);
+      if (result !== null) {
+        samples.push(result.ref);
+      }
     } catch (error) {
       log.gaps.push(
         `${spec.sourceKey} PageIndex=${requestPageIndex} PageSize=${requestPageSize}: ${messageOf(error)}`,
@@ -263,7 +277,8 @@ async function captureHunanRsjPolicy(
   log: CaptureLog,
 ): Promise<ManifestSource | null> {
   await sleep(REQUEST_INTERVAL_MS);
-  let list: CaptureResult;
+  const seenBodies = new Map<string, string>();
+  let list: CaptureResult | null;
   try {
     list = await capture(store, transport, {
       url: HUNAN_RSJ_LIST_URL,
@@ -273,9 +288,13 @@ async function captureHunanRsjPolicy(
       extractionRef: "list-1",
       bodyFile: `${HUNAN_RSJ_SOURCE_KEY}/samples/list-1.html`,
       collectorVersion: HUNAN_RSJ_COLLECTOR_VERSION,
-    }, log);
+    }, log, seenBodies);
   } catch (error) {
     log.gaps.push(`${HUNAN_RSJ_SOURCE_KEY} ${HUNAN_RSJ_LIST_URL}: ${messageOf(error)}`);
+    return null;
+  }
+  if (list === null) {
+    log.gaps.push(`${HUNAN_RSJ_SOURCE_KEY}: 列表页正文与同源既有样本重复，证据缺口`);
     return null;
   }
   const samples: ManifestSampleRef[] = [list.ref];
@@ -301,8 +320,10 @@ async function captureHunanRsjPolicy(
         extractionRef: `detail-${index + 1}`,
         bodyFile: `${HUNAN_RSJ_SOURCE_KEY}/samples/detail-${index + 1}.html`,
         collectorVersion: HUNAN_RSJ_COLLECTOR_VERSION,
-      }, log);
-      samples.push(detail.ref);
+      }, log, seenBodies);
+      if (detail !== null) {
+        samples.push(detail.ref);
+      }
     } catch (error) {
       log.gaps.push(`${HUNAN_RSJ_SOURCE_KEY} ${item.url}: ${messageOf(error)}`);
     }

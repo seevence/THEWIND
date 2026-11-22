@@ -223,6 +223,54 @@ test("manifest 内 .json 样本打码落盘后仍是合法 JSON", async () => {
   assert.ok(checked > 0);
 });
 
+test("同源样本按正文 sha256 去重，稀疏空页样本 meta 如实说明空页为真实响应", async () => {
+  const manifest = await loadManifest();
+  for (const source of manifest.sources) {
+    const shas = source.samples.map((sample) => sample.body_sha256);
+    assert.equal(
+      new Set(shas).size,
+      shas.length,
+      `${source.source_key} 存在正文完全相同的重复样本（未按 body sha 去重）`,
+    );
+  }
+
+  const emptyPageSamples = [
+    "risen-official-careers/samples/list-5.json",
+    "apsystems-official-careers/samples/list-2.json",
+    "benq-official-careers/samples/list-4.json",
+  ];
+  for (const bodyFile of emptyPageSamples) {
+    const body = JSON.parse(await readFile(join(SAMPLES, bodyFile), "utf8")) as { Data?: unknown };
+    assert.deepEqual(body.Data, [], `${bodyFile} 应为 Data=[] 的空页`);
+    const meta = JSON.parse(
+      await readFile(join(SAMPLES, `${bodyFile}.meta.json`), "utf8"),
+    ) as { sanitize_note?: string };
+    assert.match(meta.sanitize_note ?? "", /空页/, `${bodyFile} meta 缺少空页说明`);
+    assert.match(meta.sanitize_note ?? "", /真实响应/, `${bodyFile} meta 未说明空页为真实响应`);
+  }
+});
+
+test("beisen/edan 重抓样本的 Id 保持完整 UUID，未被打码改写", async () => {
+  const manifest = await loadManifest();
+  const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  for (const sourceKey of ["beisen-official-careers", "edan-official-careers"]) {
+    const source = manifest.sources.find((item) => item.source_key === sourceKey);
+    assert.ok(source !== undefined, sourceKey);
+    let checked = 0;
+    for (const sample of source.samples) {
+      const body = JSON.parse(await readFile(join(SAMPLES, sample.body_file), "utf8")) as {
+        Data?: { Id?: unknown }[];
+      };
+      for (const item of body.Data ?? []) {
+        checked += 1;
+        assert.match(String(item.Id), uuidPattern, `${sample.body_file} 的 Id 不是完整 UUID`);
+        assert.doesNotMatch(String(item.Id), /redacted/, `${sample.body_file} 的 Id 被打码篡改`);
+      }
+    }
+    assert.ok(checked > 0, `${sourceKey} 未解析到任何条目`);
+  }
+});
+
 test("manifest 拒绝计数不一致、路径越界与非法哈希", async () => {
   const manifest = await loadManifest();
   const tampered = structuredClone(manifest);

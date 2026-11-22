@@ -6,7 +6,7 @@
   "http_status": 200,
   "content_type": "application/json; charset=utf-8",
   "body_sha256": "2507d6c88f28df0d4d7a24d6d6be0fa33097ba1428aef6cc075403bbd4db269e",
-  "captured_at": "2026-11-22T03:40:45.151Z",
+  "captured_at": "2026-11-22T04:44:48.051Z",
   "collector_version": "collector/0.2.0",
   "extraction_ref": "list-3",
   "sanitized": false,

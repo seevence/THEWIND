@@ -9,8 +9,9 @@ export const SENSITIVE_HEADERS: readonly string[] = [
 ];
 
 const EMAIL_PATTERN = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
-// 前后不得紧邻数字：毫秒时间戳（如 1795153028000）因此不会被当成手机号。
-const CN_MOBILE_PATTERN = /(?<!\d)1[3-9]\d{9}(?!\d)/;
+// 前后不得紧邻十六进制字符或 `-`：毫秒时间戳（1795153028000）与 UUID 段
+// （a2fc6e75-2426-4799-b9c9-13708838236c 中的 1370883823）因此都不会被当成手机号。
+const CN_MOBILE_PATTERN = /(?<![0-9a-fA-F-])1[3-9]\d{9}(?![0-9a-fA-F-])/;
 // 段落不得跨越 JSON 字符串边界（`"`）、转义序列（`\`）、HTML 标签（`<`）或换行：
 // 否则 `"Duty":"简历投递：hr@example.com","Require":…` 会把 `","Require":` 一起吃掉，
 // 打码后 JSON 非法（review N1）。

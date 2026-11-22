@@ -7,9 +7,11 @@ import type {
 } from "../index.ts";
 
 import {
+  AccessBlockedError,
   ConfigError,
   EmptyResultError,
   ParseFailedError,
+  RequestTimeoutError,
   SchemaChangedError,
 } from "../fetch/errors.ts";
 import { createPageRequest } from "../fetch/transport.ts";
@@ -816,6 +818,22 @@ function isAborted(signal: AbortSignal | undefined): boolean {
   return signal?.aborted === true;
 }
 
+/**
+ * 限流/鉴权/服务端错误不是结构变更：按 access_blocked 或瞬态 timeout 上报，
+ * 否则告警与降级判断会把它们误记为 schema_changed。
+ */
+function classifyHttpStatus(status: number, sourceKey: string): void {
+  if (status === 429) {
+    throw new AccessBlockedError("rate_limit", "zhiye 列表响应 HTTP 429（触发限流）", sourceKey);
+  }
+  if (status === 403) {
+    throw new AccessBlockedError("forbidden", "zhiye 列表响应 HTTP 403（禁止访问）", sourceKey);
+  }
+  if (status >= 500 && status <= 599) {
+    throw new RequestTimeoutError(`zhiye 列表响应 HTTP ${status}（服务端错误，瞬态）`, sourceKey);
+  }
+}
+
 function buildListRequest(
   url: string,
   pageIndex: number,
@@ -861,6 +879,9 @@ export function createZhiyeOfficialCareersAdapter(
     throw new ConfigError(`来源 ${options.sourceKey} 未在 ZHIYE_SOURCES 中登记`);
   }
   const defaultPageLimit = Math.max(1, Math.min(options.pageLimit ?? 1, MAX_PAGE_LIMIT));
+  const paginationUnsupported =
+    ZHIYE_SOURCE_SPECS.find((spec) => spec.sourceKey === options.sourceKey)?.paginationUnsupported ===
+    true;
   const listUrl = `${zhiyeSiteUrl(options.tenant)}${ZHIYE_LIST_PATH}`;
   const jobsPageUrl = zhiyeJobsPageUrl(options.tenant);
   const sleep = options.sleep ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
@@ -872,9 +893,11 @@ export function createZhiyeOfficialCareersAdapter(
       callOptions?: CareerCollectOptions,
     ): Promise<RawCollectedJobV1[]> {
       const pageLimit = Math.max(1, Math.min(callOptions?.pageLimit ?? defaultPageLimit, MAX_PAGE_LIMIT));
+      // 官方 PageIndex 不生效的源只取首屏：更大 pageLimit 只会重复请求同一页，且回放无对应样本。
+      const effectivePageLimit = paginationUnsupported ? 1 : pageLimit;
       const jobs: RawCollectedJobV1[] = [];
       const seenJobIds = new Set<string>();
-      for (let pageIndex = 0; pageIndex < pageLimit; pageIndex += 1) {
+      for (let pageIndex = 0; pageIndex < effectivePageLimit; pageIndex += 1) {
         if (isAborted(signal)) {
           throw new DOMException("采集被取消", "AbortError");
         }
@@ -884,6 +907,7 @@ export function createZhiyeOfficialCareersAdapter(
         const response = await transport.fetchPage(
           buildListRequest(listUrl, pageIndex, definition.source_key, signal),
         );
+        classifyHttpStatus(response.status, definition.source_key);
         let summaries: ZhiyeJobSummary[];
         try {
           summaries = parseZhiyeList(response.body);

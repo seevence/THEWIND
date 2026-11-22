@@ -10,5 +10,6 @@
   "collector_version": "collector/0.2.0",
   "extraction_ref": "list-4",
   "sanitized": true,
+  "sanitize_note": "empty_page:Data=[] 为官方真实响应（空页，非伪造）",
   "body_file": "benq-official-careers/samples/list-4.json"
 }
