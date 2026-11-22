@@ -18,6 +18,11 @@ import { createNetEaseOfficialCareersAdapter } from "./adapters/netease-official
 import { createMeituanOfficialCareersAdapter } from "./adapters/meituan-official-careers.ts";
 import { createMohrssPolicyAdapter } from "./adapters/mohrss-policy.ts";
 import { createTencentOfficialCareersAdapter } from "./adapters/tencent-official-careers.ts";
+import { createHunanRsjPolicyAdapter } from "./adapters/hunan-rsj-policy.ts";
+import {
+  createZhiyeOfficialCareersAdapter,
+  ZHIYE_SOURCE_SPECS,
+} from "./adapters/zhiye-official-careers.ts";
 import { CAREER_SOURCE_DEFINITIONS } from "./sources.ts";
 
 export interface CareerAdapterSet {
@@ -35,6 +40,20 @@ export function createCareerAdapters(transport: FetchTransport): CareerAdapterSe
   const policies: PolicySourceAdapter[] = [];
   for (const definition of CAREER_SOURCE_DEFINITIONS) {
     if (!definition.enabled) {
+      continue;
+    }
+    const zhiyeSpec = ZHIYE_SOURCE_SPECS.find(
+      (spec) => spec.sourceKey === definition.source_key,
+    );
+    if (zhiyeSpec) {
+      jobs.push(
+        createZhiyeOfficialCareersAdapter(transport, {
+          tenant: zhiyeSpec.tenant,
+          sourceKey: zhiyeSpec.sourceKey,
+          companyName: zhiyeSpec.companyName,
+          definition,
+        }),
+      );
       continue;
     }
     switch (definition.source_key) {
@@ -79,6 +98,9 @@ export function createCareerAdapters(transport: FetchTransport): CareerAdapterSe
         break;
       case "hunan-jyt-policy":
         policies.push(createHunanJytPolicyAdapter(transport));
+        break;
+      case "hunan-rsj-policy":
+        policies.push(createHunanRsjPolicyAdapter(transport));
         break;
       default:
         throw new ConfigError(`来源 ${definition.source_key} 已启用但没有对应适配器实现`);

@@ -1,0 +1,15 @@
+{
+  "sample_id": "43cc21ca2ac0ad10",
+  "request_key": "POST https://dahua.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+  "request_url": "https://dahua.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://dahua.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "43cc21ca2ac0ad10af7528e883bc37e63a4c6774bd28827b4827f93fe97d5fe5",
+  "captured_at": "2026-11-22T02:11:41.914Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "dahua-official-careers/samples/list-2.json"
+}

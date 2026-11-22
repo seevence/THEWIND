@@ -1,0 +1,15 @@
+{
+  "sample_id": "f74bdb53af04c1a3",
+  "request_key": "POST https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+  "request_url": "https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "f74bdb53af04c1a3928cba004dd64dc5d5f80145e42aced37999fc28a33bc7ec",
+  "captured_at": "2026-11-22T02:12:29.914Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "united-imaging-official-careers/samples/list-5.json"
+}

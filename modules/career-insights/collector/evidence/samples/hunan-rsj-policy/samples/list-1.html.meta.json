@@ -1,0 +1,15 @@
+{
+  "sample_id": "33ad1d9d093d00b9",
+  "request_key": "GET http://rst.hunan.gov.cn/rst/xxgk/tzgg/index.html",
+  "request_url": "http://rst.hunan.gov.cn/rst/xxgk/tzgg/index.html",
+  "final_url": "http://rst.hunan.gov.cn/rst/xxgk/tzgg/index.html",
+  "http_status": 200,
+  "content_type": "text/html",
+  "body_sha256": "33ad1d9d093d00b9d29da3bceba8d142049ab3aebc74a9f4f963309ad9eabc4b",
+  "captured_at": "2026-11-22T02:12:43.511Z",
+  "collector_version": "collector/0.1.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:org_phone,icp_license",
+  "body_file": "hunan-rsj-policy/samples/list-1.html"
+}

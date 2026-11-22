@@ -1,0 +1,15 @@
+{
+  "sample_id": "b58fe4344d328ec4",
+  "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#888b3ec02beef7b3",
+  "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "b58fe4344d328ec43a1f23382b8734eb28a0c6846624d396c337d1d7236b1b92",
+  "captured_at": "2026-11-22T02:12:41.253Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "sany-official-careers/samples/list-4.json"
+}

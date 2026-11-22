@@ -1,4 +1,6 @@
 import type { CareerSourceDefinition } from "./index.ts";
+import { HUNAN_RSJ_SOURCE_DEFINITION } from "./adapters/hunan-rsj-policy.ts";
+import { ZHIYE_SOURCES } from "./adapters/zhiye-official-careers.ts";
 
 export const CAREER_SOURCE_DEFINITIONS: readonly CareerSourceDefinition[] = [
   {
@@ -161,4 +163,6 @@ export const CAREER_SOURCE_DEFINITIONS: readonly CareerSourceDefinition[] = [
     notes:
       "2026-11-21 实测：官网公开静态 HTML（无 Cookie/Token/签名/验证码）——栏目页 /rlzy_new/rczp/ 列出集团总部+所属企业招聘公告（71 条，单页），详情 /rlzy_new/rczp/{jtzbzp,ssqyzp}/YYYYMM/<id>.html；标题 h2.gsywtpc、发布日期 .fbdate、正文 #gsxwxq > p，招聘岗位小节逐条列岗位。已存 1 列表 + 5 详情真实样本；正文含联系人/电话/邮箱的公告整条跳过。页面模板 <script> 含验证码生成器，block-detector 已在扫描前剔除 script/style。",
   },
+  ...ZHIYE_SOURCES,
+  HUNAN_RSJ_SOURCE_DEFINITION,
 ];

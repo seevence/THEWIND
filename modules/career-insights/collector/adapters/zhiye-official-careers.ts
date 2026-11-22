@@ -1,0 +1,447 @@
+import { beijingAt } from "@aihot/contracts/time";
+import type { EmploymentType, RawCollectedJobV1 } from "../../contracts/index.ts";
+import type {
+  CareerCollectOptions,
+  CareerSourceAdapter,
+  CareerSourceDefinition,
+} from "../index.ts";
+
+import {
+  ConfigError,
+  EmptyResultError,
+  ParseFailedError,
+  SchemaChangedError,
+} from "../fetch/errors.ts";
+import { createPageRequest } from "../fetch/transport.ts";
+import type { FetchTransport, PageRequest } from "../fetch/transport.ts";
+
+/**
+ * 北森 zhiye 平台社招列表适配器。
+ *
+ * 11 家企业共用同一套公开 JSON 接口（匿名可用、无 Cookie / Token / 签名）：
+ * `POST https://<tenant>.zhiye.com/api/Jobad/GetJobAdPageList`，社招 = `Category: ["1"]`。
+ * 列表条目已含职责（`Duty`）、要求（`Require`）、城市（`LocNames`）、发布时间（`PostDate`），
+ * 因此单页只发一次请求，不逐条取详情。平台未提供稳定的单条职位详情 URL，
+ * `official_url` 统一使用官方社招列表页，岗位级唯一性由 `source_job_id` 保证。
+ */
+export const ZHIYE_COLLECTOR_VERSION = "collector/0.2.0";
+
+export const ZHIYE_LIST_PATH = "/api/Jobad/GetJobAdPageList";
+
+export const ZHIYE_DISPLAY_FIELDS: readonly string[] = [
+  "Category", "Kind", "LocId", "PostDate", "ClassificationOne",
+  "ClassificationTwo", "Org", "Salary", "Degree", "YearsOfWorking", "WorkTime",
+];
+
+const PAGE_SIZE = 20;
+const MAX_PAGE_LIMIT = 3;
+const PAGE_TIMEOUT_MS = 20_000;
+const MIN_INTERVAL_MS = 1_000;
+const POST_DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})/;
+const EMPTY_POST_DATE_PREFIX = "0001-01-01";
+
+const PAGINATION_UNSUPPORTED_NOTE =
+  "官方接口实测 PageIndex 不生效（后续页返回同一页内容），分页不生效，仅首屏有效。";
+
+function zhiyeSourceNotes(spec: ZhiyeSourceSpec): string {
+  const base = `北森 zhiye 门户公开社招 JSON（POST /api/Jobad/GetJobAdPageList，匿名可用，无 Cookie/Token/签名），列表条目即含职责与要求；平台未提供稳定单条详情 URL，official_url 统一为官方社招列表页 ${zhiyeJobsPageUrl(spec.tenant)}，岗位级唯一性由 source_job_id 保证。校招 Category=["2"] 暂不采集。`;
+  return spec.paginationUnsupported ? `${base}${PAGINATION_UNSUPPORTED_NOTE}` : base;
+}
+
+export interface ZhiyeSourceSpec {
+  readonly sourceKey: string;
+  readonly tenant: string;
+  readonly companyName: string;
+  readonly label: string;
+  readonly paginationUnsupported?: boolean;
+}
+
+/**
+ * zhiye 源的 `(sourceKey, tenant, companyName)` 三元组唯一事实来源：
+ * `registry.ts` 与本模块的 `ZHIYE_SOURCES` 均从此取值，不得各自硬编码。
+ * 顺序与 C-REGISTRY@1 固定清单一致。
+ */
+export const ZHIYE_SOURCE_SPECS: readonly ZhiyeSourceSpec[] = [
+  {
+    tenant: "iflytek",
+    sourceKey: "iflytek-official-careers",
+    label: "科大讯飞官方招聘",
+    companyName: "科大讯飞",
+  },
+  {
+    tenant: "dahua",
+    sourceKey: "dahua-official-careers",
+    label: "大华股份官方招聘",
+    companyName: "浙江大华技术股份有限公司",
+  },
+  {
+    tenant: "inovance",
+    sourceKey: "inovance-official-careers",
+    label: "汇川技术官方招聘",
+    companyName: "汇川技术",
+  },
+  {
+    tenant: "sunwoda",
+    sourceKey: "sunwoda-official-careers",
+    label: "欣旺达官方招聘",
+    companyName: "欣旺达",
+  },
+  {
+    tenant: "boe",
+    sourceKey: "boe-official-careers",
+    label: "京东方官方招聘",
+    companyName: "京东方",
+  },
+  {
+    tenant: "sugon",
+    sourceKey: "sugon-official-careers",
+    label: "中科曙光官方招聘",
+    companyName: "中科曙光",
+  },
+  {
+    tenant: "h3c",
+    sourceKey: "h3c-official-careers",
+    label: "新华三官方招聘",
+    companyName: "新华三",
+  },
+  {
+    tenant: "mindray",
+    sourceKey: "mindray-official-careers",
+    label: "迈瑞医疗官方招聘",
+    companyName: "迈瑞医疗",
+  },
+  {
+    tenant: "united-imaging",
+    sourceKey: "united-imaging-official-careers",
+    label: "联影医疗官方招聘",
+    companyName: "联影医疗",
+  },
+  {
+    tenant: "invt",
+    sourceKey: "invt-official-careers",
+    label: "英威腾官方招聘",
+    companyName: "英威腾",
+    paginationUnsupported: true,
+  },
+  {
+    tenant: "sany",
+    sourceKey: "sany-official-careers",
+    label: "三一重工官方招聘",
+    companyName: "三一重工",
+    paginationUnsupported: true,
+  },
+];
+
+export const ZHIYE_SOURCES: readonly CareerSourceDefinition[] = ZHIYE_SOURCE_SPECS.map((spec) => ({
+  source_key: spec.sourceKey,
+  label: spec.label,
+  kind: "company_careers",
+  entry_url: zhiyeJobsPageUrl(spec.tenant),
+  access: "http",
+  enabled: true,
+  notes: zhiyeSourceNotes(spec),
+}));
+
+export function zhiyeSiteUrl(tenant: string): string {
+  return `https://${tenant}.zhiye.com`;
+}
+
+export function zhiyeJobsPageUrl(tenant: string): string {
+  return `${zhiyeSiteUrl(tenant)}/social/jobs`;
+}
+
+export function buildZhiyeListBody(pageIndex: number, pageSize: number): Record<string, unknown> {
+  return {
+    PageIndex: pageIndex,
+    PageSize: pageSize,
+    Category: ["1"],
+    KeyWords: "",
+    SpecialType: 0,
+    PortalId: "",
+    DisplayFields: ZHIYE_DISPLAY_FIELDS,
+  };
+}
+
+export interface ZhiyeJobSummary {
+  readonly id: string;
+  readonly title: string;
+  readonly locations: readonly string[];
+  readonly duty: string | null;
+  readonly requirement: string | null;
+  readonly degreeRaw: string | null;
+  readonly experienceRaw: string | null;
+  readonly employmentType: EmploymentType;
+  readonly publishedAt: string | null;
+  readonly org: string | null;
+  readonly salary: string | null;
+  readonly raw: Record<string, unknown>;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function text(value: unknown): string | null {
+  return typeof value === "string" && value.trim().length > 0 ? value.trim() : null;
+}
+
+function normalizeLocations(value: unknown): string[] {
+  const entries = Array.isArray(value) ? value : typeof value === "string" ? [value] : [];
+  const seen = new Set<string>();
+  for (const entry of entries) {
+    const name = text(entry);
+    if (name !== null) {
+      seen.add(name);
+    }
+  }
+  return [...seen];
+}
+
+function normalizeId(value: unknown): string | null {
+  if (typeof value === "string" && value.trim().length > 0) {
+    return value.trim();
+  }
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return String(value);
+  }
+  return null;
+}
+
+/**
+ * PostDate 形如 `2026-11-10T14:12:17`，按日期截断；零值 `0001-01-01T00:00:00`、
+ * 空串与不可解析值返回 null（平台用零值表示「未设置」）。
+ */
+function parseZhiyePostDate(value: unknown): string | null {
+  const raw = text(value);
+  if (raw === null || raw.startsWith(EMPTY_POST_DATE_PREFIX)) {
+    return null;
+  }
+  const match = POST_DATE_PATTERN.exec(raw);
+  if (match === null) {
+    return null;
+  }
+  const date = `${match[1]}-${match[2]}-${match[3]}`;
+  return Number.isNaN(new Date(`${date}T00:00:00Z`).getTime()) ? null : date;
+}
+
+function mapEmploymentType(kind: string | null): EmploymentType {
+  // 社招列表（Category=["1"]）中 Kind 缺省即社招全职，平台有时省略该字段。
+  if (kind === null) {
+    return "experienced";
+  }
+  if (kind.includes("实习")) {
+    return "internship";
+  }
+  if (kind.includes("全职") || kind.includes("社会招聘")) {
+    return "experienced";
+  }
+  return "unknown";
+}
+
+function toSummary(item: Record<string, unknown>): ZhiyeJobSummary {
+  const id = normalizeId(item["JobAdId"]);
+  const title = text(item["JobAdName"]);
+  if (id === null || title === null) {
+    throw new ParseFailedError("zhiye 列表条目缺少 JobAdId / JobAdName");
+  }
+  return {
+    id,
+    title,
+    locations: normalizeLocations(item["LocNames"]),
+    duty: text(item["Duty"]),
+    requirement: text(item["Require"]),
+    degreeRaw: text(item["Degree"]),
+    experienceRaw: text(item["YearsOfWorking"]),
+    employmentType: mapEmploymentType(text(item["Kind"])),
+    publishedAt: parseZhiyePostDate(item["PostDate"]),
+    org: text(item["Org"]),
+    salary: text(item["Salary"]),
+    raw: item,
+  };
+}
+
+export function parseZhiyeList(body: Buffer | string): ZhiyeJobSummary[] {
+  let parsed: unknown;
+  try {
+    parsed = typeof body === "string" ? JSON.parse(body) : JSON.parse(body.toString("utf8"));
+  } catch {
+    throw new SchemaChangedError("zhiye 列表响应不是合法 JSON", undefined);
+  }
+  if (!isRecord(parsed)) {
+    throw new SchemaChangedError("zhiye 列表响应不是对象");
+  }
+  const code = parsed["Code"];
+  if (Number(code) !== 200) {
+    throw new SchemaChangedError(
+      `zhiye 列表响应状态异常：Code=${code === undefined ? "null" : String(code)}`,
+    );
+  }
+  const data = parsed["Data"];
+  if (!Array.isArray(data)) {
+    throw new SchemaChangedError("zhiye 列表响应缺少 Data 数组");
+  }
+  if (data.length === 0) {
+    throw new EmptyResultError("zhiye 列表响应 Data 为空数组");
+  }
+  return data.map((item) => {
+    if (!isRecord(item)) {
+      throw new ParseFailedError("zhiye 列表条目不是对象");
+    }
+    return toSummary(item);
+  });
+}
+
+export interface ZhiyeRawJobContext {
+  readonly sourceKey: string;
+  readonly companyName: string;
+  readonly jobsPageUrl: string;
+  readonly fetchedAt: string;
+}
+
+export function toZhiyeRawJob(item: ZhiyeJobSummary, ctx: ZhiyeRawJobContext): RawCollectedJobV1 {
+  const sections = [item.duty, item.requirement].filter(
+    (section): section is string => section !== null,
+  );
+  if (sections.length === 0) {
+    throw new ParseFailedError(`zhiye 职位 ${item.id} 缺少职责与要求正文`, ctx.sourceKey);
+  }
+
+  return {
+    schema_version: "1.0",
+    source_key: ctx.sourceKey,
+    source_job_id: item.id,
+    company_name: ctx.companyName,
+    title: item.title,
+    official_url: ctx.jobsPageUrl,
+    raw_text: sections.join("\n\n"),
+    raw_payload: item.raw,
+    // 平台 PostDate 是北京墙上时间；published_at 需为 UTC ISO，取北京时间当日 00:00 的 UTC 表达。
+    published_at: item.publishedAt === null ? null : beijingAt(item.publishedAt, "00:00").toISOString(),
+    fetched_at: ctx.fetchedAt,
+    collector_version: ZHIYE_COLLECTOR_VERSION,
+    hints: {
+      role_family: "unknown",
+      locations: [...item.locations],
+      degree_raw: item.degreeRaw,
+      experience_raw: item.experienceRaw,
+      employment_type: item.employmentType,
+      skill_terms: [],
+    },
+  };
+}
+
+export interface ZhiyeAdapterOptions {
+  readonly tenant: string;
+  readonly sourceKey: string;
+  readonly companyName: string;
+  readonly pageLimit?: number;
+  readonly definition?: CareerSourceDefinition;
+  readonly sleep?: (ms: number) => Promise<void>;
+  /** 兼容既有构造参数；`fetched_at` 一律取响应采集时刻，不使用本地时钟。 */
+  readonly now?: () => string;
+}
+
+function isAborted(signal: AbortSignal | undefined): boolean {
+  return signal?.aborted === true;
+}
+
+function buildListRequest(
+  url: string,
+  pageIndex: number,
+  sourceKey: string,
+  signal: AbortSignal | undefined,
+): PageRequest {
+  return createPageRequest({
+    url,
+    sourceKey,
+    pageTimeoutMs: PAGE_TIMEOUT_MS,
+    method: "POST",
+    headers: { "content-type": "application/json", accept: "application/json" },
+    body: JSON.stringify(buildZhiyeListBody(pageIndex, PAGE_SIZE)),
+    ...(signal === undefined ? {} : { signal }),
+  });
+}
+
+/** 解析函数不带 sourceKey，适配器路径上补回，便于失败归因到具体信源。 */
+function attachSourceKey(error: unknown, sourceKey: string): unknown {
+  if (!(error instanceof SchemaChangedError) && !(error instanceof ParseFailedError) && !(error instanceof EmptyResultError)) {
+    return error;
+  }
+  if (error.sourceKey !== undefined) {
+    return error;
+  }
+  if (error instanceof SchemaChangedError) {
+    return new SchemaChangedError(error.message, sourceKey);
+  }
+  if (error instanceof ParseFailedError) {
+    return new ParseFailedError(error.message, sourceKey);
+  }
+  return new EmptyResultError(error.message, sourceKey);
+}
+
+export function createZhiyeOfficialCareersAdapter(
+  transport: FetchTransport,
+  options: ZhiyeAdapterOptions,
+): CareerSourceAdapter {
+  const definition =
+    options.definition ??
+    ZHIYE_SOURCES.find((item) => item.source_key === options.sourceKey);
+  if (definition === undefined) {
+    throw new ConfigError(`来源 ${options.sourceKey} 未在 ZHIYE_SOURCES 中登记`);
+  }
+  const defaultPageLimit = Math.max(1, Math.min(options.pageLimit ?? 1, MAX_PAGE_LIMIT));
+  const listUrl = `${zhiyeSiteUrl(options.tenant)}${ZHIYE_LIST_PATH}`;
+  const jobsPageUrl = zhiyeJobsPageUrl(options.tenant);
+  const sleep = options.sleep ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
+
+  return {
+    definition,
+    async collect(
+      signal?: AbortSignal,
+      callOptions?: CareerCollectOptions,
+    ): Promise<RawCollectedJobV1[]> {
+      const pageLimit = Math.max(1, Math.min(callOptions?.pageLimit ?? defaultPageLimit, MAX_PAGE_LIMIT));
+      const jobs: RawCollectedJobV1[] = [];
+      const seenJobIds = new Set<string>();
+      for (let pageIndex = 0; pageIndex < pageLimit; pageIndex += 1) {
+        if (isAborted(signal)) {
+          throw new DOMException("采集被取消", "AbortError");
+        }
+        if (pageIndex > 0) {
+          await sleep(MIN_INTERVAL_MS);
+        }
+        const response = await transport.fetchPage(
+          buildListRequest(listUrl, pageIndex, definition.source_key, signal),
+        );
+        let summaries: ZhiyeJobSummary[];
+        try {
+          summaries = parseZhiyeList(response.body);
+        } catch (error) {
+          // 首页空 Data 视为该源当前无在招岗位；后续页空 Data 只表示翻页到底，保留已采结果。
+          if (pageIndex > 0 && error instanceof EmptyResultError) {
+            break;
+          }
+          throw attachSourceKey(error, definition.source_key);
+        }
+        for (const summary of summaries) {
+          if (isAborted(signal)) {
+            throw new DOMException("采集被取消", "AbortError");
+          }
+          if (seenJobIds.has(summary.id)) {
+            continue;
+          }
+          seenJobIds.add(summary.id);
+          jobs.push(
+            toZhiyeRawJob(summary, {
+              sourceKey: definition.source_key,
+              companyName: options.companyName,
+              jobsPageUrl,
+              fetchedAt: response.fetchedAt,
+            }),
+          );
+        }
+      }
+      return jobs;
+    },
+  };
+}

@@ -1,0 +1,15 @@
+{
+  "sample_id": "940cb7ad059e5b41",
+  "request_key": "POST https://inovance.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+  "request_url": "https://inovance.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://inovance.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "940cb7ad059e5b4131ae7e0b7054bbb6769da76e3a3e7f83d6c87174650eaab9",
+  "captured_at": "2026-11-22T02:11:49.226Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "inovance-official-careers/samples/list-3.json"
+}

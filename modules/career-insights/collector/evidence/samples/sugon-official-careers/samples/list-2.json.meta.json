@@ -1,0 +1,15 @@
+{
+  "sample_id": "f63d4a3cffaf3069",
+  "request_key": "POST https://sugon.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+  "request_url": "https://sugon.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://sugon.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "f63d4a3cffaf30692c350d15226357d005aeb477b20094c569ce3580b221eb29",
+  "captured_at": "2026-11-22T02:12:06.628Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "sugon-official-careers/samples/list-2.json"
+}

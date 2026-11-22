@@ -29,8 +29,16 @@ background and cached, so pages never call a model.
 
 ## Data sources & license
 
-- Jobs: official career sites of Tencent, Meituan and Baidu (public pages, linked back);
-- Policies: public documents from the Chinese government and NDRC.
+- Jobs (19 sources): official career sites of Tencent, Meituan, Baidu, Huawei, NetEase, Didi, HONOR and China State
+  Construction, plus iFLYTEK, Dahua, Inovance, Sunwoda, BOE, Sugon, H3C, Mindray, United Imaging, INVT and SANY
+  (public pages, linked back);
+- Policies (7 sources): public documents from the Chinese government portal, NDRC, Ministry of Education, the MOHRSS
+  "China Employment Network", Changsha Human Resources and Social Security Bureau, Hunan Provincial Department of
+  Education, and the Hunan Provincial Human Resources and Social Security Department notices;
+- The 11 zhiye-hosted sources (iFLYTEK, Dahua, Inovance, Sunwoda, BOE, Sugon, H3C, Mindray, United Imaging, INVT and
+  SANY) come from their public zhiye job-list endpoints, each linked back to the official job list page
+  (`https://<tenant>.zhiye.com/social/jobs`, e.g. <https://iflytek.zhiye.com/social/jobs>) as the original entry.
+  INVT's and SANY's official list endpoints ignore pagination, so only the first screen is available.
 - Code is MIT licensed; built on the open-source **AIHOT** framework (MIT, Copyright © 2026 数字生命卡兹克). See
   [LICENSE](LICENSE), [NOTICE](NOTICE) and [CREDITS.md](CREDITS.md).
 - Chinese README: [README.md](README.md).

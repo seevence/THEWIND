@@ -46,11 +46,29 @@ export const CAREER_SOURCE_LABELS: Readonly<Record<string, string>> = {
   "state-council-policy": "中国政府网政策文件库",
   "ndrc-policy": "国家发展改革委政策发布",
   "moe-policy": "教育部公告公示",
+  "iflytek-official-careers": "科大讯飞官方招聘",
+  "dahua-official-careers": "大华股份官方招聘",
+  "inovance-official-careers": "汇川技术官方招聘",
+  "sunwoda-official-careers": "欣旺达官方招聘",
+  "boe-official-careers": "京东方官方招聘",
+  "sugon-official-careers": "中科曙光官方招聘",
+  "h3c-official-careers": "新华三官方招聘",
+  "mindray-official-careers": "迈瑞医疗官方招聘",
+  "united-imaging-official-careers": "联影医疗官方招聘",
+  "invt-official-careers": "英威腾官方招聘",
+  "sany-official-careers": "三一重工官方招聘",
+  "hunan-rsj-policy": "湖南省人力资源和社会保障厅通知公告",
 };
 
 export function careerSourceLabel(sourceKey: string): string {
   return CAREER_SOURCE_LABELS[sourceKey] ?? sourceKey;
 }
+
+/**
+ * 岗位详情页的外部入口文案。zhiye 平台没有稳定的单条职位详情 URL，
+ * `official_url` 指向企业官方职位列表页，因此文案必须说「列表」，不能承诺打开的就是这一条职位。
+ */
+export const OFFICIAL_JOB_LIST_LINK_LABEL = "查看官方职位列表";
 
 /** 与 data/dictionaries.ts 的 ROLE_FAMILY_LABELS 一致；unknown 站内统一写「未归类」。 */
 export const ROLE_FAMILY_LABELS: Record<RoleFamily, string> = {

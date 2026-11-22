@@ -1,0 +1,15 @@
+{
+  "sample_id": "71c5eab9ba17f129",
+  "request_key": "POST https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+  "request_url": "https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "71c5eab9ba17f1291298f345da9dc03ba9866284d686e94f74386d05e2a5a4b6",
+  "captured_at": "2026-11-22T02:11:54.141Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "sunwoda-official-careers/samples/list-2.json"
+}

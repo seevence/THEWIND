@@ -1,0 +1,15 @@
+{
+  "sample_id": "8da2347370000433",
+  "request_key": "POST https://mindray.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+  "request_url": "https://mindray.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://mindray.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "8da23473700004336d125533fed6a0bfb9168d7679445791aaf338b72899f70b",
+  "captured_at": "2026-11-22T02:12:20.107Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "mindray-official-careers/samples/list-3.json"
+}

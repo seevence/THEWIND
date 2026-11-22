@@ -4,6 +4,7 @@ import {
   careerSourceLabel,
   degreeLabel,
   EMPLOYMENT_TYPE_LABELS,
+  OFFICIAL_JOB_LIST_LINK_LABEL,
   ROLE_FAMILY_LABELS,
   STUDENT_FRIENDLY_LABELS,
   skillLabel,
@@ -63,7 +64,7 @@ export function JobDetail({ job, backHref }: { job: JobDetailV1; backHref: strin
           {[job.company_name, job.locations.join("、")].filter(Boolean).join(" · ")}
         </p>
         <a href={job.official_url} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex h-10 max-w-full items-center rounded-full bg-accent px-5 text-[13px] font-medium text-accent-contrast">
-          查看官方职位
+          {OFFICIAL_JOB_LIST_LINK_LABEL}
         </a>
       </header>
 

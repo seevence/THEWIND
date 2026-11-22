@@ -11,6 +11,11 @@ import {
   parseTencentPublishedAt,
   toTencentRawJob,
 } from "../collector/adapters/tencent-official-careers.ts";
+import {
+  ZHIYE_SOURCES,
+  ZHIYE_SOURCE_SPECS,
+  zhiyeJobsPageUrl,
+} from "../collector/adapters/zhiye-official-careers.ts";
 import { createCareerAdapters } from "../collector/index.ts";
 import { CollectorError } from "../collector/fetch/errors.ts";
 import type { FetchTransport, PageRequest, TransportResponse } from "../collector/fetch/transport.ts";
@@ -62,13 +67,31 @@ test("注册表只构造已启用来源，job 与 policy 分离且不发起网�
   const set = createCareerAdapters(fakeTransport(calls));
   assert.deepEqual(
     set.jobs.map((adapter) => adapter.definition.source_key),
-    ["tencent-official-careers", "meituan-official-careers", "baidu-official-careers", "huawei-official-careers", "netease-official-careers", "didi-official-careers", "honor-official-careers", "cscec-official-careers"],
+    ["tencent-official-careers", "meituan-official-careers", "baidu-official-careers", "huawei-official-careers", "netease-official-careers", "didi-official-careers", "honor-official-careers", "cscec-official-careers", "iflytek-official-careers", "dahua-official-careers", "inovance-official-careers", "sunwoda-official-careers", "boe-official-careers", "sugon-official-careers", "h3c-official-careers", "mindray-official-careers", "united-imaging-official-careers", "invt-official-careers", "sany-official-careers"],
   );
+  assert.equal(set.jobs.length, 19);
   assert.deepEqual(
     set.policies.map((adapter) => adapter.definition.source_key),
-    ["state-council-policy", "ndrc-policy", "moe-policy", "mohrss-policy", "changsha-rsj-policy", "hunan-jyt-policy"],
+    ["state-council-policy", "ndrc-policy", "moe-policy", "mohrss-policy", "changsha-rsj-policy", "hunan-jyt-policy", "hunan-rsj-policy"],
   );
+  assert.equal(set.policies.length, 7);
   assert.equal(calls.length, 0);
+});
+
+test("zhiye 源的入口与展示名均取自 ZHIYE_SOURCE_SPECS", () => {
+  const set = createCareerAdapters(fakeTransport([]));
+  const byKey = new Map(set.jobs.map((adapter) => [adapter.definition.source_key, adapter.definition]));
+
+  assert.equal(ZHIYE_SOURCE_SPECS.length, 11);
+  for (const spec of ZHIYE_SOURCE_SPECS) {
+    const definition = byKey.get(spec.sourceKey);
+    assert.ok(definition, `注册表缺少 zhiye 源 ${spec.sourceKey}`);
+    assert.equal(definition.entry_url, zhiyeJobsPageUrl(spec.tenant));
+
+    const reference = ZHIYE_SOURCES.find((item) => item.source_key === spec.sourceKey);
+    assert.ok(reference, `ZHIYE_SOURCES 缺少 ${spec.sourceKey}`);
+    assert.equal(definition.label, reference.label);
+  }
 });
 const SAMPLES_DIR = join(
   dirname(fileURLToPath(import.meta.url)),

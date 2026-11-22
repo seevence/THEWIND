@@ -1,0 +1,15 @@
+{
+  "sample_id": "4ee5d4a6870ddbe1",
+  "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#ad59d8eea19a2c7d",
+  "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "4ee5d4a6870ddbe1b26dad051e51a075daf5950a6e0710b79c6819bc53a1c84f",
+  "captured_at": "2026-11-22T02:12:36.230Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "invt-official-careers/samples/list-5.json"
+}

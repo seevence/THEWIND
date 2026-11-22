@@ -15,6 +15,8 @@ export interface SampleMeta {
   readonly collector_version: string;
   readonly extraction_ref: string;
   readonly sanitized: boolean;
+  /** 打码计数（`redacted:email=1`）或误报原因（`false_positive:org_phone`）。 */
+  readonly sanitize_note?: string;
   readonly body_file: string;
 }
 
@@ -56,6 +58,7 @@ export interface CreateSampleInput {
   readonly collector_version: string;
   readonly extraction_ref: string;
   readonly sanitized: boolean;
+  readonly sanitize_note?: string;
   readonly body: Buffer;
   readonly body_file: string;
 }
@@ -74,6 +77,7 @@ export function createSample(input: CreateSampleInput): SampleRecord {
     collector_version: input.collector_version,
     extraction_ref: input.extraction_ref,
     sanitized: input.sanitized,
+    ...(input.sanitize_note === undefined ? {} : { sanitize_note: input.sanitize_note }),
     body_file: input.body_file,
   };
 

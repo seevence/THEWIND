@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-11-21T12:09:28.848Z",
+  "generated_at": "2026-11-22T02:12:45.653Z",
   "sources": [
     {
       "source_key": "moe-policy",
@@ -718,6 +718,612 @@
           "extraction_ref": "list",
           "body_file": "cscec-official-careers/samples/list.html",
           "body_sha256": "7dfc746acf43fe4ac5d6c10d841b313ef1c25e18e60e8d82fb719eff911ca500"
+        }
+      ]
+    },
+    {
+      "source_key": "iflytek-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "4ca030028e4add1d",
+          "request_key": "POST https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:34.511Z",
+          "extraction_ref": "list-1",
+          "body_file": "iflytek-official-careers/samples/list-1.json",
+          "body_sha256": "4ca030028e4add1d4d4b744a5bdb8c2d7fcf3efc8bc72a9a0905c222e9659f8c"
+        },
+        {
+          "sample_id": "5acc23f0579fc0f5",
+          "request_key": "POST https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+          "request_url": "https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:35.707Z",
+          "extraction_ref": "list-2",
+          "body_file": "iflytek-official-careers/samples/list-2.json",
+          "body_sha256": "5acc23f0579fc0f5cd0074578caeca29f0144ca887a556043e04af829a0ff698"
+        },
+        {
+          "sample_id": "6ca03e6d44d67acc",
+          "request_key": "POST https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+          "request_url": "https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:36.945Z",
+          "extraction_ref": "list-3",
+          "body_file": "iflytek-official-careers/samples/list-3.json",
+          "body_sha256": "6ca03e6d44d67acc69fccd029703975fb606e46d3f32a3fa4ed81cf861406636"
+        },
+        {
+          "sample_id": "388093c03ac76a47",
+          "request_key": "POST https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+          "request_url": "https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:38.194Z",
+          "extraction_ref": "list-4",
+          "body_file": "iflytek-official-careers/samples/list-4.json",
+          "body_sha256": "388093c03ac76a47c41da6e2c1ff52649e9ad7e23ac10410ca007beaf795c331"
+        },
+        {
+          "sample_id": "d6ddd38ce6c2d54c",
+          "request_key": "POST https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+          "request_url": "https://iflytek.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:39.381Z",
+          "extraction_ref": "list-5",
+          "body_file": "iflytek-official-careers/samples/list-5.json",
+          "body_sha256": "d6ddd38ce6c2d54c1c92f4c4e161714002f56c38e927626b21698d0fa1714828"
+        }
+      ]
+    },
+    {
+      "source_key": "dahua-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "8afcbbae9f575fc7",
+          "request_key": "POST https://dahua.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://dahua.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:40.772Z",
+          "extraction_ref": "list-1",
+          "body_file": "dahua-official-careers/samples/list-1.json",
+          "body_sha256": "8afcbbae9f575fc768eefe5f76f471b48260c01bfa56af07cb092995a996c4bb"
+        },
+        {
+          "sample_id": "43cc21ca2ac0ad10",
+          "request_key": "POST https://dahua.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+          "request_url": "https://dahua.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:41.914Z",
+          "extraction_ref": "list-2",
+          "body_file": "dahua-official-careers/samples/list-2.json",
+          "body_sha256": "43cc21ca2ac0ad10af7528e883bc37e63a4c6774bd28827b4827f93fe97d5fe5"
+        },
+        {
+          "sample_id": "58e5ca49a71a2721",
+          "request_key": "POST https://dahua.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+          "request_url": "https://dahua.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:43.042Z",
+          "extraction_ref": "list-3",
+          "body_file": "dahua-official-careers/samples/list-3.json",
+          "body_sha256": "58e5ca49a71a2721dcd3508274082575044b592cb91ceb19a3e725a54e5b6f5a"
+        },
+        {
+          "sample_id": "b5aa7b307b2702dc",
+          "request_key": "POST https://dahua.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+          "request_url": "https://dahua.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:44.215Z",
+          "extraction_ref": "list-4",
+          "body_file": "dahua-official-careers/samples/list-4.json",
+          "body_sha256": "b5aa7b307b2702dce6e289ef1b4284889ae4058f7faf3bc5fdcc90d2407d28c1"
+        },
+        {
+          "sample_id": "78ef5efdf9d8f98b",
+          "request_key": "POST https://dahua.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+          "request_url": "https://dahua.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:45.342Z",
+          "extraction_ref": "list-5",
+          "body_file": "dahua-official-careers/samples/list-5.json",
+          "body_sha256": "78ef5efdf9d8f98bb56415dca4af3fe38a30dcf7b920b50ceda9fe4b67f1a454"
+        }
+      ]
+    },
+    {
+      "source_key": "inovance-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "6e6536a20c973203",
+          "request_key": "POST https://inovance.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://inovance.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:46.791Z",
+          "extraction_ref": "list-1",
+          "body_file": "inovance-official-careers/samples/list-1.json",
+          "body_sha256": "6e6536a20c973203d29405bbba159c430ae6d2985b5cb87890d54a281496fa4b"
+        },
+        {
+          "sample_id": "4c91cb50102fde99",
+          "request_key": "POST https://inovance.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+          "request_url": "https://inovance.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:48.011Z",
+          "extraction_ref": "list-2",
+          "body_file": "inovance-official-careers/samples/list-2.json",
+          "body_sha256": "4c91cb50102fde99b32bffa3338588657ae65f0ec3b6b1cf61c6df74cc3b5af1"
+        },
+        {
+          "sample_id": "940cb7ad059e5b41",
+          "request_key": "POST https://inovance.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+          "request_url": "https://inovance.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:49.226Z",
+          "extraction_ref": "list-3",
+          "body_file": "inovance-official-careers/samples/list-3.json",
+          "body_sha256": "940cb7ad059e5b4131ae7e0b7054bbb6769da76e3a3e7f83d6c87174650eaab9"
+        },
+        {
+          "sample_id": "33a1acedec03b2e7",
+          "request_key": "POST https://inovance.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+          "request_url": "https://inovance.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:50.367Z",
+          "extraction_ref": "list-4",
+          "body_file": "inovance-official-careers/samples/list-4.json",
+          "body_sha256": "33a1acedec03b2e725175aabe641da41d0fbcb0510dc1ab5a11d97da3b3cc366"
+        },
+        {
+          "sample_id": "5b32858c381f4d96",
+          "request_key": "POST https://inovance.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+          "request_url": "https://inovance.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:51.556Z",
+          "extraction_ref": "list-5",
+          "body_file": "inovance-official-careers/samples/list-5.json",
+          "body_sha256": "5b32858c381f4d96ea7ca039a06260817bea8f1964d8ffc99513a16b9a15503e"
+        }
+      ]
+    },
+    {
+      "source_key": "sunwoda-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "efe6e26dd3dc0f34",
+          "request_key": "POST https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:53.012Z",
+          "extraction_ref": "list-1",
+          "body_file": "sunwoda-official-careers/samples/list-1.json",
+          "body_sha256": "efe6e26dd3dc0f34ae9a701db58c70fa0961862608da7a55e293ce7db5d3ae53"
+        },
+        {
+          "sample_id": "71c5eab9ba17f129",
+          "request_key": "POST https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+          "request_url": "https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:54.141Z",
+          "extraction_ref": "list-2",
+          "body_file": "sunwoda-official-careers/samples/list-2.json",
+          "body_sha256": "71c5eab9ba17f1291298f345da9dc03ba9866284d686e94f74386d05e2a5a4b6"
+        },
+        {
+          "sample_id": "90840abcbb60140d",
+          "request_key": "POST https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+          "request_url": "https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:55.277Z",
+          "extraction_ref": "list-3",
+          "body_file": "sunwoda-official-careers/samples/list-3.json",
+          "body_sha256": "90840abcbb60140d9b4321c12b2617a11cf65006646169b0a58a7c665fc4652a"
+        },
+        {
+          "sample_id": "c30985d1cdd15808",
+          "request_key": "POST https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+          "request_url": "https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:56.513Z",
+          "extraction_ref": "list-4",
+          "body_file": "sunwoda-official-careers/samples/list-4.json",
+          "body_sha256": "c30985d1cdd15808ad46ca46b3e4c283f80626679ef547776fb28fd37a82da2c"
+        },
+        {
+          "sample_id": "a966a6fc1f0fc826",
+          "request_key": "POST https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+          "request_url": "https://sunwoda.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:57.742Z",
+          "extraction_ref": "list-5",
+          "body_file": "sunwoda-official-careers/samples/list-5.json",
+          "body_sha256": "a966a6fc1f0fc826c73efd31fdad9a66ab1efa9f43a2d447e5e515e8395cdb47"
+        }
+      ]
+    },
+    {
+      "source_key": "boe-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "ee13958a087440bc",
+          "request_key": "POST https://boe.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://boe.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:11:59.228Z",
+          "extraction_ref": "list-1",
+          "body_file": "boe-official-careers/samples/list-1.json",
+          "body_sha256": "ee13958a087440bccbb366db3eee796e17e08fa2ccd8fe3ed66726474bd65429"
+        },
+        {
+          "sample_id": "e1c9f77d6c0711dd",
+          "request_key": "POST https://boe.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+          "request_url": "https://boe.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:00.423Z",
+          "extraction_ref": "list-2",
+          "body_file": "boe-official-careers/samples/list-2.json",
+          "body_sha256": "e1c9f77d6c0711ddd7b03c19c3daa92a0e9d0c66c659ae1f2027e5f9eef940f9"
+        },
+        {
+          "sample_id": "86254d8c43320a49",
+          "request_key": "POST https://boe.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+          "request_url": "https://boe.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:01.618Z",
+          "extraction_ref": "list-3",
+          "body_file": "boe-official-careers/samples/list-3.json",
+          "body_sha256": "86254d8c43320a499c3389ec599f6109bb517e49d11acf450ae4f5a03bca234d"
+        },
+        {
+          "sample_id": "d688cb549bbbad07",
+          "request_key": "POST https://boe.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+          "request_url": "https://boe.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:02.843Z",
+          "extraction_ref": "list-4",
+          "body_file": "boe-official-careers/samples/list-4.json",
+          "body_sha256": "d688cb549bbbad0788aff2ba1f8f0a438babc2749aa211d02cce34526af138f0"
+        },
+        {
+          "sample_id": "9a68eba360e5fbb6",
+          "request_key": "POST https://boe.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+          "request_url": "https://boe.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:03.991Z",
+          "extraction_ref": "list-5",
+          "body_file": "boe-official-careers/samples/list-5.json",
+          "body_sha256": "9a68eba360e5fbb6eb120302bb096d5ce9b5d6afa124cdcf8a460537d77758c2"
+        }
+      ]
+    },
+    {
+      "source_key": "sugon-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "d808cfe275ba454d",
+          "request_key": "POST https://sugon.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://sugon.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:05.413Z",
+          "extraction_ref": "list-1",
+          "body_file": "sugon-official-careers/samples/list-1.json",
+          "body_sha256": "d808cfe275ba454df4c424e3ee0e9c0eeee6faca8fc0ebd460e967b9edff111d"
+        },
+        {
+          "sample_id": "f63d4a3cffaf3069",
+          "request_key": "POST https://sugon.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+          "request_url": "https://sugon.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:06.628Z",
+          "extraction_ref": "list-2",
+          "body_file": "sugon-official-careers/samples/list-2.json",
+          "body_sha256": "f63d4a3cffaf30692c350d15226357d005aeb477b20094c569ce3580b221eb29"
+        },
+        {
+          "sample_id": "8c8406bcdb36b03f",
+          "request_key": "POST https://sugon.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+          "request_url": "https://sugon.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:07.829Z",
+          "extraction_ref": "list-3",
+          "body_file": "sugon-official-careers/samples/list-3.json",
+          "body_sha256": "8c8406bcdb36b03fe11fff17e21330bb17a61217e63e3b9e4037403cae21b402"
+        },
+        {
+          "sample_id": "8eb97bb38477da6b",
+          "request_key": "POST https://sugon.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+          "request_url": "https://sugon.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:09.058Z",
+          "extraction_ref": "list-4",
+          "body_file": "sugon-official-careers/samples/list-4.json",
+          "body_sha256": "8eb97bb38477da6b4407a12b917f977147687ada8ee1cac52e47a651f812a282"
+        },
+        {
+          "sample_id": "03597d28be122f41",
+          "request_key": "POST https://sugon.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+          "request_url": "https://sugon.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:10.245Z",
+          "extraction_ref": "list-5",
+          "body_file": "sugon-official-careers/samples/list-5.json",
+          "body_sha256": "03597d28be122f414a5c8a32d33aaf436652408c618a8e69c7ff3e3e1ec18846"
+        }
+      ]
+    },
+    {
+      "source_key": "h3c-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "35b3b9b4b7c15d70",
+          "request_key": "POST https://h3c.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://h3c.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:11.757Z",
+          "extraction_ref": "list-1",
+          "body_file": "h3c-official-careers/samples/list-1.json",
+          "body_sha256": "35b3b9b4b7c15d709781b54f3cb29e9626bd1fa5dc81e094233a03d1d840a330"
+        },
+        {
+          "sample_id": "f482b772f05f5e02",
+          "request_key": "POST https://h3c.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+          "request_url": "https://h3c.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:12.940Z",
+          "extraction_ref": "list-2",
+          "body_file": "h3c-official-careers/samples/list-2.json",
+          "body_sha256": "f482b772f05f5e0216bcbe999634c0d144e71418c9a9d8f1b3f61a651346ae09"
+        },
+        {
+          "sample_id": "778effbdafe51cd3",
+          "request_key": "POST https://h3c.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+          "request_url": "https://h3c.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:14.102Z",
+          "extraction_ref": "list-3",
+          "body_file": "h3c-official-careers/samples/list-3.json",
+          "body_sha256": "778effbdafe51cd3626ccd0e6f66b0eae1ddf1b0f6d8a5279f6b4a30fbfc8ade"
+        },
+        {
+          "sample_id": "88e8fd4f1eda11fb",
+          "request_key": "POST https://h3c.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+          "request_url": "https://h3c.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:15.288Z",
+          "extraction_ref": "list-4",
+          "body_file": "h3c-official-careers/samples/list-4.json",
+          "body_sha256": "88e8fd4f1eda11fbf2f3de77f2ba38d6ef1d02fdfa6e4bbdefc8d6ded5288b75"
+        },
+        {
+          "sample_id": "c878a63ac34e4085",
+          "request_key": "POST https://h3c.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+          "request_url": "https://h3c.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:16.422Z",
+          "extraction_ref": "list-5",
+          "body_file": "h3c-official-careers/samples/list-5.json",
+          "body_sha256": "c878a63ac34e40850ec38169a324fe8c81e0d143949bff2546c77d2e7d9af342"
+        }
+      ]
+    },
+    {
+      "source_key": "mindray-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "29fd8b31f4e91fb3",
+          "request_key": "POST https://mindray.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://mindray.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:17.757Z",
+          "extraction_ref": "list-1",
+          "body_file": "mindray-official-careers/samples/list-1.json",
+          "body_sha256": "29fd8b31f4e91fb35053e29570c222ecc867595b08600592fb1c745ef0b4e1e5"
+        },
+        {
+          "sample_id": "50130df1e25b80f5",
+          "request_key": "POST https://mindray.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+          "request_url": "https://mindray.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:18.944Z",
+          "extraction_ref": "list-2",
+          "body_file": "mindray-official-careers/samples/list-2.json",
+          "body_sha256": "50130df1e25b80f5bc6b23badc37f5b64face4e073dddb02fe6ec274b3ccb4f9"
+        },
+        {
+          "sample_id": "8da2347370000433",
+          "request_key": "POST https://mindray.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+          "request_url": "https://mindray.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:20.107Z",
+          "extraction_ref": "list-3",
+          "body_file": "mindray-official-careers/samples/list-3.json",
+          "body_sha256": "8da23473700004336d125533fed6a0bfb9168d7679445791aaf338b72899f70b"
+        },
+        {
+          "sample_id": "f3e15a87d367910a",
+          "request_key": "POST https://mindray.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+          "request_url": "https://mindray.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:21.335Z",
+          "extraction_ref": "list-4",
+          "body_file": "mindray-official-careers/samples/list-4.json",
+          "body_sha256": "f3e15a87d367910a10b83cb2518a1c06053e90a89a34546eb9bcb98eefea4528"
+        },
+        {
+          "sample_id": "8cf24ad7bebad014",
+          "request_key": "POST https://mindray.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+          "request_url": "https://mindray.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:22.517Z",
+          "extraction_ref": "list-5",
+          "body_file": "mindray-official-careers/samples/list-5.json",
+          "body_sha256": "8cf24ad7bebad014127c76682bba168c615df891a5be951f6ae4af52d1e36d86"
+        }
+      ]
+    },
+    {
+      "source_key": "united-imaging-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "5b7aead37e934c00",
+          "request_key": "POST https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:23.966Z",
+          "extraction_ref": "list-1",
+          "body_file": "united-imaging-official-careers/samples/list-1.json",
+          "body_sha256": "5b7aead37e934c000030fb7ded93bb41a16688f196c8eae9e5444a81e67c8e62"
+        },
+        {
+          "sample_id": "d9466562ca7a63ef",
+          "request_key": "POST https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+          "request_url": "https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:26.206Z",
+          "extraction_ref": "list-2",
+          "body_file": "united-imaging-official-careers/samples/list-2.json",
+          "body_sha256": "d9466562ca7a63efa061f7724f2a5fb693dd485df95e9be7b9cbb198e9b3d6b2"
+        },
+        {
+          "sample_id": "f05f807abc5cf734",
+          "request_key": "POST https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+          "request_url": "https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:27.446Z",
+          "extraction_ref": "list-3",
+          "body_file": "united-imaging-official-careers/samples/list-3.json",
+          "body_sha256": "f05f807abc5cf7341f42767b0d01c0943d69b26cf1fb6ebeaa03a4f66332ea61"
+        },
+        {
+          "sample_id": "5de8f2a0ad099049",
+          "request_key": "POST https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+          "request_url": "https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:28.676Z",
+          "extraction_ref": "list-4",
+          "body_file": "united-imaging-official-careers/samples/list-4.json",
+          "body_sha256": "5de8f2a0ad09904908318320716bc6591db94961323e1dbcb7a35b85bed473a4"
+        },
+        {
+          "sample_id": "f74bdb53af04c1a3",
+          "request_key": "POST https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+          "request_url": "https://united-imaging.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:29.914Z",
+          "extraction_ref": "list-5",
+          "body_file": "united-imaging-official-careers/samples/list-5.json",
+          "body_sha256": "f74bdb53af04c1a3928cba004dd64dc5d5f80145e42aced37999fc28a33bc7ec"
+        }
+      ]
+    },
+    {
+      "source_key": "invt-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "b6ef4e95790f08c5",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:31.410Z",
+          "extraction_ref": "list-1",
+          "body_file": "invt-official-careers/samples/list-1.json",
+          "body_sha256": "b6ef4e95790f08c5ca84ba6b12c9c7cff20e048a54c7b4e0ddcde02ec5f633ea"
+        },
+        {
+          "sample_id": "44276b84134790ca",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#ebd23951e7443ba1",
+          "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:32.652Z",
+          "extraction_ref": "list-2",
+          "body_file": "invt-official-careers/samples/list-2.json",
+          "body_sha256": "44276b84134790ca94ac6130784795bd217bedaca0ba1385195e72ce3ea8313d"
+        },
+        {
+          "sample_id": "c0b27687b59f2362",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#6742d20e11d362f9",
+          "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:33.857Z",
+          "extraction_ref": "list-3",
+          "body_file": "invt-official-careers/samples/list-3.json",
+          "body_sha256": "c0b27687b59f2362d31041e7a255f5820c958f78b6e303a65433dd7dc0cd48cc"
+        },
+        {
+          "sample_id": "984725e8507e544c",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#888b3ec02beef7b3",
+          "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:35.039Z",
+          "extraction_ref": "list-4",
+          "body_file": "invt-official-careers/samples/list-4.json",
+          "body_sha256": "984725e8507e544c3b0f82ed530a42f74bb1d9996aa01f72c8438bd66fd75898"
+        },
+        {
+          "sample_id": "4ee5d4a6870ddbe1",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#ad59d8eea19a2c7d",
+          "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:36.230Z",
+          "extraction_ref": "list-5",
+          "body_file": "invt-official-careers/samples/list-5.json",
+          "body_sha256": "4ee5d4a6870ddbe1b26dad051e51a075daf5950a6e0710b79c6819bc53a1c84f"
+        }
+      ]
+    },
+    {
+      "source_key": "sany-official-careers",
+      "kind": "job",
+      "sample_count": 5,
+      "samples": [
+        {
+          "sample_id": "e8d08e09b2306a4e",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:37.751Z",
+          "extraction_ref": "list-1",
+          "body_file": "sany-official-careers/samples/list-1.json",
+          "body_sha256": "e8d08e09b2306a4edacd9a4cb23e0ffc6655b68270173352577c05c1996c9c84"
+        },
+        {
+          "sample_id": "0931e0f029af7fff",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#ebd23951e7443ba1",
+          "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:38.936Z",
+          "extraction_ref": "list-2",
+          "body_file": "sany-official-careers/samples/list-2.json",
+          "body_sha256": "0931e0f029af7fffde431975c687ab30ea383e105b0453f6c99cc538b1ecfff4"
+        },
+        {
+          "sample_id": "8c2ea8642add9ccd",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#6742d20e11d362f9",
+          "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:40.097Z",
+          "extraction_ref": "list-3",
+          "body_file": "sany-official-careers/samples/list-3.json",
+          "body_sha256": "8c2ea8642add9ccd642dc68bdb722c59c9f7bb963d32d08ce632e40b610b9186"
+        },
+        {
+          "sample_id": "b58fe4344d328ec4",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#888b3ec02beef7b3",
+          "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:41.253Z",
+          "extraction_ref": "list-4",
+          "body_file": "sany-official-careers/samples/list-4.json",
+          "body_sha256": "b58fe4344d328ec43a1f23382b8734eb28a0c6846624d396c337d1d7236b1b92"
+        },
+        {
+          "sample_id": "cb5865f935602ec8",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#ad59d8eea19a2c7d",
+          "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
+          "captured_at": "2026-11-22T02:12:42.416Z",
+          "extraction_ref": "list-5",
+          "body_file": "sany-official-careers/samples/list-5.json",
+          "body_sha256": "cb5865f935602ec8492d2b43dda8625085b810b3e4851963e028c459aeed2ee2"
+        }
+      ]
+    },
+    {
+      "source_key": "hunan-rsj-policy",
+      "kind": "policy",
+      "sample_count": 3,
+      "samples": [
+        {
+          "sample_id": "33ad1d9d093d00b9",
+          "request_key": "GET http://rst.hunan.gov.cn/rst/xxgk/tzgg/index.html",
+          "request_url": "http://rst.hunan.gov.cn/rst/xxgk/tzgg/index.html",
+          "captured_at": "2026-11-22T02:12:43.511Z",
+          "extraction_ref": "list-1",
+          "body_file": "hunan-rsj-policy/samples/list-1.html",
+          "body_sha256": "33ad1d9d093d00b9d29da3bceba8d142049ab3aebc74a9f4f963309ad9eabc4b"
+        },
+        {
+          "sample_id": "79ca1aad34ea9ee2",
+          "request_key": "GET http://rst.hunan.gov.cn/rst/xxgk/tzgg/202611/t20261120_34107691.html",
+          "request_url": "http://rst.hunan.gov.cn/rst/xxgk/tzgg/202611/t20261120_34107691.html",
+          "captured_at": "2026-11-22T02:12:44.582Z",
+          "extraction_ref": "detail-1",
+          "body_file": "hunan-rsj-policy/samples/detail-1.html",
+          "body_sha256": "79ca1aad34ea9ee2532b827dfe99fd5b46ecdeb151abb38efa30ba67d8d01a3c"
+        },
+        {
+          "sample_id": "c8e4ffb550e2c002",
+          "request_key": "GET http://rst.hunan.gov.cn/rst/xxgk/tzgg/202611/t20261120_34107412.html",
+          "request_url": "http://rst.hunan.gov.cn/rst/xxgk/tzgg/202611/t20261120_34107412.html",
+          "captured_at": "2026-11-22T02:12:45.650Z",
+          "extraction_ref": "detail-2",
+          "body_file": "hunan-rsj-policy/samples/detail-2.html",
+          "body_sha256": "c8e4ffb550e2c00200658851692a3205f02ec647a8ccb179f39f39457d911c91"
         }
       ]
     }

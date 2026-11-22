@@ -1,0 +1,15 @@
+{
+  "sample_id": "88e8fd4f1eda11fb",
+  "request_key": "POST https://h3c.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+  "request_url": "https://h3c.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://h3c.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "88e8fd4f1eda11fbf2f3de77f2ba38d6ef1d02fdfa6e4bbdefc8d6ded5288b75",
+  "captured_at": "2026-11-22T02:12:15.288Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "h3c-official-careers/samples/list-4.json"
+}
