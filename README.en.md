@@ -65,7 +65,8 @@ background and cached, so pages never call a model.
   Amphenol Fiber and Sosen Electronics) come from
   their public zhiye job-list endpoints, each linked back to the official job list page
   (`https://<tenant>.zhiye.com/social/jobs`, e.g. <https://iflytek.zhiye.com/social/jobs>) as the original entry.
-  INVT's and SANY's official list endpoints ignore pagination, so only the first screen is available.
+  All zhiye sources paginate normally, so the full job list can be browsed page by page on the
+  official job list page.
   Apsystems, BenQ, Hwatsing, Amphenol Fiber, Sosen Electronics and Risen Energy list very few open roles
   (1–3 each; Risen Energy 4) and are kept and flagged on job pages.
 - Code is MIT licensed; built on the open-source **AIHOT** framework (MIT, Copyright © 2026 数字生命卡兹克). See

@@ -228,25 +228,18 @@ async function captureZhiyeSource(
   const url = `${zhiyeSiteUrl(spec.tenant)}${ZHIYE_LIST_PATH}`;
   const samples: ManifestSampleRef[] = [];
   const seenBodies = new Map<string, string>();
-  let plannedPageSize = ZHIYE_PAGE_SIZE;
-  if (spec.paginationUnsupported !== true) {
-    await sleep(REQUEST_INTERVAL_MS);
-    plannedPageSize = planZhiyePageSize(
-      await probeZhiyeCount(transport, url, spec.sourceKey, log),
-    );
-  }
+  await sleep(REQUEST_INTERVAL_MS);
+  const plannedPageSize = planZhiyePageSize(
+    await probeZhiyeCount(transport, url, spec.sourceKey, log),
+  );
   for (let pageIndex = 0; pageIndex < ZHIYE_PAGE_COUNT; pageIndex += 1) {
-    // 官方 PageIndex 不生效的源只取首屏，用 PageSize 20..24 让 5 次请求体互不相同。
-    const requestPageIndex = spec.paginationUnsupported === true ? 0 : pageIndex;
-    const requestPageSize =
-      spec.paginationUnsupported === true ? ZHIYE_PAGE_SIZE + pageIndex : plannedPageSize;
     await sleep(REQUEST_INTERVAL_MS);
     try {
       const result = await capture(store, transport, {
         url,
         method: "POST",
         headers: { "content-type": "application/json", accept: "application/json" },
-        body: JSON.stringify(buildZhiyeListBody(requestPageIndex, requestPageSize)),
+        body: JSON.stringify(buildZhiyeListBody(pageIndex, plannedPageSize)),
         sourceKey: spec.sourceKey,
         extractionRef: `list-${pageIndex + 1}`,
         bodyFile: `${spec.sourceKey}/samples/list-${pageIndex + 1}.json`,
@@ -257,7 +250,7 @@ async function captureZhiyeSource(
       }
     } catch (error) {
       log.gaps.push(
-        `${spec.sourceKey} PageIndex=${requestPageIndex} PageSize=${requestPageSize}: ${messageOf(error)}`,
+        `${spec.sourceKey} PageIndex=${pageIndex} PageSize=${plannedPageSize}: ${messageOf(error)}`,
       );
     }
   }

@@ -41,10 +41,6 @@ const PAGE_TIMEOUT_MS = 20_000;
 const MIN_INTERVAL_MS = 1_000;
 const POST_DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})/;
 const EMPTY_POST_DATE_PREFIX = "0001-01-01";
-
-const PAGINATION_UNSUPPORTED_NOTE =
-  "官方接口实测 PageIndex 不生效（后续页返回同一页内容），分页不生效，仅首屏有效。";
-
 function sparseSourceNote(spec: ZhiyeSourceSpec, jobCount: number): string {
   const base = `在招岗位极少（${jobCount} 条）`;
   return spec.sparseEmptyPageSample ? `${base}，样本中空页属真实响应。` : `${base}。`;
@@ -52,10 +48,9 @@ function sparseSourceNote(spec: ZhiyeSourceSpec, jobCount: number): string {
 
 function zhiyeSourceNotes(spec: ZhiyeSourceSpec): string {
   const base = `北森 zhiye 门户公开社招 JSON（POST /api/Jobad/GetJobAdPageList，匿名可用，无 Cookie/Token/签名），列表条目即含职责与要求；平台未提供稳定单条详情 URL，official_url 统一为官方社招列表页 ${zhiyeJobsPageUrl(spec.tenant)}，岗位级唯一性由 source_job_id 保证。校招 Category=["2"] 暂不采集。`;
-  const paginated = spec.paginationUnsupported ? `${base}${PAGINATION_UNSUPPORTED_NOTE}` : base;
   return spec.sparseJobCount === undefined
-    ? paginated
-    : `${paginated}${sparseSourceNote(spec, spec.sparseJobCount)}`;
+    ? base
+    : `${base}${sparseSourceNote(spec, spec.sparseJobCount)}`;
 }
 
 export interface ZhiyeSourceSpec {
@@ -63,7 +58,6 @@ export interface ZhiyeSourceSpec {
   readonly tenant: string;
   readonly companyName: string;
   readonly label: string;
-  readonly paginationUnsupported?: boolean;
   /** 在招岗位条数（实测 Count）；仅稀疏源声明，notes 据此标注。 */
   readonly sparseJobCount?: number;
   /** 样本目录中确实落盘了 `Data=[]` 的空页响应；仅此类源在 notes 声明空页为真实响应。 */
@@ -135,14 +129,12 @@ export const ZHIYE_SOURCE_SPECS: readonly ZhiyeSourceSpec[] = [
     sourceKey: "invt-official-careers",
     label: "英威腾官方招聘",
     companyName: "英威腾",
-    paginationUnsupported: true,
   },
   {
     tenant: "sany",
     sourceKey: "sany-official-careers",
     label: "三一重工官方招聘",
     companyName: "三一重工",
-    paginationUnsupported: true,
   },
   {
     tenant: "venustech",
@@ -879,9 +871,6 @@ export function createZhiyeOfficialCareersAdapter(
     throw new ConfigError(`来源 ${options.sourceKey} 未在 ZHIYE_SOURCES 中登记`);
   }
   const defaultPageLimit = Math.max(1, Math.min(options.pageLimit ?? 1, MAX_PAGE_LIMIT));
-  const paginationUnsupported =
-    ZHIYE_SOURCE_SPECS.find((spec) => spec.sourceKey === options.sourceKey)?.paginationUnsupported ===
-    true;
   const listUrl = `${zhiyeSiteUrl(options.tenant)}${ZHIYE_LIST_PATH}`;
   const jobsPageUrl = zhiyeJobsPageUrl(options.tenant);
   const sleep = options.sleep ?? ((ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms)));
@@ -893,11 +882,9 @@ export function createZhiyeOfficialCareersAdapter(
       callOptions?: CareerCollectOptions,
     ): Promise<RawCollectedJobV1[]> {
       const pageLimit = Math.max(1, Math.min(callOptions?.pageLimit ?? defaultPageLimit, MAX_PAGE_LIMIT));
-      // 官方 PageIndex 不生效的源只取首屏：更大 pageLimit 只会重复请求同一页，且回放无对应样本。
-      const effectivePageLimit = paginationUnsupported ? 1 : pageLimit;
       const jobs: RawCollectedJobV1[] = [];
       const seenJobIds = new Set<string>();
-      for (let pageIndex = 0; pageIndex < effectivePageLimit; pageIndex += 1) {
+      for (let pageIndex = 0; pageIndex < pageLimit; pageIndex += 1) {
         if (isAborted(signal)) {
           throw new DOMException("采集被取消", "AbortError");
         }

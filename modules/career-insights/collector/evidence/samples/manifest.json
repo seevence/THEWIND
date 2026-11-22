@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-11-22T04:44:50.690Z",
+  "generated_at": "2026-11-22T05:07:35.237Z",
   "sources": [
     {
       "source_key": "moe-policy",
@@ -1195,49 +1195,49 @@
       "sample_count": 5,
       "samples": [
         {
-          "sample_id": "b6ef4e95790f08c5",
-          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "sample_id": "896abb795fb63d30",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#bec9cc01998f3fba",
           "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:31.410Z",
+          "captured_at": "2026-11-22T05:07:23.477Z",
           "extraction_ref": "list-1",
           "body_file": "invt-official-careers/samples/list-1.json",
-          "body_sha256": "b6ef4e95790f08c5ca84ba6b12c9c7cff20e048a54c7b4e0ddcde02ec5f633ea"
+          "body_sha256": "896abb795fb63d302d7d9ff6501721e9a534cda48299834639056eaa83e93a7d"
         },
         {
-          "sample_id": "44276b84134790ca",
-          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#ebd23951e7443ba1",
+          "sample_id": "212496705ccf7c67",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#f0ef0cf705b8dd57",
           "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:32.652Z",
+          "captured_at": "2026-11-22T05:07:24.628Z",
           "extraction_ref": "list-2",
           "body_file": "invt-official-careers/samples/list-2.json",
-          "body_sha256": "44276b84134790ca94ac6130784795bd217bedaca0ba1385195e72ce3ea8313d"
+          "body_sha256": "212496705ccf7c67859fa4e73a8136e05bd303d383dab81428ee22e489c76863"
         },
         {
-          "sample_id": "c0b27687b59f2362",
-          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#6742d20e11d362f9",
+          "sample_id": "34e6860e16767978",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#372b57067309eb96",
           "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:33.857Z",
+          "captured_at": "2026-11-22T05:07:25.774Z",
           "extraction_ref": "list-3",
           "body_file": "invt-official-careers/samples/list-3.json",
-          "body_sha256": "c0b27687b59f2362d31041e7a255f5820c958f78b6e303a65433dd7dc0cd48cc"
+          "body_sha256": "34e6860e16767978b245bd47c7fe96c56169bbecb0e4a9470bd639033924b350"
         },
         {
-          "sample_id": "984725e8507e544c",
-          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#888b3ec02beef7b3",
+          "sample_id": "48d7df1825e666cb",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#29ea329c45de1d13",
           "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:35.039Z",
+          "captured_at": "2026-11-22T05:07:26.939Z",
           "extraction_ref": "list-4",
           "body_file": "invt-official-careers/samples/list-4.json",
-          "body_sha256": "984725e8507e544c3b0f82ed530a42f74bb1d9996aa01f72c8438bd66fd75898"
+          "body_sha256": "48d7df1825e666cbb50cb4090aaccf622565b37f06c346acd1ec059967016c67"
         },
         {
-          "sample_id": "4ee5d4a6870ddbe1",
-          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#ad59d8eea19a2c7d",
+          "sample_id": "de96c90fc3ad53ae",
+          "request_key": "POST https://invt.zhiye.com/api/Jobad/GetJobAdPageList#d08c1089bfe061ff",
           "request_url": "https://invt.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:36.230Z",
+          "captured_at": "2026-11-22T05:07:28.057Z",
           "extraction_ref": "list-5",
           "body_file": "invt-official-careers/samples/list-5.json",
-          "body_sha256": "4ee5d4a6870ddbe1b26dad051e51a075daf5950a6e0710b79c6819bc53a1c84f"
+          "body_sha256": "de96c90fc3ad53ae9c2f80bdcae83506e68c5d78f5698755fa45af0f75134313"
         }
       ]
     },
@@ -1247,49 +1247,49 @@
       "sample_count": 5,
       "samples": [
         {
-          "sample_id": "e8d08e09b2306a4e",
-          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+          "sample_id": "3a020caea458c897",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#c481a3a54054ef7b",
           "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:37.751Z",
+          "captured_at": "2026-11-22T05:07:30.715Z",
           "extraction_ref": "list-1",
           "body_file": "sany-official-careers/samples/list-1.json",
-          "body_sha256": "e8d08e09b2306a4edacd9a4cb23e0ffc6655b68270173352577c05c1996c9c84"
+          "body_sha256": "3a020caea458c897061e7dd84daa92b173b9f2cc39096d229ae4683666267234"
         },
         {
-          "sample_id": "0931e0f029af7fff",
-          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#ebd23951e7443ba1",
+          "sample_id": "5c83c51b427777c1",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#2e77e18c8d6d3f01",
           "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:38.936Z",
+          "captured_at": "2026-11-22T05:07:31.839Z",
           "extraction_ref": "list-2",
           "body_file": "sany-official-careers/samples/list-2.json",
-          "body_sha256": "0931e0f029af7fffde431975c687ab30ea383e105b0453f6c99cc538b1ecfff4"
+          "body_sha256": "5c83c51b427777c167679a65cd4096145efb0754702745f7757761dadbaa3f56"
         },
         {
-          "sample_id": "8c2ea8642add9ccd",
-          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#6742d20e11d362f9",
+          "sample_id": "fd665b8610a201b0",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#6f45bd533c3501ec",
           "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:40.097Z",
+          "captured_at": "2026-11-22T05:07:32.961Z",
           "extraction_ref": "list-3",
           "body_file": "sany-official-careers/samples/list-3.json",
-          "body_sha256": "8c2ea8642add9ccd642dc68bdb722c59c9f7bb963d32d08ce632e40b610b9186"
+          "body_sha256": "fd665b8610a201b0afdf18e76806baf6a23b14a0a2376133d772dee0a6a9a876"
         },
         {
-          "sample_id": "b58fe4344d328ec4",
-          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#888b3ec02beef7b3",
+          "sample_id": "b25581037f303c1b",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#b0202cb8ed7d8d4d",
           "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:41.253Z",
+          "captured_at": "2026-11-22T05:07:34.095Z",
           "extraction_ref": "list-4",
           "body_file": "sany-official-careers/samples/list-4.json",
-          "body_sha256": "b58fe4344d328ec43a1f23382b8734eb28a0c6846624d396c337d1d7236b1b92"
+          "body_sha256": "b25581037f303c1babf87ad5ad98dd7c61657a1b618b472c048a23bd2a939578"
         },
         {
-          "sample_id": "cb5865f935602ec8",
-          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#ad59d8eea19a2c7d",
+          "sample_id": "47e663074a86eca1",
+          "request_key": "POST https://sany.zhiye.com/api/Jobad/GetJobAdPageList#d0fb873fcbbd0be2",
           "request_url": "https://sany.zhiye.com/api/Jobad/GetJobAdPageList",
-          "captured_at": "2026-11-22T02:12:42.416Z",
+          "captured_at": "2026-11-22T05:07:35.234Z",
           "extraction_ref": "list-5",
           "body_file": "sany-official-careers/samples/list-5.json",
-          "body_sha256": "cb5865f935602ec8492d2b43dda8625085b810b3e4851963e028c459aeed2ee2"
+          "body_sha256": "47e663074a86eca1e48b0ae975cb0a2525580169c4b0a47bbf9d805ea950bb7b"
         }
       ]
     },

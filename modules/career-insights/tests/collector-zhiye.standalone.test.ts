@@ -496,16 +496,9 @@ test("ZHIYE_SOURCE_SPECS 为三元组唯一来源，顺序与 ZHIYE_SOURCES / C-
   );
 });
 
-test("invt / sany 源定义 notes 声明官方分页不生效，其余源不声明", () => {
-  for (const sourceKey of ["invt-official-careers", "sany-official-careers"]) {
-    const definition = ZHIYE_SOURCES.find((entry) => entry.source_key === sourceKey);
-    assert.ok(definition !== undefined, sourceKey);
-    assert.match(definition.notes ?? "", /分页不生效/, sourceKey);
-  }
-  const paged = ZHIYE_SOURCES.filter(
-    (entry) => entry.source_key !== "invt-official-careers" && entry.source_key !== "sany-official-careers",
-  );
-  assert.ok(paged.every((entry) => !(entry.notes ?? "").includes("分页不生效")));
+test("所有 zhiye 源 notes 不再声明分页不生效", () => {
+  const offenders = ZHIYE_SOURCES.filter((entry) => (entry.notes ?? "").includes("分页不生效"));
+  assert.deepEqual(offenders.map((entry) => entry.source_key), []);
 });
 
 test("稀疏源 notes 如实标注在招条数，仅落盘空页样本的源声明空页为真实响应", () => {
@@ -752,10 +745,20 @@ test("zhiye pageLimit 上限为 3", async () => {
   assert.equal(jobs.length, 3);
 });
 
-test("zhiye 分页不生效源（invt）忽略更大 pageLimit，只请求首屏一次", async () => {
+test("zhiye invt 分页正常：pageLimit=3 按 PageIndex 0/1/2 请求，p2 空后停止，产出 40 条（PageSize 20）", async () => {
   const transport = createTransport((request) => {
     const body = JSON.parse(request.body ?? "{}") as Record<string, number>;
-    return listBody([{ ...JOB_FULL, JobAdId: 3000 + body["PageIndex"] }]);
+    const pageIndex = body["PageIndex"];
+    if (pageIndex >= 2) {
+      return listBody([]);
+    }
+    return listBody(
+      Array.from({ length: 20 }, (_, offset) => ({
+        ...JOB_FULL,
+        JobAdId: 3000 + pageIndex * 20 + offset,
+        JobAdName: `岗位 ${pageIndex}-${offset}`,
+      })),
+    );
   });
   const adapter = createZhiyeOfficialCareersAdapter(transport, {
     tenant: "invt",
@@ -765,10 +768,13 @@ test("zhiye 分页不生效源（invt）忽略更大 pageLimit，只请求首屏
     sleep: async () => {},
   });
   const jobs = await adapter.collect(undefined, { pageLimit: 3 });
-  assert.equal(transport.requests.length, 1);
-  const pageIndex = (JSON.parse(transport.requests[0]?.body ?? "{}") as Record<string, number>)["PageIndex"];
-  assert.equal(pageIndex, 0);
-  assert.deepEqual(jobs.map((job) => job.source_job_id), ["3000"]);
+  const bodies = transport.requests.map(
+    (request) => JSON.parse(request.body ?? "{}") as Record<string, number>,
+  );
+  assert.deepEqual(bodies.map((body) => body["PageIndex"]), [0, 1, 2]);
+  assert.ok(bodies.every((body) => body["PageSize"] === 20));
+  assert.equal(jobs.length, 40);
+  assert.equal(new Set(jobs.map((job) => job.source_job_id)).size, 40);
 });
 
 test("zhiye HTTP 429/403 归为 access_blocked，5xx 归为瞬态 timeout，200+Code!=200 仍是 schema_changed", async () => {
