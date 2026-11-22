@@ -1,0 +1,15 @@
+{
+  "sample_id": "ff2379da289c73de",
+  "request_key": "POST https://risen.zhiye.com/api/Jobad/GetJobAdPageList#7863c993ea6de28e",
+  "request_url": "https://risen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://risen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "ff2379da289c73de07b5ff8bc3e0943926332f1666b0b1e93c9b1b01737942ac",
+  "captured_at": "2026-11-22T03:41:41.572Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "risen-official-careers/samples/list-1.json"
+}

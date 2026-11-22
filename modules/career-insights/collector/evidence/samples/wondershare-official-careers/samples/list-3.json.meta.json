@@ -1,0 +1,15 @@
+{
+  "sample_id": "38107d6df96c38a8",
+  "request_key": "POST https://wondershare.zhiye.com/api/Jobad/GetJobAdPageList#b77b67b243e5ed0b",
+  "request_url": "https://wondershare.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://wondershare.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "38107d6df96c38a8e7bb360c68079a86293c6e96949d0a28aa5619447e05e9cd",
+  "captured_at": "2026-11-22T03:43:17.760Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "wondershare-official-careers/samples/list-3.json"
+}

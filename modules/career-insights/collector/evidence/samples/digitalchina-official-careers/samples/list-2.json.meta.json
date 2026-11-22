@@ -1,0 +1,15 @@
+{
+  "sample_id": "d89947309b86991c",
+  "request_key": "POST https://digitalchina.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+  "request_url": "https://digitalchina.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://digitalchina.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "d89947309b86991c70cb35b61b53b53230a063335ea03bcf09ce405ff1c0ba47",
+  "captured_at": "2026-11-22T03:42:18.692Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "digitalchina-official-careers/samples/list-2.json"
+}

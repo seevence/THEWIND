@@ -1,0 +1,15 @@
+{
+  "sample_id": "7598bd2e1cf1fdb1",
+  "request_key": "POST https://fibocom.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+  "request_url": "https://fibocom.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://fibocom.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "7598bd2e1cf1fdb1b23392d2c3ba277ed5ea03087a5c7332a75fff1b4cac1245",
+  "captured_at": "2026-11-22T03:43:32.241Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "fibocom-official-careers/samples/list-3.json"
+}

@@ -18,7 +18,7 @@ import type { FetchTransport, PageRequest } from "../fetch/transport.ts";
 /**
  * 北森 zhiye 平台社招列表适配器。
  *
- * 52 家企业共用同一套公开 JSON 接口（匿名可用、无 Cookie / Token / 签名）：
+ * 86 家企业共用同一套公开 JSON 接口（匿名可用、无 Cookie / Token / 签名）：
  * `POST https://<tenant>.zhiye.com/api/Jobad/GetJobAdPageList`，社招 = `Category: ["1"]`。
  * 列表条目已含职责（`Duty`）、要求（`Require`）、城市（`LocNames`）、发布时间（`PostDate`），
  * 因此单页只发一次请求，不逐条取详情。平台未提供稳定的单条职位详情 URL，
@@ -43,9 +43,17 @@ const EMPTY_POST_DATE_PREFIX = "0001-01-01";
 const PAGINATION_UNSUPPORTED_NOTE =
   "官方接口实测 PageIndex 不生效（后续页返回同一页内容），分页不生效，仅首屏有效。";
 
+function sparseSourceNote(spec: ZhiyeSourceSpec, jobCount: number): string {
+  const base = `在招岗位极少（${jobCount} 条）`;
+  return spec.sparseEmptyPageSample ? `${base}，样本中空页属真实响应。` : `${base}。`;
+}
+
 function zhiyeSourceNotes(spec: ZhiyeSourceSpec): string {
   const base = `北森 zhiye 门户公开社招 JSON（POST /api/Jobad/GetJobAdPageList，匿名可用，无 Cookie/Token/签名），列表条目即含职责与要求；平台未提供稳定单条详情 URL，official_url 统一为官方社招列表页 ${zhiyeJobsPageUrl(spec.tenant)}，岗位级唯一性由 source_job_id 保证。校招 Category=["2"] 暂不采集。`;
-  return spec.paginationUnsupported ? `${base}${PAGINATION_UNSUPPORTED_NOTE}` : base;
+  const paginated = spec.paginationUnsupported ? `${base}${PAGINATION_UNSUPPORTED_NOTE}` : base;
+  return spec.sparseJobCount === undefined
+    ? paginated
+    : `${paginated}${sparseSourceNote(spec, spec.sparseJobCount)}`;
 }
 
 export interface ZhiyeSourceSpec {
@@ -54,6 +62,10 @@ export interface ZhiyeSourceSpec {
   readonly companyName: string;
   readonly label: string;
   readonly paginationUnsupported?: boolean;
+  /** 在招岗位条数（实测 Count）；仅稀疏源声明，notes 据此标注。 */
+  readonly sparseJobCount?: number;
+  /** 样本目录中确实落盘了 `Data=[]` 的空页响应；仅此类源在 notes 声明空页为真实响应。 */
+  readonly sparseEmptyPageSample?: boolean;
 }
 
 /**
@@ -375,6 +387,219 @@ export const ZHIYE_SOURCE_SPECS: readonly ZhiyeSourceSpec[] = [
     sourceKey: "ucloud-official-careers",
     label: "UCloud官方招聘",
     companyName: "UCloud",
+  },
+  {
+    tenant: "beisen",
+    sourceKey: "beisen-official-careers",
+    label: "北森官方招聘",
+    companyName: "北森",
+  },
+  {
+    tenant: "fxiaoke",
+    sourceKey: "fxiaoke-official-careers",
+    label: "纷享销客官方招聘",
+    companyName: "纷享销客",
+  },
+  {
+    tenant: "autochips",
+    sourceKey: "autochips-official-careers",
+    label: "杰发科技官方招聘",
+    companyName: "杰发科技",
+  },
+  {
+    tenant: "bestechnic",
+    sourceKey: "bestechnic-official-careers",
+    label: "恒玄科技官方招聘",
+    companyName: "恒玄科技",
+  },
+  {
+    tenant: "biwin",
+    sourceKey: "biwin-official-careers",
+    label: "佰维存储官方招聘",
+    companyName: "佰维存储",
+  },
+  {
+    tenant: "cxmt",
+    sourceKey: "cxmt-official-careers",
+    label: "长鑫存储官方招聘",
+    companyName: "长鑫存储",
+  },
+  {
+    tenant: "longsys",
+    sourceKey: "longsys-official-careers",
+    label: "江波龙官方招聘",
+    companyName: "江波龙",
+  },
+  {
+    tenant: "nanxin",
+    sourceKey: "nanxin-official-careers",
+    label: "南芯半导体官方招聘",
+    companyName: "南芯半导体",
+  },
+  {
+    tenant: "risen",
+    sourceKey: "risen-official-careers",
+    label: "东方日升官方招聘",
+    companyName: "东方日升",
+    sparseJobCount: 4,
+    sparseEmptyPageSample: true,
+  },
+  {
+    tenant: "tongwei",
+    sourceKey: "tongwei-official-careers",
+    label: "通威股份官方招聘",
+    companyName: "通威股份",
+  },
+  {
+    tenant: "ymtc",
+    sourceKey: "ymtc-official-careers",
+    label: "长江存储官方招聘",
+    companyName: "长江存储",
+  },
+  {
+    tenant: "aqara",
+    sourceKey: "aqara-official-careers",
+    label: "绿米联创官方招聘",
+    companyName: "绿米联创",
+  },
+  {
+    tenant: "awinic",
+    sourceKey: "awinic-official-careers",
+    label: "艾为电子官方招聘",
+    companyName: "艾为电子",
+  },
+  {
+    tenant: "digitalchina",
+    sourceKey: "digitalchina-official-careers",
+    label: "神州数码官方招聘",
+    companyName: "神州数码",
+  },
+  {
+    tenant: "snibe",
+    sourceKey: "snibe-official-careers",
+    label: "新产业生物官方招聘",
+    companyName: "新产业生物",
+  },
+  {
+    tenant: "yusys",
+    sourceKey: "yusys-official-careers",
+    label: "宇信科技官方招聘",
+    companyName: "宇信科技",
+  },
+  {
+    tenant: "leapmotor",
+    sourceKey: "leapmotor-official-careers",
+    label: "零跑汽车官方招聘",
+    companyName: "零跑汽车",
+  },
+  {
+    tenant: "sunlord",
+    sourceKey: "sunlord-official-careers",
+    label: "南京商络电子官方招聘",
+    companyName: "南京商络电子股份有限公司",
+  },
+  {
+    tenant: "winline",
+    sourceKey: "winline-official-careers",
+    label: "永联科技官方招聘",
+    companyName: "深圳永联科技股份有限公司",
+  },
+  {
+    tenant: "changan",
+    sourceKey: "changan-official-careers",
+    label: "长安汽车官方招聘",
+    companyName: "长安汽车",
+  },
+  {
+    tenant: "chery",
+    sourceKey: "chery-official-careers",
+    label: "奇瑞汽车官方招聘",
+    companyName: "奇瑞汽车",
+  },
+  {
+    tenant: "wondershare",
+    sourceKey: "wondershare-official-careers",
+    label: "万兴科技官方招聘",
+    companyName: "万兴科技",
+  },
+  {
+    tenant: "jmc",
+    sourceKey: "jmc-official-careers",
+    label: "江铃汽车官方招聘",
+    companyName: "江铃汽车",
+  },
+  {
+    tenant: "fibocom",
+    sourceKey: "fibocom-official-careers",
+    label: "广和通官方招聘",
+    companyName: "广和通",
+  },
+  {
+    tenant: "neoway",
+    sourceKey: "neoway-official-careers",
+    label: "有方科技官方招聘",
+    companyName: "有方科技",
+  },
+  {
+    tenant: "zhihuiya",
+    sourceKey: "zhihuiya-official-careers",
+    label: "智慧芽官方招聘",
+    companyName: "智慧芽",
+  },
+  {
+    tenant: "advantech",
+    sourceKey: "advantech-official-careers",
+    label: "研华科技官方招聘",
+    companyName: "研华科技",
+  },
+  {
+    tenant: "liteon2",
+    sourceKey: "liteon2-official-careers",
+    label: "光宝科技官方招聘",
+    companyName: "光宝科技",
+  },
+  {
+    tenant: "cosmx",
+    sourceKey: "cosmx-official-careers",
+    label: "珠海冠宇官方招聘",
+    companyName: "珠海冠宇",
+  },
+  {
+    tenant: "apsystems",
+    sourceKey: "apsystems-official-careers",
+    label: "领储宇能官方招聘",
+    companyName: "领储宇能科技有限公司",
+    sparseJobCount: 1,
+    sparseEmptyPageSample: true,
+  },
+  {
+    tenant: "benq",
+    sourceKey: "benq-official-careers",
+    label: "明基BenQ官方招聘",
+    companyName: "明基BenQ",
+    sparseJobCount: 3,
+    sparseEmptyPageSample: true,
+  },
+  {
+    tenant: "hwatsing",
+    sourceKey: "hwatsing-official-careers",
+    label: "华海清科官方招聘",
+    companyName: "华海清科",
+    sparseJobCount: 1,
+  },
+  {
+    tenant: "amphenol",
+    sourceKey: "amphenol-official-careers",
+    label: "安费诺光纤官方招聘",
+    companyName: "安费诺光纤技术(深圳)有限公司",
+    sparseJobCount: 1,
+  },
+  {
+    tenant: "sosen",
+    sourceKey: "sosen-official-careers",
+    label: "崧盛电子官方招聘",
+    companyName: "深圳市崧盛电子股份有限公司",
+    sparseJobCount: 1,
   },
 ];
 

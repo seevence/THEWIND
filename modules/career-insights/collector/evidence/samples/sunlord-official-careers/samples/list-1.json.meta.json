@@ -1,0 +1,15 @@
+{
+  "sample_id": "38bd12493f67cec6",
+  "request_key": "POST https://sunlord.zhiye.com/api/Jobad/GetJobAdPageList#288d757d33e72fad",
+  "request_url": "https://sunlord.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://sunlord.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "38bd12493f67cec6663bb7e40bb426f6fb8acab478f1deed7abade9d3e42f204",
+  "captured_at": "2026-11-22T03:42:47.122Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "sunlord-official-careers/samples/list-1.json"
+}

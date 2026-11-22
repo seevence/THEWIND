@@ -1,0 +1,15 @@
+{
+  "sample_id": "f11606def5d895d2",
+  "request_key": "POST https://nanxin.zhiye.com/api/Jobad/GetJobAdPageList#3cb0d5776f097946",
+  "request_url": "https://nanxin.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://nanxin.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "f11606def5d895d204b45a4cf11aa9582f13a02f345c5c48e6b8116262c346b7",
+  "captured_at": "2026-11-22T03:41:39.085Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "nanxin-official-careers/samples/list-5.json"
+}

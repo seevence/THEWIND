@@ -1,0 +1,15 @@
+{
+  "sample_id": "7bc7b741248cc5eb",
+  "request_key": "POST https://changan.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+  "request_url": "https://changan.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://changan.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "7bc7b741248cc5ebc6ba041351510050382e0860f21905d77f4465f4d5aea4ef",
+  "captured_at": "2026-11-22T03:43:01.122Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "changan-official-careers/samples/list-1.json"
+}

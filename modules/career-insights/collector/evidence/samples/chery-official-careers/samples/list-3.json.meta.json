@@ -1,0 +1,15 @@
+{
+  "sample_id": "80b6a449157c9ea0",
+  "request_key": "POST https://chery.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+  "request_url": "https://chery.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://chery.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "80b6a449157c9ea010867be4eb1ae3258589fa0988883cc2241fabf5f2b9f6e4",
+  "captured_at": "2026-11-22T03:43:10.604Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "chery-official-careers/samples/list-3.json"
+}

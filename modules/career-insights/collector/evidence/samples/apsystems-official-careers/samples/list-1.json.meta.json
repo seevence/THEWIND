@@ -1,0 +1,15 @@
+{
+  "sample_id": "5f5eec46d9baf152",
+  "request_key": "POST https://apsystems.zhiye.com/api/Jobad/GetJobAdPageList#7863c993ea6de28e",
+  "request_url": "https://apsystems.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://apsystems.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "5f5eec46d9baf1523a259d9a6ef5fd6e2c9b4ed8511dd568981706e2e4594f83",
+  "captured_at": "2026-11-22T03:55:59.478Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "apsystems-official-careers/samples/list-1.json"
+}

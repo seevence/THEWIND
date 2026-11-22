@@ -1,0 +1,15 @@
+{
+  "sample_id": "be0b60db99882ed9",
+  "request_key": "POST https://neoway.zhiye.com/api/Jobad/GetJobAdPageList#288d757d33e72fad",
+  "request_url": "https://neoway.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://neoway.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "be0b60db99882ed9993c6628a02281bdf666d82cb7873ebd3af1798c8d1e0fa0",
+  "captured_at": "2026-11-22T03:43:37.186Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "neoway-official-careers/samples/list-1.json"
+}

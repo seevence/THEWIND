@@ -13,22 +13,33 @@ import { redactPersonalData } from "../collector/evidence/sanitizer.ts";
 import { ZHIYE_SOURCES } from "../collector/adapters/zhiye-official-careers.ts";
 
 const SAMPLES = join(dirname(fileURLToPath(import.meta.url)), "../collector/evidence/samples");
-/** 52 个 zhiye 源：只用它们验收个人数据打码，不把既有 8 个岗位源算进来。 */
+/** 86 个 zhiye 源：只用它们验收个人数据打码，不把既有 8 个岗位源算进来。 */
 const ZHIYE_SOURCE_KEYS = new Set(ZHIYE_SOURCES.map((source) => source.source_key));
 
 async function loadManifest(): Promise<SampleManifest> {
   return JSON.parse(await readFile(join(SAMPLES, "manifest.json"), "utf8")) as SampleManifest;
 }
 
-test("真实 manifest 通过结构校验并满足样本配额", async () => {
+test("真实 manifest 通过结构校验并如实暴露稀疏源配额缺口", async () => {
   const manifest = await loadManifest();
   const validation = validateSampleManifest(manifest);
   assert.deepEqual(validation.errors, []);
   assert.equal(validation.ok, true);
 
+  // 稀疏源（在招 1–3 条）的真实响应只有 Count+1 份互不相同的正文，全局去重空页后必然低于 5 份配额；
+  // 契约 @12 要求如实暴露缺口而不是伪造样本，这里逐一钉住缺口来源。
   const quota = evaluateManifestQuota(manifest);
-  assert.equal(quota.status, "ok");
-  assert.deepEqual(quota.gaps, []);
+  assert.equal(quota.status, "insufficient");
+  assert.deepEqual(
+    quota.gaps.map((gap) => `${gap.source_key}:${gap.actual}/${gap.required}`),
+    [
+      "apsystems-official-careers:2/5",
+      "benq-official-careers:4/5",
+      "hwatsing-official-careers:1/5",
+      "amphenol-official-careers:1/5",
+      "sosen-official-careers:1/5",
+    ],
+  );
 
   assert.deepEqual(
     manifest.sources.map((source) => `${source.source_key}:${source.kind}:${source.sample_count}`),
@@ -102,6 +113,41 @@ test("真实 manifest 通过结构校验并满足样本配额", async () => {
       "infypower-official-careers:job:5",
       "joulwatt-official-careers:job:5",
       "ucloud-official-careers:job:5",
+
+      "beisen-official-careers:job:5",
+      "fxiaoke-official-careers:job:5",
+      "autochips-official-careers:job:5",
+      "bestechnic-official-careers:job:5",
+      "biwin-official-careers:job:5",
+      "cxmt-official-careers:job:5",
+      "longsys-official-careers:job:5",
+      "nanxin-official-careers:job:5",
+      "risen-official-careers:job:5",
+      "tongwei-official-careers:job:5",
+      "ymtc-official-careers:job:5",
+      "aqara-official-careers:job:5",
+      "awinic-official-careers:job:5",
+      "digitalchina-official-careers:job:5",
+      "snibe-official-careers:job:5",
+      "yusys-official-careers:job:5",
+      "leapmotor-official-careers:job:5",
+      "sunlord-official-careers:job:5",
+      "winline-official-careers:job:5",
+      "changan-official-careers:job:5",
+      "chery-official-careers:job:5",
+      "wondershare-official-careers:job:5",
+      "jmc-official-careers:job:5",
+      "fibocom-official-careers:job:5",
+      "neoway-official-careers:job:5",
+      "zhihuiya-official-careers:job:5",
+      "advantech-official-careers:job:5",
+      "liteon2-official-careers:job:5",
+      "cosmx-official-careers:job:5",
+      "apsystems-official-careers:job:2",
+      "benq-official-careers:job:4",
+      "hwatsing-official-careers:job:1",
+      "amphenol-official-careers:job:1",
+      "sosen-official-careers:job:1",
     ],
   );
 });
@@ -139,7 +185,7 @@ test("manifest 内 sample_id 全局唯一，新增源样本正文不含真实个
   const zhiyeSources = manifest.sources.filter(
     (source) => source.kind === "job" && ZHIYE_SOURCE_KEYS.has(source.source_key),
   );
-  assert.equal(zhiyeSources.length, 52);
+  assert.equal(zhiyeSources.length, 86);
   for (const source of zhiyeSources) {
     for (const sample of source.samples) {
       const text = await readFile(join(SAMPLES, sample.body_file), "utf8");

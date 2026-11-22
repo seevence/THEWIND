@@ -1,0 +1,15 @@
+{
+  "sample_id": "a4c13765e7b82dd1",
+  "request_key": "POST https://beisen.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+  "request_url": "https://beisen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://beisen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "a4c13765e7b82dd1bea556ede8f512f5f882c81558afe3b1697350b55999dfa5",
+  "captured_at": "2026-11-22T03:40:42.601Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": true,
+  "sanitize_note": "redacted:phone=1",
+  "body_file": "beisen-official-careers/samples/list-1.json"
+}

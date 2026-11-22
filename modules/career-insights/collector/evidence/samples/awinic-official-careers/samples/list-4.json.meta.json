@@ -1,0 +1,15 @@
+{
+  "sample_id": "d26d5d183da4c597",
+  "request_key": "POST https://awinic.zhiye.com/api/Jobad/GetJobAdPageList#f35c656394940c82",
+  "request_url": "https://awinic.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://awinic.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "d26d5d183da4c597f9271fd64ec88511d7613420817b9736cde27d0d4d859fba",
+  "captured_at": "2026-11-22T03:42:13.747Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "awinic-official-careers/samples/list-4.json"
+}

@@ -1,0 +1,15 @@
+{
+  "sample_id": "308b9c5dacaf3ad3",
+  "request_key": "POST https://liteon2.zhiye.com/api/Jobad/GetJobAdPageList#6e8d1c71bf23d498",
+  "request_url": "https://liteon2.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://liteon2.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "308b9c5dacaf3ad3d6fadf57239b4442b1e7fd3652a2fd8abeb30dab3ca1b151",
+  "captured_at": "2026-11-22T03:44:01.791Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "liteon2-official-careers/samples/list-4.json"
+}

@@ -1,0 +1,15 @@
+{
+  "sample_id": "c5d89301f0d1c8c2",
+  "request_key": "POST https://benq.zhiye.com/api/Jobad/GetJobAdPageList#7863c993ea6de28e",
+  "request_url": "https://benq.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://benq.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "c5d89301f0d1c8c2474c869ba3771b25237635139943c5fc29a24b62d0e08a28",
+  "captured_at": "2026-11-22T03:56:07.018Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "benq-official-careers/samples/list-1.json"
+}

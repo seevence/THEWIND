@@ -1,0 +1,15 @@
+{
+  "sample_id": "22df3b7a7fbfb448",
+  "request_key": "POST https://biwin.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+  "request_url": "https://biwin.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://biwin.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "22df3b7a7fbfb4482ea2606b8970a413cf3fa069a1663b05e4cca596626a0839",
+  "captured_at": "2026-11-22T03:41:12.959Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "biwin-official-careers/samples/list-2.json"
+}

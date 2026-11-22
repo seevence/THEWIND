@@ -1,0 +1,15 @@
+{
+  "sample_id": "82cb64c26b04876f",
+  "request_key": "POST https://zhihuiya.zhiye.com/api/Jobad/GetJobAdPageList#1d5ec9b32ee125ef",
+  "request_url": "https://zhihuiya.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://zhihuiya.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "82cb64c26b04876fbd066a6faabc576664d267d88b817c17aba7dbdc09e78a50",
+  "captured_at": "2026-11-22T03:43:46.535Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "zhihuiya-official-careers/samples/list-3.json"
+}

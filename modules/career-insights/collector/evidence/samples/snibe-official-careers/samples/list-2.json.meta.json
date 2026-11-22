@@ -1,0 +1,15 @@
+{
+  "sample_id": "73ab7952e1dc8609",
+  "request_key": "POST https://snibe.zhiye.com/api/Jobad/GetJobAdPageList#eef126edab5fad8d",
+  "request_url": "https://snibe.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://snibe.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "73ab7952e1dc860918c82e1eb197a75a8e8d6cf5c06d3fce075da8bd2fe7aa66",
+  "captured_at": "2026-11-22T03:42:26.193Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "snibe-official-careers/samples/list-2.json"
+}

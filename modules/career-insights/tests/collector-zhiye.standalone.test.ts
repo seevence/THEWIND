@@ -102,7 +102,7 @@ function createTransport(
   };
 }
 
-test("ZHIYE_SOURCES 为 52 家企业社招源且顺序与入口固定", () => {
+test("ZHIYE_SOURCES 为 86 家企业社招源且顺序与入口固定", () => {
   assert.deepEqual(
     ZHIYE_SOURCES.map((item) => item.source_key),
     [
@@ -159,6 +159,40 @@ test("ZHIYE_SOURCES 为 52 家企业社招源且顺序与入口固定", () => {
       "infypower-official-careers",
       "joulwatt-official-careers",
       "ucloud-official-careers",
+      "beisen-official-careers",
+      "fxiaoke-official-careers",
+      "autochips-official-careers",
+      "bestechnic-official-careers",
+      "biwin-official-careers",
+      "cxmt-official-careers",
+      "longsys-official-careers",
+      "nanxin-official-careers",
+      "risen-official-careers",
+      "tongwei-official-careers",
+      "ymtc-official-careers",
+      "aqara-official-careers",
+      "awinic-official-careers",
+      "digitalchina-official-careers",
+      "snibe-official-careers",
+      "yusys-official-careers",
+      "leapmotor-official-careers",
+      "sunlord-official-careers",
+      "winline-official-careers",
+      "changan-official-careers",
+      "chery-official-careers",
+      "wondershare-official-careers",
+      "jmc-official-careers",
+      "fibocom-official-careers",
+      "neoway-official-careers",
+      "zhihuiya-official-careers",
+      "advantech-official-careers",
+      "liteon2-official-careers",
+      "cosmx-official-careers",
+      "apsystems-official-careers",
+      "benq-official-careers",
+      "hwatsing-official-careers",
+      "amphenol-official-careers",
+      "sosen-official-careers",
     ],
   );
   assert.deepEqual(
@@ -217,6 +251,40 @@ test("ZHIYE_SOURCES 为 52 家企业社招源且顺序与入口固定", () => {
       "https://infypower.zhiye.com/social/jobs",
       "https://joulwatt.zhiye.com/social/jobs",
       "https://ucloud.zhiye.com/social/jobs",
+      "https://beisen.zhiye.com/social/jobs",
+      "https://fxiaoke.zhiye.com/social/jobs",
+      "https://autochips.zhiye.com/social/jobs",
+      "https://bestechnic.zhiye.com/social/jobs",
+      "https://biwin.zhiye.com/social/jobs",
+      "https://cxmt.zhiye.com/social/jobs",
+      "https://longsys.zhiye.com/social/jobs",
+      "https://nanxin.zhiye.com/social/jobs",
+      "https://risen.zhiye.com/social/jobs",
+      "https://tongwei.zhiye.com/social/jobs",
+      "https://ymtc.zhiye.com/social/jobs",
+      "https://aqara.zhiye.com/social/jobs",
+      "https://awinic.zhiye.com/social/jobs",
+      "https://digitalchina.zhiye.com/social/jobs",
+      "https://snibe.zhiye.com/social/jobs",
+      "https://yusys.zhiye.com/social/jobs",
+      "https://leapmotor.zhiye.com/social/jobs",
+      "https://sunlord.zhiye.com/social/jobs",
+      "https://winline.zhiye.com/social/jobs",
+      "https://changan.zhiye.com/social/jobs",
+      "https://chery.zhiye.com/social/jobs",
+      "https://wondershare.zhiye.com/social/jobs",
+      "https://jmc.zhiye.com/social/jobs",
+      "https://fibocom.zhiye.com/social/jobs",
+      "https://neoway.zhiye.com/social/jobs",
+      "https://zhihuiya.zhiye.com/social/jobs",
+      "https://advantech.zhiye.com/social/jobs",
+      "https://liteon2.zhiye.com/social/jobs",
+      "https://cosmx.zhiye.com/social/jobs",
+      "https://apsystems.zhiye.com/social/jobs",
+      "https://benq.zhiye.com/social/jobs",
+      "https://hwatsing.zhiye.com/social/jobs",
+      "https://amphenol.zhiye.com/social/jobs",
+      "https://sosen.zhiye.com/social/jobs",
     ],
   );
   assert.deepEqual(
@@ -274,12 +342,46 @@ test("ZHIYE_SOURCES 为 52 家企业社招源且顺序与入口固定", () => {
       "英飞源官方招聘",
       "杰华特官方招聘",
       "UCloud官方招聘",
+      "北森官方招聘",
+      "纷享销客官方招聘",
+      "杰发科技官方招聘",
+      "恒玄科技官方招聘",
+      "佰维存储官方招聘",
+      "长鑫存储官方招聘",
+      "江波龙官方招聘",
+      "南芯半导体官方招聘",
+      "东方日升官方招聘",
+      "通威股份官方招聘",
+      "长江存储官方招聘",
+      "绿米联创官方招聘",
+      "艾为电子官方招聘",
+      "神州数码官方招聘",
+      "新产业生物官方招聘",
+      "宇信科技官方招聘",
+      "零跑汽车官方招聘",
+      "南京商络电子官方招聘",
+      "永联科技官方招聘",
+      "长安汽车官方招聘",
+      "奇瑞汽车官方招聘",
+      "万兴科技官方招聘",
+      "江铃汽车官方招聘",
+      "广和通官方招聘",
+      "有方科技官方招聘",
+      "智慧芽官方招聘",
+      "研华科技官方招聘",
+      "光宝科技官方招聘",
+      "珠海冠宇官方招聘",
+      "领储宇能官方招聘",
+      "明基BenQ官方招聘",
+      "华海清科官方招聘",
+      "安费诺光纤官方招聘",
+      "崧盛电子官方招聘",
     ],
   );
   assert.ok(ZHIYE_SOURCES.every((item) => item.kind === "company_careers"));
   assert.ok(ZHIYE_SOURCES.every((item) => item.access === "http" && item.enabled));
-  assert.equal(ZHIYE_SOURCES.length, 52);
-  assert.equal(ZHIYE_SOURCE_SPECS.length, 52);
+  assert.equal(ZHIYE_SOURCES.length, 86);
+  assert.equal(ZHIYE_SOURCE_SPECS.length, 86);
   assert.equal(ZHIYE_LIST_PATH, "/api/Jobad/GetJobAdPageList");
   assert.equal(ZHIYE_COLLECTOR_VERSION, "collector/0.2.0");
   assert.equal(zhiyeSiteUrl("dahua"), "https://dahua.zhiye.com");
@@ -346,6 +448,40 @@ test("ZHIYE_SOURCE_SPECS 为三元组唯一来源，顺序与 ZHIYE_SOURCES / C-
       ["infypower-official-careers", "infypower", "英飞源"],
       ["joulwatt-official-careers", "joulwatt", "杰华特"],
       ["ucloud-official-careers", "ucloud", "UCloud"],
+      ["beisen-official-careers", "beisen", "北森"],
+      ["fxiaoke-official-careers", "fxiaoke", "纷享销客"],
+      ["autochips-official-careers", "autochips", "杰发科技"],
+      ["bestechnic-official-careers", "bestechnic", "恒玄科技"],
+      ["biwin-official-careers", "biwin", "佰维存储"],
+      ["cxmt-official-careers", "cxmt", "长鑫存储"],
+      ["longsys-official-careers", "longsys", "江波龙"],
+      ["nanxin-official-careers", "nanxin", "南芯半导体"],
+      ["risen-official-careers", "risen", "东方日升"],
+      ["tongwei-official-careers", "tongwei", "通威股份"],
+      ["ymtc-official-careers", "ymtc", "长江存储"],
+      ["aqara-official-careers", "aqara", "绿米联创"],
+      ["awinic-official-careers", "awinic", "艾为电子"],
+      ["digitalchina-official-careers", "digitalchina", "神州数码"],
+      ["snibe-official-careers", "snibe", "新产业生物"],
+      ["yusys-official-careers", "yusys", "宇信科技"],
+      ["leapmotor-official-careers", "leapmotor", "零跑汽车"],
+      ["sunlord-official-careers", "sunlord", "南京商络电子股份有限公司"],
+      ["winline-official-careers", "winline", "深圳永联科技股份有限公司"],
+      ["changan-official-careers", "changan", "长安汽车"],
+      ["chery-official-careers", "chery", "奇瑞汽车"],
+      ["wondershare-official-careers", "wondershare", "万兴科技"],
+      ["jmc-official-careers", "jmc", "江铃汽车"],
+      ["fibocom-official-careers", "fibocom", "广和通"],
+      ["neoway-official-careers", "neoway", "有方科技"],
+      ["zhihuiya-official-careers", "zhihuiya", "智慧芽"],
+      ["advantech-official-careers", "advantech", "研华科技"],
+      ["liteon2-official-careers", "liteon2", "光宝科技"],
+      ["cosmx-official-careers", "cosmx", "珠海冠宇"],
+      ["apsystems-official-careers", "apsystems", "领储宇能科技有限公司"],
+      ["benq-official-careers", "benq", "明基BenQ"],
+      ["hwatsing-official-careers", "hwatsing", "华海清科"],
+      ["amphenol-official-careers", "amphenol", "安费诺光纤技术(深圳)有限公司"],
+      ["sosen-official-careers", "sosen", "深圳市崧盛电子股份有限公司"],
     ],
   );
   assert.deepEqual(
@@ -368,6 +504,41 @@ test("invt / sany 源定义 notes 声明官方分页不生效，其余源不声�
     (entry) => entry.source_key !== "invt-official-careers" && entry.source_key !== "sany-official-careers",
   );
   assert.ok(paged.every((entry) => !(entry.notes ?? "").includes("分页不生效")));
+});
+
+test("稀疏源 notes 如实标注在招条数，仅落盘空页样本的源声明空页为真实响应", () => {
+  const expected: readonly [string, number][] = [
+    ["risen-official-careers", 4],
+    ["apsystems-official-careers", 1],
+    ["benq-official-careers", 3],
+    ["hwatsing-official-careers", 1],
+    ["amphenol-official-careers", 1],
+    ["sosen-official-careers", 1],
+  ];
+  const emptyPageSampleKeys = new Set([
+    "risen-official-careers",
+    "apsystems-official-careers",
+    "benq-official-careers",
+  ]);
+  for (const [sourceKey, count] of expected) {
+    const definition = ZHIYE_SOURCES.find((entry) => entry.source_key === sourceKey);
+    assert.ok(definition !== undefined, sourceKey);
+    assert.match(definition.notes ?? "", new RegExp(`在招岗位极少（${count} 条）`), sourceKey);
+    if (emptyPageSampleKeys.has(sourceKey)) {
+      assert.match(definition.notes ?? "", /样本中空页属真实响应/, sourceKey);
+    } else {
+      assert.ok(!(definition.notes ?? "").includes("样本中空页"), sourceKey);
+    }
+  }
+  const sparseKeys = new Set(expected.map(([sourceKey]) => sourceKey));
+  const nonSparse = ZHIYE_SOURCES.filter((entry) => !sparseKeys.has(entry.source_key));
+  assert.ok(nonSparse.every((entry) => !(entry.notes ?? "").includes("在招岗位极少")));
+
+  assert.deepEqual(
+    ZHIYE_SOURCE_SPECS.filter((spec) => spec.sparseJobCount !== undefined)
+      .map((spec) => [spec.sourceKey, spec.sparseJobCount, spec.sparseEmptyPageSample === true]),
+    expected.map(([sourceKey, count]) => [sourceKey, count, emptyPageSampleKeys.has(sourceKey)]),
+  );
 });
 
 test("buildZhiyeListBody 字段固定且 PageIndex 由调用方给出", () => {

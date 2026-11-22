@@ -1,0 +1,15 @@
+{
+  "sample_id": "845c864ffad8be2b",
+  "request_key": "POST https://jmc.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+  "request_url": "https://jmc.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://jmc.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "845c864ffad8be2b7f516f49a61eb5e42231e63471625509facfef967f0f8098",
+  "captured_at": "2026-11-22T03:43:22.481Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "jmc-official-careers/samples/list-1.json"
+}

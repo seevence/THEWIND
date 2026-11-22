@@ -1,0 +1,15 @@
+{
+  "sample_id": "30ead4c37393d843",
+  "request_key": "POST https://autochips.zhiye.com/api/Jobad/GetJobAdPageList#e5c81b01bfdd4f20",
+  "request_url": "https://autochips.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://autochips.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "30ead4c37393d843342ff511e0e614173425f19ca7bc7c37be91baf11fb2eaaa",
+  "captured_at": "2026-11-22T03:40:58.533Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "autochips-official-careers/samples/list-2.json"
+}

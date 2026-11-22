@@ -1,0 +1,15 @@
+{
+  "sample_id": "6295f56046f552d2",
+  "request_key": "POST https://fxiaoke.zhiye.com/api/Jobad/GetJobAdPageList#989d936862858f96",
+  "request_url": "https://fxiaoke.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://fxiaoke.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "6295f56046f552d267b931c3dd37e2ecca056769acb302f87f4b65133e465def",
+  "captured_at": "2026-11-22T03:40:54.890Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "fxiaoke-official-careers/samples/list-5.json"
+}

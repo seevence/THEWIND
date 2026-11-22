@@ -1,0 +1,15 @@
+{
+  "sample_id": "0bef9afa5790de22",
+  "request_key": "POST https://cxmt.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+  "request_url": "https://cxmt.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://cxmt.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "0bef9afa5790de224dcaddf4a2cd9d7368f04bea2402cb63688df0e4a2e7d29a",
+  "captured_at": "2026-11-22T03:41:21.626Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "cxmt-official-careers/samples/list-3.json"
+}

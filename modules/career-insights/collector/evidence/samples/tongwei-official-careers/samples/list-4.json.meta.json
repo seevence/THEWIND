@@ -1,0 +1,15 @@
+{
+  "sample_id": "d5b86ea71aab7629",
+  "request_key": "POST https://tongwei.zhiye.com/api/Jobad/GetJobAdPageList#6e8d1c71bf23d498",
+  "request_url": "https://tongwei.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://tongwei.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "d5b86ea71aab7629a007af9a415dc80ed89dd25e9072791c29225978778c263d",
+  "captured_at": "2026-11-22T03:41:51.974Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "tongwei-official-careers/samples/list-4.json"
+}

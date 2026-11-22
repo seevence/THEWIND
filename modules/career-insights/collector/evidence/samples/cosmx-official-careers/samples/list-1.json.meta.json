@@ -1,0 +1,15 @@
+{
+  "sample_id": "23155b002a987550",
+  "request_key": "POST https://cosmx.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+  "request_url": "https://cosmx.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://cosmx.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "23155b002a9875505fd42e1bc75869909a7779780e4bf9330561d12e43f82d7b",
+  "captured_at": "2026-11-22T03:44:05.490Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "cosmx-official-careers/samples/list-1.json"
+}

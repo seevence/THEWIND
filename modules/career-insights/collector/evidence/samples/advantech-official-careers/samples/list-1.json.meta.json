@@ -1,0 +1,15 @@
+{
+  "sample_id": "a2cfd51d998c3bd3",
+  "request_key": "POST https://advantech.zhiye.com/api/Jobad/GetJobAdPageList#e8654261d04515b1",
+  "request_url": "https://advantech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://advantech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "a2cfd51d998c3bd37e7c04a0e65d6bb02b62bd772da005e6ebffdafab3ac3ee5",
+  "captured_at": "2026-11-22T03:43:51.359Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "advantech-official-careers/samples/list-1.json"
+}

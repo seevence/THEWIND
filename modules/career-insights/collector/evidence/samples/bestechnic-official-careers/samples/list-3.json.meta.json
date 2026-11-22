@@ -1,0 +1,15 @@
+{
+  "sample_id": "59b2754eca255f67",
+  "request_key": "POST https://bestechnic.zhiye.com/api/Jobad/GetJobAdPageList#6f45bd533c3501ec",
+  "request_url": "https://bestechnic.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://bestechnic.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "59b2754eca255f67e690018b68f61667c3384e71ba3f409e2c50678da5451d62",
+  "captured_at": "2026-11-22T03:41:06.800Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "bestechnic-official-careers/samples/list-3.json"
+}

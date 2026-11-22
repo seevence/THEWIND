@@ -1,0 +1,15 @@
+{
+  "sample_id": "23c82715a984c6bf",
+  "request_key": "POST https://aqara.zhiye.com/api/Jobad/GetJobAdPageList#d0fb873fcbbd0be2",
+  "request_url": "https://aqara.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://aqara.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "23c82715a984c6bf1368b82ab67781a86c1ee0a0fc9502fdc3158e9fbff0cb58",
+  "captured_at": "2026-11-22T03:42:07.681Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "aqara-official-careers/samples/list-5.json"
+}

@@ -1,0 +1,15 @@
+{
+  "sample_id": "94bb286598383118",
+  "request_key": "POST https://sosen.zhiye.com/api/Jobad/GetJobAdPageList#7863c993ea6de28e",
+  "request_url": "https://sosen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://sosen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "94bb286598383118d769456328ed24de9312e519bdde3b347f88e03c439121d5",
+  "captured_at": "2026-11-22T03:56:30.368Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "sosen-official-careers/samples/list-1.json"
+}

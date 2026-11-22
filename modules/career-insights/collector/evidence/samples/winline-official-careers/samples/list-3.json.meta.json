@@ -1,0 +1,15 @@
+{
+  "sample_id": "9d8956e83416501c",
+  "request_key": "POST https://winline.zhiye.com/api/Jobad/GetJobAdPageList#0361a007360ad0e1",
+  "request_url": "https://winline.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://winline.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "9d8956e83416501c3f2ddfce3182ccab8be1acff27deae940b37714f1303798d",
+  "captured_at": "2026-11-22T03:42:56.396Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "winline-official-careers/samples/list-3.json"
+}

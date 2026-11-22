@@ -1,0 +1,15 @@
+{
+  "sample_id": "56d78a6a0a8a6c80",
+  "request_key": "POST https://longsys.zhiye.com/api/Jobad/GetJobAdPageList#e5c81b01bfdd4f20",
+  "request_url": "https://longsys.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://longsys.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "56d78a6a0a8a6c8080c601649d959fc3b44c006c6323bb8dd8ef2f0a51f0f666",
+  "captured_at": "2026-11-22T03:41:28.306Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "longsys-official-careers/samples/list-2.json"
+}
