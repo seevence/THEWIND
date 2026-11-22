@@ -136,10 +136,11 @@ export interface JobDetailResponseV1 {
 export interface CareerObservationBatchV1 {
   schema_version: "1.0";
   /**
-   * 必须为已启用的注册来源（CAREER_SOURCE_DEFINITIONS 中 kind 为 job 类别的条目）；
-   * 未登记或停用的来源整批拒绝，返回 invalid_parameter（details.parameter = "source_key"）。
-   * 逐条闭合：每个 job 自带的 source_key（若存在）也必须已登记、启用且与本字段一致，否则该条
-   * 计入 rejected 并记 validation_failed，不写库。
+   * 必须为 kind 为 "company_careers" 且 enabled 的注册来源（CAREER_SOURCE_DEFINITIONS）；
+   * 未登记、停用或非企业岗位源（如政策源）整批拒绝，返回 invalid_parameter
+   * （details.parameter = "source_key"）。
+   * 逐条闭合：每个 job 自带的 source_key（若存在）也必须满足同样的 kind/enabled 条件且与本字段
+   * 一致，否则该条计入 rejected 并记 validation_failed，不写库。
    */
   source_key: string;
   fetched_at: string;

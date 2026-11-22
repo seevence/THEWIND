@@ -1,7 +1,7 @@
 import type { Db } from "@aihot/backend/db";
 import type { CareerObservationBatchV1, IngestResultV1 } from "../contracts/api.ts";
 import type { DataOrigin } from "../contracts/index.ts";
-import { ingestBatch } from "./ingest.ts";
+import { assertCareerJobSourceKey, ingestBatch } from "./ingest.ts";
 import { finishRun, startRun, type IngestRunKey, type IngestRunStatus } from "./run-repository.ts";
 
 export interface RunIngestResult extends IngestResultV1 {
@@ -14,6 +14,10 @@ export async function ingestWithRun(
   batch: CareerObservationBatchV1,
   dataOrigin: DataOrigin = "live",
 ): Promise<RunIngestResult> {
+  // 先校验再建 run 行：被拒批次若已 startRun，会留下 status=failed 的 ghost 来源，日报按来源
+  // 统计时出现无标签条目。ingestBatch 内仍保留同一校验作为双保险。
+  assertCareerJobSourceKey(batch.source_key);
+
   const key: IngestRunKey = {
     kind: "jobs",
     source_key: batch.source_key,

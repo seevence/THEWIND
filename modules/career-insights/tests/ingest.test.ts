@@ -8,12 +8,17 @@ import { closeDb, sql } from "@aihot/backend/db";
 import type { CareerObservationBatchV1, NormalizedJobV1 } from "../contracts/index.ts";
 import { InvalidParameterError } from "../backend/errors.ts";
 import { ingestBatch } from "../backend/ingest.ts";
+import { ingestWithRun } from "../backend/run-ingest.ts";
 import { CAREER_SOURCE_DEFINITIONS } from "../collector/sources.ts";
 
 const digest = (seed: string) => createHash("sha256").update(seed).digest("hex");
 const at = (value: Date | string) => new Date(value).toISOString();
 // 入库入口只接受已启用的注册来源；测试批次必须用一个真实登记的 job 源。
 const TEST_SOURCE_KEY = "iflytek-official-careers";
+// 已启用的政策源：能过 enabled 检查，只有 kind 守卫才挡得住。
+const POLICY_SOURCE = CAREER_SOURCE_DEFINITIONS.find(
+  (source) => source.source_key === "state-council-policy" && source.enabled && source.kind === "government_policy",
+)!;
 
 function job(overrides: Partial<NormalizedJobV1> = {}): NormalizedJobV1 {
   return {
@@ -54,6 +59,11 @@ async function count(table: "career_jobs" | "career_job_observations"): Promise<
   return rows[0]!.n;
 }
 
+async function countRuns(): Promise<number> {
+  const rows = await sql<{ n: number }[]>`SELECT COUNT(*)::int AS n FROM career_ingest_runs`;
+  return rows[0]!.n;
+}
+
 async function storedJob(jobKey = "job-1") {
   const [row] = await sql<
     {
@@ -77,7 +87,7 @@ async function storedJob(jobKey = "job-1") {
 }
 
 beforeEach(async () => {
-  await sql`TRUNCATE career_job_observations, career_jobs RESTART IDENTITY`;
+  await sql`TRUNCATE career_job_observations, career_jobs, career_ingest_runs RESTART IDENTITY`;
 });
 
 after(async () => {
@@ -183,7 +193,7 @@ test("a batch from an unregistered source_key is refused before anything is writ
     (error: unknown) => {
       assert.ok(error instanceof InvalidParameterError);
       assert.equal(error.code, "invalid_parameter");
-      assert.equal(error.message, "Unknown or disabled source: career-test");
+      assert.equal(error.message, "Unknown source: career-test");
       assert.deepEqual(error.details, { parameter: "source_key" });
       return true;
     },
@@ -204,13 +214,47 @@ test("a batch from a disabled registered source is refused before anything is wr
     (error: unknown) => {
       assert.ok(error instanceof InvalidParameterError);
       assert.equal(error.code, "invalid_parameter");
-      assert.equal(error.message, `Unknown or disabled source: ${disabled.source_key}`);
+      assert.equal(error.message, `Disabled source: ${disabled.source_key}`);
       assert.deepEqual(error.details, { parameter: "source_key" });
       return true;
     },
   );
   assert.equal(await count("career_jobs"), 0);
   assert.equal(await count("career_job_observations"), 0);
+});
+
+test("政策源 state-council-policy 整批被拒，career_jobs 零新增", async () => {
+  assert.equal(POLICY_SOURCE.kind, "government_policy");
+  assert.equal(POLICY_SOURCE.enabled, true, "the guard must reject by kind, not only by enabled");
+  const batch = { ...batchOf([job({ source_key: POLICY_SOURCE.source_key })]), source_key: POLICY_SOURCE.source_key };
+
+  await assert.rejects(
+    () => ingestBatch(sql, batch),
+    (error: unknown) => {
+      assert.ok(error instanceof InvalidParameterError);
+      assert.equal(error.code, "invalid_parameter");
+      assert.equal(
+        error.message,
+        `Non-company careers source: ${POLICY_SOURCE.source_key} (kind=government_policy)`,
+      );
+      assert.deepEqual(error.details, { parameter: "source_key" });
+      return true;
+    },
+  );
+  assert.equal(await count("career_jobs"), 0, "an enabled policy source never reaches career_jobs");
+  assert.equal(await count("career_job_observations"), 0);
+});
+
+test("未登记或政策源经 ingestWithRun 被拒后不留下 ghost run 行", async () => {
+  for (const sourceKey of ["career-test", POLICY_SOURCE.source_key]) {
+    await assert.rejects(
+      () => ingestWithRun(sql, { ...batchOf([job({ source_key: sourceKey })]), source_key: sourceKey }),
+      InvalidParameterError,
+      `${sourceKey} must be refused before a run row is created`,
+    );
+  }
+  assert.equal(await countRuns(), 0, "a refused batch must not leave a failed career_ingest_runs row");
+  assert.equal(await count("career_jobs"), 0);
 });
 
 test("a job whose own source_key is unregistered or differs from the batch is rejected while the rest is written", async () => {
