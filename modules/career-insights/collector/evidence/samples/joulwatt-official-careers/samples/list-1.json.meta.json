@@ -1,0 +1,15 @@
+{
+  "sample_id": "daa15ed98f9af401",
+  "request_key": "POST https://joulwatt.zhiye.com/api/Jobad/GetJobAdPageList#ede66efe0b3ed4af",
+  "request_url": "https://joulwatt.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://joulwatt.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "daa15ed98f9af4010a5d3d7a640feec2063f9110a6fdd5eaa59ef1d3bea2385e",
+  "captured_at": "2026-11-22T03:20:21.932Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "joulwatt-official-careers/samples/list-1.json"
+}

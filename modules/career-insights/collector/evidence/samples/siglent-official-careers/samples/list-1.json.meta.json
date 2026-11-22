@@ -1,0 +1,15 @@
+{
+  "sample_id": "bded099901100d74",
+  "request_key": "POST https://siglent.zhiye.com/api/Jobad/GetJobAdPageList#c481a3a54054ef7b",
+  "request_url": "https://siglent.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://siglent.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "bded099901100d746b57d84f7d48390921f68d64073cfd351504ccee60a2b91c",
+  "captured_at": "2026-11-22T03:19:11.580Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "siglent-official-careers/samples/list-1.json"
+}

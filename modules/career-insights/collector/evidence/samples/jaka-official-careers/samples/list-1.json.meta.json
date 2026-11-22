@@ -1,0 +1,15 @@
+{
+  "sample_id": "8795e8af70d8a77d",
+  "request_key": "POST https://jaka.zhiye.com/api/Jobad/GetJobAdPageList#bec9cc01998f3fba",
+  "request_url": "https://jaka.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://jaka.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "8795e8af70d8a77d29a534cb33719c5fe0ff9ef197405384919b04a057892f32",
+  "captured_at": "2026-11-22T03:18:47.820Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "jaka-official-careers/samples/list-1.json"
+}

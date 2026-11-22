@@ -1,0 +1,15 @@
+{
+  "sample_id": "beeda886d71e34de",
+  "request_key": "POST https://medcaptain.zhiye.com/api/Jobad/GetJobAdPageList#0bdf817751575fdc",
+  "request_url": "https://medcaptain.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://medcaptain.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "beeda886d71e34dec91aa8d57bd9fba3252025ecd2d1a283402fa51ef423df5d",
+  "captured_at": "2026-11-22T03:19:03.203Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "medcaptain-official-careers/samples/list-1.json"
+}

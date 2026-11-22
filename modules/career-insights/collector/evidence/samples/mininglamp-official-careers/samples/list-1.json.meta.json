@@ -1,0 +1,15 @@
+{
+  "sample_id": "5eeaaae2d0ebfe8b",
+  "request_key": "POST https://mininglamp.zhiye.com/api/Jobad/GetJobAdPageList#ede66efe0b3ed4af",
+  "request_url": "https://mininglamp.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://mininglamp.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "5eeaaae2d0ebfe8b27e7501e0e52ec210c7bb1b99e387a7b3995044f1cb9203d",
+  "captured_at": "2026-11-22T03:19:19.454Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "mininglamp-official-careers/samples/list-1.json"
+}

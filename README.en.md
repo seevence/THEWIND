@@ -29,17 +29,25 @@ background and cached, so pages never call a model.
 
 ## Data sources & license
 
-- Jobs (33 sources): official career sites of Tencent, Meituan, Baidu, Huawei, NetEase, Didi, HONOR and China State
+- Jobs (60 sources): official career sites of Tencent, Meituan, Baidu, Huawei, NetEase, Didi, HONOR and China State
   Construction, plus iFLYTEK, Dahua, Inovance, Sunwoda, BOE, Sugon, H3C, Mindray, United Imaging, INVT, SANY,
   Venustech, Xinje, Roborock, Dreame, AAC Technologies, Piotech, SIASUN, EFORT, Hopewind, SofarSolar, Deye,
-  Chipone, Mornsun and Unitree
-  (public pages, linked back);
+  Chipone, Mornsun and Unitree, and 27 new companies (public pages, linked back):
+  - semiconductors / embedded: Maxscend, Chipsea, TCL Zhonghuan, Nexchip, Joulwatt, Eoptolink, Siglent;
+  - power electronics & electrical: Delixi, Tengen, Goldwind, Wetown, Pylontech, Infypower;
+  - AI & IT: DPtech, Topsec, MiningLamp, Rokid, Unisound, UCloud, iQIYI offline business;
+  - robotics: JAKA, Dobot;
+  - medical electronics: Edan, Medcaptain;
+  - finance: CICC, Guosen Securities;
+  - mobility: Hellobike;
 - Policies (7 sources): public documents from the Chinese government portal, NDRC, Ministry of Education, the MOHRSS
   "China Employment Network", Changsha Human Resources and Social Security Bureau, Hunan Provincial Department of
   Education, and the Hunan Provincial Human Resources and Social Security Department notices;
-- The 25 zhiye-hosted sources (iFLYTEK, Dahua, Inovance, Sunwoda, BOE, Sugon, H3C, Mindray, United Imaging, INVT,
+- The 52 zhiye-hosted sources (iFLYTEK, Dahua, Inovance, Sunwoda, BOE, Sugon, H3C, Mindray, United Imaging, INVT,
   SANY, Venustech, Xinje, Roborock, Dreame, AAC Technologies, Piotech, SIASUN, EFORT, Hopewind, SofarSolar, Deye,
-  Chipone, Mornsun and Unitree) come from
+  Chipone, Mornsun, Unitree, Maxscend, Chipsea, Delixi, Tengen, Goldwind, Wetown, CICC, Guosen Securities,
+  iQIYI offline business, DPtech, Topsec, TCL Zhonghuan, Edan, JAKA, Eoptolink, Medcaptain, Siglent, MiningLamp,
+  Rokid, Unisound, Hellobike, Nexchip, Pylontech, Dobot, Infypower, Joulwatt and UCloud) come from
   their public zhiye job-list endpoints, each linked back to the official job list page
   (`https://<tenant>.zhiye.com/social/jobs`, e.g. <https://iflytek.zhiye.com/social/jobs>) as the original entry.
   INVT's and SANY's official list endpoints ignore pagination, so only the first screen is available.

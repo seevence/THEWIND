@@ -1,0 +1,15 @@
+{
+  "sample_id": "8265caa6a789257c",
+  "request_key": "POST https://nexchip.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+  "request_url": "https://nexchip.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://nexchip.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "8265caa6a789257cbe3176561d393ae9e92034d86017f60dd394bbac4eacbc9f",
+  "captured_at": "2026-11-22T03:19:54.603Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "nexchip-official-careers/samples/list-5.json"
+}

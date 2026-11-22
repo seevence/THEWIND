@@ -1,0 +1,15 @@
+{
+  "sample_id": "cd8eb262f0b4804e",
+  "request_key": "POST https://unisound.zhiye.com/api/Jobad/GetJobAdPageList#09b88c7a821c07ac",
+  "request_url": "https://unisound.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://unisound.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "cd8eb262f0b4804e6f9f8f97c3382fbae66180184fedeb545870b6c05316e020",
+  "captured_at": "2026-11-22T03:19:38.090Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "unisound-official-careers/samples/list-4.json"
+}

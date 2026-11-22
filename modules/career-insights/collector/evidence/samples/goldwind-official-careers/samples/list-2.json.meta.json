@@ -1,0 +1,15 @@
+{
+  "sample_id": "20c5697fba822793",
+  "request_key": "POST https://goldwind.zhiye.com/api/Jobad/GetJobAdPageList#83b5c79698ed7f09",
+  "request_url": "https://goldwind.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://goldwind.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "20c5697fba822793c044620e137d7cada246c5503c91f8592212d37e60c5dbb4",
+  "captured_at": "2026-11-22T03:17:40.652Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "goldwind-official-careers/samples/list-2.json"
+}

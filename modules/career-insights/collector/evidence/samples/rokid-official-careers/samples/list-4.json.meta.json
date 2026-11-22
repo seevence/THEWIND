@@ -1,0 +1,15 @@
+{
+  "sample_id": "ed23d16d66ca171a",
+  "request_key": "POST https://rokid.zhiye.com/api/Jobad/GetJobAdPageList#8d26adfeefef8ee5",
+  "request_url": "https://rokid.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://rokid.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "ed23d16d66ca171abe15e9a3e81eedf4bbcf3be2059b14ea6271c5f08f592a68",
+  "captured_at": "2026-11-22T03:19:30.530Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "rokid-official-careers/samples/list-4.json"
+}

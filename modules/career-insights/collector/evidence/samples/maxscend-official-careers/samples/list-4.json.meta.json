@@ -1,0 +1,15 @@
+{
+  "sample_id": "c675988307d397a3",
+  "request_key": "POST https://maxscend.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+  "request_url": "https://maxscend.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://maxscend.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "c675988307d397a3ffe1e8606fc8b88c796ea769a1b5212efb84d93094d081d0",
+  "captured_at": "2026-11-22T03:17:12.489Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "maxscend-official-careers/samples/list-4.json"
+}

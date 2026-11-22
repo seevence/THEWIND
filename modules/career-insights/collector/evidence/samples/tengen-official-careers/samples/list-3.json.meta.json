@@ -1,0 +1,15 @@
+{
+  "sample_id": "f65963c5ef18718a",
+  "request_key": "POST https://tengen.zhiye.com/api/Jobad/GetJobAdPageList#6f3215d0ceabbd81",
+  "request_url": "https://tengen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://tengen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "f65963c5ef18718a3b987fe65e41b96e07f32a19abd3bed58386153c09bdca03",
+  "captured_at": "2026-11-22T03:17:34.593Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "tengen-official-careers/samples/list-3.json"
+}

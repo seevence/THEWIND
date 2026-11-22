@@ -1,0 +1,15 @@
+{
+  "sample_id": "17b3b8a2c9c80f1d",
+  "request_key": "POST https://iqiyi.zhiye.com/api/Jobad/GetJobAdPageList#d88718769784a869",
+  "request_url": "https://iqiyi.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://iqiyi.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "17b3b8a2c9c80f1d90c3b32ad501ee53ce928be908f97935d9db1c0e73ea11a9",
+  "captured_at": "2026-11-22T03:18:13.578Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "iqiyi-official-careers/samples/list-4.json"
+}

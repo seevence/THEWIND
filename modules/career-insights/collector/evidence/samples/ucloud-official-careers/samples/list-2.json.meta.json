@@ -1,0 +1,15 @@
+{
+  "sample_id": "47fcf82e2e761da2",
+  "request_key": "POST https://ucloud.zhiye.com/api/Jobad/GetJobAdPageList#5a00bec6b0b16754",
+  "request_url": "https://ucloud.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://ucloud.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "47fcf82e2e761da2387976446cd95ba3a7ec057af30146a5d4e868c0af4ebb4a",
+  "captured_at": "2026-11-22T03:20:30.760Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "ucloud-official-careers/samples/list-2.json"
+}

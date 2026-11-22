@@ -18,7 +18,7 @@ import type { FetchTransport, PageRequest } from "../fetch/transport.ts";
 /**
  * 北森 zhiye 平台社招列表适配器。
  *
- * 25 家企业共用同一套公开 JSON 接口（匿名可用、无 Cookie / Token / 签名）：
+ * 52 家企业共用同一套公开 JSON 接口（匿名可用、无 Cookie / Token / 签名）：
  * `POST https://<tenant>.zhiye.com/api/Jobad/GetJobAdPageList`，社招 = `Category: ["1"]`。
  * 列表条目已含职责（`Duty`）、要求（`Require`）、城市（`LocNames`）、发布时间（`PostDate`），
  * 因此单页只发一次请求，不逐条取详情。平台未提供稳定的单条职位详情 URL，
@@ -213,6 +213,168 @@ export const ZHIYE_SOURCE_SPECS: readonly ZhiyeSourceSpec[] = [
     sourceKey: "unitree-official-careers",
     label: "宇树科技官方招聘",
     companyName: "宇树科技",
+  },
+  {
+    tenant: "maxscend",
+    sourceKey: "maxscend-official-careers",
+    label: "卓胜微电子官方招聘",
+    companyName: "卓胜微电子",
+  },
+  {
+    tenant: "chipsea",
+    sourceKey: "chipsea-official-careers",
+    label: "芯海科技官方招聘",
+    companyName: "芯海科技",
+  },
+  {
+    tenant: "delixi",
+    sourceKey: "delixi-official-careers",
+    label: "德力西官方招聘",
+    companyName: "德力西",
+  },
+  {
+    tenant: "tengen",
+    sourceKey: "tengen-official-careers",
+    label: "天正电气官方招聘",
+    companyName: "天正电气",
+  },
+  {
+    tenant: "goldwind",
+    sourceKey: "goldwind-official-careers",
+    label: "金风科技官方招聘",
+    companyName: "金风科技",
+  },
+  {
+    tenant: "wetown",
+    sourceKey: "wetown-official-careers",
+    label: "威腾电气集团官方招聘",
+    companyName: "威腾电气集团",
+  },
+  {
+    tenant: "cicc",
+    sourceKey: "cicc-official-careers",
+    label: "中金公司官方招聘",
+    companyName: "中金公司",
+  },
+  {
+    tenant: "guosen",
+    sourceKey: "guosen-official-careers",
+    label: "国信证券官方招聘",
+    companyName: "国信证券",
+  },
+  {
+    tenant: "iqiyi",
+    sourceKey: "iqiyi-official-careers",
+    label: "爱奇艺线下业务官方招聘",
+    companyName: "爱奇艺线下业务",
+  },
+  {
+    tenant: "dptech",
+    sourceKey: "dptech-official-careers",
+    label: "迪普科技官方招聘",
+    companyName: "杭州迪普科技股份有限公司",
+  },
+  {
+    tenant: "topsec",
+    sourceKey: "topsec-official-careers",
+    label: "天融信官方招聘",
+    companyName: "天融信科技集团",
+  },
+  {
+    tenant: "zhonghuan",
+    sourceKey: "zhonghuan-official-careers",
+    label: "TCL中环官方招聘",
+    companyName: "TCL中环",
+  },
+  {
+    tenant: "edan",
+    sourceKey: "edan-official-careers",
+    label: "理邦仪器官方招聘",
+    companyName: "理邦仪器",
+  },
+  {
+    tenant: "jaka",
+    sourceKey: "jaka-official-careers",
+    label: "节卡机器人官方招聘",
+    companyName: "节卡机器人",
+  },
+  {
+    tenant: "eoptolink",
+    sourceKey: "eoptolink-official-careers",
+    label: "新易盛官方招聘",
+    companyName: "成都新易盛通信技术股份有限公司",
+  },
+  {
+    tenant: "medcaptain",
+    sourceKey: "medcaptain-official-careers",
+    label: "麦科田医疗官方招聘",
+    companyName: "麦科田医疗",
+  },
+  {
+    tenant: "siglent",
+    sourceKey: "siglent-official-careers",
+    label: "鼎阳科技官方招聘",
+    companyName: "鼎阳科技",
+  },
+  {
+    tenant: "mininglamp",
+    sourceKey: "mininglamp-official-careers",
+    label: "明略科技官方招聘",
+    companyName: "明略科技",
+  },
+  {
+    tenant: "rokid",
+    sourceKey: "rokid-official-careers",
+    label: "Rokid官方招聘",
+    companyName: "Rokid",
+  },
+  {
+    tenant: "unisound",
+    sourceKey: "unisound-official-careers",
+    label: "云知声官方招聘",
+    companyName: "云知声",
+  },
+  {
+    tenant: "hellobike",
+    sourceKey: "hellobike-official-careers",
+    label: "哈啰官方招聘",
+    companyName: "上海哈啰普惠科技有限公司",
+  },
+  {
+    tenant: "nexchip",
+    sourceKey: "nexchip-official-careers",
+    label: "晶合集成官方招聘",
+    companyName: "合肥晶合集成电路股份有限公司",
+  },
+  {
+    tenant: "pylontech",
+    sourceKey: "pylontech-official-careers",
+    label: "中兴派能官方招聘",
+    companyName: "中兴派能",
+  },
+  {
+    tenant: "dobot",
+    sourceKey: "dobot-official-careers",
+    label: "越疆机器人官方招聘",
+    companyName: "越疆机器人",
+  },
+  {
+    tenant: "infypower",
+    sourceKey: "infypower-official-careers",
+    label: "英飞源官方招聘",
+    companyName: "英飞源",
+  },
+  {
+    tenant: "joulwatt",
+    sourceKey: "joulwatt-official-careers",
+    label: "杰华特官方招聘",
+    companyName: "杰华特",
+  },
+  {
+    tenant: "ucloud",
+    sourceKey: "ucloud-official-careers",
+    label: "UCloud官方招聘",
+    companyName: "UCloud",
   },
 ];
 

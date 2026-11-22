@@ -1,0 +1,15 @@
+{
+  "sample_id": "a33e43e19ec25a0b",
+  "request_key": "POST https://infypower.zhiye.com/api/Jobad/GetJobAdPageList#82ca42995d05bbfa",
+  "request_url": "https://infypower.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://infypower.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "a33e43e19ec25a0b56779f7ca27f82d7db85e11dcf0811a5b0337d3f1170e9e2",
+  "captured_at": "2026-11-22T03:20:14.183Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "infypower-official-careers/samples/list-1.json"
+}

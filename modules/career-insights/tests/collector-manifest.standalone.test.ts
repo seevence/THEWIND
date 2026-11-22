@@ -13,7 +13,7 @@ import { redactPersonalData } from "../collector/evidence/sanitizer.ts";
 import { ZHIYE_SOURCES } from "../collector/adapters/zhiye-official-careers.ts";
 
 const SAMPLES = join(dirname(fileURLToPath(import.meta.url)), "../collector/evidence/samples");
-/** 本次新增的 25 个 zhiye 源：只用它们验收个人数据打码，不把既有 8 个岗位源算进来。 */
+/** 52 个 zhiye 源：只用它们验收个人数据打码，不把既有 8 个岗位源算进来。 */
 const ZHIYE_SOURCE_KEYS = new Set(ZHIYE_SOURCES.map((source) => source.source_key));
 
 async function loadManifest(): Promise<SampleManifest> {
@@ -74,6 +74,34 @@ test("真实 manifest 通过结构校验并满足样本配额", async () => {
       "chipone-official-careers:job:5",
       "mornsun-official-careers:job:5",
       "unitree-official-careers:job:5",
+
+      "maxscend-official-careers:job:5",
+      "chipsea-official-careers:job:5",
+      "delixi-official-careers:job:5",
+      "tengen-official-careers:job:5",
+      "goldwind-official-careers:job:5",
+      "wetown-official-careers:job:5",
+      "cicc-official-careers:job:5",
+      "guosen-official-careers:job:5",
+      "iqiyi-official-careers:job:5",
+      "dptech-official-careers:job:5",
+      "topsec-official-careers:job:5",
+      "zhonghuan-official-careers:job:5",
+      "edan-official-careers:job:5",
+      "jaka-official-careers:job:5",
+      "eoptolink-official-careers:job:5",
+      "medcaptain-official-careers:job:5",
+      "siglent-official-careers:job:5",
+      "mininglamp-official-careers:job:5",
+      "rokid-official-careers:job:5",
+      "unisound-official-careers:job:5",
+      "hellobike-official-careers:job:5",
+      "nexchip-official-careers:job:5",
+      "pylontech-official-careers:job:5",
+      "dobot-official-careers:job:5",
+      "infypower-official-careers:job:5",
+      "joulwatt-official-careers:job:5",
+      "ucloud-official-careers:job:5",
     ],
   );
 });
@@ -111,7 +139,7 @@ test("manifest 内 sample_id 全局唯一，新增源样本正文不含真实个
   const zhiyeSources = manifest.sources.filter(
     (source) => source.kind === "job" && ZHIYE_SOURCE_KEYS.has(source.source_key),
   );
-  assert.equal(zhiyeSources.length, 25);
+  assert.equal(zhiyeSources.length, 52);
   for (const source of zhiyeSources) {
     for (const sample of source.samples) {
       const text = await readFile(join(SAMPLES, sample.body_file), "utf8");

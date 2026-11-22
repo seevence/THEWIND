@@ -1,0 +1,15 @@
+{
+  "sample_id": "1fcbb70e0118b232",
+  "request_key": "POST https://dobot.zhiye.com/api/Jobad/GetJobAdPageList#1be41a077c557269",
+  "request_url": "https://dobot.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://dobot.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "1fcbb70e0118b23276776c639358a6e35a6e082234e8b121c5ab4536ed504538",
+  "captured_at": "2026-11-22T03:20:10.963Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "dobot-official-careers/samples/list-5.json"
+}

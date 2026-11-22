@@ -1,0 +1,15 @@
+{
+  "sample_id": "77f95eaf2544a572",
+  "request_key": "POST https://eoptolink.zhiye.com/api/Jobad/GetJobAdPageList#12909e1c78ebf994",
+  "request_url": "https://eoptolink.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://eoptolink.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "77f95eaf2544a57297dd79f1d67b82a4cfa67664233b82d115e625339de7923d",
+  "captured_at": "2026-11-22T03:19:00.439Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "eoptolink-official-careers/samples/list-5.json"
+}

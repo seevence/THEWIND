@@ -1,0 +1,15 @@
+{
+  "sample_id": "5177d0e50e0bc224",
+  "request_key": "POST https://dptech.zhiye.com/api/Jobad/GetJobAdPageList#4d51bc56e71a03a6",
+  "request_url": "https://dptech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://dptech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "5177d0e50e0bc224d964ed6b39800cb96b488bdca470520eb4677076a0c58b36",
+  "captured_at": "2026-11-22T03:18:17.216Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "dptech-official-careers/samples/list-1.json"
+}

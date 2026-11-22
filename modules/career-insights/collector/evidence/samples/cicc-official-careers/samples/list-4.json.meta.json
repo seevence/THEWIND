@@ -1,0 +1,15 @@
+{
+  "sample_id": "d715c3ba096a50ae",
+  "request_key": "POST https://cicc.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+  "request_url": "https://cicc.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://cicc.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "d715c3ba096a50ae568c2ce872433bba50b9dd015866b1ef19bbdde2dd6cb199",
+  "captured_at": "2026-11-22T03:17:58.344Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "cicc-official-careers/samples/list-4.json"
+}

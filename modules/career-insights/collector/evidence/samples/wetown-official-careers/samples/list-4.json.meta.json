@@ -1,0 +1,15 @@
+{
+  "sample_id": "843671c2e91dd9dc",
+  "request_key": "POST https://wetown.zhiye.com/api/Jobad/GetJobAdPageList#1f124a0f49142d91",
+  "request_url": "https://wetown.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://wetown.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "843671c2e91dd9dc73af1d935488a8e765082f600be7e8c3f89f429bae33c6fc",
+  "captured_at": "2026-11-22T03:17:50.259Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "wetown-official-careers/samples/list-4.json"
+}

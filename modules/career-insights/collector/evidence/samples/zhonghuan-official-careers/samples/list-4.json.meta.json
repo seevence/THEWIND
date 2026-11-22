@@ -1,0 +1,15 @@
+{
+  "sample_id": "2609defabf561285",
+  "request_key": "POST https://zhonghuan.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+  "request_url": "https://zhonghuan.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://zhonghuan.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "2609defabf5612850dad1a4d4414984f665a980eecb1d03af93bfbb4ae060d48",
+  "captured_at": "2026-11-22T03:18:36.326Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "zhonghuan-official-careers/samples/list-4.json"
+}

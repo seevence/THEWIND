@@ -1,0 +1,15 @@
+{
+  "sample_id": "04ea08d078af1e17",
+  "request_key": "POST https://delixi.zhiye.com/api/Jobad/GetJobAdPageList#d81b6765281718e2",
+  "request_url": "https://delixi.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://delixi.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "04ea08d078af1e1765ff1648e47bb3075b03fffd9de250cdb7e765f1697eb932",
+  "captured_at": "2026-11-22T03:17:25.267Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "delixi-official-careers/samples/list-2.json"
+}

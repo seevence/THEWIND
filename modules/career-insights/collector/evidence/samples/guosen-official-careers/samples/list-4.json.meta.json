@@ -1,0 +1,15 @@
+{
+  "sample_id": "a9216eda4b6fb972",
+  "request_key": "POST https://guosen.zhiye.com/api/Jobad/GetJobAdPageList#3eafe60ba5825b52",
+  "request_url": "https://guosen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://guosen.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "a9216eda4b6fb9726f6bc4b54cde8841fffe167518f5a6ef352aebca959e859c",
+  "captured_at": "2026-11-22T03:18:06.311Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "guosen-official-careers/samples/list-4.json"
+}

@@ -1,0 +1,15 @@
+{
+  "sample_id": "a16676e8529ee10d",
+  "request_key": "POST https://pylontech.zhiye.com/api/Jobad/GetJobAdPageList#47a399bd14ee7c43",
+  "request_url": "https://pylontech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://pylontech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "a16676e8529ee10d1474107c9885bee996ca11cd7e325a8842dbf29627927ae3",
+  "captured_at": "2026-11-22T03:19:59.404Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "pylontech-official-careers/samples/list-2.json"
+}

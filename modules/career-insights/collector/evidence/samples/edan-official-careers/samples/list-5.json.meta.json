@@ -1,0 +1,15 @@
+{
+  "sample_id": "4340482199998b7d",
+  "request_key": "POST https://edan.zhiye.com/api/Jobad/GetJobAdPageList#12909e1c78ebf994",
+  "request_url": "https://edan.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://edan.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "4340482199998b7dd9c57f547b3b9430da5c5c9133a29be08fba773c6ded48de",
+  "captured_at": "2026-11-22T03:18:44.920Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "edan-official-careers/samples/list-5.json"
+}

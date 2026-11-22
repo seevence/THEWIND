@@ -1,0 +1,15 @@
+{
+  "sample_id": "8f0739617dd2bfd0",
+  "request_key": "POST https://hellobike.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+  "request_url": "https://hellobike.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://hellobike.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "8f0739617dd2bfd001f084dabe2ab71c28f492dcfad6fe56313b00f64842b473",
+  "captured_at": "2026-11-22T03:19:44.753Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "hellobike-official-careers/samples/list-3.json"
+}

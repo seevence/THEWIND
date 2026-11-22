@@ -1,0 +1,15 @@
+{
+  "sample_id": "91b9370f76118062",
+  "request_key": "POST https://chipsea.zhiye.com/api/Jobad/GetJobAdPageList#83b5c79698ed7f09",
+  "request_url": "https://chipsea.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://chipsea.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "91b9370f76118062fd4a5969eb3ac0282beb3f5d39ec5c17ee5c3b94e79aadc1",
+  "captured_at": "2026-11-22T03:17:17.511Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-2",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "chipsea-official-careers/samples/list-2.json"
+}
