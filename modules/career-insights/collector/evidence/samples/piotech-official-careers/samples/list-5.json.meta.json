@@ -1,0 +1,15 @@
+{
+  "sample_id": "79d63a1fcea0996b",
+  "request_key": "POST https://piotech.zhiye.com/api/Jobad/GetJobAdPageList#0fa5cb23a9469291",
+  "request_url": "https://piotech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://piotech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "79d63a1fcea0996b8cd02eb37e7daa76fda0a343bd77459a861dcbceaae42d49",
+  "captured_at": "2026-11-22T02:42:19.061Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "piotech-official-careers/samples/list-5.json"
+}

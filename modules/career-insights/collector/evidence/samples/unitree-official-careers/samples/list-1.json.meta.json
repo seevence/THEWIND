@@ -1,0 +1,15 @@
+{
+  "sample_id": "852ac2c0da9e1749",
+  "request_key": "POST https://unitree.zhiye.com/api/Jobad/GetJobAdPageList#bec9cc01998f3fba",
+  "request_url": "https://unitree.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://unitree.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "852ac2c0da9e1749a344397874fc03c92369f51140a2d6219aa8d6cabf1c36f2",
+  "captured_at": "2026-11-22T02:57:56.630Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "unitree-official-careers/samples/list-1.json"
+}

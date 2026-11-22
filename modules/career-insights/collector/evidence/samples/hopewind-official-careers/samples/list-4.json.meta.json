@@ -1,0 +1,15 @@
+{
+  "sample_id": "96d89b43a19ad4c1",
+  "request_key": "POST https://hopewind.zhiye.com/api/Jobad/GetJobAdPageList#1f124a0f49142d91",
+  "request_url": "https://hopewind.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://hopewind.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "96d89b43a19ad4c1ae62e1562c4101c3b5f99b591c42215ca7ff27d2fd5adc81",
+  "captured_at": "2026-11-22T02:42:48.171Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "hopewind-official-careers/samples/list-4.json"
+}

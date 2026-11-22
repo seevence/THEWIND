@@ -1,0 +1,15 @@
+{
+  "sample_id": "7f1025b2df9e2af9",
+  "request_key": "POST https://siasun.zhiye.com/api/Jobad/GetJobAdPageList#b77b67b243e5ed0b",
+  "request_url": "https://siasun.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://siasun.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "7f1025b2df9e2af911193211c7d377eb49abef06dbd69e042692c9cc3fc8f3cd",
+  "captured_at": "2026-11-22T02:42:24.414Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "siasun-official-careers/samples/list-3.json"
+}

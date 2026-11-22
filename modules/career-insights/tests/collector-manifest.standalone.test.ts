@@ -13,7 +13,7 @@ import { redactPersonalData } from "../collector/evidence/sanitizer.ts";
 import { ZHIYE_SOURCES } from "../collector/adapters/zhiye-official-careers.ts";
 
 const SAMPLES = join(dirname(fileURLToPath(import.meta.url)), "../collector/evidence/samples");
-/** 本次新增的 11 个 zhiye 源：只用它们验收个人数据打码，不把既有 8 个岗位源算进来。 */
+/** 本次新增的 25 个 zhiye 源：只用它们验收个人数据打码，不把既有 8 个岗位源算进来。 */
 const ZHIYE_SOURCE_KEYS = new Set(ZHIYE_SOURCES.map((source) => source.source_key));
 
 async function loadManifest(): Promise<SampleManifest> {
@@ -59,6 +59,21 @@ test("真实 manifest 通过结构校验并满足样本配额", async () => {
       "invt-official-careers:job:5",
       "sany-official-careers:job:5",
       "hunan-rsj-policy:policy:3",
+      "venustech-official-careers:job:5",
+      "xinje-official-careers:job:5",
+      "roborock-official-careers:job:5",
+      "dreame-official-careers:job:5",
+      "aac-official-careers:job:5",
+      "piotech-official-careers:job:5",
+      "siasun-official-careers:job:5",
+      "efort-official-careers:job:5",
+
+      "hopewind-official-careers:job:5",
+      "sofarsolar-official-careers:job:5",
+      "deye-official-careers:job:5",
+      "chipone-official-careers:job:5",
+      "mornsun-official-careers:job:5",
+      "unitree-official-careers:job:5",
     ],
   );
 });
@@ -96,7 +111,7 @@ test("manifest 内 sample_id 全局唯一，新增源样本正文不含真实个
   const zhiyeSources = manifest.sources.filter(
     (source) => source.kind === "job" && ZHIYE_SOURCE_KEYS.has(source.source_key),
   );
-  assert.equal(zhiyeSources.length, 11);
+  assert.equal(zhiyeSources.length, 25);
   for (const source of zhiyeSources) {
     for (const sample of source.samples) {
       const text = await readFile(join(SAMPLES, sample.body_file), "utf8");

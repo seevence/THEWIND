@@ -1,0 +1,15 @@
+{
+  "sample_id": "6ececd83d76fc2a5",
+  "request_key": "POST https://xinje.zhiye.com/api/Jobad/GetJobAdPageList#aa4a0f06fe2fe97f",
+  "request_url": "https://xinje.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://xinje.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "6ececd83d76fc2a52104a40e1b5c28407dbc544413593c657e442c2216ffa204",
+  "captured_at": "2026-11-22T02:41:48.984Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-5",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "xinje-official-careers/samples/list-5.json"
+}

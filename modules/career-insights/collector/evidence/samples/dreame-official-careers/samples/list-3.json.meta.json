@@ -1,0 +1,15 @@
+{
+  "sample_id": "09139fa15615f906",
+  "request_key": "POST https://dreame.zhiye.com/api/Jobad/GetJobAdPageList#c2228277e3243e0e",
+  "request_url": "https://dreame.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://dreame.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "09139fa15615f9065d7e6d2a4ac9cddf390174685f37d1e8e93f7ab1d5169279",
+  "captured_at": "2026-11-22T02:42:01.352Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-3",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "dreame-official-careers/samples/list-3.json"
+}

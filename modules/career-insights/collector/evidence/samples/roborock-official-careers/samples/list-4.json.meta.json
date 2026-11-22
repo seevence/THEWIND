@@ -1,0 +1,15 @@
+{
+  "sample_id": "462545fcf76e5825",
+  "request_key": "POST https://roborock.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+  "request_url": "https://roborock.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://roborock.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "462545fcf76e5825bf61a0ed8e13fbba3f789ed0e7b27306b4a8e2075107fc8b",
+  "captured_at": "2026-11-22T02:41:55.278Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "roborock-official-careers/samples/list-4.json"
+}

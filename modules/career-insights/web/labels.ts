@@ -11,19 +11,24 @@ export const THEME_LABELS: Readonly<Record<string, string>> = {
   employment_promotion: "就业促进",
 };
 
-/** 政策来源与 collector/sources.ts 中 `enabled: true` 的政策源一致。 */
+/** 政策来源与 collector/sources.ts 中 `enabled: true` 的政策源一致，顺序即注册表顺序。 */
 export const POLICY_SOURCE_OPTIONS: ReadonlyArray<{ value: string; label: string }> = [
   { value: "state-council-policy", label: "中国政府网政策文件库" },
   { value: "ndrc-policy", label: "国家发展改革委政策发布" },
+  { value: "moe-policy", label: "教育部公告公示" },
+  { value: "mohrss-policy", label: "中国就业网（人力资源社会保障部）中央就业政策" },
+  { value: "changsha-rsj-policy", label: "长沙市人力资源和社会保障局劳动就业公告" },
+  { value: "hunan-jyt-policy", label: "湖南省教育厅通知公告" },
+  { value: "hunan-rsj-policy", label: "湖南省人力资源和社会保障厅通知公告" },
 ];
 
 const POLICY_SOURCE_LABELS: Readonly<Record<string, string>> = Object.fromEntries(
   POLICY_SOURCE_OPTIONS.map((option) => [option.value, option.label]),
 );
 
-/** facets.sources 可能包含静态清单之外的来源；未知来源回退显示 source_key，不丢筛选能力。 */
+/** 优先用全量来源表，静态清单之外的已知来源也能显示中文名；未知来源回退 source_key，不丢筛选能力。 */
 export function policySourceLabel(sourceKey: string): string {
-  return POLICY_SOURCE_LABELS[sourceKey] ?? sourceKey;
+  return CAREER_SOURCE_LABELS[sourceKey] ?? POLICY_SOURCE_LABELS[sourceKey] ?? sourceKey;
 }
 
 export const POLICY_SOURCE_TIER_LABELS: Readonly<Record<string, string>> = {
@@ -45,7 +50,15 @@ export const CAREER_SOURCE_LABELS: Readonly<Record<string, string>> = {
   "bytedance-official-careers": "字节跳动官方招聘",
   "state-council-policy": "中国政府网政策文件库",
   "ndrc-policy": "国家发展改革委政策发布",
+  "huawei-official-careers": "华为官方招聘",
   "moe-policy": "教育部公告公示",
+  "mohrss-policy": "中国就业网（人力资源社会保障部）中央就业政策",
+  "netease-official-careers": "网易官方招聘",
+  "didi-official-careers": "滴滴官方招聘",
+  "honor-official-careers": "荣耀官方招聘",
+  "changsha-rsj-policy": "长沙市人力资源和社会保障局劳动就业公告",
+  "hunan-jyt-policy": "湖南省教育厅通知公告",
+  "cscec-official-careers": "中国建筑社会招聘",
   "iflytek-official-careers": "科大讯飞官方招聘",
   "dahua-official-careers": "大华股份官方招聘",
   "inovance-official-careers": "汇川技术官方招聘",
@@ -57,6 +70,20 @@ export const CAREER_SOURCE_LABELS: Readonly<Record<string, string>> = {
   "united-imaging-official-careers": "联影医疗官方招聘",
   "invt-official-careers": "英威腾官方招聘",
   "sany-official-careers": "三一重工官方招聘",
+  "venustech-official-careers": "启明星辰官方招聘",
+  "xinje-official-careers": "信捷电气官方招聘",
+  "roborock-official-careers": "石头科技官方招聘",
+  "dreame-official-careers": "追觅科技官方招聘",
+  "aac-official-careers": "瑞声科技官方招聘",
+  "piotech-official-careers": "拓荆科技官方招聘",
+  "siasun-official-careers": "新松机器人官方招聘",
+  "efort-official-careers": "埃夫特官方招聘",
+  "hopewind-official-careers": "禾望电气官方招聘",
+  "sofarsolar-official-careers": "首航新能源官方招聘",
+  "deye-official-careers": "德业股份官方招聘",
+  "chipone-official-careers": "集创北方官方招聘",
+  "mornsun-official-careers": "金升阳官方招聘",
+  "unitree-official-careers": "宇树科技官方招聘",
   "hunan-rsj-policy": "湖南省人力资源和社会保障厅通知公告",
 };
 

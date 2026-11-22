@@ -212,8 +212,8 @@ test("source chips come from facets with counts and keep page_size", () => {
   assert.equal(ndrc.searchParams.get("source_key"), "ndrc-policy");
   assert.equal(ndrc.searchParams.get("page_size"), "50");
 
-  // facets 中的新源不在静态清单里，也应渲染为 chip（label 回退 key）。
-  const moe = hrefOf(html, "moe-policy（2）");
+  // facets 中的源统一显示注册表中文名（policySourceLabel 优先查 CAREER_SOURCE_LABELS）。
+  const moe = hrefOf(html, "教育部公告公示（2）");
   assert.equal(moe.searchParams.get("source_key"), "moe-policy");
   assert.equal(moe.searchParams.get("page_size"), "50");
 });
@@ -226,7 +226,7 @@ test("chips keep full facet counts after filtering by one source", () => {
   const active = html("a").filter((_, element) => html(element).text() === "国家发展改革委政策发布（3）").first();
   assert.equal(active.attr("aria-current"), "page");
   assert.equal(hrefOf(html, "中国政府网政策文件库（3）").searchParams.get("page_size"), "50");
-  assert.equal(hrefOf(html, "moe-policy（2）").searchParams.get("source_key"), "moe-policy");
+  assert.equal(hrefOf(html, "教育部公告公示（2）").searchParams.get("source_key"), "moe-policy");
 });
 
 test("missing facets fall back to the static source list", () => {

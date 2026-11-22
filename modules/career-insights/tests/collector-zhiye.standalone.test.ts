@@ -102,7 +102,7 @@ function createTransport(
   };
 }
 
-test("ZHIYE_SOURCES 为 11 家企业社招源且顺序与入口固定", () => {
+test("ZHIYE_SOURCES 为 25 家企业社招源且顺序与入口固定", () => {
   assert.deepEqual(
     ZHIYE_SOURCES.map((item) => item.source_key),
     [
@@ -117,6 +117,21 @@ test("ZHIYE_SOURCES 为 11 家企业社招源且顺序与入口固定", () => {
       "united-imaging-official-careers",
       "invt-official-careers",
       "sany-official-careers",
+      "venustech-official-careers",
+      "xinje-official-careers",
+      "roborock-official-careers",
+      "dreame-official-careers",
+      "aac-official-careers",
+      "piotech-official-careers",
+      "siasun-official-careers",
+      "efort-official-careers",
+
+      "hopewind-official-careers",
+      "sofarsolar-official-careers",
+      "deye-official-careers",
+      "chipone-official-careers",
+      "mornsun-official-careers",
+      "unitree-official-careers",
     ],
   );
   assert.deepEqual(
@@ -133,6 +148,21 @@ test("ZHIYE_SOURCES 为 11 家企业社招源且顺序与入口固定", () => {
       "https://united-imaging.zhiye.com/social/jobs",
       "https://invt.zhiye.com/social/jobs",
       "https://sany.zhiye.com/social/jobs",
+      "https://venustech.zhiye.com/social/jobs",
+      "https://xinje.zhiye.com/social/jobs",
+      "https://roborock.zhiye.com/social/jobs",
+      "https://dreame.zhiye.com/social/jobs",
+      "https://aac.zhiye.com/social/jobs",
+      "https://piotech.zhiye.com/social/jobs",
+      "https://siasun.zhiye.com/social/jobs",
+      "https://efort.zhiye.com/social/jobs",
+
+      "https://hopewind.zhiye.com/social/jobs",
+      "https://sofarsolar.zhiye.com/social/jobs",
+      "https://deye.zhiye.com/social/jobs",
+      "https://chipone.zhiye.com/social/jobs",
+      "https://mornsun.zhiye.com/social/jobs",
+      "https://unitree.zhiye.com/social/jobs",
     ],
   );
   assert.deepEqual(
@@ -149,10 +179,26 @@ test("ZHIYE_SOURCES 为 11 家企业社招源且顺序与入口固定", () => {
       "联影医疗官方招聘",
       "英威腾官方招聘",
       "三一重工官方招聘",
+      "启明星辰官方招聘",
+      "信捷电气官方招聘",
+      "石头科技官方招聘",
+      "追觅科技官方招聘",
+      "瑞声科技官方招聘",
+      "拓荆科技官方招聘",
+      "新松机器人官方招聘",
+      "埃夫特官方招聘",
+      "禾望电气官方招聘",
+      "首航新能源官方招聘",
+      "德业股份官方招聘",
+      "集创北方官方招聘",
+      "金升阳官方招聘",
+      "宇树科技官方招聘",
     ],
   );
   assert.ok(ZHIYE_SOURCES.every((item) => item.kind === "company_careers"));
   assert.ok(ZHIYE_SOURCES.every((item) => item.access === "http" && item.enabled));
+  assert.equal(ZHIYE_SOURCES.length, 25);
+  assert.equal(ZHIYE_SOURCE_SPECS.length, 25);
   assert.equal(ZHIYE_LIST_PATH, "/api/Jobad/GetJobAdPageList");
   assert.equal(ZHIYE_COLLECTOR_VERSION, "collector/0.2.0");
   assert.equal(zhiyeSiteUrl("dahua"), "https://dahua.zhiye.com");
@@ -177,6 +223,21 @@ test("ZHIYE_SOURCE_SPECS 为三元组唯一来源，顺序与 ZHIYE_SOURCES / C-
       ["united-imaging-official-careers", "united-imaging", "联影医疗"],
       ["invt-official-careers", "invt", "英威腾"],
       ["sany-official-careers", "sany", "三一重工"],
+      ["venustech-official-careers", "venustech", "启明星辰"],
+      ["xinje-official-careers", "xinje", "信捷电气"],
+      ["roborock-official-careers", "roborock", "石头科技"],
+      ["dreame-official-careers", "dreame", "追觅科技"],
+      ["aac-official-careers", "aac", "瑞声科技"],
+      ["piotech-official-careers", "piotech", "拓荆科技"],
+      ["siasun-official-careers", "siasun", "新松机器人"],
+      ["efort-official-careers", "efort", "埃夫特"],
+
+      ["hopewind-official-careers", "hopewind", "禾望电气"],
+      ["sofarsolar-official-careers", "sofarsolar", "首航新能源"],
+      ["deye-official-careers", "deye", "德业股份"],
+      ["chipone-official-careers", "chipone", "集创北方"],
+      ["mornsun-official-careers", "mornsun", "金升阳"],
+      ["unitree-official-careers", "unitree", "宇树科技"],
     ],
   );
   assert.deepEqual(

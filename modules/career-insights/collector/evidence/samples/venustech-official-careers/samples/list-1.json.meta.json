@@ -1,0 +1,15 @@
+{
+  "sample_id": "caa249143f042aee",
+  "request_key": "POST https://venustech.zhiye.com/api/Jobad/GetJobAdPageList#c481a3a54054ef7b",
+  "request_url": "https://venustech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://venustech.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "caa249143f042aee8fae19e4448c7e60c2b9b3814483a63f7108325c47beaccc",
+  "captured_at": "2026-11-22T02:41:36.439Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "venustech-official-careers/samples/list-1.json"
+}

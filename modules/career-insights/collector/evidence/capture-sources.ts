@@ -171,6 +171,43 @@ function messageOf(error: unknown): string {
   return error instanceof Error ? `${error.name}: ${error.message}` : String(error);
 }
 
+/**
+ * 官方 Count 不足 PageSize×5 时，尾部页会返回同一份空 `Data` 响应，使多份样本的
+ * sample_id（body 哈希）撞车。按 Count 收缩页大小，保证 5 页都落在真实数据上。
+ */
+function planZhiyePageSize(count: number | null): number {
+  if (count === null || count <= 0) {
+    return ZHIYE_PAGE_SIZE;
+  }
+  const fitting = Math.floor((count - 1) / ZHIYE_PAGE_COUNT);
+  return Math.min(ZHIYE_PAGE_SIZE, Math.max(1, fitting));
+}
+
+async function probeZhiyeCount(
+  transport: FetchTransport,
+  url: string,
+  sourceKey: string,
+  log: CaptureLog,
+): Promise<number | null> {
+  try {
+    const request = createPageRequest({
+      url,
+      method: "POST",
+      headers: { "content-type": "application/json", accept: "application/json" },
+      pageTimeoutMs: PAGE_TIMEOUT_MS,
+      sourceKey,
+      body: JSON.stringify(buildZhiyeListBody(0, ZHIYE_PAGE_SIZE)),
+    });
+    const response = await transport.fetchPage(request);
+    const parsed = JSON.parse(response.body.toString("utf8")) as { Count?: unknown };
+    return typeof parsed.Count === "number" ? parsed.Count : null;
+  } catch (error) {
+    // 探测失败会退回默认页大小，Count<100 的源可能因此出现空页重复样本，必须留痕并计入缺口。
+    log.gaps.push(`${sourceKey} Count 探测失败（${url}）：${messageOf(error)}`);
+    return null;
+  }
+}
+
 async function captureZhiyeSource(
   store: SampleStore,
   transport: FetchTransport,
@@ -179,11 +216,18 @@ async function captureZhiyeSource(
 ): Promise<ManifestSource | null> {
   const url = `${zhiyeSiteUrl(spec.tenant)}${ZHIYE_LIST_PATH}`;
   const samples: ManifestSampleRef[] = [];
+  let plannedPageSize = ZHIYE_PAGE_SIZE;
+  if (spec.paginationUnsupported !== true) {
+    await sleep(REQUEST_INTERVAL_MS);
+    plannedPageSize = planZhiyePageSize(
+      await probeZhiyeCount(transport, url, spec.sourceKey, log),
+    );
+  }
   for (let pageIndex = 0; pageIndex < ZHIYE_PAGE_COUNT; pageIndex += 1) {
     // 官方 PageIndex 不生效的源只取首屏，用 PageSize 20..24 让 5 次请求体互不相同。
     const requestPageIndex = spec.paginationUnsupported === true ? 0 : pageIndex;
     const requestPageSize =
-      spec.paginationUnsupported === true ? ZHIYE_PAGE_SIZE + pageIndex : ZHIYE_PAGE_SIZE;
+      spec.paginationUnsupported === true ? ZHIYE_PAGE_SIZE + pageIndex : plannedPageSize;
     await sleep(REQUEST_INTERVAL_MS);
     try {
       const result = await capture(store, transport, {

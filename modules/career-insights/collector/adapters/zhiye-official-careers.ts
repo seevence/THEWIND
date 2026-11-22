@@ -18,7 +18,7 @@ import type { FetchTransport, PageRequest } from "../fetch/transport.ts";
 /**
  * 北森 zhiye 平台社招列表适配器。
  *
- * 11 家企业共用同一套公开 JSON 接口（匿名可用、无 Cookie / Token / 签名）：
+ * 25 家企业共用同一套公开 JSON 接口（匿名可用、无 Cookie / Token / 签名）：
  * `POST https://<tenant>.zhiye.com/api/Jobad/GetJobAdPageList`，社招 = `Category: ["1"]`。
  * 列表条目已含职责（`Duty`）、要求（`Require`）、城市（`LocNames`）、发布时间（`PostDate`），
  * 因此单页只发一次请求，不逐条取详情。平台未提供稳定的单条职位详情 URL，
@@ -129,6 +129,90 @@ export const ZHIYE_SOURCE_SPECS: readonly ZhiyeSourceSpec[] = [
     label: "三一重工官方招聘",
     companyName: "三一重工",
     paginationUnsupported: true,
+  },
+  {
+    tenant: "venustech",
+    sourceKey: "venustech-official-careers",
+    label: "启明星辰官方招聘",
+    companyName: "启明星辰",
+  },
+  {
+    tenant: "xinje",
+    sourceKey: "xinje-official-careers",
+    label: "信捷电气官方招聘",
+    companyName: "信捷电气",
+  },
+  {
+    tenant: "roborock",
+    sourceKey: "roborock-official-careers",
+    label: "石头科技官方招聘",
+    companyName: "石头科技",
+  },
+  {
+    tenant: "dreame",
+    sourceKey: "dreame-official-careers",
+    label: "追觅科技官方招聘",
+    companyName: "追觅科技",
+  },
+  {
+    tenant: "aac",
+    sourceKey: "aac-official-careers",
+    label: "瑞声科技官方招聘",
+    companyName: "瑞声科技",
+  },
+  {
+    tenant: "piotech",
+    sourceKey: "piotech-official-careers",
+    label: "拓荆科技官方招聘",
+    companyName: "拓荆科技",
+  },
+  {
+    tenant: "siasun",
+    sourceKey: "siasun-official-careers",
+    label: "新松机器人官方招聘",
+    companyName: "新松机器人",
+  },
+  {
+    tenant: "efort",
+    sourceKey: "efort-official-careers",
+    label: "埃夫特官方招聘",
+    companyName: "埃夫特",
+  },
+  {
+    tenant: "hopewind",
+    sourceKey: "hopewind-official-careers",
+    label: "禾望电气官方招聘",
+    companyName: "禾望电气",
+  },
+  {
+    tenant: "sofarsolar",
+    sourceKey: "sofarsolar-official-careers",
+    label: "首航新能源官方招聘",
+    companyName: "首航新能源",
+  },
+  {
+    tenant: "deye",
+    sourceKey: "deye-official-careers",
+    label: "德业股份官方招聘",
+    companyName: "德业股份",
+  },
+  {
+    tenant: "chipone",
+    sourceKey: "chipone-official-careers",
+    label: "集创北方官方招聘",
+    companyName: "集创北方",
+  },
+  {
+    tenant: "mornsun",
+    sourceKey: "mornsun-official-careers",
+    label: "金升阳官方招聘",
+    companyName: "金升阳",
+  },
+  {
+    tenant: "unitree",
+    sourceKey: "unitree-official-careers",
+    label: "宇树科技官方招聘",
+    companyName: "宇树科技",
   },
 ];
 

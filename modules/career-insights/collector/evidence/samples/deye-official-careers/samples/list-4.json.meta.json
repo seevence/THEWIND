@@ -1,0 +1,15 @@
+{
+  "sample_id": "fb3470789aebeaa8",
+  "request_key": "POST https://deye.zhiye.com/api/Jobad/GetJobAdPageList#d98d7f62b5dc00c4",
+  "request_url": "https://deye.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://deye.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "fb3470789aebeaa8bb400def1d31f03334b29077e671273c9d35bdfaedb9bd38",
+  "captured_at": "2026-11-22T02:57:37.458Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-4",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "deye-official-careers/samples/list-4.json"
+}

@@ -1,0 +1,15 @@
+{
+  "sample_id": "452d9a8bcce2e076",
+  "request_key": "POST https://sofarsolar.zhiye.com/api/Jobad/GetJobAdPageList#288d757d33e72fad",
+  "request_url": "https://sofarsolar.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://sofarsolar.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "452d9a8bcce2e076dc71e20a49fc0098814a5b1fc3da16cb194e356ba477a901",
+  "captured_at": "2026-11-22T02:57:26.162Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "sofarsolar-official-careers/samples/list-1.json"
+}

@@ -1,0 +1,15 @@
+{
+  "sample_id": "9a16d979e0f5d1e2",
+  "request_key": "POST https://efort.zhiye.com/api/Jobad/GetJobAdPageList#0bdf817751575fdc",
+  "request_url": "https://efort.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://efort.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "9a16d979e0f5d1e2306b4a648ac825269f5b9ae8d1b6e4e7f72117a05203cee1",
+  "captured_at": "2026-11-22T02:42:29.433Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "efort-official-careers/samples/list-1.json"
+}

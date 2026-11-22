@@ -29,14 +29,18 @@ background and cached, so pages never call a model.
 
 ## Data sources & license
 
-- Jobs (19 sources): official career sites of Tencent, Meituan, Baidu, Huawei, NetEase, Didi, HONOR and China State
-  Construction, plus iFLYTEK, Dahua, Inovance, Sunwoda, BOE, Sugon, H3C, Mindray, United Imaging, INVT and SANY
+- Jobs (33 sources): official career sites of Tencent, Meituan, Baidu, Huawei, NetEase, Didi, HONOR and China State
+  Construction, plus iFLYTEK, Dahua, Inovance, Sunwoda, BOE, Sugon, H3C, Mindray, United Imaging, INVT, SANY,
+  Venustech, Xinje, Roborock, Dreame, AAC Technologies, Piotech, SIASUN, EFORT, Hopewind, SofarSolar, Deye,
+  Chipone, Mornsun and Unitree
   (public pages, linked back);
 - Policies (7 sources): public documents from the Chinese government portal, NDRC, Ministry of Education, the MOHRSS
   "China Employment Network", Changsha Human Resources and Social Security Bureau, Hunan Provincial Department of
   Education, and the Hunan Provincial Human Resources and Social Security Department notices;
-- The 11 zhiye-hosted sources (iFLYTEK, Dahua, Inovance, Sunwoda, BOE, Sugon, H3C, Mindray, United Imaging, INVT and
-  SANY) come from their public zhiye job-list endpoints, each linked back to the official job list page
+- The 25 zhiye-hosted sources (iFLYTEK, Dahua, Inovance, Sunwoda, BOE, Sugon, H3C, Mindray, United Imaging, INVT,
+  SANY, Venustech, Xinje, Roborock, Dreame, AAC Technologies, Piotech, SIASUN, EFORT, Hopewind, SofarSolar, Deye,
+  Chipone, Mornsun and Unitree) come from
+  their public zhiye job-list endpoints, each linked back to the official job list page
   (`https://<tenant>.zhiye.com/social/jobs`, e.g. <https://iflytek.zhiye.com/social/jobs>) as the original entry.
   INVT's and SANY's official list endpoints ignore pagination, so only the first screen is available.
 - Code is MIT licensed; built on the open-source **AIHOT** framework (MIT, Copyright © 2026 数字生命卡兹克). See

@@ -1,0 +1,15 @@
+{
+  "sample_id": "2695be94113e6833",
+  "request_key": "POST https://chipone.zhiye.com/api/Jobad/GetJobAdPageList#a410e33463645b58",
+  "request_url": "https://chipone.zhiye.com/api/Jobad/GetJobAdPageList",
+  "final_url": "https://chipone.zhiye.com/api/Jobad/GetJobAdPageList",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body_sha256": "2695be94113e6833f84d2504e569200828c7c63161025a19bd7b22ffc17281c0",
+  "captured_at": "2026-11-22T02:57:41.141Z",
+  "collector_version": "collector/0.2.0",
+  "extraction_ref": "list-1",
+  "sanitized": false,
+  "sanitize_note": "false_positive:post_date_int_timestamp",
+  "body_file": "chipone-official-careers/samples/list-1.json"
+}
