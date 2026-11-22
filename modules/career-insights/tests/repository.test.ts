@@ -108,7 +108,17 @@ test("an empty table answers summary with insufficient_data instead of a made-up
   const families = summary.metrics.filter((entry) => entry.metric_id === "job_family_share");
   assert.deepEqual(
     families.map((entry) => entry.dimension.role_family),
-    ["ai_algorithm", "ai_application_development", "data", "ai_product_operations", "unknown"],
+    [
+      "ai_algorithm",
+      "ai_application_development",
+      "data",
+      "ai_product_operations",
+      "hardware_engineering",
+      "manufacturing_quality",
+      "sales_business",
+      "corporate_functions",
+      "unknown",
+    ],
   );
   for (const entry of families) {
     assert.equal(entry.numerator_count, 0);
