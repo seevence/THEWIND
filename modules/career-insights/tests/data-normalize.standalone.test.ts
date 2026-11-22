@@ -154,11 +154,10 @@ test("负例 2：游戏运营不被算作 AI 产品运营", () => {
   assert.equal(resolveRoleFamily("unknown", "K6合作部-游戏运营-社区及用户运营"), "unknown");
 });
 
-test("负例 3：大模型销售不被算作算法岗", () => {
-  assert.equal(
-    resolveRoleFamily("unknown", "大模型即云计算大客户销售-华南游戏方向（J107254）"),
-    "unknown",
-  );
+test("负例 3：大模型销售归销售，不被算作算法岗", () => {
+  const family = resolveRoleFamily("unknown", "大模型即云计算大客户销售-华南游戏方向（J107254）");
+  assert.notEqual(family, "ai_algorithm");
+  assert.equal(family, "sales_business");
 });
 
 test("负例 4：大客户技术支持不被算作算法岗", () => {
@@ -168,20 +167,16 @@ test("负例 4：大客户技术支持不被算作算法岗", () => {
   );
 });
 
-test("负例 5：售前架构师不被算作开发岗", () => {
-  assert.equal(
-    resolveRoleFamily("unknown", "腾讯云-云和AI售前架构师（物流方向）-北/上/深"),
-    "unknown",
-  );
+test("负例 5：售前架构师归销售/商务，不被算作开发岗", () => {
+  const family = resolveRoleFamily("unknown", "腾讯云-云和AI售前架构师（物流方向）-北/上/深");
+  assert.notEqual(family, "ai_application_development");
+  assert.equal(family, "sales_business");
 });
 
-test("负例 6：运营商、渠道与接待类岗位保持 unknown", () => {
-  for (const title of [
-    "通讯-商务拓展专家-运营商方向",
-    "渠道经理（J107385）",
-    "客工部接待经理（J101012）",
-    "海外服务顾问（J107080）",
-  ]) {
+test("负例 6：商务/渠道归销售，接待/顾问仍保持 unknown", () => {
+  assert.equal(resolveRoleFamily("unknown", "通讯-商务拓展专家-运营商方向"), "sales_business");
+  assert.equal(resolveRoleFamily("unknown", "渠道经理（J107385）"), "sales_business");
+  for (const title of ["客工部接待经理（J101012）", "海外服务顾问（J107080）"]) {
     assert.equal(resolveRoleFamily("unknown", title), "unknown", title);
   }
 });

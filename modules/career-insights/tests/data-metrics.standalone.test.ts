@@ -66,7 +66,7 @@ const TWO_SNAPSHOTS: ObservationSnapshotV1[] = [
 
 test("空样本时占比指标全部 insufficient_data，不返回 0", () => {
   const familyMetrics = computeJobFamilyShareMetrics([], { as_of: AS_OF });
-  assert.equal(familyMetrics.length, 5);
+  assert.equal(familyMetrics.length, 9);
   for (const metric of familyMetrics) {
     assert.equal(metric.status, "insufficient_data");
     assert.equal(metric.value, null);
@@ -368,7 +368,7 @@ test("checked-in 腾讯列表样本（示例数据）10 行标题按规则映射
       title: "芯片设计工程师",
       experienceRaw: "三年以上工作经验",
       minYears: 3,
-      roleFamily: "unknown",
+      roleFamily: "hardware_engineering",
       studentFriendly: "no",
     },
   ];
@@ -460,7 +460,9 @@ test(`真实 DB 30 行 cutoff 快照（${DB_SNAPSHOT_CUTOFF}）复现报告数�
     ai_application_development: 7,
     data: 1,
     ai_product_operations: 7,
-    unknown: 14,
+    manufacturing_quality: 1,
+    sales_business: 5,
+    unknown: 8,
   });
   assert.equal(friendlyCounts.get("no"), 21);
   assert.equal(friendlyCounts.get("unknown"), 9);
@@ -493,9 +495,9 @@ test(`真实 DB 30 行 cutoff 快照（${DB_SNAPSHOT_CUTOFF}）复现报告数�
   }
   const unknownBySource = (source: string) =>
     bySource(source).filter((row) => resolveRoleFamily("unknown", row.title) === "unknown").length;
-  assert.equal(unknownBySource("tencent-official-careers"), 6);
-  assert.equal(unknownBySource("meituan-official-careers"), 2);
-  assert.equal(unknownBySource("baidu-official-careers"), 6);
+  assert.equal(unknownBySource("tencent-official-careers"), 3);
+  assert.equal(unknownBySource("meituan-official-careers"), 1);
+  assert.equal(unknownBySource("baidu-official-careers"), 4);
 
   const hitBySource = (source: string) =>
     computeSkillHitRate(bySource(source).map(snapshotDiagnosticJob)).with_skill_count;

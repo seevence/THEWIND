@@ -31,7 +31,7 @@ import { DEFAULT_PAGE_SIZE, MAX_PAGE, MAX_PAGE_SIZE } from "./limits.ts";
 import type { PolicyFiltersV1 } from "./policy-read.ts";
 import type { CareerRepository } from "./repository.ts";
 
-const ROLE_FAMILIES = ["ai_algorithm", "ai_application_development", "data", "ai_product_operations", "unknown"] as const;
+const ROLE_FAMILIES = ["ai_algorithm", "ai_application_development", "data", "ai_product_operations", "hardware_engineering", "manufacturing_quality", "sales_business", "corporate_functions", "unknown"] as const;
 const EMPLOYMENT_TYPES = ["campus", "internship", "experienced", "other", "unknown"] as const;
 const STUDENT_FRIENDLY_VALUES = ["yes", "no", "unknown"] as const;
 const FILTER_KEYS = new Set(["role_family", "company", "city", "employment_type", "student_friendly", "skill", "q", "page", "page_size"]);

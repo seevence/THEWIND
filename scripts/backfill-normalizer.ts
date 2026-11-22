@@ -142,6 +142,10 @@ const ROLE_FAMILY_VALUES: ReadonlySet<string> = new Set<RoleFamily>([
   "ai_application_development",
   "data",
   "ai_product_operations",
+  "hardware_engineering",
+  "manufacturing_quality",
+  "sales_business",
+  "corporate_functions",
   "unknown",
 ]);
 const EMPLOYMENT_TYPE_VALUES: ReadonlySet<string> = new Set<EmploymentType>([

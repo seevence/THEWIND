@@ -38,7 +38,7 @@ const MAX_AGENT_JOBS = 10;
 
 const JOB_SEARCH_INPUT = z.strictObject({
   q: z.string().min(2).max(100).optional().describe("Optional keyword, 2 to 100 characters, matched against title, company, skills and city."),
-  role_family: z.enum(["ai_algorithm", "ai_application_development", "data", "ai_product_operations", "unknown"]).optional().describe("Optional role family."),
+  role_family: z.enum(["ai_algorithm", "ai_application_development", "data", "ai_product_operations", "hardware_engineering", "manufacturing_quality", "sales_business", "corporate_functions", "unknown"]).optional().describe("Optional role family."),
   city: z.string().min(1).max(50).optional().describe("Optional city name, for example 北京 or 上海."),
   student_friendly: z.enum(["yes", "no", "unknown"]).optional().describe("Optional student-friendly mark; unknown does not mean unfriendly."),
   skill: z.string().min(1).max(80).optional().describe("Optional skill id, for example python or sql."),
@@ -135,7 +135,7 @@ function invalid(message: string): AbilityResult {
 /** 一次岗位列表读取：默认取最近 20 条，answers 与 MCP 工具共用同一份公开投影。 */
 async function searchJobs(repository: CareerRepository, request: {
   q?: string;
-  role_family?: "ai_algorithm" | "ai_application_development" | "data" | "ai_product_operations" | "unknown";
+  role_family?: "ai_algorithm" | "ai_application_development" | "data" | "ai_product_operations" | "hardware_engineering" | "manufacturing_quality" | "sales_business" | "corporate_functions" | "unknown";
   city?: string;
   student_friendly?: "yes" | "no" | "unknown";
   skill?: string;

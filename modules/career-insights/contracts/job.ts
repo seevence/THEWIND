@@ -6,6 +6,10 @@ export type RoleFamily =
   | "ai_application_development"
   | "data"
   | "ai_product_operations"
+  | "hardware_engineering"
+  | "manufacturing_quality"
+  | "sales_business"
+  | "corporate_functions"
   | "unknown";
 export type EmploymentType = "campus" | "internship" | "experienced" | "other" | "unknown";
 export type DegreeLevel = "any_explicit" | "bachelor" | "master" | "doctor" | "other" | "unknown";

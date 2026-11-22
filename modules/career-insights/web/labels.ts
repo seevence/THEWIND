@@ -164,6 +164,10 @@ export const ROLE_FAMILY_LABELS: Record<RoleFamily, string> = {
   ai_application_development: "软件 / AI 应用开发",
   data: "数据",
   ai_product_operations: "AI 产品 / 运营",
+  hardware_engineering: "硬件 / 电子 / 机械",
+  manufacturing_quality: "制造 / 工艺 / 质量",
+  sales_business: "销售 / 商务",
+  corporate_functions: "职能（财务/人力/行政/采购）",
   unknown: "未归类",
 };
 

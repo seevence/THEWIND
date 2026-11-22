@@ -20,6 +20,10 @@ const ROLE_FAMILIES: readonly RoleFamily[] = [
   "ai_application_development",
   "data",
   "ai_product_operations",
+  "hardware_engineering",
+  "manufacturing_quality",
+  "sales_business",
+  "corporate_functions",
   "unknown",
 ];
 const EMPLOYMENT_TYPES: readonly EmploymentType[] = [

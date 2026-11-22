@@ -24,7 +24,7 @@ import { DEFAULT_PAGE_SIZE, MAX_PAGE, MAX_PAGE_SIZE } from "../limits.ts";
 import type { PolicyFacetsV1, PolicyFiltersV1, PolicyListResponseV1 } from "../policy-read.ts";
 import type { CareerRepository } from "../repository.ts";
 
-const ROLE_FAMILIES = ["ai_algorithm", "ai_application_development", "data", "ai_product_operations", "unknown"] as const;
+const ROLE_FAMILIES = ["ai_algorithm", "ai_application_development", "data", "ai_product_operations", "hardware_engineering", "manufacturing_quality", "sales_business", "corporate_functions", "unknown"] as const;
 const STUDENT_FRIENDLY_VALUES = ["yes", "no", "unknown"] as const;
 /** 与站点岗位搜索一致：关键词 trim 后最长 100 字符，超过按参数错误返回 400，不静默截断。 */
 const MAX_JOB_QUERY_LENGTH = 100;

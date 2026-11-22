@@ -23,6 +23,10 @@ const ROLE_FAMILY_ORDER: readonly RoleFamily[] = [
   "ai_application_development",
   "data",
   "ai_product_operations",
+  "hardware_engineering",
+  "manufacturing_quality",
+  "sales_business",
+  "corporate_functions",
   "unknown",
 ];
 const EVIDENCE_LIMIT = 5;

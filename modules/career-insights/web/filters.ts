@@ -4,7 +4,7 @@ export const JOB_PAGE_SIZES: readonly [20, 50] = [20, 50];
 
 export type DashboardView = "overview" | "direction";
 
-const ROLE_FAMILIES: readonly RoleFamily[] = ["ai_algorithm", "ai_application_development", "data", "ai_product_operations", "unknown"];
+const ROLE_FAMILIES: readonly RoleFamily[] = ["ai_algorithm", "ai_application_development", "data", "ai_product_operations", "hardware_engineering", "manufacturing_quality", "sales_business", "corporate_functions", "unknown"];
 const EMPLOYMENT_TYPES: readonly EmploymentType[] = ["campus", "internship", "experienced", "other", "unknown"];
 const STUDENT_FRIENDLY_VALUES: readonly StudentFriendly[] = ["yes", "no", "unknown"];
 
