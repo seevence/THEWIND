@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { isRouteErrorResponse, useLoaderData, useNavigation, useRouteError, type MetaFunction } from "react-router";
 import type { LoaderArgs } from "@aihot/web/lib/route-types";
 import type { Screen } from "@aihot/web/components/shell/screens";
@@ -47,6 +48,15 @@ export function ErrorBoundary() {
 export default function JobsCatalogRoute() {
   const data = useLoaderData<typeof loader>();
   const navigation = useNavigation();
+  // 浏览器会在加载时滚到 #catalog-jobs，但 React Router 的 ScrollRestoration 随后可能用旧滚动位置覆盖它
+  // （旧位置为 0 时就是"回到顶部"）。等 hydration/恢复完成后再显式滚一次，保证搜索提交稳定落在岗位明细。
+  useEffect(() => {
+    if (window.location.hash !== "#catalog-jobs") return;
+    const id = window.setTimeout(() => {
+      document.getElementById("catalog-jobs")?.scrollIntoView({ block: "start" });
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [data.jobs.total, data.filters.q, data.filters.page]);
   return (
     <>
       {navigation.state === "loading" && (

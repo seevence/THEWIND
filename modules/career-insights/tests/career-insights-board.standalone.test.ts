@@ -889,7 +889,7 @@ test("the keyword search box submits to the catalog path and keeps the other fil
   assert.equal(form.find("input[type='hidden'][name='page']").length, 0);
 });
 
-test("the current keyword shows in the title area and clears without dropping the other filters", () => {
+test("the current keyword shows next to the job list and clears without dropping the other filters", () => {
   const filters: JobFiltersV1 = { ...FILTERS, city: "北京", q: "数据分析" };
   const html = render(createElement(JobsCatalogBoard, { catalog: CATALOG, jobs: JOBS, filters }));
 

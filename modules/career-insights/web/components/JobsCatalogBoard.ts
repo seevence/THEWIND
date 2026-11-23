@@ -300,6 +300,21 @@ function JobListSection({ jobs, filters, Star }: { jobs: JobListResponseV1; filt
       h("h2", { id: "catalog-job-list", className: "text-[18px] font-semibold text-ink" }, "岗位明细"),
       h("span", { className: "num text-[12px] text-ink-4" }, `共 ${jobs.total} 条`),
     ),
+    filters.q
+      ? h(
+          "div",
+          { "data-search-summary": "", className: "mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 px-1 text-[12.5px] leading-relaxed text-ink-3" },
+          h("span", null, `搜索“${filters.q}” · ${jobs.total} 个岗位`),
+          h(
+            Link,
+            Object.assign(
+              { to: buildCatalogHref(filters, { q: undefined, page: 1 }), preventScrollReset: true, className: "inline-flex min-h-11 items-center text-[12.5px] font-medium text-accent hover:underline sm:min-h-0" },
+              { "data-search-clear": "" },
+            ),
+            "清除搜索",
+          ),
+        )
+      : null,
     jobs.items.length === 0
       ? h("div", { className: "mt-3 rounded-card border border-line bg-surface px-5 py-8 text-center" },
           h(
@@ -353,21 +368,6 @@ export function JobsCatalogBoard({ catalog, jobs, filters, starButton }: {
       "header",
       { className: "order-1" },
       h("h1", { "data-page-title": "", className: "text-[24px] font-semibold text-ink" }, "热门岗位"),
-      filters.q
-        ? h(
-            "div",
-            { "data-search-summary": "", className: "mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] leading-relaxed text-ink-2" },
-            h("span", null, `搜索“${filters.q}” · ${jobs.total} 个岗位`),
-            h(
-              Link,
-              Object.assign(
-                { to: buildCatalogHref(filters, { q: undefined, page: 1 }), preventScrollReset: true, className: "inline-flex min-h-11 items-center text-[12.5px] font-medium text-accent hover:underline" },
-                { "data-search-clear": "" },
-              ),
-              "清除搜索",
-            ),
-          )
-        : null,
       h("p", { className: "mt-1 text-[13px] leading-relaxed text-ink-3" }, "方向榜按当前有效岗位数量排序，不代表新闻热度、公司热度或未来增长。"),
       h(
         "p",
