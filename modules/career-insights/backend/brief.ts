@@ -9,7 +9,7 @@ import { ROLE_FAMILY_LABELS, SKILL_LABELS } from "../data/dictionaries.ts";
 import { loadCareerCatalog, type CareerCatalogOptions } from "./career-catalog.ts";
 import { careerPolicyRelevanceSql } from "./policy-relevance.ts";
 
-export const CAREER_BRIEF_PROMPT_VERSION = "career-brief/2";
+export const CAREER_BRIEF_PROMPT_VERSION = "career-brief/3";
 export const CAREER_BRIEF_PURPOSE = "career-brief";
 export const CAREER_BRIEF_CONTRACT_VERSION = "0.1" as const;
 
@@ -46,7 +46,7 @@ const SYSTEM_PROMPT = [
   "只输出一个 JSON 对象，字段为 facts、inferences、actions、limitations、confidence、evidence，不要输出 JSON 之外的文字。",
   "正文（facts、inferences、actions、limitations 的文本）必须全部使用中文，不得出现任何内部 ID、英文标识或英文字段名（例如 role_family、skills、share、ai_application_development、data_analysis 都不得出现在正文里）；JSON 字段名（facts、inferences、actions、limitations、confidence、evidence）、枚举值（job/policy、low/medium/high）与证据编号（UUID）属于接口格式，不在此限。引用职族或技能必须使用输入里的中文名称；引用技能占比必须写成百分比并在同一处说明分母（例如「占 166 个有技能岗位的 43.4%」），不要单独写百分比、不要写小数或 share；facts、inferences、actions、limitations 都适用。",
   "facts：只陈述输入中已有的事实，每条只写一件事（不要在一句里罗列多个方向或技能），每条不超过 60 个字；inferences：趋势推断，必须写明观察窗或置信度措辞；actions：给学生可执行的准备建议；limitations：数据与方法的限制。",
-  `只能使用输入中已经出现的数字，禁止编造或自行推算新数字（facts 每条${MAX_TOKENS_HINT}）。`,
+  `只能使用输入中已经出现的数字，禁止编造或自行推算新数字（facts 每条${MAX_TOKENS_HINT}）。禁止任何算术运算（加、减、乘、除、求和、合并、平均、占比换算）；不要把一个以上输入数字组合成一个新数字，也不要写“合计/总共/累计”等汇总数；需要比较时分别引用两个原始数字。`,
   "evidence：只能引用输入「可引用证据」中已有的编号；输出时 kind 取 job（对应类型 岗位）或 policy（对应类型 政策），id 填该编号，title 原样返回；没有可引用项时给空数组。",
   "confidence：low、medium、high 之一。观测日不足两个时不要写增长、下降、走势一类判断。",
 ].join("\n");
