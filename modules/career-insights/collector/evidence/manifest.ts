@@ -22,6 +22,8 @@ export interface ManifestSource {
 export interface SampleManifest {
   readonly version: "1.0";
   readonly generated_at: string;
+  /** 采集期缺口与打码记录，供审计；缺省不出现。 */
+  readonly capture_notes?: readonly string[];
   readonly sources: readonly ManifestSource[];
 }
 
@@ -30,17 +32,23 @@ export interface ManifestValidation {
   readonly errors: readonly string[];
 }
 
-export function buildSampleManifest(input: {
-  readonly generatedAt: string;
-  readonly sources: readonly {
-    readonly source_key: string;
-    readonly kind: SourceKind;
-    readonly samples: readonly ManifestSampleRef[];
-  }[];
-}): SampleManifest {
+export function buildSampleManifest(
+  input: {
+    readonly generatedAt: string;
+    readonly sources: readonly {
+      readonly source_key: string;
+      readonly kind: SourceKind;
+      readonly samples: readonly ManifestSampleRef[];
+    }[];
+  },
+  captureNotes?: readonly string[],
+): SampleManifest {
   return {
     version: "1.0",
     generated_at: input.generatedAt,
+    ...(captureNotes === undefined || captureNotes.length === 0
+      ? {}
+      : { capture_notes: [...captureNotes] }),
     sources: input.sources.map((source) => ({
       source_key: source.source_key,
       kind: source.kind,
@@ -62,10 +70,23 @@ export function validateSampleManifest(value: unknown): ManifestValidation {
   if (typeof manifest["generated_at"] !== "string" || manifest["generated_at"].length === 0) {
     errors.push("generated_at 必填");
   }
+  const captureNotes = manifest["capture_notes"];
+  if (captureNotes !== undefined) {
+    if (!Array.isArray(captureNotes)) {
+      errors.push("capture_notes 必须是字符串数组");
+    } else {
+      for (const [index, note] of captureNotes.entries()) {
+        if (typeof note !== "string" || note.length === 0) {
+          errors.push(`capture_notes[${index}] 必须是非空字符串`);
+        }
+      }
+    }
+  }
   if (!Array.isArray(manifest["sources"]) || manifest["sources"].length === 0) {
     return { ok: false, errors: [...errors, "sources 必须是非空数组"] };
   }
 
+  const requestKeys = new Set<string>();
   for (const [index, raw] of manifest["sources"].entries()) {
     if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
       errors.push(`sources[${index}] 必须是对象`);
@@ -119,20 +140,47 @@ export function validateSampleManifest(value: unknown): ManifestValidation {
         }
         seen.add(record["sample_id"]);
       }
+      if (
+        typeof record["sample_id"] === "string" &&
+        typeof record["body_sha256"] === "string" &&
+        record["sample_id"] !== record["body_sha256"].slice(0, 16)
+      ) {
+        errors.push(
+          `sources[${index}].samples[${sampleIndex}].sample_id 必须等于 body_sha256 前 16 位`,
+        );
+      }
+      if (typeof record["request_key"] === "string" && record["request_key"].length > 0) {
+        if (requestKeys.has(record["request_key"])) {
+          errors.push(
+            `sources[${index}].samples[${sampleIndex}].request_key 全局重复：${record["request_key"]}`,
+          );
+        }
+        requestKeys.add(record["request_key"]);
+      }
     }
   }
 
   return { ok: errors.length === 0, errors };
 }
 
-export function quotaItemsFromManifest(manifest: SampleManifest): QuotaItem[] {
-  return manifest.sources.map((source) => ({
-    source_key: source.source_key,
-    kind: source.kind,
-    sample_count: source.sample_count,
-  }));
+export function quotaItemsFromManifest(
+  manifest: SampleManifest,
+  sparseJobCounts?: Readonly<Record<string, number>>,
+): QuotaItem[] {
+  return manifest.sources.map((source) => {
+    const sparseJobCount = sparseJobCounts?.[source.source_key];
+    return {
+      source_key: source.source_key,
+      kind: source.kind,
+      sample_count: source.sample_count,
+      ...(sparseJobCount === undefined ? {} : { sparse_job_count: sparseJobCount }),
+    };
+  });
 }
 
-export function evaluateManifestQuota(manifest: SampleManifest): QuotaReport {
-  return evaluateQuota(quotaItemsFromManifest(manifest));
+export function evaluateManifestQuota(
+  manifest: SampleManifest,
+  sparseJobCounts?: Readonly<Record<string, number>>,
+): QuotaReport {
+  return evaluateQuota(quotaItemsFromManifest(manifest, sparseJobCounts));
 }

@@ -123,13 +123,18 @@ function assertRedactionKeepsJsonIntact(bodyFile: string, original: string, reda
   }
 }
 
-/** 同源内按正文 sha256 去重（重复请求只落 1 份），`seen` 由各源采集器持有。 */
+/**
+ * 同源内按正文 sha256 去重（重复请求只落 1 份），`seen` 由各源采集器持有。
+ * `claimedByBody` 记录正文在本源既有样本与本次运行中的归属：跨源同字节样本（典型为空页）
+ * 只保留先登记的一份，否则 `sample_id`（正文 sha 前 16 位）会全局重复。
+ */
 async function capture(
   store: SampleStore,
   transport: FetchTransport,
   input: CaptureInput,
   log: CaptureLog,
   seen: Map<string, string>,
+  claimedByBody: Map<string, string>,
 ): Promise<CaptureResult | null> {
   const request = createPageRequest({
     url: input.url,
@@ -158,6 +163,14 @@ async function capture(
     return null;
   }
   seen.set(bodySha, input.bodyFile);
+  const ownerOfBody = claimedByBody.get(bodySha);
+  if (ownerOfBody !== undefined && ownerOfBody !== input.sourceKey) {
+    log.warnings.push(
+      `${input.bodyFile}: 正文与 ${ownerOfBody} 的样本字节相同（sample_id 需全局唯一），已跳过落盘`,
+    );
+    return null;
+  }
+  claimedByBody.set(bodySha, input.sourceKey);
 
   const sample = createSample({
     request_key: computeRequestKey(input.url, input.method, input.body),
@@ -182,9 +195,8 @@ function messageOf(error: unknown): string {
 }
 
 /**
- * 每源份数 = min(5, Count+1)：官方 Count 不足 PageSize×5 时尾部页仍是同一份空 `Data`。
- * 按 Count 收缩页大小只能减少空页（Count≥5 时才能让 5 页都落在真实数据上），
- * Count<5 时仍有空页且空页正文彼此相同，由 `capture` 按 body sha256 去重，只保留一份。
+ * 按实测 Count 收缩页大小，尽量让 5 页都落在真实数据上。
+ * Count<5 时尾部仍是空 `Data` 页，且空页正文彼此相同，由 `capture` 按 body sha256 去重，只保留一份。
  */
 function planZhiyePageSize(count: number | null): number {
   if (count === null || count <= 0) {
@@ -219,19 +231,28 @@ async function probeZhiyeCount(
   }
 }
 
+/**
+ * 与 `evaluateQuota` 同一口径：`min(5, max(1, Count))`，即稀疏源的最低可接受数据页数。
+ * 未声明 `sparseJobCount` 的源取实测 Count，探测失败才退回 5 页基线。
+ */
+function zhiyeRequiredSamples(spec: ZhiyeSourceSpec, probedCount: number | null): number {
+  const jobCount = spec.sparseJobCount ?? probedCount ?? ZHIYE_PAGE_COUNT;
+  return Math.min(ZHIYE_PAGE_COUNT, Math.max(1, jobCount));
+}
+
 async function captureZhiyeSource(
   store: SampleStore,
   transport: FetchTransport,
   spec: ZhiyeSourceSpec,
   log: CaptureLog,
+  claimedByBody: Map<string, string>,
 ): Promise<ManifestSource | null> {
   const url = `${zhiyeSiteUrl(spec.tenant)}${ZHIYE_LIST_PATH}`;
   const samples: ManifestSampleRef[] = [];
   const seenBodies = new Map<string, string>();
   await sleep(REQUEST_INTERVAL_MS);
-  const plannedPageSize = planZhiyePageSize(
-    await probeZhiyeCount(transport, url, spec.sourceKey, log),
-  );
+  const probedCount = await probeZhiyeCount(transport, url, spec.sourceKey, log);
+  const plannedPageSize = planZhiyePageSize(probedCount);
   for (let pageIndex = 0; pageIndex < ZHIYE_PAGE_COUNT; pageIndex += 1) {
     await sleep(REQUEST_INTERVAL_MS);
     try {
@@ -244,7 +265,7 @@ async function captureZhiyeSource(
         extractionRef: `list-${pageIndex + 1}`,
         bodyFile: `${spec.sourceKey}/samples/list-${pageIndex + 1}.json`,
         collectorVersion: ZHIYE_COLLECTOR_VERSION,
-      }, log, seenBodies);
+      }, log, seenBodies, claimedByBody);
       if (result !== null) {
         samples.push(result.ref);
       }
@@ -258,8 +279,9 @@ async function captureZhiyeSource(
     log.gaps.push(`${spec.sourceKey}: 未取得任何列表样本，证据缺口`);
     return null;
   }
-  if (samples.length < ZHIYE_PAGE_COUNT) {
-    log.gaps.push(`${spec.sourceKey}: 仅取得 ${samples.length}/${ZHIYE_PAGE_COUNT} 份列表样本，证据缺口`);
+  const required = zhiyeRequiredSamples(spec, probedCount);
+  if (samples.length < required) {
+    log.gaps.push(`${spec.sourceKey}: 仅取得 ${samples.length}/${required} 份列表样本，证据缺口`);
   }
   return { source_key: spec.sourceKey, kind: "job", sample_count: samples.length, samples };
 }
@@ -268,6 +290,7 @@ async function captureHunanRsjPolicy(
   store: SampleStore,
   transport: FetchTransport,
   log: CaptureLog,
+  claimedByBody: Map<string, string>,
 ): Promise<ManifestSource | null> {
   await sleep(REQUEST_INTERVAL_MS);
   const seenBodies = new Map<string, string>();
@@ -281,7 +304,7 @@ async function captureHunanRsjPolicy(
       extractionRef: "list-1",
       bodyFile: `${HUNAN_RSJ_SOURCE_KEY}/samples/list-1.html`,
       collectorVersion: HUNAN_RSJ_COLLECTOR_VERSION,
-    }, log, seenBodies);
+    }, log, seenBodies, claimedByBody);
   } catch (error) {
     log.gaps.push(`${HUNAN_RSJ_SOURCE_KEY} ${HUNAN_RSJ_LIST_URL}: ${messageOf(error)}`);
     return null;
@@ -313,7 +336,7 @@ async function captureHunanRsjPolicy(
         extractionRef: `detail-${index + 1}`,
         bodyFile: `${HUNAN_RSJ_SOURCE_KEY}/samples/detail-${index + 1}.html`,
         collectorVersion: HUNAN_RSJ_COLLECTOR_VERSION,
-      }, log, seenBodies);
+      }, log, seenBodies, claimedByBody);
       if (detail !== null) {
         samples.push(detail.ref);
       }
@@ -364,30 +387,47 @@ async function main(): Promise<void> {
   const log: CaptureLog = { warnings: [], gaps: [] };
   const captured: ManifestSource[] = [];
 
+  const previous = JSON.parse(
+    await readFile(join(SAMPLES_DIR, "manifest.json"), "utf8"),
+  ) as SampleManifest;
+  // 正文 sha 的既有归属：跨源同字节样本只保留先登记的一份，保证 sample_id 全局唯一。
+  const claimedByBody = new Map<string, string>();
+  for (const source of previous.sources) {
+    for (const sample of source.samples) {
+      claimedByBody.set(sample.body_sha256, source.source_key);
+    }
+  }
+
   for (const spec of ZHIYE_SOURCE_SPECS) {
     if (only !== null && !only.has(spec.sourceKey)) {
       continue;
     }
-    const source = await captureZhiyeSource(store, transport, spec, log);
+    const source = await captureZhiyeSource(store, transport, spec, log, claimedByBody);
     if (source !== null) {
       captured.push(source);
     }
   }
 
   if (only === null || only.has(HUNAN_RSJ_SOURCE_KEY)) {
-    const hunanRsj = await captureHunanRsjPolicy(store, transport, log);
+    const hunanRsj = await captureHunanRsjPolicy(store, transport, log, claimedByBody);
     if (hunanRsj !== null) {
       captured.push(hunanRsj);
     }
   }
 
-  const previous = JSON.parse(
-    await readFile(join(SAMPLES_DIR, "manifest.json"), "utf8"),
-  ) as SampleManifest;
-  const manifest = buildSampleManifest({
-    generatedAt: new Date().toISOString(),
-    sources: mergeManifestSources(previous.sources, captured),
-  });
+  // 运行期记录统一 `run:` 前缀并双写 stderr；规格性说明（非 `run:` 条目）原样保留，--only 重抓不会覆盖。
+  const specNotes = (previous.capture_notes ?? []).filter((note) => !note.startsWith("run: "));
+  const runNotes = [
+    ...log.warnings.map((warning) => `run: note: ${warning}`),
+    ...log.gaps.map((gap) => `run: gap: ${gap}`),
+  ];
+  const manifest = buildSampleManifest(
+    {
+      generatedAt: new Date().toISOString(),
+      sources: mergeManifestSources(previous.sources, captured),
+    },
+    [...specNotes, ...runNotes],
+  );
   await writeFile(
     join(SAMPLES_DIR, "manifest.json"),
     `${JSON.stringify(manifest, null, 2)}\n`,

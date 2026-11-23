@@ -877,12 +877,57 @@ test("zhiye 空 Data 经适配器抛 EmptyResultError 并携带 sourceKey", asyn
   );
 });
 
-test("zhiye 缺职责与要求的条目经适配器抛 ParseFailedError，不产出空正文岗位", async () => {
-  const transport = createTransport(() => listBody([{ ...JOB_FULL, Duty: null, Require: null }]));
+test("zhiye 单条缺职责与要求被跳过，同页成功条目照常返回", async () => {
+  const transport = createTransport(() =>
+    listBody([
+      { ...JOB_FULL, JobAdId: 1002, JobAdName: "缺正文岗位", Duty: null, Require: null },
+      JOB_FULL,
+    ]),
+  );
+  const adapter = createZhiyeOfficialCareersAdapter(transport, ADAPTER_OPTIONS);
+  const jobs = await adapter.collect();
+  assert.equal(jobs.length, 1);
+  assert.equal(jobs[0]?.source_job_id, "1001");
+});
+
+test("zhiye 单条缺 JobAdId 的脏条目被跳过，不影响同页其他岗位", async () => {
+  const transport = createTransport(() => listBody([{ JobAdName: "缺少主键" }, JOB_FULL]));
+  const adapter = createZhiyeOfficialCareersAdapter(transport, ADAPTER_OPTIONS);
+  const jobs = await adapter.collect();
+  assert.equal(jobs.length, 1);
+  assert.equal(jobs[0]?.source_job_id, "1001");
+});
+
+test("zhiye 整页全部为脏数据时抛 ParseFailedError 并汇总 skipped 原因", async () => {
+  const transport = createTransport(() =>
+    listBody([
+      { ...JOB_FULL, JobAdId: 1002, Duty: null, Require: null },
+      { ...JOB_FULL, JobAdId: 1003, Duty: "", Require: "  " },
+    ]),
+  );
   const adapter = createZhiyeOfficialCareersAdapter(transport, ADAPTER_OPTIONS);
   await assert.rejects(
     () => adapter.collect(),
-    (error: unknown) => error instanceof ParseFailedError && error.sourceKey === SOURCE,
+    (error: unknown) => {
+      assert.ok(error instanceof ParseFailedError);
+      assert.equal(error.sourceKey, SOURCE);
+      assert.match(error.message, /跳过 2 条/);
+      assert.match(error.message, /1002/);
+      assert.match(error.message, /1003/);
+      return true;
+    },
+  );
+});
+
+test("rokid notes 固化 title 泛化证据，且仅 rokid 声明 extra_notes", () => {
+  const definition = ZHIYE_SOURCES.find((entry) => entry.source_key === "rokid-official-careers");
+  assert.ok(definition !== undefined);
+  assert.ok((definition.notes ?? "").includes("站点 title 泛化为『招聘官网』"));
+  assert.ok((definition.notes ?? "").includes("Rokid/杭州灵伴科技"));
+  assert.ok((definition.notes ?? "").includes("样本岗位二次确认"));
+  assert.deepEqual(
+    ZHIYE_SOURCE_SPECS.filter((spec) => spec.extra_notes !== undefined).map((spec) => spec.sourceKey),
+    ["rokid-official-careers"],
   );
 });
 

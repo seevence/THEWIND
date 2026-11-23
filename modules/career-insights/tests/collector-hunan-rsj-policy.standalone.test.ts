@@ -330,7 +330,7 @@ test("列表只剩导航条目时同样抛 EmptyResultError", async () => {
   });
 });
 
-test("详情标题或正文为空时计入 skipped 并汇总抛 ParseFailedError", async () => {
+test("单条详情标题或正文为空时跳过该条，其余条目照常返回", async () => {
   const emptyBodyUrl = "http://rst.hunan.gov.cn/rst/xxgk/tzgg/202611/t20261121_11800009.html";
   const transport = recordingTransport((request) => {
     if (request.url === HUNAN_RSJ_LIST_URL) {
@@ -345,11 +345,27 @@ test("详情标题或正文为空时计入 skipped 并汇总抛 ParseFailedError
     return detailFor(request.url);
   });
   const adapter = createHunanRsjPolicyAdapter(transport, { sleep: async () => undefined });
+  const policies = await adapter.collect();
+  assert.equal(policies.length, 1);
+  assert.equal(policies[0]?.official_url, ARTICLE_1_URL);
+});
+
+test("整批条目全部解析失败时汇总抛 ParseFailedError（含 skipped 数与原因）", async () => {
+  const emptyBodyUrl = "http://rst.hunan.gov.cn/rst/xxgk/tzgg/202611/t20261121_11800009.html";
+  const transport = recordingTransport((request) =>
+    request.url === HUNAN_RSJ_LIST_URL
+      ? listHtml([
+          listItem("/rst/xxgk/tzgg/202611/t20261121_11800009.html", "某空正文公告", "2026-11-21"),
+        ])
+      : detailHtml({ title: "某空正文公告", date: "2026-11-21" }),
+  );
+  const adapter = createHunanRsjPolicyAdapter(transport, { sleep: async () => undefined });
   await assert.rejects(adapter.collect(), (error: unknown) => {
     assert.ok(error instanceof ParseFailedError);
     assert.equal(error.failureType, "parse_failed");
     assert.equal(error.sourceKey, HUNAN_RSJ_SOURCE_KEY);
-    assert.match(error.message, /1\/2/);
+    assert.match(error.message, /1\/1/);
+    assert.match(error.message, /0 条产出/);
     assert.ok(error.message.includes(emptyBodyUrl));
     return true;
   });

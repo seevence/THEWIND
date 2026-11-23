@@ -48,9 +48,11 @@ function sparseSourceNote(spec: ZhiyeSourceSpec, jobCount: number): string {
 
 function zhiyeSourceNotes(spec: ZhiyeSourceSpec): string {
   const base = `北森 zhiye 门户公开社招 JSON（POST /api/Jobad/GetJobAdPageList，匿名可用，无 Cookie/Token/签名），列表条目即含职责与要求；平台未提供稳定单条详情 URL，official_url 统一为官方社招列表页 ${zhiyeJobsPageUrl(spec.tenant)}，岗位级唯一性由 source_job_id 保证。校招 Category=["2"] 暂不采集。`;
-  return spec.sparseJobCount === undefined
-    ? base
-    : `${base}${sparseSourceNote(spec, spec.sparseJobCount)}`;
+  const withSparse =
+    spec.sparseJobCount === undefined
+      ? base
+      : `${base}${sparseSourceNote(spec, spec.sparseJobCount)}`;
+  return spec.extra_notes === undefined ? withSparse : `${withSparse}${spec.extra_notes}`;
 }
 
 export interface ZhiyeSourceSpec {
@@ -62,6 +64,8 @@ export interface ZhiyeSourceSpec {
   readonly sparseJobCount?: number;
   /** 样本目录中确实落盘了 `Data=[]` 的空页响应；仅此类源在 notes 声明空页为真实响应。 */
   readonly sparseEmptyPageSample?: boolean;
+  /** 站点主体证据等补充说明，追加在 notes 末尾；无则省略。 */
+  readonly extra_notes?: string;
 }
 
 /**
@@ -333,6 +337,7 @@ export const ZHIYE_SOURCE_SPECS: readonly ZhiyeSourceSpec[] = [
     sourceKey: "rokid-official-careers",
     label: "Rokid官方招聘",
     companyName: "Rokid",
+    extra_notes: "站点 title 泛化为『招聘官网』，以页面正文（Rokid/杭州灵伴科技）与样本岗位二次确认。",
   },
   {
     tenant: "unisound",
@@ -725,7 +730,8 @@ function toSummary(item: Record<string, unknown>): ZhiyeJobSummary {
   };
 }
 
-export function parseZhiyeList(body: Buffer | string): ZhiyeJobSummary[] {
+/** 统一校验响应信封，返回 Data 数组；非法 JSON / Code 非 200 / Data 非数组 / 空数组按原分类抛错。 */
+function parseZhiyeDataArray(body: Buffer | string): unknown[] {
   let parsed: unknown;
   try {
     parsed = typeof body === "string" ? JSON.parse(body) : JSON.parse(body.toString("utf8"));
@@ -748,12 +754,45 @@ export function parseZhiyeList(body: Buffer | string): ZhiyeJobSummary[] {
   if (data.length === 0) {
     throw new EmptyResultError("zhiye 列表响应 Data 为空数组");
   }
-  return data.map((item) => {
+  return data;
+}
+
+export function parseZhiyeList(body: Buffer | string): ZhiyeJobSummary[] {
+  return parseZhiyeDataArray(body).map((item) => {
     if (!isRecord(item)) {
       throw new ParseFailedError("zhiye 列表条目不是对象");
     }
     return toSummary(item);
   });
+}
+
+export interface ZhiyeListPage {
+  readonly summaries: readonly ZhiyeJobSummary[];
+  readonly skipped: readonly string[];
+}
+
+/**
+ * 单条脏数据只跳过并记录原因，整页信封层面的结构问题仍抛出：
+ * 契约 C-POLISH-COLLECTOR@1 要求缺正文的条目不影响同页其他岗位。
+ */
+export function parseZhiyeListLenient(body: Buffer | string): ZhiyeListPage {
+  const summaries: ZhiyeJobSummary[] = [];
+  const skipped: string[] = [];
+  for (const item of parseZhiyeDataArray(body)) {
+    if (!isRecord(item)) {
+      skipped.push("zhiye 列表条目不是对象");
+      continue;
+    }
+    try {
+      summaries.push(toSummary(item));
+    } catch (error) {
+      if (!(error instanceof ParseFailedError)) {
+        throw error;
+      }
+      skipped.push(error.message);
+    }
+  }
+  return { summaries, skipped };
 }
 
 export interface ZhiyeRawJobContext {
@@ -883,6 +922,7 @@ export function createZhiyeOfficialCareersAdapter(
     ): Promise<RawCollectedJobV1[]> {
       const pageLimit = Math.max(1, Math.min(callOptions?.pageLimit ?? defaultPageLimit, MAX_PAGE_LIMIT));
       const jobs: RawCollectedJobV1[] = [];
+      const skipped: string[] = [];
       const seenJobIds = new Set<string>();
       for (let pageIndex = 0; pageIndex < pageLimit; pageIndex += 1) {
         if (isAborted(signal)) {
@@ -895,9 +935,9 @@ export function createZhiyeOfficialCareersAdapter(
           buildListRequest(listUrl, pageIndex, definition.source_key, signal),
         );
         classifyHttpStatus(response.status, definition.source_key);
-        let summaries: ZhiyeJobSummary[];
+        let page: ZhiyeListPage;
         try {
-          summaries = parseZhiyeList(response.body);
+          page = parseZhiyeListLenient(response.body);
         } catch (error) {
           // 首页空 Data 视为该源当前无在招岗位；后续页空 Data 只表示翻页到底，保留已采结果。
           if (pageIndex > 0 && error instanceof EmptyResultError) {
@@ -905,23 +945,36 @@ export function createZhiyeOfficialCareersAdapter(
           }
           throw attachSourceKey(error, definition.source_key);
         }
-        for (const summary of summaries) {
+        skipped.push(...page.skipped);
+        for (const summary of page.summaries) {
           if (isAborted(signal)) {
             throw new DOMException("采集被取消", "AbortError");
           }
           if (seenJobIds.has(summary.id)) {
             continue;
           }
-          seenJobIds.add(summary.id);
-          jobs.push(
-            toZhiyeRawJob(summary, {
+          try {
+            const job = toZhiyeRawJob(summary, {
               sourceKey: definition.source_key,
               companyName: options.companyName,
               jobsPageUrl,
               fetchedAt: response.fetchedAt,
-            }),
-          );
+            });
+            seenJobIds.add(summary.id);
+            jobs.push(job);
+          } catch (error) {
+            if (!(error instanceof ParseFailedError)) {
+              throw error;
+            }
+            skipped.push(error.message);
+          }
         }
+      }
+      if (jobs.length === 0 && skipped.length > 0) {
+        throw new ParseFailedError(
+          `zhiye 采集 0 条产出，跳过 ${skipped.length} 条脏数据，拒绝静默丢弃：${skipped.slice(0, 3).join("; ")}`,
+          definition.source_key,
+        );
       }
       return jobs;
     },

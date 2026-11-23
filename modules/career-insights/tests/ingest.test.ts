@@ -8,6 +8,7 @@ import { closeDb, sql } from "@aihot/backend/db";
 import type { CareerObservationBatchV1, NormalizedJobV1 } from "../contracts/index.ts";
 import { InvalidParameterError } from "../backend/errors.ts";
 import { ingestBatch } from "../backend/ingest.ts";
+import { careerIngestQueue } from "../backend/queue.ts";
 import { ingestWithRun } from "../backend/run-ingest.ts";
 import { CAREER_SOURCE_DEFINITIONS } from "../collector/sources.ts";
 
@@ -185,6 +186,29 @@ test("a batch over one hundred jobs is refused before anything is written", asyn
   assert.equal(await count("career_job_observations"), 0);
 });
 
+test("an empty batch is refused before a run row and before any write", async () => {
+  const empty = batchOf([]);
+
+  await assert.rejects(
+    () => ingestBatch(sql, empty),
+    (error: unknown) => {
+      assert.ok(error instanceof InvalidParameterError);
+      assert.equal(error.code, "invalid_parameter");
+      assert.equal(error.message, "A batch must contain at least one job.");
+      assert.deepEqual(error.details, { parameter: "jobs" });
+      return true;
+    },
+  );
+  await assert.rejects(
+    () => ingestWithRun(sql, empty),
+    InvalidParameterError,
+    "an empty batch must be refused before a run row is created",
+  );
+  assert.equal(await count("career_jobs"), 0);
+  assert.equal(await count("career_job_observations"), 0);
+  assert.equal(await countRuns(), 0, "an empty batch never starts a run");
+});
+
 test("a batch from an unregistered source_key is refused before anything is written", async () => {
   const unregistered = { ...batchOf([job()]), source_key: "career-test" };
 
@@ -200,6 +224,58 @@ test("a batch from an unregistered source_key is refused before anything is writ
   );
   assert.equal(await count("career_jobs"), 0);
   assert.equal(await count("career_job_observations"), 0);
+});
+
+test("padded source keys are trimmed before the registry lookup and stored without the padding", async () => {
+  const padded = `  ${TEST_SOURCE_KEY}  `;
+  const result = await ingestBatch(sql, {
+    ...batchOf([job({ job_key: "padded-1", source_key: ` ${TEST_SOURCE_KEY} ` })]),
+    source_key: padded,
+  });
+
+  assert.deepEqual(result, { accepted: 1, updated: 0, duplicates: 0, rejected: 0, errors: [] });
+  const rows = await sql<{ source_key: string; job_key: string }[]>`
+    SELECT source_key, job_key FROM career_jobs`;
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0]!.source_key, TEST_SOURCE_KEY, "the padded key is stored without the padding");
+  assert.equal(rows[0]!.job_key, "padded-1");
+});
+
+test("a whitespace-only source key is treated as unregistered", async () => {
+  await assert.rejects(
+    () => ingestBatch(sql, { ...batchOf([job()]), source_key: "   " }),
+    (error: unknown) => {
+      assert.ok(error instanceof InvalidParameterError);
+      assert.equal(error.message, 'Unknown source: ""');
+      assert.deepEqual(error.details, { parameter: "source_key" });
+      return true;
+    },
+  );
+  assert.equal(await count("career_jobs"), 0);
+});
+
+test("a case-mismatched source key is refused with a case-sensitivity hint", async () => {
+  const wrongCase = TEST_SOURCE_KEY.toUpperCase();
+  assert.notEqual(wrongCase, TEST_SOURCE_KEY);
+
+  await assert.rejects(
+    () => ingestBatch(sql, { ...batchOf([job()]), source_key: wrongCase }),
+    (error: unknown) => {
+      assert.ok(error instanceof InvalidParameterError);
+      assert.equal(error.message, `Unknown source: ${wrongCase} (source keys are case-sensitive)`);
+      assert.deepEqual(error.details, { parameter: "source_key" });
+      return true;
+    },
+  );
+  assert.equal(await count("career_jobs"), 0);
+});
+
+test("the ingest queue drops a deterministic parameter error instead of retrying it", async (t) => {
+  t.mock.method(console, "error", () => {});
+
+  assert.equal(await careerIngestQueue.run([batchOf([])]), 0);
+  assert.equal(await countRuns(), 0, "a dropped batch never leaves a failed run");
+  assert.equal(await count("career_jobs"), 0);
 });
 
 test("a batch from a disabled registered source is refused before anything is written", async () => {

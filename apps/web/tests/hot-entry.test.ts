@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as cheerio from "cheerio";
 import { CAREER_SOURCE_DEFINITIONS } from "../../../modules/career-insights/collector/sources.ts";
+import { isSafeExternalUrl } from "../../../modules/career-insights/web/labels.ts";
 import { fakeApi, startWebServer } from "./web-server.ts";
 
 async function page(path: string, route: (url: URL) => unknown = () => undefined): Promise<{ status: number; $: cheerio.CheerioAPI; html: string }> {
@@ -92,4 +93,50 @@ test("a company with a career url becomes an external link and the others stay p
   assert.equal(missing.text(), "旧契约企业");
   assert.equal(missing.get(0)?.tagName, "span", "a missing career_url stays plain text");
   assert.equal(rows.eq(2).find("a").length, 0, "no fake link is rendered for it");
+});
+test("only http(s) career urls become links, the unsafe schemes stay plain text", async () => {
+  const at = "2026-10-04T08:00:00.000Z";
+  const entries = [
+    { company: "http 企业", career_url: "http://careers.example.cn/", job_count: 7 },
+    { company: "大写协议企业", career_url: "HTTPS://careers.example.cn/", job_count: 6 },
+    { company: "脚本企业", career_url: "javascript:alert(1)", job_count: 5 },
+    { company: "数据企业", career_url: "data:text/html,x", job_count: 4 },
+    { company: "协议相对企业", career_url: "//evil.example", job_count: 3 },
+    { company: "空串企业", career_url: "", job_count: 2 },
+    { company: "空值企业", career_url: null, job_count: 1 },
+    { company: "缺字段企业", job_count: 1 },
+  ].map((entry) => ({ ...entry, latest_published_at: at, role_families: [] }));
+  const response = { contract_version: "0.1", data_origin: "live", as_of: at, window_days: 30, entries };
+  const hot = await page("/hot", (url) => (url.pathname === "/api/site/career-insights/hot" ? response : undefined));
+  assert.equal(hot.status, 200);
+
+  const rows = hot.$("[data-hot-entry]");
+  assert.equal(rows.length, entries.length);
+
+  for (const index of [0, 1]) {
+    const linked = rows.eq(index).find("a[data-hot-company]");
+    assert.equal(linked.length, 1, `${entries[index].company} is a link`);
+    assert.match(linked.attr("href") ?? "", /^https?:\/\//i, "it keeps its http(s) href");
+    assert.equal(linked.attr("target"), "_blank");
+  }
+
+  entries.slice(2).forEach((entry, offset) => {
+    const index = offset + 2;
+    const plain = rows.eq(index).find("[data-hot-company]");
+    assert.equal(plain.length, 1, `${entry.company} keeps its company marker`);
+    assert.equal(plain.text(), entry.company);
+    assert.equal(plain.get(0)?.tagName, "span", `${entry.company} stays plain text`);
+    assert.equal(rows.eq(index).find("a").length, 0, `${entry.company} renders no link`);
+  });
+});
+
+test("isSafeExternalUrl only accepts http(s) strings", () => {
+  assert.equal(isSafeExternalUrl("https://careers.example.cn/"), true);
+  assert.equal(isSafeExternalUrl("http://careers.example.cn/"), true);
+  assert.equal(isSafeExternalUrl("HTTPS://careers.example.cn/"), true);
+  for (const unsafe of ["javascript:alert(1)", "data:text/html,x", "//evil.example", "", " javascript:alert(1)"]) {
+    assert.equal(isSafeExternalUrl(unsafe), false, `${JSON.stringify(unsafe)} is not a safe external url`);
+  }
+  assert.equal(isSafeExternalUrl(null), false);
+  assert.equal(isSafeExternalUrl(undefined), false);
 });

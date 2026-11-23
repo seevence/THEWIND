@@ -1,5 +1,15 @@
 import type { DegreeLevel, EmploymentType, RoleFamily, StudentFriendly } from "@aihot/career-insights/contracts";
 
+const SAFE_EXTERNAL_URL = /^https?:\/\//i;
+
+/**
+ * 只放行 http(s) 绝对地址。字段来自采集数据，`javascript:`、`data:`、协议相对 `//host`
+ * 都会把不可信内容变成可点击外链，一律退化为纯文本。
+ */
+export function isSafeExternalUrl(value: unknown): value is string {
+  return typeof value === "string" && SAFE_EXTERNAL_URL.test(value);
+}
+
 /** 与 data/dictionaries.ts 的 THEME_LABELS 同步；data 包依赖 node:crypto，不能进浏览器构建。 */
 export const THEME_LABELS: Readonly<Record<string, string>> = {
   artificial_intelligence: "人工智能",

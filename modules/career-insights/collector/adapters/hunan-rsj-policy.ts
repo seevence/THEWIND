@@ -172,7 +172,7 @@ export function parseHunanRsjList(html: string, baseUrl: string): HunanRsjListIt
 
 /**
  * 标题或正文为空时返回空字符串而不抛错：采集侧把这类条目计入 skipped，
- * 由 ParseFailedError 汇总抛出（不静默丢弃）。
+ * 同批尚有成功条目时照常返回，全部失败才由 ParseFailedError 汇总抛出（不静默丢弃）。
  */
 export function parseHunanRsjDetail(
   html: string,
@@ -293,9 +293,9 @@ export function createHunanRsjPolicyAdapter(
           skipped.push(`${item.url} ${error instanceof Error ? error.message : String(error)}`);
         }
       }
-      if (skipped.length > 0) {
+      if (out.length === 0 && skipped.length > 0) {
         throw new ParseFailedError(
-          `政策解析失败 ${skipped.length}/${items.length} 条，拒绝静默丢弃：${skipped.join("; ")}`,
+          `政策解析失败 ${skipped.length}/${items.length} 条，0 条产出，拒绝静默丢弃：${skipped.slice(0, 3).join("; ")}`,
           HUNAN_RSJ_SOURCE_KEY,
         );
       }

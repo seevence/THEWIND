@@ -3,6 +3,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
+import { FIXTURE_HOT_V1 } from "../fixtures/api.ts";
 
 const CACHE = "public, max-age=60, stale-while-revalidate=300";
 
@@ -135,4 +136,27 @@ test("岗位列表与详情的 required 字段和公开类型一致", () => {
     params.map((parameter) => parameter.name),
     ["q", "role_family", "city", "student_friendly", "skill", "page", "page_size"],
   );
+});
+test("热点榜条目把 career_url 列为 required 且允许 null，与 TS 字段集一致", () => {
+  const entries = (
+    contract.components.schemas.CareerHotResponseV1 as {
+      properties: { entries: { type?: string; items: { $ref?: string } } };
+    }
+  ).properties.entries;
+  assert.equal(entries.type, "array");
+  assert.equal(entries.items.$ref, "#/components/schemas/CareerHotEntryV1");
+
+  const entry = contract.components.schemas.CareerHotEntryV1 as {
+    type: string;
+    required: string[];
+    properties: Record<string, { type?: unknown }>;
+  };
+  assert.equal(entry.type, "object");
+  assert.ok(entry.required.includes("career_url"), "career_url must be required");
+  assert.deepEqual(entry.properties.career_url?.type, ["string", "null"]);
+
+  // FIXTURE_HOT_V1 被标注为 CareerHotResponseV1，其条目键集就是 TS 字段集。
+  const tsFields = Object.keys(FIXTURE_HOT_V1.entries[0]!).sort();
+  assert.deepEqual([...entry.required].sort(), tsFields);
+  assert.deepEqual(Object.keys(entry.properties).sort(), tsFields);
 });

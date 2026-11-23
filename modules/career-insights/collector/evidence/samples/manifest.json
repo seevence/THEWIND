@@ -1,6 +1,12 @@
 {
   "version": "1.0",
   "generated_at": "2026-11-22T05:07:35.237Z",
+  "capture_notes": [
+    "note: hwatsing/amphenol/sosen 在招各 1 条（Count=1），各落盘 1 份数据页正文；空页响应与其他源字节相同，受 sample_id 全局唯一约束已跨源去重，配额 required=min(5,1)=1，无缺口。",
+    "note: 运行期采集记录（打码 note 与缺口 gap）以 run: 前缀追加到本字段，并同时写 stderr；--only 重抓只替换 run: 条目，规格性说明保留。",
+    "note: 稀疏源配额按 min(5, max(1, Count)) 计算（risen 4→4、apsystems 1→1、benq 3→3），不再按 Count+1 计，避免把跨源去重后的空页算成缺份。",
+    "note: 常态采集的 warnings（post_date_int_timestamp 误报、已完成的真实个人数据打码）与缺口 gap 均同时写入本字段和 stderr，warnings 不影响退出码；只有缺口才非零退出。"
+  ],
   "sources": [
     {
       "source_key": "moe-policy",

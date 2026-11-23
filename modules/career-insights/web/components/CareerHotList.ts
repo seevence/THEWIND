@@ -2,7 +2,7 @@ import { createElement as h, type ReactElement } from "react";
 import { Link } from "react-router";
 import type { CareerHotEntryV1 } from "../../contracts/index.ts";
 import { publishedAtText, topRoleFamilies } from "../feeds.ts";
-import { ROLE_FAMILY_LABELS } from "../labels.ts";
+import { isSafeExternalUrl, ROLE_FAMILY_LABELS } from "../labels.ts";
 
 const ROW_CLASS = "grid grid-cols-[28px_minmax(0,1fr)] items-start gap-x-3 px-4 py-3.5 sm:px-5";
 
@@ -25,8 +25,8 @@ function FamilyChips({ entry }: { entry: CareerHotEntryV1 }): ReactElement | nul
 const COMPANY_CLASS = "text-[15px] font-semibold text-ink break-words";
 
 function CompanyName({ entry }: { entry: CareerHotEntryV1 }): ReactElement {
-  // 旧版本 API 的条目没有 career_url（运行时为 undefined），此时按无链接处理。
-  if (!entry.career_url) {
+  // 旧版本 API 的条目没有 career_url（运行时为 undefined），非 http(s) 的脏数据同样按无链接处理。
+  if (!isSafeExternalUrl(entry.career_url)) {
     return h("span", { "data-hot-company": entry.company, className: COMPANY_CLASS }, entry.company);
   }
   return h(

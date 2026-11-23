@@ -9,7 +9,7 @@ export interface SampleMeta {
   readonly request_url: string;
   readonly final_url: string;
   readonly http_status: number;
-  readonly content_type: string | null;
+  readonly content_type: string;
   readonly body_sha256: string;
   readonly captured_at: string;
   readonly collector_version: string;
@@ -48,6 +48,9 @@ export function sampleIdFromBody(body: Buffer): string {
   return sha256Hex(body).slice(0, 16);
 }
 
+/** 调用方（HTTP 传输层）可能拿不到 `Content-Type`，入口接受 `null` 但落盘前规范化为该占位值。 */
+export const UNKNOWN_CONTENT_TYPE = "application/octet-stream";
+
 export interface CreateSampleInput {
   readonly request_key: string;
   readonly request_url: string;
@@ -64,6 +67,9 @@ export interface CreateSampleInput {
 }
 
 export function createSample(input: CreateSampleInput): SampleRecord {
+  if (input.content_type !== null && input.content_type.trim().length === 0) {
+    throw new SampleRejectedError("样本元信息缺少 content_type");
+  }
   const bodySha = sha256Hex(input.body);
   const meta: SampleMeta = {
     sample_id: bodySha.slice(0, 16),
@@ -71,7 +77,7 @@ export function createSample(input: CreateSampleInput): SampleRecord {
     request_url: input.request_url,
     final_url: input.final_url,
     http_status: input.http_status,
-    content_type: input.content_type,
+    content_type: input.content_type ?? UNKNOWN_CONTENT_TYPE,
     body_sha256: bodySha,
     captured_at: input.captured_at,
     collector_version: input.collector_version,

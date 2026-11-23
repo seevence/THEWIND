@@ -30,6 +30,19 @@ export interface IngestContext {
 const DEFAULT_ORIGIN: DataOrigin = "live";
 
 /**
+ * 批次形状守卫：空批次与超限都是确定性参数错误，必须在建 run 行与任何写入之前拒绝，
+ * 否则会写空源或留下 status=failed 的 ghost run 行。
+ */
+export function assertIngestBatch(batch: CareerObservationBatchV1): void {
+  if (batch.jobs.length === 0) {
+    throw new InvalidParameterError("A batch must contain at least one job.", { parameter: "jobs" });
+  }
+  if (batch.jobs.length > MAX_BATCH_SIZE) {
+    throw new InvalidParameterError(`A batch may contain at most ${MAX_BATCH_SIZE} jobs.`, { parameter: "jobs" });
+  }
+}
+
+/**
  * 入库来源守卫：榜单 career_url 由 source_key 映射注册表，只有 kind=company_careers 且 enabled 的源
  * 才能提供企业招聘入口。政策源写入 career_jobs 会让企业上榜却无链接，来源统计也失真，因此按
  * 未登记 / 停用 / 非企业岗位源三种原因分别报错。批次级与 run 级共用此函数，避免判断漂移。
@@ -37,7 +50,14 @@ const DEFAULT_ORIGIN: DataOrigin = "live";
 export function assertCareerJobSourceKey(sourceKey: string): CareerSourceDefinition {
   const definition = CAREER_SOURCE_DEFINITIONS.find((source) => source.source_key === sourceKey);
   if (definition === undefined) {
-    throw new InvalidParameterError(`Unknown source: ${sourceKey}`, { parameter: "source_key" });
+    // 空键加引号：日志里能区分「传了空串」与「注册表真的没有这个键」。
+    const shown = sourceKey === "" ? '""' : sourceKey;
+    // 只差大小写就能命中时给出提示，否则会被误读成源未登记。
+    const caseOnlyMatch = CAREER_SOURCE_DEFINITIONS.some(
+      (source) => source.source_key.toLowerCase() === sourceKey.toLowerCase(),
+    );
+    const hint = caseOnlyMatch ? " (source keys are case-sensitive)" : "";
+    throw new InvalidParameterError(`Unknown source: ${shown}${hint}`, { parameter: "source_key" });
   }
   if (!definition.enabled) {
     throw new InvalidParameterError(`Disabled source: ${sourceKey}`, { parameter: "source_key" });
@@ -280,12 +300,11 @@ export async function ingestBatch(
   batch: CareerObservationBatchV1,
   context: IngestContext = {},
 ): Promise<IngestResultV1> {
-  if (batch.jobs.length > MAX_BATCH_SIZE) {
-    throw new InvalidParameterError(`A batch may contain at most ${MAX_BATCH_SIZE} jobs.`, { parameter: "jobs" });
-  }
+  assertIngestBatch(batch);
 
   // 整批拒绝发生在任何写入之前：未登记、停用或非企业岗位源的批次都不许进入 career_jobs。
-  const sourceKey = batch.source_key;
+  // 首尾空白先 trim 再查表，避免带空格的键绕过注册表守卫。
+  const sourceKey = batch.source_key.trim();
   assertCareerJobSourceKey(sourceKey);
 
   const valid: NormalizedJobV1[] = [];
@@ -294,8 +313,9 @@ export async function ingestBatch(
 
   batch.jobs.forEach((candidate, index) => {
     // 逐条闭合：job 自带的 source_key 也必须满足同样的 kind/enabled 条件，且与批次来源一致，
-    // 否则整条不计入（第三方不能借已登记的批次键夹带政策源或未登记来源）。
-    const jobSourceKey = typeof candidate.source_key === "string" ? candidate.source_key : undefined;
+    // 否则整条不计入（第三方不能借已登记的批次键夹带政策源或未登记来源）。逐条键同样 trim 后比对，
+    // 通过时以 trim 后的值落库，避免同一源在表里出现带空白的脏键。
+    const jobSourceKey = typeof candidate.source_key === "string" ? candidate.source_key.trim() : undefined;
     if (jobSourceKey !== undefined) {
       const sourceIssue = jobSourceIssue(jobSourceKey, sourceKey);
       if (sourceIssue !== null) {
@@ -306,7 +326,7 @@ export async function ingestBatch(
     }
     const result = validateNormalizedJobV1(candidate);
     if (result.ok) {
-      valid.push(result.value);
+      valid.push(jobSourceKey === undefined ? result.value : { ...result.value, source_key: jobSourceKey });
       return;
     }
     rejected += 1;

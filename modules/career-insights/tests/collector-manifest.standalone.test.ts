@@ -5,33 +5,44 @@ import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 import {
+  buildSampleManifest,
   evaluateManifestQuota,
+  quotaItemsFromManifest,
   validateSampleManifest,
 } from "../collector/evidence/manifest.ts";
-import type { SampleManifest } from "../collector/evidence/manifest.ts";
+import type { ManifestSampleRef, SampleManifest } from "../collector/evidence/manifest.ts";
+import { evaluateQuota } from "../collector/evidence/quota.ts";
+import { UNKNOWN_CONTENT_TYPE, createSample, sha256Hex } from "../collector/evidence/sample-store.ts";
+import { SampleRejectedError } from "../collector/fetch/errors.ts";
 import { redactPersonalData } from "../collector/evidence/sanitizer.ts";
-import { ZHIYE_SOURCES } from "../collector/adapters/zhiye-official-careers.ts";
+import { ZHIYE_SOURCES, ZHIYE_SOURCE_SPECS } from "../collector/adapters/zhiye-official-careers.ts";
 
 const SAMPLES = join(dirname(fileURLToPath(import.meta.url)), "../collector/evidence/samples");
 /** 86 个 zhiye 源：只用它们验收个人数据打码，不把既有 8 个岗位源算进来。 */
 const ZHIYE_SOURCE_KEYS = new Set(ZHIYE_SOURCES.map((source) => source.source_key));
+/** 实测在招条数 < 5 的稀疏源；配额按 min(5, max(1, Count)) 收缩。 */
+const SPARSE_JOB_COUNTS: Readonly<Record<string, number>> = Object.fromEntries(
+  ZHIYE_SOURCE_SPECS.filter((spec) => spec.sparseJobCount !== undefined).map((spec) => [
+    spec.sourceKey,
+    spec.sparseJobCount as number,
+  ]),
+);
 
 async function loadManifest(): Promise<SampleManifest> {
   return JSON.parse(await readFile(join(SAMPLES, "manifest.json"), "utf8")) as SampleManifest;
 }
 
-test("真实 manifest 通过结构校验并如实暴露稀疏源配额缺口", async () => {
+test("真实 manifest 通过结构校验，基线如实暴露缺口、稀疏源按实测 Count 收缩后无缺口", async () => {
   const manifest = await loadManifest();
   const validation = validateSampleManifest(manifest);
   assert.deepEqual(validation.errors, []);
   assert.equal(validation.ok, true);
 
-  // 稀疏源（在招 1–3 条）的真实响应只有 Count+1 份互不相同的正文，全局去重空页后必然低于 5 份配额；
-  // 契约 @12 要求如实暴露缺口而不是伪造样本，这里逐一钉住缺口来源。
-  const quota = evaluateManifestQuota(manifest);
-  assert.equal(quota.status, "insufficient");
+  // 基线（不看 sparse_job_count）仍按每源 5 份：稀疏源天然不足，如实暴露而不是伪造样本。
+  const denseQuota = evaluateManifestQuota(manifest);
+  assert.equal(denseQuota.status, "insufficient");
   assert.deepEqual(
-    quota.gaps.map((gap) => `${gap.source_key}:${gap.actual}/${gap.required}`),
+    denseQuota.gaps.map((gap) => `${gap.source_key}:${gap.actual}/${gap.required}`),
     [
       "apsystems-official-careers:2/5",
       "benq-official-careers:4/5",
@@ -39,6 +50,36 @@ test("真实 manifest 通过结构校验并如实暴露稀疏源配额缺口", a
       "amphenol-official-careers:1/5",
       "sosen-official-careers:1/5",
     ],
+  );
+
+  // 稀疏源按 min(5, Count) 收缩为「最低可接受数据页数」：
+  // risen(4)、apsystems(1)、benq(3)、hwatsing(1)、amphenol(1)、sosen(1) 均无缺口。
+  // 空页正文跨源字节相同且 sample_id 必须全局唯一，稀疏源物理上只落 1 份数据页，不再视为缺份。
+  const quota = evaluateManifestQuota(manifest, SPARSE_JOB_COUNTS);
+  assert.equal(quota.status, "ok");
+  assert.deepEqual(quota.gaps, []);
+  assert.deepEqual(Object.keys(SPARSE_JOB_COUNTS).sort(), [
+    "amphenol-official-careers",
+    "apsystems-official-careers",
+    "benq-official-careers",
+    "hwatsing-official-careers",
+    "risen-official-careers",
+    "sosen-official-careers",
+  ]);
+  const sparseItems = quotaItemsFromManifest(manifest, SPARSE_JOB_COUNTS).filter(
+    (item) => item.sparse_job_count !== undefined,
+  );
+  assert.equal(sparseItems.length, 6);
+  for (const item of sparseItems) {
+    const count = SPARSE_JOB_COUNTS[item.source_key];
+    assert.equal(item.sparse_job_count, count);
+    assert.ok(item.sample_count >= Math.min(5, Math.max(1, count)));
+  }
+
+  assert.equal(manifest.sources.length, 101);
+  assert.equal(
+    manifest.sources.reduce((sum, source) => sum + source.sample_count, 0),
+    486,
   );
 
   assert.deepEqual(
@@ -285,4 +326,134 @@ test("manifest 拒绝计数不一致、路径越界与非法哈希", async () =>
   assert.ok(validation.errors.some((error) => error.includes("sample_count")));
   assert.ok(validation.errors.some((error) => error.includes("body_file")));
   assert.ok(validation.errors.some((error) => error.includes("body_sha256")));
+});
+test("evaluateQuota 对稀疏源按 min(5, Count) 收缩（下限 1），未提供 Count 或 Count=0 均不放宽到 0", () => {
+  const report = evaluateQuota([
+    { source_key: "sparse-1", kind: "job", sample_count: 1, sparse_job_count: 1 },
+    { source_key: "sparse-4", kind: "job", sample_count: 4, sparse_job_count: 4 },
+    { source_key: "sparse-zero", kind: "job", sample_count: 1, sparse_job_count: 0 },
+    { source_key: "dense", kind: "job", sample_count: 4 },
+  ]);
+  assert.equal(report.status, "insufficient");
+  assert.deepEqual(report.gaps, [
+    { source_key: "dense", kind: "job", required: 5, actual: 4, missing: 1 },
+  ]);
+
+  // Count=0 收缩到下限 1：1 份数据页即达标，但 0 份仍算缺口，不因「无在招」豁免证据。
+  assert.equal(
+    evaluateQuota([{ source_key: "zero", kind: "job", sample_count: 1, sparse_job_count: 0 }]).ok,
+    true,
+  );
+  assert.deepEqual(
+    evaluateQuota([{ source_key: "zero-empty", kind: "job", sample_count: 0, sparse_job_count: 0 }])
+      .gaps,
+    [{ source_key: "zero-empty", kind: "job", required: 1, actual: 0, missing: 1 }],
+  );
+
+  // 未提供 Count 的源不受稀疏规则影响，仍要求 5 份；Count≥5 同样按 5 份。
+  assert.deepEqual(
+    evaluateQuota([{ source_key: "no-count", kind: "job", sample_count: 0 }]).gaps,
+    [{ source_key: "no-count", kind: "job", required: 5, actual: 0, missing: 5 }],
+  );
+  assert.equal(
+    evaluateQuota([{ source_key: "count-5", kind: "job", sample_count: 5, sparse_job_count: 5 }])
+      .ok,
+    true,
+  );
+});
+
+function minimalSample(body: string, overrides: Partial<ManifestSampleRef> = {}): ManifestSampleRef {
+  const bodySha = sha256Hex(Buffer.from(body));
+  return {
+    sample_id: bodySha.slice(0, 16),
+    request_key: `POST https://example.test/list|${bodySha.slice(0, 8)}`,
+    request_url: "https://example.test/list",
+    captured_at: "2026-01-01T00:00:00.000Z",
+    extraction_ref: "list-1",
+    body_file: "example/samples/list-1.json",
+    body_sha256: bodySha,
+    ...overrides,
+  };
+}
+
+test("manifest 顶层 capture_notes 可选写入且必须是字符串数组", () => {
+  const sources = [{ source_key: "example", kind: "job" as const, samples: [minimalSample("a")] }];
+  const generatedAt = "2026-01-01T00:00:00.000Z";
+
+  const withoutNotes = buildSampleManifest({ generatedAt, sources });
+  assert.equal("capture_notes" in withoutNotes, false);
+  assert.deepEqual(validateSampleManifest(withoutNotes).errors, []);
+
+  const withNotes = buildSampleManifest({ generatedAt, sources }, [
+    "note: example/samples/list-1.json: sanitized=true（redacted:email=1）",
+    "gap: example: 缺 1 份",
+  ]);
+  assert.deepEqual(withNotes.capture_notes, [
+    "note: example/samples/list-1.json: sanitized=true（redacted:email=1）",
+    "gap: example: 缺 1 份",
+  ]);
+  assert.deepEqual(validateSampleManifest(withNotes).errors, []);
+
+  const notArray = { ...withNotes, capture_notes: "gap: example" };
+  assert.ok(
+    validateSampleManifest(notArray).errors.some((error) => error.includes("capture_notes")),
+  );
+
+  const mixed = { ...withNotes, capture_notes: ["gap: example", 42] };
+  assert.ok(
+    validateSampleManifest(mixed).errors.some((error) => error.includes("capture_notes")),
+  );
+});
+
+test("manifest 校验拒绝 request_key 全局重复与 sample_id 前缀不符", () => {
+  const first = minimalSample("a");
+  const second = minimalSample("b", { body_file: "example/samples/list-2.json" });
+  const manifest = buildSampleManifest({
+    generatedAt: "2026-01-01T00:00:00.000Z",
+    sources: [
+      { source_key: "a", kind: "job", samples: [first] },
+      { source_key: "b", kind: "job", samples: [second] },
+    ],
+  });
+  assert.deepEqual(validateSampleManifest(manifest).errors, []);
+
+  const duplicatedKey = structuredClone(manifest) as unknown as {
+    sources: { samples: { request_key: string }[] }[];
+  };
+  duplicatedKey.sources[1].samples[0].request_key = first.request_key;
+  assert.ok(
+    validateSampleManifest(duplicatedKey).errors.some((error) => error.includes("request_key")),
+  );
+
+  const badPrefix = structuredClone(manifest) as unknown as {
+    sources: { samples: { sample_id: string }[] }[];
+  };
+  badPrefix.sources[0].samples[0].sample_id = "0000000000000000";
+  assert.ok(
+    validateSampleManifest(badPrefix).errors.some((error) => error.includes("sample_id")),
+  );
+});
+
+test("createSample 的 content_type 统一为非空字符串，null 规范化为 application/octet-stream", () => {
+  const base = {
+    request_key: "GET https://example.test/list",
+    request_url: "https://example.test/list",
+    final_url: "https://example.test/list",
+    http_status: 200,
+    captured_at: "2026-01-01T00:00:00.000Z",
+    collector_version: "collector/0.1.0",
+    extraction_ref: "list-1",
+    sanitized: false,
+    body: Buffer.from("{}"),
+    body_file: "example/samples/list-1.json",
+  };
+
+  const unknownType = createSample({ ...base, content_type: null });
+  assert.equal(unknownType.meta.content_type, UNKNOWN_CONTENT_TYPE);
+
+  const jsonType = createSample({ ...base, content_type: "application/json" });
+  assert.equal(jsonType.meta.content_type, "application/json");
+  assert.equal(jsonType.meta.sample_id, jsonType.meta.body_sha256.slice(0, 16));
+
+  assert.throws(() => createSample({ ...base, content_type: "  " }), SampleRejectedError);
 });
