@@ -456,6 +456,43 @@ test("changed derived fields under the same version still refresh and keep one o
   assert.equal(await count("career_job_observations"), 2, "两天各一条日粒度观测");
 });
 
+test("rule normalizer does not downgrade an existing LLM-classified row", async () => {
+  await ingestBatch(
+    sql,
+    batchOf([
+      job({
+        normalizer_version: "normalizer/llm-0.3",
+        role_family: "ai_algorithm",
+        student_friendly: "yes",
+        skills: ["python", "sql"],
+      }),
+    ]),
+  );
+
+  const result = await ingestBatch(
+    sql,
+    batchOf([
+      job({
+        fetched_at: "2026-01-02T00:00:00.000Z",
+        normalizer_version: "normalizer/0.3.0",
+        role_family: "unknown",
+        student_friendly: "unknown",
+        skills: [],
+        skill_evidence: [],
+      }),
+    ]),
+  );
+
+  assert.deepEqual(result, { accepted: 0, updated: 0, duplicates: 1, rejected: 0, errors: [] });
+  const row = await storedJob();
+  assert.equal(row.normalizer_version, "normalizer/llm-0.3", "LLM 版本保留，不被规则版覆盖");
+  assert.equal(row.role_family, "ai_algorithm");
+  assert.equal(row.student_friendly, "yes");
+  assert.deepEqual(row.skills, ["python", "sql"]);
+  assert.equal(await count("career_jobs"), 1);
+  assert.equal(await count("career_job_observations"), 2, "两天各一条日粒度观测");
+});
+
 test("同一天两次采集同一内容只留下一个观测点", async () => {
   await ingestBatch(sql, batchOf([job({ fetched_at: "2026-01-01T01:00:00.000Z" })]));
   const second = await ingestBatch(sql, batchOf([job({ fetched_at: "2026-01-01T13:00:00.000Z" })]));

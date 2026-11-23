@@ -13,6 +13,7 @@ import type { CareerSourceDefinition } from "../collector/index.ts";
 import { CAREER_SOURCE_DEFINITIONS } from "../collector/sources.ts";
 import { sourceContentEquals, type ContentHashInputV1 } from "../data/dedupe.ts";
 import { validateNormalizedJobV1, type ValidationIssueV1 } from "../data/validate.ts";
+import { LLM_NORMALIZER_VERSION_PREFIX, NORMALIZER_VERSION } from "../data/normalize.ts";
 import { InvalidParameterError } from "./errors.ts";
 import { inTransaction } from "./transaction.ts";
 
@@ -213,9 +214,15 @@ async function writeJob(tx: Db, job: NormalizedJobV1, context: IngestContext): P
     existing.content_hash === job.content_hash || sourceContentEquals(sourceContentOf(existing), job);
 
   if (sameSourceContent) {
+    // 同一份源内容每天会再次入库：规则归一化不能覆盖此前 LLM 兜底得到的更细分类
+    // （role_family / student_friendly / skills），否则每天采集都会把分类打回 unknown。
+    const existingFromLlm = existing.normalizer_version?.startsWith(LLM_NORMALIZER_VERSION_PREFIX) === true;
+    const incomingFromRules = job.normalizer_version === NORMALIZER_VERSION;
+    const keepLlmDerived = existingFromLlm && incomingFromRules;
     const derivedUnchanged =
-      existing.normalizer_version === job.normalizer_version &&
-      derivedSignature(existing) === derivedSignature(job);
+      keepLlmDerived ||
+      (existing.normalizer_version === job.normalizer_version &&
+        derivedSignature(existing) === derivedSignature(job));
 
     if (derivedUnchanged) {
       await tx`
