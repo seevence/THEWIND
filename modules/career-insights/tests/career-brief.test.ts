@@ -320,11 +320,11 @@ test("the prompt input uses Chinese display names and percentages instead of int
   assert.ok(user.includes("可引用证据"));
 });
 
-test("the default prompt version is career-brief/3", () => {
+test("the default prompt version is career-brief/4", () => {
   const record = composeCareerBrief(input(), draft(), { generated_at: "2026-11-20T01:00:00.000Z" });
 
   assert.equal(record.prompt_version, CAREER_BRIEF_PROMPT_VERSION);
-  assert.equal(record.prompt_version, "career-brief/3");
+  assert.equal(record.prompt_version, "career-brief/4");
 });
 
 test("the system prompt keeps the Chinese-only, Chinese-name and percentage constraints", () => {
